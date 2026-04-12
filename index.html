@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kavik Works — AI Workflow Automation for Business</title>
+  <meta name="description" content="Kavik Works helps small and midsize businesses automate real workflows with AI. Measurable results, recurring managed service, no hype.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white: #ffffff;
+      --gray-50: #fafafa;
+      --gray-100: #f5f5f5;
+      --gray-200: #e5e5e5;
+      --gray-300: #d4d4d4;
+      --gray-400: #a3a3a3;
+      --gray-500: #737373;
+      --gray-600: #525252;
+      --gray-700: #404040;
+      --gray-800: #262626;
+      --gray-900: #171717;
+      --gray-950: #0a0a0a;
+      --accent: #e5e5e5;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font-sans);
+      color: var(--gray-300);
+      background: var(--gray-950);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── Typography ── */
+    h1, h2, h3, h4 { color: var(--white); line-height: 1.2; font-weight: 600; }
+    h1 { font-size: clamp(2.5rem, 5vw, 4rem); letter-spacing: -0.03em; }
+    h2 { font-size: clamp(1.75rem, 3vw, 2.5rem); letter-spacing: -0.02em; }
+    h3 { font-size: 1.25rem; }
+    p { max-width: 640px; }
+    a { color: var(--white); text-decoration: none; }
+
+    .mono { font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gray-500); }
+
+    /* ── Layout ── */
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 2rem; }
+    section { padding: 7rem 0; }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(10, 10, 10, 0.8);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    nav .container {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo {
+      font-weight: 700; font-size: 1.1rem; color: var(--white);
+      letter-spacing: -0.02em;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .nav-logo-icon {
+      width: 28px; height: 28px;
+      border: 2px solid var(--gray-400);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .nav-logo-icon::after {
+      content: '';
+      width: 8px; height: 8px;
+      background: var(--white);
+      border-radius: 2px;
+    }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a {
+      font-size: 0.875rem; color: var(--gray-400);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta {
+      background: var(--white) !important; color: var(--gray-950) !important;
+      padding: 0.5rem 1.25rem; border-radius: 6px;
+      font-weight: 500; font-size: 0.875rem;
+      transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.9; }
+
+    .mobile-menu-btn {
+      display: none; background: none; border: none; cursor: pointer;
+      padding: 0.5rem;
+    }
+    .mobile-menu-btn span {
+      display: block; width: 20px; height: 2px;
+      background: var(--gray-400); margin: 4px 0;
+      transition: all 0.3s;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 10rem 0 7rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 600px;
+      background: radial-gradient(ellipse, rgba(255,255,255,0.03) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse 60% 50% at 50% 40%, black 30%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 40%, black 30%, transparent 100%);
+    }
+    .hero .container { position: relative; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.35rem 1rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 100px;
+      font-size: 0.8rem; color: var(--gray-400);
+      margin-bottom: 2rem;
+    }
+    .hero-badge-dot {
+      width: 6px; height: 6px;
+      background: var(--gray-400);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+    .hero h1 { margin-bottom: 1.5rem; max-width: 700px; }
+    .hero h1 .accent { color: var(--gray-400); }
+    .hero-sub {
+      font-size: 1.15rem; color: var(--gray-400);
+      max-width: 540px; margin-bottom: 2.5rem; line-height: 1.7;
+    }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.75rem 1.75rem; background: var(--white); color: var(--gray-950);
+      border-radius: 8px; font-weight: 500; font-size: 0.95rem;
+      transition: all 0.2s; border: none; cursor: pointer;
+    }
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      background: transparent; color: var(--gray-300);
+      border: 1px solid var(--gray-700); border-radius: 8px;
+      font-weight: 500; font-size: 0.95rem;
+      transition: all 0.2s; cursor: pointer;
+    }
+    .btn-secondary:hover { border-color: var(--gray-500); color: var(--white); }
+
+    /* ── Problem ── */
+    .problem { border-top: 1px solid rgba(255,255,255,0.06); }
+    .problem-header { margin-bottom: 4rem; }
+    .problem-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
+    }
+    .problem-card {
+      padding: 2rem;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      transition: border-color 0.3s;
+    }
+    .problem-card:hover { border-color: rgba(255,255,255,0.12); }
+    .problem-card .mono { margin-bottom: 1rem; }
+    .problem-card h3 { margin-bottom: 0.75rem; }
+    .problem-card p { font-size: 0.925rem; color: var(--gray-400); }
+
+    /* ── How it works ── */
+    .how { background: var(--gray-900); border-top: 1px solid rgba(255,255,255,0.06); }
+    .how-header { margin-bottom: 4rem; }
+    .how-steps { display: flex; flex-direction: column; gap: 0; }
+    .how-step {
+      display: grid; grid-template-columns: 80px 1fr; gap: 2rem;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .how-step:last-child { border-bottom: none; }
+    .step-num {
+      font-family: var(--font-mono); font-size: 3rem; font-weight: 700;
+      color: rgba(255,255,255,0.08); line-height: 1;
+    }
+    .step-content h3 { margin-bottom: 0.5rem; }
+    .step-content p { font-size: 0.925rem; color: var(--gray-400); }
+
+    /* ── Workflow ── */
+    .workflow { border-top: 1px solid rgba(255,255,255,0.06); }
+    .workflow-header { margin-bottom: 3rem; }
+    .workflow-visual {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .workflow-visual::before {
+      content: '';
+      position: absolute; top: 0; right: 0;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(255,255,255,0.02) 0%, transparent 70%);
+    }
+    .wf-title {
+      font-family: var(--font-mono); font-size: 0.8rem;
+      color: var(--gray-500); text-transform: uppercase;
+      letter-spacing: 0.1em; margin-bottom: 2rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .wf-title::before {
+      content: ''; width: 8px; height: 8px;
+      background: var(--gray-500); border-radius: 2px;
+    }
+    .wf-pipeline { display: flex; flex-direction: column; gap: 0; }
+    .wf-stage {
+      display: flex; align-items: center; gap: 1.5rem;
+      padding: 1rem 0;
+      position: relative;
+    }
+    .wf-stage::before {
+      content: '';
+      position: absolute; left: 15px; top: 0; bottom: 0;
+      width: 1px; background: rgba(255,255,255,0.08);
+    }
+    .wf-stage:first-child::before { top: 50%; }
+    .wf-stage:last-child::before { bottom: 50%; }
+    .wf-dot {
+      width: 30px; height: 30px; min-width: 30px;
+      border: 2px solid rgba(255,255,255,0.15);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--gray-950);
+      z-index: 1;
+    }
+    .wf-dot-inner {
+      width: 8px; height: 8px;
+      background: var(--gray-400);
+      border-radius: 50%;
+    }
+    .wf-stage-content { flex: 1; }
+    .wf-stage-name {
+      font-weight: 500; color: var(--white);
+      font-size: 0.95rem; margin-bottom: 0.15rem;
+    }
+    .wf-stage-desc { font-size: 0.825rem; color: var(--gray-500); }
+    .wf-stage-tag {
+      font-family: var(--font-mono); font-size: 0.7rem;
+      padding: 0.2rem 0.6rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 4px;
+      color: var(--gray-500);
+      white-space: nowrap;
+    }
+
+    /* ── Pricing ── */
+    .pricing { background: var(--gray-900); border-top: 1px solid rgba(255,255,255,0.06); }
+    .pricing-header { margin-bottom: 4rem; }
+    .pricing-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+    }
+    .price-card {
+      padding: 2.5rem 2rem;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      display: flex; flex-direction: column;
+      transition: border-color 0.3s;
+    }
+    .price-card:hover { border-color: rgba(255,255,255,0.12); }
+    .price-card.featured {
+      border-color: rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.04);
+    }
+    .price-tier { margin-bottom: 0.5rem; }
+    .price-amount {
+      font-size: 2.25rem; font-weight: 700; color: var(--white);
+      margin-bottom: 0.25rem;
+    }
+    .price-amount span { font-size: 1rem; font-weight: 400; color: var(--gray-500); }
+    .price-setup { font-size: 0.85rem; color: var(--gray-500); margin-bottom: 1.5rem; }
+    .price-desc {
+      font-size: 0.9rem; color: var(--gray-400);
+      margin-bottom: 1.5rem; flex: 1;
+    }
+    .price-features { list-style: none; margin-bottom: 2rem; }
+    .price-features li {
+      padding: 0.4rem 0; font-size: 0.875rem; color: var(--gray-400);
+      display: flex; align-items: flex-start; gap: 0.75rem;
+    }
+    .price-features li::before {
+      content: '—';
+      color: var(--gray-600);
+      flex-shrink: 0;
+    }
+    .price-btn {
+      display: block; text-align: center;
+      padding: 0.75rem; border-radius: 8px;
+      font-size: 0.9rem; font-weight: 500;
+      transition: all 0.2s;
+      border: 1px solid rgba(255,255,255,0.15);
+      color: var(--gray-300);
+      background: transparent;
+      cursor: pointer;
+    }
+    .price-btn:hover { border-color: var(--white); color: var(--white); }
+    .price-card.featured .price-btn {
+      background: var(--white); color: var(--gray-950);
+      border-color: var(--white);
+    }
+    .price-card.featured .price-btn:hover { opacity: 0.9; }
+
+    /* ── About ── */
+    .about { border-top: 1px solid rgba(255,255,255,0.06); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+      align-items: start;
+    }
+    .about-text h2 { margin-bottom: 1.5rem; }
+    .about-text p { margin-bottom: 1.25rem; color: var(--gray-400); font-size: 0.95rem; }
+    .about-details {
+      display: flex; flex-direction: column; gap: 1.5rem;
+    }
+    .about-detail {
+      padding: 1.5rem;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 10px;
+    }
+    .about-detail .mono { margin-bottom: 0.5rem; }
+    .about-detail p { font-size: 0.9rem; color: var(--gray-400); }
+
+    /* ── CTA ── */
+    .cta {
+      background: var(--gray-900);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      text-align: center;
+    }
+    .cta h2 { margin-bottom: 1rem; }
+    .cta p { margin: 0 auto 2.5rem; color: var(--gray-400); font-size: 1.05rem; }
+    .cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    /* ── Footer ── */
+    footer {
+      padding: 3rem 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-inner {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-left { font-size: 0.85rem; color: var(--gray-600); }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-size: 0.85rem; color: var(--gray-500); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--white); }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      section { padding: 4rem 0; }
+      .nav-links { display: none; }
+      .mobile-menu-btn { display: block; }
+      .nav-links.open {
+        display: flex; flex-direction: column;
+        position: absolute; top: 64px; left: 0; right: 0;
+        background: rgba(10,10,10,0.95);
+        backdrop-filter: blur(20px);
+        padding: 1.5rem 2rem;
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+      }
+      .problem-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 420px; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .how-step { grid-template-columns: 48px 1fr; gap: 1rem; }
+      .step-num { font-size: 2rem; }
+      .hero { padding: 8rem 0 5rem; }
+      .wf-stage { flex-wrap: wrap; }
+      .wf-stage-tag { margin-top: 0.25rem; }
+    }
+
+    /* ── Animations ── */
+    .fade-in {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <div class="container">
+      <a href="#" class="nav-logo">
+        <div class="nav-logo-icon"></div>
+        Kavik Works
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#services">Services</a>
+        <a href="#how">How It Works</a>
+        <a href="#workflow">First Workflow</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#about">About</a>
+        <a href="#contact" class="nav-cta">Get Started</a>
+      </div>
+      <button class="mobile-menu-btn" id="menuBtn" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-grid"></div>
+    <div class="container">
+      <div class="hero-badge fade-in">
+        <span class="hero-badge-dot"></span>
+        AI workflow automation for real businesses
+      </div>
+      <h1 class="fade-in">Your business runs<br>on workflows.<br><span class="accent">We automate them.</span></h1>
+      <p class="hero-sub fade-in">
+        Kavik Works integrates AI directly into your business operations — inbox, sales, admin, back-office. Not chatbots. Not consulting. Measurable automation that runs every day.
+      </p>
+      <div class="hero-actions fade-in">
+        <a href="#contact" class="btn-primary">
+          Start a pilot
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#how" class="btn-secondary">See how it works</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem -->
+  <section class="problem" id="services">
+    <div class="container">
+      <div class="problem-header fade-in">
+        <p class="mono">The problem</p>
+        <h2>Most businesses use AI to chat.<br>Almost none use it to <em>work</em>.</h2>
+      </div>
+      <div class="problem-grid">
+        <div class="problem-card fade-in">
+          <p class="mono">01</p>
+          <h3>Inquiries go unanswered</h3>
+          <p>Leads hit a shared inbox and sit there for hours — or days. By the time someone responds, the prospect has moved on.</p>
+        </div>
+        <div class="problem-card fade-in">
+          <p class="mono">02</p>
+          <h3>Manual work burns time</h3>
+          <p>Your team spends hours on data entry, email sorting, lead routing, and follow-ups that should happen automatically.</p>
+        </div>
+        <div class="problem-card fade-in">
+          <p class="mono">03</p>
+          <h3>AI stays in the chat tab</h3>
+          <p>You might use ChatGPT for one-off questions, but it's not connected to your inbox, your CRM, or your actual processes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="how" id="how">
+    <div class="container">
+      <div class="how-header fade-in">
+        <p class="mono">How it works</p>
+        <h2>We wire AI into the processes<br>your business already runs.</h2>
+      </div>
+      <div class="how-steps">
+        <div class="how-step fade-in">
+          <div class="step-num">01</div>
+          <div class="step-content">
+            <h3>Identify one workflow</h3>
+            <p>We start with a single process — your inbox, your lead pipeline, your intake form — wherever the bottleneck lives. One workflow, one problem, one measurable goal.</p>
+          </div>
+        </div>
+        <div class="how-step fade-in">
+          <div class="step-num">02</div>
+          <div class="step-content">
+            <h3>Build the automation</h3>
+            <p>We connect cloud AI to your existing tools. The system reads, classifies, extracts, routes, and responds — with structured outputs and human review where it matters.</p>
+          </div>
+        </div>
+        <div class="how-step fade-in">
+          <div class="step-num">03</div>
+          <div class="step-content">
+            <h3>Prove the ROI</h3>
+            <p>Within 30 days you see the numbers: response time, lead capture rate, routing accuracy, hours saved. Real metrics, not a vague "AI strategy."</p>
+          </div>
+        </div>
+        <div class="how-step fade-in">
+          <div class="step-num">04</div>
+          <div class="step-content">
+            <h3>We manage it ongoing</h3>
+            <p>The workflow runs as a managed service. We monitor, maintain, tune, and report. You focus on your business. Add more workflows when you're ready.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Workflow spotlight -->
+  <section class="workflow" id="workflow">
+    <div class="container">
+      <div class="workflow-header fade-in">
+        <p class="mono">First workflow</p>
+        <h2>Inquiry email automation</h2>
+        <p style="margin-top: 1rem; color: var(--gray-400); font-size: 1rem;">
+          Every business has email. Every business loses leads in their inbox. This is where we start.
+        </p>
+      </div>
+      <div class="workflow-visual fade-in">
+        <div class="wf-title">Odin Inbox — Live Pipeline</div>
+        <div class="wf-pipeline">
+          <div class="wf-stage">
+            <div class="wf-dot"><div class="wf-dot-inner"></div></div>
+            <div class="wf-stage-content">
+              <div class="wf-stage-name">Inbound email detected</div>
+              <div class="wf-stage-desc">New inquiry hits the shared inbox</div>
+            </div>
+            <div class="wf-stage-tag">trigger</div>
+          </div>
+          <div class="wf-stage">
+            <div class="wf-dot"><div class="wf-dot-inner"></div></div>
+            <div class="wf-stage-content">
+              <div class="wf-stage-name">AI classification</div>
+              <div class="wf-stage-desc">Intent, urgency, and category extracted in structured JSON</div>
+            </div>
+            <div class="wf-stage-tag">ai · classify</div>
+          </div>
+          <div class="wf-stage">
+            <div class="wf-dot"><div class="wf-dot-inner"></div></div>
+            <div class="wf-stage-content">
+              <div class="wf-stage-name">Lead details extracted</div>
+              <div class="wf-stage-desc">Name, company, phone, request details pulled automatically</div>
+            </div>
+            <div class="wf-stage-tag">ai · extract</div>
+          </div>
+          <div class="wf-stage">
+            <div class="wf-dot"><div class="wf-dot-inner"></div></div>
+            <div class="wf-stage-content">
+              <div class="wf-stage-name">Instant acknowledgement sent</div>
+              <div class="wf-stage-desc">Personalized first response within minutes, not hours</div>
+            </div>
+            <div class="wf-stage-tag">ai · draft</div>
+          </div>
+          <div class="wf-stage">
+            <div class="wf-dot"><div class="wf-dot-inner"></div></div>
+            <div class="wf-stage-content">
+              <div class="wf-stage-name">Routed to the right person</div>
+              <div class="wf-stage-desc">Sales, support, or specific team member — automatically</div>
+            </div>
+            <div class="wf-stage-tag">logic · route</div>
+          </div>
+          <div class="wf-stage">
+            <div class="wf-dot"><div class="wf-dot-inner"></div></div>
+            <div class="wf-stage-content">
+              <div class="wf-stage-name">Logged and tracked</div>
+              <div class="wf-stage-desc">Every inquiry captured, every metric recorded</div>
+            </div>
+            <div class="wf-stage-tag">log · report</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <div class="pricing-header fade-in">
+        <p class="mono">Pricing</p>
+        <h2>Simple, productized, recurring.</h2>
+        <p style="margin-top: 1rem; color: var(--gray-400);">Setup fee to build it right. Monthly fee to keep it running. No surprises.</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="price-card fade-in">
+          <p class="mono price-tier">Pilot</p>
+          <div class="price-amount">$0–1K</div>
+          <p class="price-setup">30-day proof of value</p>
+          <p class="price-desc">One workflow, one inbox, 30 days. We prove it works and show you the numbers.</p>
+          <ul class="price-features">
+            <li>Single workflow deployment</li>
+            <li>Metrics and ROI report</li>
+            <li>No long-term commitment</li>
+            <li>Limited to first 3 customers</li>
+          </ul>
+          <a href="#contact" class="price-btn">Apply for pilot</a>
+        </div>
+        <div class="price-card featured fade-in">
+          <p class="mono price-tier">Standard</p>
+          <div class="price-amount">$500–900 <span>/mo</span></div>
+          <p class="price-setup">$1,500–2,500 setup</p>
+          <p class="price-desc">Production workflow with ongoing management. The most common starting point for businesses ready to automate.</p>
+          <ul class="price-features">
+            <li>One production workflow</li>
+            <li>Monitoring and maintenance</li>
+            <li>Monthly reporting</li>
+            <li>Bug fixes and limited tuning</li>
+            <li>Email and chat support</li>
+          </ul>
+          <a href="#contact" class="price-btn">Get started</a>
+        </div>
+        <div class="price-card fade-in">
+          <p class="mono price-tier">Growth</p>
+          <div class="price-amount">$900–1,750 <span>/mo</span></div>
+          <p class="price-setup">$2,500–5,000 setup</p>
+          <p class="price-desc">Multiple workflows or deeper integrations. For businesses scaling their automation footprint.</p>
+          <ul class="price-features">
+            <li>Multiple workflows</li>
+            <li>Complex integrations</li>
+            <li>Priority support</li>
+            <li>Quarterly strategy review</li>
+            <li>Custom reporting</li>
+          </ul>
+          <a href="#contact" class="price-btn">Talk to us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text fade-in">
+          <p class="mono">About</p>
+          <h2>Built for businesses<br>that do real work.</h2>
+          <p>Kavik Works was founded on a simple observation: most businesses don't need an AI strategy. They need AI wired into the processes they already run — reliably, measurably, and without the hype.</p>
+          <p>We're a small, focused operation. We build repeatable workflow automation using cloud AI APIs, structured outputs, and deterministic code. No black boxes. No vendor lock-in. Everything is auditable, observable, and designed to run without babysitting.</p>
+          <p>Based in Denver, Colorado. Available remotely.</p>
+        </div>
+        <div class="about-details fade-in">
+          <div class="about-detail">
+            <p class="mono">Architecture</p>
+            <p>Cloud AI APIs for the reasoning. Structured JSON for the outputs. Deterministic code for the logic. Git-versioned configs per client. Repeatable deployments, not one-off custom stacks.</p>
+          </div>
+          <div class="about-detail">
+            <p class="mono">Philosophy</p>
+            <p>Start narrow. Prove value fast. Expand when the numbers justify it. Every workflow we build has defined success metrics before we write a single line of code.</p>
+          </div>
+          <div class="about-detail">
+            <p class="mono">What we don't do</p>
+            <p>We don't build chatbots, run AI strategy workshops, do open-ended consulting, or promise to transform your business with AI. We automate one process at a time and show you the results.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta" id="contact">
+    <div class="container">
+      <div class="fade-in">
+        <p class="mono">Get started</p>
+        <h2>Ready to automate<br>your first workflow?</h2>
+        <p>We're taking on a small number of pilot customers. Tell us about the process that's costing you time, and we'll show you what automation looks like.</p>
+        <div class="cta-actions">
+          <a href="mailto:josh@kavikworks.com" class="btn-primary">
+            josh@kavikworks.com
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#pricing" class="btn-secondary">View pricing</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-left">&copy; 2026 Robot Arms LLC, dba Kavik Works. Denver, CO.</div>
+        <div class="footer-links">
+          <a href="#services">Services</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#about">About</a>
+          <a href="mailto:josh@kavikworks.com">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+    menuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+    // Close menu on link click
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    // Scroll fade-in
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
