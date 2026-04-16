@@ -670,7 +670,8 @@
         <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
       </div>
       <h2>We got it. Thank you.</h2>
-      <p>We'll review your submission and reach out within one business day. In the meantime, feel free to email <a href="mailto:contact@kavikworks.com" style="text-decoration: underline;">contact@kavikworks.com</a> with any questions.</p>
+      <p>We'll put together a short feasibility study based on what you've shared — covering which workflows are the best candidates for automation, expected impact, and a recommended starting point. Expect it in your inbox within two business days.</p>
+      <p style="margin-top: 1rem;">Questions in the meantime? Reach out at <a href="mailto:contact@kavikworks.com" style="text-decoration: underline;">contact@kavikworks.com</a>.</p>
     </div>
   </div>
 
@@ -735,7 +736,7 @@
 
     // ── Form submission ──
     // SETUP: Replace GOOGLE_APPS_SCRIPT_URL with your deployed Apps Script web app URL
-    const GOOGLE_APPS_SCRIPT_URL = '';
+    const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz4RzeIbfqHF_m7zwVZ7wlZkDfSyemXxZEmAlSrcfDndddK94Jt543Aih4mPxu-2DAkOA/exec';
 
     document.getElementById('intakeForm').addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -746,17 +747,18 @@
       const formData = new FormData(e.target);
       const data = {};
 
-      // Handle checkboxes (multiple values)
+      // Handle checkboxes (multiple values) — keep as arrays
       for (const [key, value] of formData.entries()) {
         if (data[key]) {
           data[key] = Array.isArray(data[key]) ? [...data[key], value] : [data[key], value];
         } else {
-          data[key] = value;
+          // Checkbox groups should always be arrays
+          if (key === 'pain_points' || key === 'tools') {
+            data[key] = [value];
+          } else {
+            data[key] = value;
+          }
         }
-      }
-      // Convert arrays to comma-separated strings
-      for (const key in data) {
-        if (Array.isArray(data[key])) data[key] = data[key].join(', ');
       }
 
       data.submitted_at = new Date().toISOString();
