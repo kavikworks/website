@@ -1,0 +1,29 @@
+# ── macOS ─────────────────────────────────────────────────────
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# ── Secrets ───────────────────────────────────────────────────
+.env
+*.key
+*.pem
+
+# ── Python ────────────────────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+
+# ── Sample / scratch files ────────────────────────────────────
+sample_*.json
+sample_*.pdf
+
+# ── Root-level scratch (superseded by automations/ versions) ──
+/generate_feasibility.py
+
+# ── Build / dist ──────────────────────────────────────────────
+dist/
+build/
+node_modules/

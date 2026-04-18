@@ -1,0 +1,12 @@
+# Secrets — never commit these
+.env
+*.json
+!package.json
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Generated reports (for local testing)
+*.pdf
