@@ -393,6 +393,54 @@ function makeSlug(name) {
 
 // ── Test Helpers (run from editor to verify) ──────────────────
 
+/**
+ * testFullPipeline — exercises ALL four steps exactly like a real form submission:
+ *   1. Logs to Google Sheet (pipeline_status: received → report_sent)
+ *   2. Saves raw JSON to Drive
+ *   3. Sends plain-text notification to contact@kavikworks.com
+ *   4. Generates AI report and emails to josh@kavikworks.com
+ * Use this to verify the complete end-to-end pipeline.
+ */
+function testFullPipeline() {
+  const testData = {
+    contact_name: 'Jane Smith',
+    contact_email: 'jane@acme.com',
+    business_name: 'Acme Corp (Full Pipeline Test)',
+    industry: 'Professional Services',
+    team_size: '11-50',
+    hours_per_week: '20+',
+    volume: '50-200',
+    tools: ['Gmail', 'HubSpot', 'QuickBooks'],
+    pain_points: ['lead_followup', 'invoicing', 'reporting'],
+    workflow_description: 'Sales team manually follows up on leads 2-3 days after inquiry. Invoices are created manually in QuickBooks after each project. Monthly reports are assembled by hand from multiple spreadsheets.',
+    pricing_tier: 'core',
+    timeline: '1-3 months',
+    referral_source: 'test',
+    additional_notes: 'FULL PIPELINE TEST — verify sheet row, Drive JSON, notification email, and AI report all complete.',
+  };
+  const timestamp = new Date().toISOString();
+
+  console.log('Step 1: Logging to Sheet...');
+  const rowIndex = logToSheet(testData, timestamp);
+  console.log('Sheet row:', rowIndex);
+
+  console.log('Step 2: Saving JSON to Drive...');
+  saveJsonToDrive(testData, timestamp);
+
+  console.log('Step 3: Sending notification to contact@...');
+  sendNotification(testData, timestamp);
+
+  console.log('Step 4: Generating AI report...');
+  generateAndSendReport(testData, timestamp, rowIndex);
+
+  console.log('Full pipeline test complete. Check: Sheet row', rowIndex, '| Drive JSON | contact@ email | josh@ report');
+}
+
+/**
+ * testReport — exercises ONLY the AI report generation (steps 3-4).
+ * Does NOT log to Sheet, Drive, or send notification email.
+ * Use this to iterate on the Claude prompt without polluting the Sheet.
+ */
 function testReport() {
   const testData = {
     contact_name: 'Jane Smith',
@@ -412,6 +460,10 @@ function testReport() {
   generateAndSendReport(testData, new Date().toISOString(), null);
 }
 
+/**
+ * testPoorFit — exercises ONLY the AI report for a poor-fit client.
+ * Does NOT log to Sheet, Drive, or send notification email.
+ */
 function testPoorFit() {
   const testData = {
     contact_name: 'Bob Carpenter',
