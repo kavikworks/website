@@ -1,0 +1,72 @@
+# Kavik Works — Intake-to-Feasibility Pipeline
+# This config drives the automation for processing new client intake submissions.
+# Clone this file as a template when setting up similar pipelines for clients.
+
+name: kavik-intake
+version: 1
+description: >
+  When a prospect submits the kavikworks.com intake form, generate a
+  feasibility study PDF and send an internal summary to the team.
+
+# ── Trigger ───────────────────────────────────────────────────
+trigger:
+  type: http                    # Cloud Function HTTP trigger
+  source: apps-script           # Called by the Google Apps Script webhook
+
+# ── Google Workspace IDs ──────────────────────────────────────
+# Set these after creating the Sheet and Drive folder.
+# Auth uses Application Default Credentials (ADC) — no key file needed.
+# On Cloud Functions, ADC is automatic. Locally: gcloud auth application-default login
+google:
+  sheet_id: "${GOOGLE_SHEET_ID}"
+  sheet_tab: "Intake Submissions"
+  drive_folder_id: "${GOOGLE_DRIVE_FOLDER_ID}"
+
+# ── Notification ──────────────────────────────────────────────
+notify:
+  to: "josh@kavikworks.com"
+  from: "contact@kavikworks.com"
+  subject_template: "New intake: {business_name} — Feasibility study ready"
+  email_template: "templates/summary_email.html"
+  attach_report: true
+
+# ── Report Generation ─────────────────────────────────────────
+report:
+  generator: "generate_feasibility.py"
+  output_format: pdf
+  filename_template: "{business_name_slug}_feasibility_{date}.pdf"
+
+# ── Storage ───────────────────────────────────────────────────
+storage:
+  intake_json: true             # Save raw intake JSON to Drive
+  generated_report: true        # Save PDF to Drive
+  update_sheet_status: true     # Mark row as "report_sent" when done
+
+# ── Pipeline Steps (executed in order) ────────────────────────
+steps:
+  - name: validate_intake
+    action: validate
+    description: "Check required fields are present"
+    required_fields:
+      - contact_name
+      - contact_email
+      - business_name
+      - pain_points
+
+  - name: generate_report
+    action: run_generator
+    description: "Generate the feasibility study PDF"
+
+  - name: upload_to_drive
+    action: drive_upload
+    description: "Upload PDF + raw JSON to the shared Drive folder"
+
+  - name: send_notification
+    action: send_email
+    description: "Email Josh with a summary and the PDF attached"
+
+  - name: update_status
+    action: sheet_update
+    description: "Mark the Sheet row as processed"
+    status_column: "pipeline_status"
+    status_value: "report_sent"

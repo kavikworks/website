@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #262626; margin: 0; padding: 0; background: #f5f5f5; }
+  .container { max-width: 600px; margin: 0 auto; background: #ffffff; }
+  .header { background: #0a0a0a; color: #ffffff; padding: 24px 32px; }
+  .header h1 { margin: 0; font-size: 16px; font-weight: 600; letter-spacing: 0.5px; }
+  .header p { margin: 4px 0 0; font-size: 13px; color: #a3a3a3; }
+  .body { padding: 32px; }
+  .body h2 { font-size: 20px; margin: 0 0 4px; color: #0a0a0a; }
+  .body .subtitle { color: #737373; font-size: 14px; margin: 0 0 24px; }
+  .metrics { display: flex; gap: 0; border: 1px solid #e5e5e5; border-radius: 8px; overflow: hidden; margin-bottom: 24px; }
+  .metric { flex: 1; padding: 16px; text-align: center; border-right: 1px solid #e5e5e5; }
+  .metric:last-child { border-right: none; }
+  .metric .value { font-size: 22px; font-weight: 700; color: #0a0a0a; }
+  .metric .label { font-size: 11px; color: #737373; margin-top: 4px; }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 24px; }
+  table th { text-align: left; font-size: 11px; color: #737373; text-transform: uppercase; letter-spacing: 0.5px; padding: 8px 0; border-bottom: 1px solid #e5e5e5; }
+  table td { font-size: 14px; padding: 8px 0; border-bottom: 1px solid #f5f5f5; }
+  table td.label { color: #737373; width: 40%; }
+  .section { margin-bottom: 24px; }
+  .section h3 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; color: #737373; margin: 0 0 12px; }
+  .quote { background: #f9fafb; border-left: 3px solid #e5e5e5; padding: 12px 16px; font-size: 13px; color: #525252; line-height: 1.5; margin-bottom: 24px; border-radius: 0 4px 4px 0; }
+  .cta { display: inline-block; background: #0a0a0a; color: #ffffff; text-decoration: none; padding: 12px 24px; border-radius: 6px; font-size: 14px; font-weight: 500; }
+  .footer { padding: 24px 32px; border-top: 1px solid #e5e5e5; }
+  .footer p { margin: 0; font-size: 12px; color: #a3a3a3; }
+  .tag { display: inline-block; background: #f0fdf4; color: #16a34a; font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 4px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <!-- Header -->
+  <div class="header">
+    <h1>KAVIK WORKS</h1>
+    <p>New intake submission — {{date}}</p>
+  </div>
+
+  <div class="body">
+    <!-- Headline -->
+    <h2>{{business_name}}</h2>
+    <p class="subtitle">{{contact_name}} · {{contact_email}} · {{contact_phone}}</p>
+
+    <!-- Key Metrics -->
+    <table>
+      <tr>
+        <td class="label">Pain points</td>
+        <td><strong>{{num_pain_points}} identified</strong></td>
+      </tr>
+      <tr>
+        <td class="label">Est. weekly savings</td>
+        <td><strong>{{est_hours_saved_weekly}} hours/week</strong></td>
+      </tr>
+      <tr>
+        <td class="label">Est. monthly savings</td>
+        <td><strong>{{est_hours_saved_monthly}} hours/month</strong></td>
+      </tr>
+      <tr>
+        <td class="label">Recommended start</td>
+        <td><strong>{{recommended_workflow}}</strong></td>
+      </tr>
+      <tr>
+        <td class="label">Interested tier</td>
+        <td><strong>{{pricing_tier}}</strong></td>
+      </tr>
+      <tr>
+        <td class="label">Timeline</td>
+        <td><strong>{{timeline}}</strong></td>
+      </tr>
+    </table>
+
+    <!-- Workflow Description -->
+    <div class="section">
+      <h3>What they described</h3>
+      <div class="quote">{{workflow_description}}</div>
+    </div>
+
+    <!-- Details -->
+    <div class="section">
+      <h3>Details</h3>
+      <table>
+        <tr>
+          <td class="label">Industry</td>
+          <td>{{industry}}</td>
+        </tr>
+        <tr>
+          <td class="label">Team size</td>
+          <td>{{team_size}}</td>
+        </tr>
+        <tr>
+          <td class="label">Volume</td>
+          <td>{{volume}}</td>
+        </tr>
+        <tr>
+          <td class="label">Hours/week</td>
+          <td>{{hours_per_week}}</td>
+        </tr>
+        <tr>
+          <td class="label">Current tools</td>
+          <td>{{tools}}</td>
+        </tr>
+        <tr>
+          <td class="label">Referral source</td>
+          <td>{{referral_source}}</td>
+        </tr>
+        <tr>
+          <td class="label">Additional notes</td>
+          <td>{{additional_notes}}</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- CTA -->
+    <p style="margin-bottom: 8px;"><strong>Feasibility study is attached as a PDF.</strong> Review it and forward to the client when ready.</p>
+    <a href="{{report_drive_link}}" class="cta" style="color: #ffffff;">View in Google Drive</a>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>This is an automated email from the Kavik Works intake pipeline. The attached report was generated from the client's form submission — review before sending.</p>
+  </div>
+</div>
+</body>
+</html>
