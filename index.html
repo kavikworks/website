@@ -279,7 +279,8 @@
     .pricing { background: var(--gray-900); border-top: 1px solid rgba(255,255,255,0.06); }
     .pricing-header { margin-bottom: 4rem; }
     .pricing-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;
+      max-width: 820px; margin: 0 auto;
     }
     .price-card {
       padding: 2.5rem 2rem;
@@ -390,7 +391,7 @@
         border-bottom: 1px solid rgba(255,255,255,0.06);
       }
       .problem-grid { grid-template-columns: 1fr; }
-      .pricing-grid { grid-template-columns: 1fr; max-width: 420px; }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 480px; }
       .about-grid { grid-template-columns: 1fr; gap: 2rem; }
       .how-step { grid-template-columns: 48px 1fr; gap: 1rem; }
       .step-num { font-size: 2rem; }
@@ -594,46 +595,32 @@
         <p style="margin-top: 1rem; color: var(--gray-400);">Setup fee to build it right. Monthly fee to keep it running. No surprises.</p>
       </div>
       <div class="pricing-grid">
-        <div class="price-card fade-in">
-          <p class="mono price-tier">Pilot</p>
-          <div class="price-amount">$0–1K</div>
-          <p class="price-setup">30-day proof of value</p>
-          <p class="price-desc">One workflow, one inbox, 30 days. We prove it works and show you the numbers.</p>
-          <ul class="price-features">
-            <li>Single workflow deployment</li>
-            <li>Metrics and ROI report</li>
-            <li>No long-term commitment</li>
-            <li>Limited to first 3 customers</li>
-          </ul>
-          <a href="/intake" class="price-btn">Apply for pilot</a>
-        </div>
         <div class="price-card featured fade-in">
-          <p class="mono price-tier">Standard</p>
-          <div class="price-amount">$500–900 <span>/mo</span></div>
-          <p class="price-setup">$1,500–2,500 setup</p>
-          <p class="price-desc">Production workflow with ongoing management. The most common starting point for businesses ready to automate.</p>
+          <p class="mono price-tier">Lead Response Automation</p>
+          <div class="price-amount">$497 <span>/mo</span></div>
+          <p class="price-setup">$997 one-time setup</p>
+          <p class="price-desc">AI-powered lead response running in your inbox. The fastest path to measurable ROI — most clients see results within the first week.</p>
           <ul class="price-features">
-            <li>One production workflow</li>
-            <li>Monitoring and maintenance</li>
-            <li>Monthly reporting</li>
-            <li>Bug fixes and limited tuning</li>
-            <li>Email and chat support</li>
+            <li>AI email triage, classification & response</li>
+            <li>Lead capture & automatic routing</li>
+            <li>Automated monthly ROI report</li>
+            <li>System monitoring & maintenance</li>
+            <li>Email support</li>
           </ul>
           <a href="/intake" class="price-btn">Get started</a>
         </div>
         <div class="price-card fade-in">
-          <p class="mono price-tier">Growth</p>
-          <div class="price-amount">$900–1,750 <span>/mo</span></div>
-          <p class="price-setup">$2,500–5,000 setup</p>
-          <p class="price-desc">Multiple workflows or deeper integrations. For businesses scaling their automation footprint.</p>
+          <p class="mono price-tier">Add-on Modules</p>
+          <div class="price-amount" style="font-size:1.6rem;line-height:1.2;">from $2,500 <span style="font-size:0.9rem;">setup + $400/mo each</span></div>
+          <p class="price-setup">Available after core is live</p>
+          <p class="price-desc">Expand your automation footprint with pre-scoped modules. Each is individually scoped — only worth pursuing when the ROI is unambiguous.</p>
           <ul class="price-features">
-            <li>Multiple workflows</li>
-            <li>Complex integrations</li>
-            <li>Priority support</li>
-            <li>Quarterly strategy review</li>
-            <li>Custom reporting</li>
+            <li>CRM & pipeline integration</li>
+            <li>Invoice & AR automation</li>
+            <li>Multi-channel (SMS, Slack, portal)</li>
+            <li>Custom analytics dashboard</li>
           </ul>
-          <a href="/intake" class="price-btn">Talk to us</a>
+          <a href="mailto:contact@kavikworks.com" class="price-btn">Talk to us</a>
         </div>
       </div>
     </div>
@@ -661,7 +648,7 @@
           </div>
           <div class="about-detail">
             <p class="mono">What we don't do</p>
-            <p>We don't build chatbots, run AI strategy workshops, do open-ended consulting, or promise to transform your business with AI. We automate one process at a time and show you the results.</p>
+            <p>We don't build chatbots, run AI strategy workshops, do open-ended consulting, or schedule quarterly check-ins. The system runs autonomously and reports to you automatically every month. No babysitting required — from either of us.</p>
           </div>
         </div>
       </div>
@@ -673,8 +660,8 @@
     <div class="container">
       <div class="fade-in">
         <p class="mono">Get started</p>
-        <h2>Ready to automate<br>your first workflow?</h2>
-        <p>We're taking on a small number of pilot customers. Tell us about the process that's costing you time, and we'll show you what automation looks like.</p>
+        <h2>Ready to stop losing<br>leads in your inbox?</h2>
+        <p>Fill out the intake form and we'll send you a free feasibility report — how many hours you'd save, estimated ROI, and whether we're the right fit. No call required.</p>
         <div class="cta-actions">
           <a href="/intake" class="btn-primary">
             Start your intake
