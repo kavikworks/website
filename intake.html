@@ -380,45 +380,17 @@
     <div class="container">
       <p class="mono fade-in">Client intake</p>
       <h1 class="fade-in">Tell us about your<br>business and workflow.</h1>
-      <p class="fade-in">This takes about 5 minutes. The more detail you share, the faster we can come back with a clear scope, timeline, and estimate. No commitment, no sales calls unless you want one.</p>
+      <p class="fade-in">Two minutes. No commitment, no sales calls unless you want one. We'll review and reach out within one business day.</p>
     </div>
   </section>
 
-  <!-- Progress -->
-  <div class="progress-bar">
-    <div class="container">
-      <div class="progress-steps">
-        <div class="progress-step active" data-step="1">
-          <div class="progress-dot">1</div>
-          <span>Your Business</span>
-        </div>
-        <div class="progress-line"></div>
-        <div class="progress-step" data-step="2">
-          <div class="progress-dot">2</div>
-          <span>The Problem</span>
-        </div>
-        <div class="progress-line"></div>
-        <div class="progress-step" data-step="3">
-          <div class="progress-dot">3</div>
-          <span>Scope</span>
-        </div>
-        <div class="progress-line"></div>
-        <div class="progress-step" data-step="4">
-          <div class="progress-dot">4</div>
-          <span>Submit</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- Form -->
   <form id="intakeForm" novalidate>
-
     <!-- Section 1: Your Business -->
-    <div class="form-section" id="section-1">
+    <div class="form-section">
       <div class="container">
         <div class="section-header fade-in">
-          <p class="mono">01 — Your business</p>
+          <p class="mono">Your business</p>
           <h2>The basics</h2>
           <p>Help us understand who you are and what you do.</p>
         </div>
@@ -432,26 +404,8 @@
             <input type="email" name="contact_email" required placeholder="jane@company.com">
           </div>
           <div class="field">
-            <label>Phone</label>
-            <input type="tel" name="contact_phone" placeholder="(555) 123-4567">
-          </div>
-          <div class="field">
-            <label>Preferred contact method</label>
-            <select name="contact_method">
-              <option value="">Select...</option>
-              <option value="email">Email</option>
-              <option value="phone">Phone call</option>
-              <option value="text">Text message</option>
-              <option value="video">Video call</option>
-            </select>
-          </div>
-          <div class="field">
             <label>Business name <span class="required">*</span></label>
             <input type="text" name="business_name" required placeholder="Acme Corp">
-          </div>
-          <div class="field">
-            <label>Website</label>
-            <input type="url" name="business_website" placeholder="https://acme.com">
           </div>
           <div class="field">
             <label>Industry <span class="required">*</span></label>
@@ -471,169 +425,29 @@
               <option value="other">Other</option>
             </select>
           </div>
-          <div class="field">
-            <label>Team size</label>
-            <select name="team_size">
-              <option value="">Select...</option>
-              <option value="solo">Just me</option>
-              <option value="2-5">2–5 people</option>
-              <option value="6-15">6–15 people</option>
-              <option value="16-50">16–50 people</option>
-              <option value="50+">50+</option>
-            </select>
-          </div>
         </div>
       </div>
     </div>
 
-    <!-- Section 2: The Problem -->
-    <div class="form-section" id="section-2">
+    <!-- Section 2: The Workflow -->
+    <div class="form-section">
       <div class="container">
         <div class="section-header fade-in">
-          <p class="mono">02 — The problem</p>
-          <h2>What's costing you time?</h2>
-          <p>We focus on one workflow at a time. Tell us where the pain is.</p>
+          <p class="mono">The workflow</p>
+          <h2>What do you want to automate?</h2>
+          <p>Walk us through the process. The more specific, the better. Include what happens today, who's involved, and what goes wrong.</p>
         </div>
         <div class="form-grid fade-in">
-          <div class="field full-width">
-            <label>What processes eat up the most time in your business? <span class="required">*</span></label>
-            <div class="checkbox-group">
-              <label class="checkbox-item">
-                <input type="checkbox" name="pain_points" value="inbox_management">
-                <span>Inbox / email management</span>
-              </label>
-              <label class="checkbox-item">
-                <input type="checkbox" name="pain_points" value="lead_response">
-                <span>Responding to leads</span>
-              </label>
-              <label class="checkbox-item">
-                <input type="checkbox" name="pain_points" value="data_entry">
-                <span>Data entry / admin</span>
-              </label>
-              <label class="checkbox-item">
-                <input type="checkbox" name="pain_points" value="scheduling">
-                <span>Scheduling / coordination</span>
-              </label>
-              <label class="checkbox-item">
-                <input type="checkbox" name="pain_points" value="document_processing">
-                <span>Document processing</span>
-              </label>
-              <label class="checkbox-item">
-                <input type="checkbox" name="pain_points" value="customer_followup">
-                <span>Customer follow-ups</span>
-              </label>
-              <label class="checkbox-item">
-                <input type="checkbox" name="pain_points" value="reporting">
-                <span>Reporting / summaries</span>
-              </label>
-              <label class="checkbox-item">
-                <input type="checkbox" name="pain_points" value="other">
-                <span>Something else</span>
-              </label>
-            </div>
-          </div>
           <div class="field full-width">
             <label>Describe the workflow you'd most like to automate <span class="required">*</span></label>
-            <textarea name="workflow_description" required placeholder="Walk us through it step by step. For example: 'A lead emails our info@ address. Someone on the team reads it, decides if it's a real inquiry, then forwards it to the right salesperson. This takes hours and leads fall through the cracks.'"></textarea>
-            <span class="hint">The more specific, the better. Include what happens today, who's involved, and what goes wrong.</span>
+            <textarea name="workflow_description" required placeholder="A lead emails our info@ address. Someone on the team reads it, decides if it's a real inquiry, then forwards it to the right salesperson. This takes hours and leads fall through the cracks."></textarea>
           </div>
           <div class="field">
-            <label>How many emails or tasks does this involve per day?</label>
-            <select name="volume">
-              <option value="">Select...</option>
-              <option value="1-10">1–10</option>
-              <option value="11-50">11–50</option>
-              <option value="51-200">51–200</option>
-              <option value="200+">200+</option>
-              <option value="not_sure">Not sure</option>
-            </select>
+            <label>Phone <span class="hint" style="display:inline;">(optional)</span></label>
+            <input type="tel" name="contact_phone" placeholder="(555) 123-4567">
           </div>
           <div class="field">
-            <label>How many hours per week does this take?</label>
-            <select name="hours_per_week">
-              <option value="">Select...</option>
-              <option value="1-2">1–2 hours</option>
-              <option value="3-5">3–5 hours</option>
-              <option value="5-10">5–10 hours</option>
-              <option value="10-20">10–20 hours</option>
-              <option value="20+">20+ hours</option>
-            </select>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Section 3: Scope & Tools -->
-    <div class="form-section" id="section-3">
-      <div class="container">
-        <div class="section-header fade-in">
-          <p class="mono">03 — Scope and tools</p>
-          <h2>What are you working with?</h2>
-          <p>This helps us understand your current setup and plan the integration.</p>
-        </div>
-        <div class="form-grid fade-in">
-          <div class="field full-width">
-            <label>What tools does your business use?</label>
-            <div class="checkbox-group">
-              <label class="checkbox-item">
-                <input type="checkbox" name="tools" value="gmail">
-                <span>Gmail / Google Workspace</span>
-              </label>
-              <label class="checkbox-item">
-                <input type="checkbox" name="tools" value="outlook">
-                <span>Outlook / Microsoft 365</span>
-              </label>
-              <label class="checkbox-item">
-                <input type="checkbox" name="tools" value="slack">
-                <span>Slack / Teams</span>
-              </label>
-              <label class="checkbox-item">
-                <input type="checkbox" name="tools" value="crm">
-                <span>CRM (Salesforce, HubSpot, etc.)</span>
-              </label>
-              <label class="checkbox-item">
-                <input type="checkbox" name="tools" value="spreadsheets">
-                <span>Google Sheets / Excel</span>
-              </label>
-              <label class="checkbox-item">
-                <input type="checkbox" name="tools" value="quickbooks">
-                <span>QuickBooks / Accounting</span>
-              </label>
-              <label class="checkbox-item">
-                <input type="checkbox" name="tools" value="project_mgmt">
-                <span>Asana / Monday / Trello</span>
-              </label>
-              <label class="checkbox-item">
-                <input type="checkbox" name="tools" value="other">
-                <span>Other</span>
-              </label>
-            </div>
-          </div>
-          <div class="field">
-            <label>Which pricing tier interests you?</label>
-            <select name="pricing_tier">
-              <option value="">Select...</option>
-              <option value="core">Lead Response Automation — $997 setup + $497/mo</option>
-              <option value="addons">Core + Add-on modules — from $2,500 setup per module</option>
-              <option value="not_sure">Not sure yet — just exploring</option>
-            </select>
-          </div>
-          <div class="field">
-            <label>When do you want to get started?</label>
-            <select name="timeline">
-              <option value="">Select...</option>
-              <option value="asap">As soon as possible</option>
-              <option value="2_weeks">Within 2 weeks</option>
-              <option value="1_month">Within a month</option>
-              <option value="exploring">Just exploring</option>
-            </select>
-          </div>
-          <div class="field full-width">
-            <label>Anything else we should know?</label>
-            <textarea name="additional_notes" placeholder="Previous attempts at automation, specific concerns, questions, whatever is on your mind."></textarea>
-          </div>
-          <div class="field full-width">
-            <label>How did you hear about Kavik Works?</label>
+            <label>How did you hear about us? <span class="hint" style="display:inline;">(optional)</span></label>
             <select name="referral_source">
               <option value="">Select...</option>
               <option value="search">Google search</option>
@@ -648,12 +462,11 @@
     </div>
 
     <!-- Submit -->
-    <div class="submit-section" id="section-4">
+    <div class="submit-section">
       <div class="container">
         <div class="fade-in">
-          <p class="mono">04 — Submit</p>
           <h2 style="margin-bottom: 0.75rem;">Ready to send?</h2>
-          <p>We'll review your submission and get back to you within one business day with next steps. Typically a short call to confirm scope, then a proposal.</p>
+          <p>We'll review what you shared and reach out within one business day. If it sounds like a fit, we'll put together a short feasibility study covering which workflows are worth automating, expected impact, and a recommended starting point.</p>
           <button type="submit" class="btn-submit" id="submitBtn">
             Submit intake form
             <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -670,7 +483,7 @@
         <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
       </div>
       <h2>We got it. Thank you.</h2>
-      <p>We'll put together a short feasibility study based on what you've shared, covering which workflows are the best candidates for automation, expected impact, and a recommended starting point. Expect it in your inbox within one business day.</p>
+      <p>We'll review what you shared and reach out within one business day. If it sounds like a fit, we'll put together a short feasibility study covering which workflows are worth automating, expected impact, and a recommended starting point.</p>
       <p style="margin-top: 1rem;">Questions in the meantime? Reach out at <a href="mailto:contact@kavikworks.com" style="text-decoration: underline;">contact@kavikworks.com</a>.</p>
     </div>
   </div>
@@ -707,35 +520,7 @@
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-    // ── Progress bar updates ──
-    const sections = document.querySelectorAll('.form-section, .submit-section');
-    const progressSteps = document.querySelectorAll('.progress-step');
-
-    const progressObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const stepNum = entry.target.id.split('-')[1];
-          progressSteps.forEach(step => {
-            const sn = step.dataset.step;
-            step.classList.remove('active', 'completed');
-            if (sn < stepNum) step.classList.add('completed');
-            else if (sn === stepNum) step.classList.add('active');
-          });
-        }
-      });
-    }, { threshold: 0.3, rootMargin: '-80px 0px -40% 0px' });
-    sections.forEach(s => progressObserver.observe(s));
-
-    // ── Progress step click to scroll ──
-    progressSteps.forEach(step => {
-      step.addEventListener('click', () => {
-        const target = document.getElementById('section-' + step.dataset.step);
-        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-    });
-
     // ── Form submission ──
-    // SETUP: Replace GOOGLE_APPS_SCRIPT_URL with your deployed Apps Script web app URL
     const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz4RzeIbfqHF_m7zwVZ7wlZkDfSyemXxZEmAlSrcfDndddK94Jt543Aih4mPxu-2DAkOA/exec';
 
     document.getElementById('intakeForm').addEventListener('submit', async (e) => {
@@ -746,21 +531,9 @@
 
       const formData = new FormData(e.target);
       const data = {};
-
-      // Handle checkboxes (multiple values) — keep as arrays
       for (const [key, value] of formData.entries()) {
-        if (data[key]) {
-          data[key] = Array.isArray(data[key]) ? [...data[key], value] : [data[key], value];
-        } else {
-          // Checkbox groups should always be arrays
-          if (key === 'pain_points' || key === 'tools') {
-            data[key] = [value];
-          } else {
-            data[key] = value;
-          }
-        }
+        data[key] = value;
       }
-
       data.submitted_at = new Date().toISOString();
 
       if (GOOGLE_APPS_SCRIPT_URL) {
@@ -775,15 +548,12 @@
           console.error('Submission error:', err);
         }
       } else {
-        // Fallback: mailto link with form data
         const subject = encodeURIComponent('New Intake: ' + (data.business_name || 'Unknown'));
         const body = encodeURIComponent(Object.entries(data).map(([k,v]) => `${k}: ${v}`).join('\n'));
         window.open(`mailto:contact@kavikworks.com?subject=${subject}&body=${body}`);
       }
 
-      // Show success
       document.getElementById('intakeForm').style.display = 'none';
-      document.querySelector('.progress-bar').style.display = 'none';
       const success = document.getElementById('successMessage');
       success.classList.add('visible');
       success.scrollIntoView({ behavior: 'smooth' });
