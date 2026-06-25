@@ -1,0 +1,22 @@
+# Kavik Works
+> AI workflow automation for small and midsize businesses — inbox triage, lead routing, inquiry response, and back-office automation. Not chatbots. Not consulting. Measurable automation, one workflow at a time.
+
+## Site
+- Home: https://kavikworks.com/
+- Pricing: https://kavikworks.com/#pricing
+- Intake Form: https://kavikworks.com/intake
+
+## Build Concepts
+Detailed automation plans for specific industries — each includes a full pipeline breakdown, classification taxonomy, routing rules, response templates, and integration points.
+
+- Law Firm Client Intake & Lead Response: https://kavikworks.com/build-concepts/law-firm-client-intake.html — How a 5-attorney firm automates prospect inquiry classification, drafting, and routing. Taxonomy covers new prospects, existing clients, court filings, opposing counsel, and urgent matters.
+- HVAC Lead Routing & Quote Follow-Up: https://kavikworks.com/build-concepts/hvac-lead-response.html — Emergency vs. estimate classification, geographic routing, and instant first-response for home services contractors handling 20+ quote requests/day.
+- Property Management Tenant Inquiries & Maintenance Routing: https://kavikworks.com/build-concepts/property-management-inquiries.html — Handling emergency maintenance and prospective tenant inquiries through a single inbox with urgency detection and auto-escalation.
+- CPA Firm Client Intake & Tax Season Triage: https://kavikworks.com/build-concepts/cpa-client-intake-triage.html — Tax season inbox management that separates prospects from clients, identifies urgent IRS notices, and routes to the right preparer.
+- Insurance Agency Quote Requests & Claims Routing: https://kavikworks.com/build-concepts/insurance-quote-claims-routing.html — Routing commercial quotes, personal lines, certificates, and claims from a single inbox with claims urgency detection and SMS alerting.
+
+## About
+Kavik Works is the public brand of Robot Arms LLC, founded by Joshua Lynch in Denver, Colorado. We build repeatable workflow automation using cloud AI APIs, structured outputs, and deterministic code. One workflow at a time.
+
+- Contact: contact@kavikworks.com
+- Location: Denver, CO, United States

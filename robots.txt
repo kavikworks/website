@@ -1,0 +1,40 @@
+# Kavik Works — robots.txt
+# Search engine and AI search crawlers: ALLOWED
+# Training-only crawlers: DISALLOWED (can revisit if search visibility warrants it)
+
+User-agent: *
+Allow: /
+
+# AI Training crawlers — disallowed for now
+User-agent: GPTBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+User-agent: meta-externalagent
+Disallow: /
+
+# AI Search crawlers — ALLOWED (these are search indexers, not trainers)
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-AI
+Allow: /
+
+User-agent: Omgili
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+Sitemap: https://kavikworks.com/sitemap.xml
