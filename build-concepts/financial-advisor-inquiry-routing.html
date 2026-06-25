@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Financial Advisor Prospect & Client Service Routing — Kavik Works Build Concepts</title>
+  <meta name="description" content="Financial advisor automation that classifies, routes, and drafts responses to prospect inquiries and client service requests in under five minutes — keeping RIAs responsive after hours and on weekends.">
+  <link rel="canonical" href="https://kavikworks.com/build-concepts/financial-advisor-inquiry-routing.html">
+  <meta name="robots" content="index, follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --white: #ffffff; --gray-300: #d4d4d4; --gray-400: #a3a3a3; --gray-500: #737373; --gray-600: #525252; --gray-700: #404040; --gray-800: #262626; --gray-900: #171717; --gray-950: #0a0a0a; --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: var(--font-sans); color: var(--gray-300); background: var(--gray-950); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3 { color: var(--white); line-height: 1.2; font-weight: 600; }
+    h1 { font-size: clamp(2rem, 4vw, 2.75rem); letter-spacing: -0.03em; margin-bottom: 0.5rem; }
+    h2 { font-size: 1.4rem; letter-spacing: -0.02em; margin: 2.5rem 0 1rem; padding-top: 0.5rem; border-top: 1px solid rgba(255,255,255,0.06); }
+    h3 { font-size: 1.1rem; margin: 1.75rem 0 0.5rem; }
+    p { max-width: 680px; margin-bottom: 1rem; color: var(--gray-400); line-height: 1.7; }
+    a { color: var(--white); text-decoration: none; }
+    ul, ol { margin: 0 0 1.5rem 1.5rem; color: var(--gray-400); }
+    li { margin-bottom: 0.4rem; line-height: 1.6; }
+    .mono { font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gray-500); }
+    .container { max-width: 800px; margin: 0 auto; padding: 0 2rem; }
+    strong { color: var(--white); font-weight: 600; }
+    code { font-family: var(--font-mono); font-size: 0.82rem; background: rgba(255,255,255,0.05); padding: 0.15rem 0.4rem; border-radius: 4px; color: var(--gray-300); }
+    pre { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 1.25rem 1.5rem; overflow-x: auto; margin: 1rem 0 1.5rem; font-size: 0.82rem; }
+    pre code { background: none; padding: 0; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(10,10,10,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    nav .container { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-logo { font-weight: 700; font-size: 1.1rem; color: var(--white); letter-spacing: -0.02em; }
+    .nav-links { display: flex; gap: 1.75rem; align-items: center; }
+    .nav-links a { font-size: 0.875rem; color: var(--gray-400); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--white); }
+
+    .article-header { padding: 8rem 0 2rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .article-header .back-link { font-family: var(--font-mono); font-size: 0.78rem; color: var(--gray-500); display: inline-block; margin-bottom: 1.5rem; }
+    .article-header .back-link:hover { color: var(--gray-300); }
+    .article-header .industry-tag { display: inline-block; font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.2rem 0.6rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; color: var(--gray-500); margin-bottom: 1rem; }
+    .article-header .pipeline { font-family: var(--font-mono); font-size: 0.85rem; color: var(--gray-500); margin: 1rem 0; }
+
+    .pipeline-visual { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin: 1.5rem 0; padding: 1.5rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; }
+    .pipeline-stage { padding: 0.5rem 0.9rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; font-family: var(--font-mono); font-size: 0.75rem; color: var(--gray-300); white-space: nowrap; }
+    .pipeline-arrow { color: var(--gray-600); font-family: var(--font-mono); font-size: 0.85rem; }
+
+    .article-body { padding: 3rem 0 5rem; }
+
+    .execution-box { margin: 2rem 0; padding: 2rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; }
+    .execution-box h3 { margin-top: 0; }
+    .execution-box .metric { display: inline-block; padding: 0.4rem 0.8rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-radius: 6px; font-family: var(--font-mono); font-size: 0.8rem; color: var(--gray-300); margin: 0.25rem 0.5rem 0.25rem 0; }
+
+    footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 3rem 0; }
+    footer .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-links { display: flex; gap: 2rem; }
+    .footer-links a { font-size: 0.85rem; color: var(--gray-500); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gray-300); }
+    .footer-copy { font-size: 0.8rem; color: var(--gray-600); }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <a href="/" class="nav-logo">Kavik Works</a>
+      <div class="nav-links">
+        <a href="/#services">Services</a>
+        <a href="/#how-it-works">How It Works</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/build-concepts/">Build Concepts</a>
+        <a href="/#about">About</a>
+        <a href="/intake">Get Started</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="article-header">
+    <div class="container">
+      <a href="/build-concepts/" class="back-link">← Back to Build Concepts</a>
+      <span class="industry-tag">Financial Services</span>
+      <h1>Financial Advisor Prospect Inquiry &amp; Client Service Routing</h1>
+      <div class="pipeline">Inquiry → classify → extract → route → draft → schedule</div>
+    </div>
+  </section>
+
+  <section class="article-body">
+    <div class="container">
+
+      <h2>The Problem</h2>
+
+      <p>It's Thursday evening at 8:42 PM. A 62-year-old executive — just retired, $2.1 million in her former employer's 401(k) — attended your firm's retirement seminar earlier that evening. She's decided to roll over her balance. She pulls up your website on her phone, finds your contact page, and emails <code>info@yourfirm.com</code> asking about next steps and whether she can schedule a meeting. She's motivated, she's qualified, and <strong>she is ready to move her assets this month.</strong></p>
+
+      <p>Nobody sees her email until Monday morning. Your lead advisor drafts a reply at 10:15 AM — polite, professional, suggesting a call later that week. But by then, she's already committed to another advisor who happened to call her Friday afternoon, having received a similar inquiry and responded within hours. That $2.1 million rollover — representing roughly $21,000 in annual revenue at a 1% fee — is gone. And your firm never even knew it was winnable.</p>
+
+      <p>But the inbox problem cuts both ways. While that prospect inquiry sat unread, so did an email from a long-standing client requesting a $75,000 withdrawal for a home closing scheduled for Friday. That email sat untouched through Thursday night, all day Friday, and wasn't addressed until Monday — three days after the closing had come and gone. The client, understandably furious, had to scramble for bridge financing. The relationship survived, barely, but the trust damage was measurable. <strong>Two very different urgency levels, one inbox, zero differentiation.</strong></p>
+
+      <p>This is not a staffing problem — it's a structural one. A three-advisor RIA managing $150 million in AUM typically receives 15 to 25 inbound emails per day across prospect inquiries, client service requests, account paperwork, compliance items, and custodian communications. Each email represents either revenue opportunity or relationship risk, yet the process for handling them is almost always the same: someone scans the inbox when they can, forwards what they think goes where, and hopes nothing critical slips through. <strong>Wealth management email automation</strong> changes the equation — not by replacing the human judgment that makes a good advisory firm valuable, but by guaranteeing that every email gets the right eyes on it, at the right urgency level, in minutes instead of days.</p>
+
+      <p>The irony is that independent RIAs win business precisely because they're more responsive and personal than wirehouses and robo-advisors. A three-person shop can know every client by name, remember their kid's college plans, and move faster than any institutional advisory firm. But when the intake and service mechanism is the same undifferentiated inbox everyone uses, that speed advantage evaporates the moment the office closes. <strong>RIA client intake routing</strong> closes this gap — ensuring that a Thursday night inquiry from a qualified prospect gets a substantive acknowledgment before the weekend, and that an urgent client withdrawal request doesn't sit unread while tens of thousands of dollars hang in the balance.</p>
+
+      <h2>How It Breaks Today</h2>
+
+      <p>Let's walk through what happens right now when a prospective client and an existing client each email a typical small RIA on the same evening. The emails land in a shared address — <code>info@</code>, <code>team@</code>, or the firm's generic contact form. Here's the chain of events:</p>
+
+      <p><strong>Step one:</strong> the next morning, an office manager or client service associate opens the shared inbox, typically between 9:00 and 10:00 AM. They see fifteen new messages — a mix of custodial alerts, client questions, vendor emails, and prospect inquiries. They scan subject lines and sender names, trying to triage on instinct. The $2.1 million rollover inquiry? It's sitting between a Schwab trade confirmation notification and a newsletter from a wholesaler. The $75,000 withdrawal request? Subject line says "quick question" — easy to de-prioritize.</p>
+
+      <p><strong>Step two:</strong> the office manager forwards what they think is important. The prospect inquiry goes to the lead advisor. The withdrawal request goes to who they think is the assigned advisor — but they're not sure because the client works primarily with one advisor but did a one-time financial plan with another. The forward lands in someone's inbox with no context, no urgency flag, and no record of when it arrived.</p>
+
+      <p><strong>Step three:</strong> both advisors are in client meetings all morning. They glance at the forwarded emails between appointments and mentally queue them for "later." The lead advisor plans to call the new prospect that afternoon. The assigned advisor doesn't recognize the withdrawal request as time-sensitive — the subject line didn't mention a closing date, and the full context is buried three paragraphs into the email body. The wire doesn't go out. The closing happens without the funds.</p>
+
+      <p><strong>Step four:</strong> nobody logs any of this. There's no system-wide record of the prospect inquiry in the CRM unless someone manually creates a contact and activity entry. The withdrawal request is resolved (badly) via a series of apologetic phone calls, but there's no process improvement because nobody measures response time by inquiry type. The firm loses a $2.1 million prospect, nearly loses a six-figure client relationship, and has no data to show for either event.</p>
+
+      <p>Each step introduces delay, and each delay compounds the damage differently depending on what's at stake. A prospect inquiry that waits 12 hours might cost an entire client relationship. A service request that waits 72 hours can cost a decade of trust. <strong>The inbox doesn't distinguish between revenue-generating and relationship-protecting emails — so neither does the firm.</strong></p>
+
+      <h2>The Automated Pipeline</h2>
+
+      <p>An automated routing pipeline applies the same triage logic a great office manager would use — immediately, consistently, and 24/7. Here's what the workflow looks like with <strong>financial advisor automation</strong> applied to both scenarios.</p>
+
+      <div class="pipeline-visual">
+        <div class="pipeline-stage">Inquiry detected</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Classify</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Extract</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Route</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Draft</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Schedule</div>
+      </div>
+
+      <p><strong>Stage 1: Inbound email detected.</strong> The system monitors the firm's intake and service addresses via IMAP — the standard protocol every email provider supports. When a new message arrives, the pipeline triggers immediately. Thursday at 8:42 PM, Friday at 6:15 AM, Sunday at noon — it makes no difference. The message is picked up within seconds of hitting the inbox, and the pipeline begins processing without any human in the loop. No polling, no manual refresh, no dependency on office hours.</p>
+
+      <p><strong>Stage 2: Classify.</strong> The full email content — subject, body, sender address, any forwarded threads — is sent to a cloud AI model with a structured classification prompt tuned for advisory firm workflows. The model reads the message holistically and assigns it to a category. This is not keyword matching. A message that says "I'd like to move my retirement account" is classified as <code>NEW_PROSPECT</code>. A message that says "I need to pull $75k from my account for a house closing Friday" is classified as <code>WITHDRAWAL_REQUEST</code> with an urgency flag. The model understands the difference between a seminar attendee following up and an existing client with a time-sensitive need — just as a human would, but in under two seconds.</p>
+
+      <p><strong>Stage 3: Extract.</strong> Once classified, the AI extracts structured data from the message: the sender's full name, phone number, dollar amounts mentioned, account references, deadlines or dates, and a one-sentence summary of the request. For the rollover prospect, it extracts the retirement account details and the request for an introductory meeting. For the withdrawal client, it extracts the dollar amount ($75,000), the purpose (home closing), and the critical date (this Friday). This structured output is what drives routing priority, response template selection, and downstream CRM logging.</p>
+
+      <p><strong>Stage 4: Route.</strong> Based on the classification and extracted data, the system routes the email to the right person — or people — with the right priority level. The <code>NEW_PROSPECT</code> inquiry goes to the lead advisor or business development partner with a standard notification. The <code>WITHDRAWAL_REQUEST</code> with the detected Friday deadline goes to both the assigned advisor and the operations manager, flagged <code>URGENT</code>, with the deadline highlighted in the notification. Routing is deterministic — it follows rules the firm configures once and refines over time. No guessing, no forwarding loops.</p>
+
+      <p><strong>Stage 5: Draft.</strong> Based on the classification, the AI generates a context-appropriate draft response. For the new prospect: an acknowledgment that references the seminar, outlines the firm's process (discovery meeting, plan design, implementation timeline), and includes a link to schedule an introductory call. For the withdrawal client: an immediate acknowledgment confirming receipt of the request, restating the amount and purpose so the client knows they were heard correctly, giving the expected processing timeline, and noting that someone will call if anything additional is needed. <strong>Nothing is sent without human approval.</strong> The draft waits in a review queue for the advisor or ops manager to approve, edit, or discard. The AI drafts; the human decides. The key difference is that the draft is ready within seconds of the inbound email — not hours or days later when someone finally finds the time to compose a reply from scratch.</p>
+
+      <p><strong>Stage 6: Schedule.</strong> For prospect inquiries, the draft response includes a direct link to the advisor's scheduling page (Calendly or equivalent), letting the prospect book directly into an open time slot. The pipeline doesn't just acknowledge — it creates forward momentum. For service requests like withdrawals, the system logs the request with a timestamp in the CRM and can trigger a follow-up reminder if the request isn't marked as processed within the expected window.</p>
+
+      <h2>Expected Metrics</h2>
+
+      <p>Here's what a three-advisor RIA managing $150 million in AUM should expect from deploying <strong>financial advisor automation</strong> for inquiry and service routing, based on similar implementations:</p>
+
+      <ul>
+        <li><strong>Prospect first response time:</strong> drops from 4–72 hours to under 5 minutes for acknowledgment. The drafted reply — including process overview and scheduling link — is waiting for advisor review within seconds. Even if the advisor doesn't approve until the next morning, the draft required zero composition effort.</li>
+        <li><strong>Urgent service request handling:</strong> time-sensitive items like withdrawals, wire requests, and compliance deadlines are flagged and routed within seconds of arrival — eliminating the risk that a Friday closing or a tax deadline gets buried in the inbox over a weekend.</li>
+        <li><strong>Prospect capture rate:</strong> 100% of inquiries are classified, extracted, and logged. The Thursday night rollover prospect gets a response. Nobody falls through the cracks because "the office manager was out sick on Friday."</li>
+        <li><strong>Routing accuracy:</strong> classification-based routing eliminates the "wrong advisor" problem. New prospects go to business development. Client service requests go to the assigned advisor. Compliance items go to the CCO. No forwarding chains, no missed handoffs.</li>
+        <li><strong>Hours saved per week:</strong> roughly 5–8 hours of administrative time across a three-advisor firm — time previously spent manually scanning the inbox, forwarding messages, re-entering contact data into the CRM, composing standard acknowledgment emails, and chasing misrouted items.</li>
+      </ul>
+
+      <p>These numbers are conservative and grounded in the mechanics of removing manual triage and composition from a high-touch advisory practice. The biggest variable is how quickly advisors review and approve the drafts — but even with a 12-hour review window, the prospect or client receives acknowledgment in minutes rather than days. For a firm charging an average fee of 1%, every $1 million in AUM gained or retained through better responsiveness is worth $10,000 in annual recurring revenue. <strong>A single retained or won client can justify the entire automation investment for years.</strong></p>
+
+      <h2>Execution Plan</h2>
+
+      <div class="execution-box">
+        <h3>Tools &amp; APIs</h3>
+        <p>This pipeline uses a cloud-based large language model API for classification, extraction, and draft generation, connected to the firm's existing email via IMAP. Email intake runs on a lightweight server or cloud function that monitors the inbox continuously. The AI model is prompted with structured JSON output requirements — classification labels, extracted fields, urgency flags, and draft text — so downstream routing logic receives clean, predictable data. Deterministic routing code (Python or Node.js) reads the structured output and forwards everything to the right destination with the right priority. The entire system runs on a $30–50/month cloud instance and requires no changes to the firm's existing email provider, CRM, or custodian relationships.</p>
+
+        <h3>Classification Taxonomy</h3>
+        <p>The AI sorts every inbound email into one of these categories:</p>
+        <ul>
+          <li><strong>NEW_PROSPECT:</strong> First-time inquiry from someone seeking financial advisory services. The core of the growth pipeline. Triggers acknowledgment with process overview and scheduling link.</li>
+          <li><strong>CLIENT_SERVICE_REQUEST:</strong> General service inquiry from an existing client — address change, account question, performance review request. Routed to the assigned advisor with standard priority.</li>
+          <li><strong>ACCOUNT_PAPERWORK:</strong> New account applications, transfer forms, beneficiary designation updates. Routed to the operations team or paraplanner for processing.</li>
+          <li><strong>WITHDRAWAL_REQUEST:</strong> Distribution or withdrawal request from an existing client. Flagged with elevated priority. If a deadline is detected (e.g., "I need this by Friday for a closing"), escalated to URGENT with immediate notification to both the assigned advisor and the operations manager.</li>
+          <li><strong>COMPLIANCE_ITEM:</strong> Regulatory correspondence, audit requests, ADV updates, or any item requiring chief compliance officer attention. Routed directly to the CCO with a compliance flag for archiving.</li>
+          <li><strong>CUSTODIAN_COMMUNICATION:</strong> Messages from Schwab, Fidelity, or Pershing — trade confirmations, account alerts, service notifications. Routed to the operations team for review and filing.</li>
+          <li><strong>BENEFICIARY_UPDATE:</strong> Client requests to update beneficiary designations. Routed to the assigned advisor + operations team. Time-sensitive due to the legal implications of stale designations.</li>
+          <li><strong>TAX_DOCUMENT:</strong> Client inquiries about tax documents, 1099s, or tax planning questions. Routed to the assigned advisor; may trigger coordination with the client's CPA if noted in the email.</li>
+          <li><strong>SEMINAR_FOLLOWUP:</strong> A subset of NEW_PROSPECT where the sender references a specific event. Receives a templated response that mentions the seminar by name, reinforcing the relationship trigger.</li>
+          <li><strong>OTHER:</strong> Catch-all for wholesaler emails, newsletters, vendor communications, and personal messages sent to the wrong address. Logged without routing.</li>
+        </ul>
+
+        <h3>Routing Rules</h3>
+        <p>Routing is configured per firm based on their team structure and service model. A typical setup for a three-advisor RIA:</p>
+        <ul>
+          <li><strong>NEW_PROSPECT</strong> and <strong>SEMINAR_FOLLOWUP</strong> → Lead Advisor or business development partner. If the firm has a dedicated business development role, all prospect inquiries route there. Otherwise, they go to the managing partner or are distributed round-robin among the advisors.</li>
+          <li><strong>CLIENT_SERVICE_REQUEST</strong> → Assigned advisor (matched from CRM by sender email). If the client's assigned advisor can't be determined, routes to the operations manager for manual assignment.</li>
+          <li><strong>WITHDRAWAL_REQUEST</strong> → Assigned advisor <strong>plus</strong> Operations Manager, flagged <code>URGENT</code>. Both parties receive notification — the advisor for client relationship management, the ops manager for execution. If a deadline is detected and is within 3 business days, the notification also includes a push alert (SMS or Slack).</li>
+          <li><strong>ACCOUNT_PAPERWORK</strong> → Operations team or paraplanner. Standard priority. The assigned advisor receives a CC notification for visibility if the client is matched.</li>
+          <li><strong>COMPLIANCE_ITEM</strong> → Chief Compliance Officer. No exceptions. These skip all other routing logic and go directly to the CCO. A copy is automatically archived for compliance record-keeping.</li>
+          <li><strong>CUSTODIAN_COMMUNICATION</strong> → Operations team. If the communication references a specific client account, the assigned advisor is CC'd for awareness.</li>
+          <li><strong>BENEFICIARY_UPDATE</strong> → Assigned advisor + Operations team, flagged with elevated priority. Beneficiary changes have legal and estate planning implications that warrant faster handling than general paperwork.</li>
+          <li><strong>TAX_DOCUMENT</strong> → Assigned advisor. If the email references a specific tax deadline (e.g., April 15, extension dates), flagged for priority routing.</li>
+        </ul>
+
+        <h3>Response Templates</h3>
+        <p>Every draft response follows a consistent structure suited to the inquiry type. The AI fills in specifics from the extracted data — name, dollar amounts, dates, account references. Examples for the two most critical categories:</p>
+
+        <p><strong>NEW_PROSPECT / SEMINAR_FOLLOWUP response:</strong></p>
+        <pre><code>Subject: Re: [Original Subject] — [Firm Name]
+
+Dear [Prospect Name],
+
+Thank you for reaching out — and [if seminar: it was great meeting you at
+the [Seminar Name] on [Date] / if not: thank you for your interest in
+[Firm Name]].
+
+I'd like to walk you through how we work with clients so you know exactly
+what to expect. Our process typically follows three steps:
+
+1. Discovery Meeting — We sit down (in person or virtually) to understand
+   your full financial picture: your goals, concerns, what you're trying to
+   achieve, and what's prompting you to explore working with an advisor now.
+
+2. Plan Design — We build a personalized financial plan that covers
+   retirement income, investment strategy, tax efficiency, estate
+   considerations, and whatever else matters to your situation.
+
+3. Implementation — Once you're comfortable with the plan, we handle the
+   logistics: account transfers, custodian setup, portfolio deployment.
+   You won't be left navigating paperwork on your own.
+
+The first step is a no-obligation introductory call to see if there's a fit.
+You can schedule that directly here: [Calendly Link]
+
+If you'd prefer to connect by phone first, feel free to call our office at
+[Phone] during business hours.
+
+Looking forward to speaking with you.
+
+Best regards,
+[Advisor Name]
+[Firm Name]</code></pre>
+
+        <p><strong>WITHDRAWAL_REQUEST response (urgent):</strong></p>
+        <pre><code>Subject: Re: [Original Subject] — Confirmation Received
+
+Dear [Client Name],
+
+I've received your request for a withdrawal of [$Amount] [for Purpose, if
+specified] and want to confirm we're on it.
+
+Here's what to expect:
+
+• Your request has been routed to [Advisor Name] and our operations team
+  for processing.
+• Standard processing time is [X business days]. [If deadline detected: We
+  see your deadline of [Date] and will ensure processing aligns with that
+  timeline.]
+• You'll receive a confirmation once the transaction has been submitted to
+  [Custodian Name].
+• If we need anything additional to complete the request, we'll call you
+  directly at [Phone on File].
+
+If you have any questions or need to reach someone immediately, call our
+office at [Phone].
+
+Best regards,
+[Firm Name]</code></pre>
+
+        <p>Both drafts go into the review queue. The advisor or ops manager sees the original email, the AI's classification and confidence score, the extracted data, and the suggested response. They can approve, edit, or discard. The critical win: <strong>the client or prospect receives a substantive, personalized acknowledgment within minutes — not a form letter, not silence, and not a rushed three-line reply composed between meetings.</strong></p>
+
+        <h3>Integration Points</h3>
+        <p>The core pipeline — classify, extract, route, draft, schedule — delivers immediate value without connecting to any other system. That said, integrations compound the value over time and reduce manual data entry:</p>
+        <ul>
+          <li><strong>Custodian platforms</strong> (Schwab, Fidelity, Pershing): Account reference numbers extracted from emails can be validated against custodian data to ensure the right account is being acted on. Withdrawal and transfer requests can trigger status lookups to confirm the transaction hasn't already been submitted.</li>
+          <li><strong>CRM</strong> (Redtail, Wealthbox, Salesforce): Extracted prospect contact data is pushed directly into the CRM, creating a new contact record with the inquiry source, date, and classification. For existing clients, the interaction is logged as an activity under their record — no manual data entry required. The firm builds a complete, searchable history of every client and prospect touchpoint automatically.</li>
+          <li><strong>Financial planning software</strong> (eMoney, MoneyGuidePro): When a NEW_PROSPECT is routed and scheduled, the contact can be pushed to the planning platform to pre-populate a new client record, saving the advisor setup time before the first meeting.</li>
+          <li><strong>Compliance archiving:</strong> All COMPLIANCE_ITEM emails and the AI's classification/draft are automatically CC'd or forwarded to the firm's compliance archiving system, creating an auditable trail without manual filing.</li>
+          <li><strong>Calendar scheduling</strong> (Calendly, Acuity): The draft response for NEW_PROSPECT and SEMINAR_FOLLOWUP includes a direct scheduling link. The scheduling tool can be configured to show the appropriate advisor's availability based on the routing assignment.</li>
+        </ul>
+        <p>None of these integrations are prerequisites for the pipeline to deliver results. The immediate win — classified, routed, and drafted responses in under five minutes, 24/7 — works on day one with email access and the AI pipeline alone. Integrations are progressive layers that eliminate remaining manual steps one at a time.</p>
+      </div>
+
+      <div class="execution-box">
+        <h3>Success Metrics to Track</h3>
+        <div>
+          <span class="metric">First response time</span>
+          <span class="metric">Prospect capture rate</span>
+          <span class="metric">Routing accuracy</span>
+          <span class="metric">Urgent item handling</span>
+          <span class="metric">Hours saved/week</span>
+          <span class="metric">Conversion rate</span>
+        </div>
+        <p style="margin-top:1rem;">Track these from day one. The automation should produce a monthly report showing each metric against baseline — the firm's manual-handling numbers from the preceding quarter. If prospect first response time doesn't drop below 10 minutes and routing accuracy isn't above 95%, something in the pipeline needs tuning. Track conversion rate separately for inquiries that received sub-10-minute responses versus those that sat overnight — the delta will quantify the revenue impact of speed in dollar terms.</p>
+      </div>
+
+      <p style="margin-top: 2rem;"><a href="/intake" style="border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 0.15rem;">Interested in this for your firm? Start an intake →</a></p>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="/#services">Services</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/build-concepts/">Build Concepts</a>
+        <a href="/#about">About</a>
+        <a href="mailto:contact@kavikworks.com">Contact</a>
+      </div>
+      <div class="footer-copy">&copy; 2026 Robot Arms LLC, dba Kavik Works.</div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MSP &amp; IT Provider Support Ticket Intake &amp; Client Routing — Kavik Works Build Concepts</title>
+  <meta name="description" content="AI email automation for MSPs and IT support providers that classifies, routes, and drafts responses to support requests and new business inquiries in under five minutes — so a down server doesn't wait behind password resets.">
+  <link rel="canonical" href="https://kavikworks.com/build-concepts/msp-support-ticket-routing.html">
+  <meta name="robots" content="index, follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --white: #ffffff; --gray-300: #d4d4d4; --gray-400: #a3a3a3; --gray-500: #737373; --gray-600: #525252; --gray-700: #404040; --gray-800: #262626; --gray-900: #171717; --gray-950: #0a0a0a; --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: var(--font-sans); color: var(--gray-300); background: var(--gray-950); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3 { color: var(--white); line-height: 1.2; font-weight: 600; }
+    h1 { font-size: clamp(2rem, 4vw, 2.75rem); letter-spacing: -0.03em; margin-bottom: 0.5rem; }
+    h2 { font-size: 1.4rem; letter-spacing: -0.02em; margin: 2.5rem 0 1rem; padding-top: 0.5rem; border-top: 1px solid rgba(255,255,255,0.06); }
+    h3 { font-size: 1.1rem; margin: 1.75rem 0 0.5rem; }
+    p { max-width: 680px; margin-bottom: 1rem; color: var(--gray-400); line-height: 1.7; }
+    a { color: var(--white); text-decoration: none; }
+    ul, ol { margin: 0 0 1.5rem 1.5rem; color: var(--gray-400); }
+    li { margin-bottom: 0.4rem; line-height: 1.6; }
+    .mono { font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gray-500); }
+    .container { max-width: 800px; margin: 0 auto; padding: 0 2rem; }
+    strong { color: var(--white); font-weight: 600; }
+    code { font-family: var(--font-mono); font-size: 0.82rem; background: rgba(255,255,255,0.05); padding: 0.15rem 0.4rem; border-radius: 4px; color: var(--gray-300); }
+    pre { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 1.25rem 1.5rem; overflow-x: auto; margin: 1rem 0 1.5rem; font-size: 0.82rem; }
+    pre code { background: none; padding: 0; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(10,10,10,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    nav .container { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-logo { font-weight: 700; font-size: 1.1rem; color: var(--white); letter-spacing: -0.02em; }
+    .nav-links { display: flex; gap: 1.75rem; align-items: center; }
+    .nav-links a { font-size: 0.875rem; color: var(--gray-400); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--white); }
+
+    .article-header { padding: 8rem 0 2rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .article-header .back-link { font-family: var(--font-mono); font-size: 0.78rem; color: var(--gray-500); display: inline-block; margin-bottom: 1.5rem; }
+    .article-header .back-link:hover { color: var(--gray-300); }
+    .article-header .industry-tag { display: inline-block; font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.2rem 0.6rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; color: var(--gray-500); margin-bottom: 1rem; }
+    .article-header .pipeline { font-family: var(--font-mono); font-size: 0.85rem; color: var(--gray-500); margin: 1rem 0; }
+
+    .pipeline-visual { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin: 1.5rem 0; padding: 1.5rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; }
+    .pipeline-stage { padding: 0.5rem 0.9rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; font-family: var(--font-mono); font-size: 0.75rem; color: var(--gray-300); white-space: nowrap; }
+    .pipeline-arrow { color: var(--gray-600); font-family: var(--font-mono); font-size: 0.85rem; }
+
+    .article-body { padding: 3rem 0 5rem; }
+
+    .execution-box { margin: 2rem 0; padding: 2rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; }
+    .execution-box h3 { margin-top: 0; }
+    .execution-box .metric { display: inline-block; padding: 0.4rem 0.8rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-radius: 6px; font-family: var(--font-mono); font-size: 0.8rem; color: var(--gray-300); margin: 0.25rem 0.5rem 0.25rem 0; }
+
+    footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 3rem 0; }
+    footer .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-links { display: flex; gap: 2rem; }
+    .footer-links a { font-size: 0.85rem; color: var(--gray-500); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gray-300); }
+    .footer-copy { font-size: 0.8rem; color: var(--gray-600); }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <a href="/" class="nav-logo">Kavik Works</a>
+      <div class="nav-links">
+        <a href="/#services">Services</a>
+        <a href="/#how-it-works">How It Works</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/build-concepts/">Build Concepts</a>
+        <a href="/#about">About</a>
+        <a href="/intake">Get Started</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="article-header">
+    <div class="container">
+      <a href="/build-concepts/" class="back-link">← Back to Build Concepts</a>
+      <span class="industry-tag">IT &amp; Managed Services</span>
+      <h1>MSP &amp; IT Provider Support Ticket Intake &amp; Client Routing</h1>
+      <div class="pipeline">Inquiry → classify → extract → route → draft → escalate</div>
+    </div>
+  </section>
+
+  <section class="article-body">
+    <div class="container">
+
+      <h2>The Problem</h2>
+
+      <p>It's 8:30 AM on a Tuesday. A dental office — one of your managed services clients with 14 workstations and a server that handles patient records, scheduling, and imaging — has just gone dark. Their server won't boot. No patient data. No appointment access. Seven hygienists and two dentists standing idle. The office manager fires off an email to <code>support@yourmsp.com</code>: "SERVER DOWN — need immediate help — entire office at a standstill."</p>
+
+      <p>The email lands in the shared support inbox alongside 18 other messages that arrived overnight. Password resets from a law firm. A printer offline at an accounting office. A vendor asking about an unpaid invoice. Three RMM alert notifications that nobody has looked at yet. And — at 10:00 AM — an email from a 15-person law firm asking about managed services pricing and a proposal. They're evaluating providers and want to make a decision by end of week.</p>
+
+      <p>None of these emails get triaged until the first tech sits down and starts working through the inbox — chronologically, top to bottom. The dental office server outage? It's message #7. It gets the same treatment as "can't remember my email password" and "the printer is making a weird noise." <strong>The server stays down for two hours before a technician even sees the ticket.</strong> Two hours of a dental office at zero productivity. Two hours of a client watching the clock and wondering what they're paying you for. By the time an engineer is dispatched, the office manager has already called the dentist's nephew who "knows computers" — and your quarterly business review next month just got a lot more uncomfortable.</p>
+
+      <p>Meanwhile, the law firm's pricing inquiry sits unread until 4:00 PM. When someone finally drafts a reply, it's rushed, generic, and arrives eight hours after the prospect reached out. They've already received proposals from two of your competitors — both of whom responded before lunch. Your first impression is "the MSP that takes all day to answer email." <strong>That's a day's worth of lost revenue from a down client, and a prospect with a terrible first impression — all because "server down" and "forgot password" look exactly the same to a shared inbox.</strong></p>
+
+      <p>This is the structural problem at the heart of MSP support operations. A 12-person MSP serving 40 small business clients receives 40–60 emails a day across support requests, new business inquiries, vendor communications, alert notifications, and client questions. Every single one of those emails enters the same undifferentiated queue. Severity is invisible. Client context is invisible. Revenue urgency — a down dental office bleeding billable hours versus a prospect who's ready to sign — is invisible. <strong>MSP email automation</strong> doesn't replace your technicians or account managers. It makes sure the inbox sees what your team would see if they could read every message the moment it arrived — and acts on it accordingly.</p>
+
+      <h2>How It Breaks Today</h2>
+
+      <p>Let's walk through the chain of events that turns an MSP's shared inbox into a bottleneck. This is the daily reality for a 12-person provider with 40 clients.</p>
+
+      <p><strong>Step one: the morning inbox crush.</strong> Between 5:00 PM the night before and 8:30 AM the next morning, the support inbox collects 15–25 messages. Some are automated alerts from RMM tools — disk space warnings, backup failure notifications, patch status reports. Some are client emails: "my VPN isn't working," "new employee needs account setup," "is the internet down or is it just us?" Some are vendor emails: invoices, license renewal notices, hardware shipment confirmations. And occasionally — buried in the pile — is a genuine emergency. But nobody knows which one until a human opens every message and reads it. The tech who handles intake starts at the top and works down, giving the 11:00 PM automated backup alert the same attention as the 8:30 AM server-down emergency.</p>
+
+      <p><strong>Step two: manual ticket creation.</strong> For each support request, a technician or dispatcher reads the email, opens the PSA — ConnectWise, Autotask, HaloPSA — and manually creates a ticket. They transcribe the client name, the issue description, and their best guess at priority. This takes 2–4 minutes per email. Across 25 support emails a day, that's 50–100 minutes of billable technician time spent on data entry. And priority assignment is subjective: a tech who just handled three password resets might unconsciously downgrade the fourth, even if this one is from a client whose CEO is cc'd.</p>
+
+      <p><strong>Step three: the routing guess.</strong> Once a ticket exists, someone has to assign it. Which engineer has capacity? Who handled this client last time? Is this a server issue that needs a Level 2 tech, or a desktop issue a Level 1 can handle? The dispatcher makes their best judgment based on who's available and who they remember working with that client. There's no systematic matching of issue type, severity, client SLA tier, and engineer specialization. <strong>Every routing decision is a judgment call, and every wrong call means a re-route, a delay, and a client watching the clock.</strong></p>
+
+      <p><strong>Step four: new business disappears.</strong> While support tickets at least have a defined workflow — however manual — new business inquiries have no process at all. A prospect emails <code>info@</code> or <code>sales@</code> asking about services, and that email might sit for hours or days because the person who checks that inbox is also handling dispatch, client onboarding, and three other roles. When they do respond, there's no template, no consistent follow-up sequence, and no record that the inquiry ever happened. The prospect's experience is entirely dependent on who sees the email and when. <strong>New business inquiries are the highest-ROI emails in the entire inbox — and they receive the least structured attention.</strong></p>
+
+      <p><strong>Step five: no escalation logic.</strong> Even when a critical issue is identified, escalation depends on someone manually deciding it's urgent and knowing who to call. If the tech doing intake doesn't recognize that "server won't boot" at a dental office means 14 people can't work, or doesn't know who's on call this week, the escalation doesn't happen. The outage clock keeps ticking. The client keeps calling. And the account manager finds out about the problem from the client — not from their own team.</p>
+
+      <h2>The Automated Pipeline</h2>
+
+      <p>An automated support ticket intake pipeline doesn't replace your technicians — it replaces the manual triage, ticket creation, routing, and drafting that burns hours and flattens every email into the same priority level. Here's the workflow when <strong>IT support ticket automation</strong> is applied to an MSP's intake process.</p>
+
+      <div class="pipeline-visual">
+        <div class="pipeline-stage">Inquiry detected</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Classify</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Extract</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Route</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Draft</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Escalate</div>
+      </div>
+
+      <p><strong>Stage 1: Inbound email detected.</strong> The system monitors the MSP's support, sales, and info addresses via IMAP — the same standard protocol every email provider supports. The pipeline triggers within seconds of a new message arriving, 24/7. Tuesday at 8:30 AM when the dental office server goes down. Thursday at 10:00 PM when a client's backup fails. Saturday at 2:00 PM when a prospect fills out the contact form. Every message is picked up immediately. No dependency on a dispatcher being at their desk. No morning backlog. The pipeline doesn't sleep, doesn't take lunch, and doesn't get distracted by the phone ringing.</p>
+
+      <p><strong>Stage 2: Classify.</strong> The message content — subject, body, sender domain, any forwarded context — is sent to a cloud AI model with a structured classification prompt built for MSP operations. The model reads the full message and assigns it to one of ten categories. This is semantic comprehension, not keyword matching. "Server is down, patients waiting, need help now" is classified as <code>CRITICAL_OUTAGE</code> — not grouped with "my computer is running slow." An email from a law firm domain that says "we're evaluating IT providers and would like to discuss pricing" is classified as <code>NEW_BUSINESS_INQUIRY</code> — not confused with a support request from an existing client. A vendor sending an invoice is recognized as <code>VENDOR_COMMUNICATION</code>. An automated RMM alert about disk capacity is <code>ALERT_NOTIFICATION</code>. Classification completes in under two seconds.</p>
+
+      <p><strong>Stage 3: Extract.</strong> Once classified, the AI pulls structured data from the message: the sender's name, company, and email domain; the affected system or service; any error codes or alert IDs; the severity signals embedded in the language ("urgent," "entire office down," "patients waiting"); and a one-sentence summary of what the sender is asking for. For support requests, it extracts the client name (matched against the MSP's client roster), the affected system type (server, network, workstation, application, email), and any explicit deadline or urgency cues. For new business inquiries, it extracts company size, industry, current IT setup if mentioned, and decision timeline. This structured data is what drives every downstream decision — routing, prioritization, ticket creation, and response drafting.</p>
+
+      <p><strong>Stage 4: Route.</strong> Routing is deterministic — it follows rules the MSP defines based on classification, client, severity, and engineer availability. A <code>CRITICAL_OUTAGE</code> from a dental office client doesn't enter the general queue. It triggers an immediate P1 alert to the on-call engineer via SMS and a notification to the account manager for that client — with the extracted summary and affected systems included so nobody has to open the email to understand what's happening. A <code>SUPPORT_REQUEST</code> is auto-routed by client assignment and technical severity: a server issue goes to a Level 2 engineer, a desktop issue to Level 1, a networking issue to the networking specialist. A <code>NEW_BUSINESS_INQUIRY</code> is flagged HIGH priority and routed to sales or business development — not left in the support inbox where it competes with password resets. <strong>No dispatcher guessing. No wrong-engineer bounce-backs. No critical issues buried in a chronological inbox.</strong></p>
+
+      <p><strong>Stage 5: Draft.</strong> Based on the classification, extracted data, and MSP-configured templates, the system generates a draft response. A critical outage triggers an immediate acknowledgment: ticket number, "an engineer has been notified," estimated response ETA based on SLA tier, and a direct contact path for the client. A new business inquiry receives a different draft entirely — acknowledgment of interest, "here's how we work" (assessment → proposal → onboarding timeline), and a relevant case study or client example pulled from the MSP's materials. A support request gets a ticket-creation confirmation with the ticket number, assigned engineer, and expected response window. <strong>Nothing is sent without human approval.</strong> The AI drafts; the dispatcher or engineer reviews, edits if needed, and hits send. But the draft is waiting for them within seconds — not hours later when they finally open the email and start typing from scratch.</p>
+
+      <p><strong>Stage 6: Escalate.</strong> This is the stage that separates MSP intake automation from generic email routing. The pipeline doesn't just route and draft — it monitors for escalation conditions. A <code>CRITICAL_OUTAGE</code> that hasn't been acknowledged within 10 minutes escalates to the service delivery manager. A support ticket that hits its SLA warning threshold triggers a notification to the account manager. A <code>NEW_BUSINESS_INQUIRY</code> that hasn't received a personal follow-up within 2 hours during business hours gets flagged for the managing partner. The escalation logic is configurable: thresholds, notification channels (SMS, Teams, Slack, email), and escalation chains are defined per classification and per client tier. <strong>The pipeline doesn't just route the work — it makes sure the work doesn't fall through the cracks after routing.</strong></p>
+
+      <h2>Expected Metrics</h2>
+
+      <p>Here's what a 12-person MSP serving 40 clients and processing 40–60 emails/day should expect from deploying <strong>managed services help desk routing</strong> automation:</p>
+
+      <ul>
+        <li><strong>Critical outage response:</strong> drops from 1–2 hours (waiting for a tech to reach message #7 in the inbox) to under 2 minutes for acknowledgment, with the on-call engineer notified via SMS immediately. The engineer still needs to diagnose and resolve, but the client knows they've been heard and that help is coming — the difference between "we're on it" and silence.</li>
+        <li><strong>Ticket creation speed:</strong> automated ticket creation in the PSA eliminates 50–100 minutes of manual data entry per day. Tickets are created with correct client, classification, and priority within seconds of the email arriving — not whenever a dispatcher gets to it.</li>
+        <li><strong>New business response time:</strong> drops from 4–8 hours (or longer) to under 5 minutes for a substantive acknowledgment with process overview and case study. The prospect receives a professional, informative response before competitors have even opened their inbox.</li>
+        <li><strong>Routing accuracy:</strong> classification-driven routing eliminates misroutes and re-assignments. Support requests land with the right engineer tier on the first pass. New business inquiries never touch the support queue.</li>
+        <li><strong>Hours saved per week:</strong> roughly 10–15 hours across a 12-person MSP — time previously spent on manual triage, ticket data entry, routing decisions, response drafting, and chasing escalations that weren't caught early enough.</li>
+      </ul>
+
+      <p>These numbers are conservative, grounded in the mechanical reality of removing manual steps from intake and escalation. The biggest variable is the MSP's existing process maturity: a shop that already has defined client assignments, engineer tiers, and SLA tiers will see results faster than one that needs to define those structures alongside the automation. Either way, the immediate win — critical issues flagged instantly, tickets created automatically, prospects acknowledged promptly — works from day one.</p>
+
+      <h2>Execution Plan</h2>
+
+      <div class="execution-box">
+        <h3>Tools &amp; APIs</h3>
+        <p>This pipeline uses a cloud-based large language model API for classification, extraction, and draft generation, connected to the MSP's support and sales email addresses via IMAP. Email intake runs on a lightweight server or cloud function that monitors inboxes at configurable intervals. The AI model is prompted with structured JSON output requirements — classification label, extracted fields, severity level, routing target, and draft text — so downstream logic receives clean, predictable data. Deterministic routing code (Python or Node.js) reads the structured output and executes routing rules: PSA ticket creation via API, on-call engineer lookup (from a schedule table or PagerDuty integration), notification delivery via SMS (Twilio), Teams, or Slack. The entire system runs on a $40–60/month cloud instance with per-message AI costs of approximately 3–5 cents — or roughly $45–90/month in API costs for an MSP processing 1,200–1,800 emails per month.</p>
+
+        <h3>Classification Taxonomy</h3>
+        <p>The AI sorts every inbound email into one of these categories:</p>
+        <ul>
+          <li><strong>CRITICAL_OUTAGE:</strong> Service-down emergency — server failure, network outage, line-of-business application unavailable. Multiple users affected. Business operations halted. Triggers P1 alert, immediate SMS to on-call engineer and account manager.</li>
+          <li><strong>SUPPORT_REQUEST:</strong> Standard technical support — anything from password resets to printer issues to software troubleshooting. Auto-creates ticket in the PSA with client, classification, and severity. Routed by client assignment and technical tier.</li>
+          <li><strong>NEW_BUSINESS_INQUIRY:</strong> Prospect asking about managed services, pricing, or capabilities. High-value signal — flagged HIGH priority, routed to sales/business development. Triggers a response with process overview, timeline, and relevant case study.</li>
+          <li><strong>CLIENT_QUESTION:</strong> Non-technical questions from existing clients — billing inquiries, contract questions, "can you help us with X new project?" Routed to the account manager for that client.</li>
+          <li><strong>VENDOR_COMMUNICATION:</strong> Invoices, license renewals, hardware quotes, shipping notifications from vendors and distributors. Routed to operations or procurement. Not a support ticket.</li>
+          <li><strong>ALERT_NOTIFICATION:</strong> Automated alerts from RMM tools (Datto, NinjaRMM), backup systems, or monitoring platforms. Disk space warnings, backup failures, offline agents. Routed to NOC or automated triage queue. Does not auto-create a client-facing ticket unless severity triggers escalate.</li>
+          <li><strong>BILLING_QUESTION:</strong> Client asking about an invoice, billing cycle, or charges on their account. Routed to the account manager or billing contact.</li>
+          <li><strong>PROJECT_UPDATE:</strong> Communication about an active project — status updates, milestone completions, change orders. Routed to the project manager or project team channel.</li>
+          <li><strong>INTERNAL_COMMUNICATION:</strong> Team messages, internal announcements, HR notices sent to a shared address. Identified by sender domain matching the MSP's own domain. Logged without routing to clients.</li>
+          <li><strong>OTHER:</strong> Catch-all for spam, newsletters, misdirected personal emails, solicitations. Logged and archived without routing or ticket creation.</li>
+        </ul>
+
+        <h3>Routing Rules</h3>
+        <p>Routing is configured per MSP based on engineer tiers, client assignments, and on-call schedules. A typical setup for a 12-person MSP with 40 clients:</p>
+        <ul>
+          <li><strong>CRITICAL_OUTAGE → on-call engineer + account manager.</strong> Immediate P1 alert via SMS (Twilio or PagerDuty). The on-call engineer receives the extracted summary, client name, affected systems, and any error details — no need to open the email. The account manager for that client receives a notification in Teams or Slack so they can proactively reach out to the client. If the ticket hasn't been acknowledged in 10 minutes, escalation fires to the service delivery manager.</li>
+          <li><strong>SUPPORT_REQUEST → auto-create PSA ticket, route by client + severity.</strong> Ticket is created in ConnectWise, Autotask, or HaloPSA with client, classification, extracted summary, and severity. Routing matches the client to their assigned engineer or support pod. Severity-based routing: server/network issues → Level 2; desktop/application issues → Level 1; specialized systems (EHR, LOB apps) → the engineer who owns that client's environment.</li>
+          <li><strong>NEW_BUSINESS_INQUIRY → sales/business development, HIGH priority.</strong> These never touch the support queue. Routed directly to the sales contact or managing partner with a draft response that includes process overview, timeline, and a case study relevant to the prospect's industry. High-priority notification in Teams/Slack. Escalates if not followed up within 2 business hours.</li>
+          <li><strong>ALERT_NOTIFICATION → NOC / automated triage.</strong> RMM alerts are classified and filtered. Informational alerts (disk at 80%) are logged without ticket creation. Warning alerts (backup completed with warnings) create a low-priority ticket for review. Critical alerts (server offline, backup failure) auto-create a ticket and escalate based on client SLA tier.</li>
+          <li><strong>CLIENT_QUESTION → account manager for that client.</strong> Matched by sender domain against the client roster. If the sender is a known contact (executive, office manager, point of contact), the notification includes their name and role context. Account manager receives the draft response for review.</li>
+          <li><strong>Override: any email from a client with an active P1 ticket has replies routed to the engineer assigned to that ticket.</strong> This prevents the maddening scenario where a client replies "it's getting worse" to an open critical ticket and the reply goes back into the general intake queue.</li>
+        </ul>
+
+        <h3>Response Templates</h3>
+        <p>Every draft response follows a classification-specific structure. The AI fills in specifics from extracted data. Example for a <strong>CRITICAL_OUTAGE</strong>:</p>
+        <pre><code>Subject: Re: SERVER DOWN — [Client Name] — Ticket #[ticket-number]
+
+[Contact Name],
+
+I've received your report and created ticket #[ticket-number] with
+CRITICAL priority. [Engineer Name], our on-call engineer, has been
+notified immediately and will begin diagnosing the issue right away.
+
+What to expect:
+• [Engineer Name] will contact you within [SLA timeframe — e.g.,
+  15 minutes] at [phone number on file] to begin troubleshooting.
+• We'll provide status updates every [interval] until resolved.
+• Your account manager, [AM Name], has also been notified.
+
+If the situation changes or you need immediate escalation, reply
+to this email or call our emergency line at [emergency phone].
+
+We're on it.
+
+[MSP Name] Support Team</code></pre>
+
+        <p>Example for a <strong>NEW_BUSINESS_INQUIRY</strong>:</p>
+        <pre><code>Subject: Re: Managed services inquiry — [Prospect Company]
+
+[Prospect Name],
+
+Thank you for reaching out. I'd welcome the opportunity to discuss
+how [MSP Name] can support [Prospect Company]'s IT needs.
+
+Here's how we typically work with firms like yours:
+
+1. Assessment (Week 1): We conduct a no-obligation review of your
+   current IT environment — infrastructure, security posture, backup
+   strategy, and support gaps. This gives us both a clear picture
+   of where you are and what you need.
+
+2. Proposal (Week 2): Based on the assessment, we'll deliver a
+   tailored proposal with pricing, scope of services, and a
+   recommended onboarding timeline.
+
+3. Onboarding (Weeks 3-4): Once we align on the plan, we handle
+   the transition — agent deployment, documentation, knowledge
+   transfer — with minimal disruption to your team.
+
+For context, we recently helped a [similar industry/size client]
+reduce downtime by [X]% and cut their per-user IT costs by [Y]%
+after they outgrew their previous provider. I'd be happy to share
+more about that engagement.
+
+Would [day] or [day] work for a brief introductory call? I'd love
+to learn more about your current setup and what you're looking for
+in an IT partner.
+
+Best regards,
+[Name]
+[Title]
+[MSP Name]
+[Direct phone]</code></pre>
+
+        <p>Both drafts go into a review queue. The engineer or account manager sees the original email, the AI's classification, the extracted data, and the suggested response — all in one place. They can approve, edit, or replace the draft in seconds. For critical outages, the acknowledgment can be configured for auto-send with human review following immediately — because a down dental office shouldn't wait for a human to click "approve" before learning that help is on the way. For everything else, <strong>human approval is the final gate.</strong></p>
+
+        <h3>Integration Points</h3>
+        <p>The core pipeline — classify, extract, route, draft, escalate — delivers immediate value with nothing more than email access. These integrations layer in progressive capability as the MSP's needs and toolchain evolve:</p>
+        <ul>
+          <li><strong>PSA / ticketing system</strong> (ConnectWise Manage, Autotask, HaloPSA): The highest-impact integration. Classified and extracted data from inbound emails is pushed directly into the PSA via API, creating tickets with correct client, type, subtype, priority, and summary — without manual data entry. Status updates and ticket notes flow back into the pipeline so replies to existing tickets stay attached to the right record. Time tracking can start automatically when an engineer is assigned. For an MSP processing 25+ support emails a day, PSA integration alone recovers 8–12 hours of technician time per week.</li>
+          <li><strong>RMM / monitoring</strong> (Datto RMM, NinjaRMM): Alert notifications from RMM tools are classified and routed differently from client-submitted tickets. The pipeline can cross-reference an RMM alert with client emails — if a server monitoring alert fires at 8:31 AM and the client emails "server down" at 8:32 AM, the pipeline recognizes these as the same incident and prevents duplicate ticket creation. Alert severity from the RMM can override or confirm the AI's severity classification.</li>
+          <li><strong>PagerDuty / on-call escalation:</strong> For CRITICAL_OUTAGE classifications, the pipeline triggers a PagerDuty incident with the extracted summary, client name, and affected systems. PagerDuty handles the on-call rotation, notification rules, and escalation policies the MSP has already configured. The pipeline doesn't replace PagerDuty — it feeds PagerDuty the right incidents at the right time.</li>
+          <li><strong>Teams / Slack:</strong> Internal notifications for new tickets, critical escalations, and unacknowledged alerts are pushed to the appropriate channel. The service desk channel sees new support tickets as they're created. The account management channel sees client questions and billing inquiries. The sales channel sees new business inquiries. The NOC channel sees alert notifications. Everyone sees what they need to see, in the tool they already have open.</li>
+          <li><strong>Client portal:</strong> Ticket creation and status updates can be pushed to the MSP's client portal so clients can see their open tickets, status, and assigned engineer without emailing for updates. Acknowledgment emails include a direct link to the portal ticket view.</li>
+        </ul>
+        <p>None of these integrations are required for the pipeline to produce results. The immediate win — every email classified, critical issues escalated instantly, tickets created automatically, prospects acknowledged within minutes — works on day one with email access and the AI pipeline alone. PSA integration is the natural first integration step, followed by Teams/Slack notifications. RMM and PagerDuty integrations layer in as the MSP's alert volume and operational complexity demand tighter coupling.</p>
+      </div>
+
+      <div class="execution-box">
+        <h3>Success Metrics to Track</h3>
+        <div>
+          <span class="metric">P1 acknowledgment time</span>
+          <span class="metric">Ticket creation lag</span>
+          <span class="metric">Routing accuracy</span>
+          <span class="metric">New business response time</span>
+          <span class="metric">SLA compliance rate</span>
+          <span class="metric">Hours saved/week</span>
+        </div>
+        <p style="margin-top:1rem;">Track these from day one. Compare P1 acknowledgment time before automation (often 1–2 hours while the inbox backlog clears) against post-deployment (under 2 minutes). Measure ticket creation lag — the gap between when a client email arrives and when a PSA ticket exists — and expect it to drop from 30–120 minutes to under 30 seconds. If routing accuracy drops below 95%, audit the client-to-engineer assignment table and the classification prompts — the most common failure mode is a client that hasn't been mapped to an engineer, or a classification prompt that's too broad on SUPPORT_REQUEST vs. CLIENT_QUESTION. Track new business response time separately from support response time: prospects should receive a substantive, templated acknowledgment within 5 minutes regardless of time of day. If SLA compliance doesn't improve within the first month, the escalation thresholds may need tuning — early detection of a critical issue only matters if the right person acts on it.</p>
+      </div>
+
+      <p style="margin-top: 2rem;"><a href="/intake" style="border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 0.15rem;">Interested in this for your MSP? Start an intake →</a></p>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="/#services">Services</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/build-concepts/">Build Concepts</a>
+        <a href="/#about">About</a>
+        <a href="mailto:contact@kavikworks.com">Contact</a>
+      </div>
+      <div class="footer-copy">&copy; 2026 Robot Arms LLC, dba Kavik Works.</div>
+    </div>
+  </footer>
+</body>
+</html>

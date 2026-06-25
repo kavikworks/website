@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://kavikworks.com/</loc>
-    <lastmod>2026-06-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://kavikworks.com/intake</loc>
-    <lastmod>2026-06-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  <url><loc>https://kavikworks.com/</loc><lastmod>2026-06-24</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://kavikworks.com/intake</loc><lastmod>2026-06-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://kavikworks.com/build-concepts/</loc><lastmod>2026-06-24</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://kavikworks.com/build-concepts/law-firm-client-intake.html</loc><lastmod>2026-06-24</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://kavikworks.com/build-concepts/hvac-lead-response.html</loc><lastmod>2026-06-24</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://kavikworks.com/build-concepts/property-management-inquiries.html</loc><lastmod>2026-06-24</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://kavikworks.com/build-concepts/cpa-client-intake-triage.html</loc><lastmod>2026-06-24</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://kavikworks.com/build-concepts/insurance-quote-claims-routing.html</loc><lastmod>2026-06-24</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://kavikworks.com/build-concepts/medical-practice-inquiry-routing.html</loc><lastmod>2026-06-25</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://kavikworks.com/build-concepts/real-estate-lead-routing.html</loc><lastmod>2026-06-25</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://kavikworks.com/build-concepts/staffing-recruiting-inquiry-routing.html</loc><lastmod>2026-06-25</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://kavikworks.com/build-concepts/financial-advisor-inquiry-routing.html</loc><lastmod>2026-06-25</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://kavikworks.com/build-concepts/msp-support-ticket-routing.html</loc><lastmod>2026-06-25</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>

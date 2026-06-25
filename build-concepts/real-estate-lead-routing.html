@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real Estate Brokerage Lead Intake &amp; Agent Routing — Kavik Works Build Concepts</title>
+  <meta name="description" content="AI email automation for real estate brokerages that classifies, routes, and drafts responses to buyer and seller inquiries in under five minutes — so the $1.2M listing doesn't go to the agent who answers first.">
+  <link rel="canonical" href="https://kavikworks.com/build-concepts/real-estate-lead-routing.html">
+  <meta name="robots" content="index, follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --white: #ffffff; --gray-300: #d4d4d4; --gray-400: #a3a3a3; --gray-500: #737373; --gray-600: #525252; --gray-700: #404040; --gray-800: #262626; --gray-900: #171717; --gray-950: #0a0a0a; --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: var(--font-sans); color: var(--gray-300); background: var(--gray-950); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3 { color: var(--white); line-height: 1.2; font-weight: 600; }
+    h1 { font-size: clamp(2rem, 4vw, 2.75rem); letter-spacing: -0.03em; margin-bottom: 0.5rem; }
+    h2 { font-size: 1.4rem; letter-spacing: -0.02em; margin: 2.5rem 0 1rem; padding-top: 0.5rem; border-top: 1px solid rgba(255,255,255,0.06); }
+    h3 { font-size: 1.1rem; margin: 1.75rem 0 0.5rem; }
+    p { max-width: 680px; margin-bottom: 1rem; color: var(--gray-400); line-height: 1.7; }
+    a { color: var(--white); text-decoration: none; }
+    ul, ol { margin: 0 0 1.5rem 1.5rem; color: var(--gray-400); }
+    li { margin-bottom: 0.4rem; line-height: 1.6; }
+    .mono { font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gray-500); }
+    .container { max-width: 800px; margin: 0 auto; padding: 0 2rem; }
+    strong { color: var(--white); font-weight: 600; }
+    code { font-family: var(--font-mono); font-size: 0.82rem; background: rgba(255,255,255,0.05); padding: 0.15rem 0.4rem; border-radius: 4px; color: var(--gray-300); }
+    pre { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 1.25rem 1.5rem; overflow-x: auto; margin: 1rem 0 1.5rem; font-size: 0.82rem; }
+    pre code { background: none; padding: 0; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(10,10,10,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    nav .container { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-logo { font-weight: 700; font-size: 1.1rem; color: var(--white); letter-spacing: -0.02em; }
+    .nav-links { display: flex; gap: 1.75rem; align-items: center; }
+    .nav-links a { font-size: 0.875rem; color: var(--gray-400); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--white); }
+
+    .article-header { padding: 8rem 0 2rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .article-header .back-link { font-family: var(--font-mono); font-size: 0.78rem; color: var(--gray-500); display: inline-block; margin-bottom: 1.5rem; }
+    .article-header .back-link:hover { color: var(--gray-300); }
+    .article-header .industry-tag { display: inline-block; font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.2rem 0.6rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; color: var(--gray-500); margin-bottom: 1rem; }
+    .article-header .pipeline { font-family: var(--font-mono); font-size: 0.85rem; color: var(--gray-500); margin: 1rem 0; }
+
+    .pipeline-visual { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin: 1.5rem 0; padding: 1.5rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; }
+    .pipeline-stage { padding: 0.5rem 0.9rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; font-family: var(--font-mono); font-size: 0.75rem; color: var(--gray-300); white-space: nowrap; }
+    .pipeline-arrow { color: var(--gray-600); font-family: var(--font-mono); font-size: 0.85rem; }
+
+    .article-body { padding: 3rem 0 5rem; }
+
+    .execution-box { margin: 2rem 0; padding: 2rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; }
+    .execution-box h3 { margin-top: 0; }
+    .execution-box .metric { display: inline-block; padding: 0.4rem 0.8rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-radius: 6px; font-family: var(--font-mono); font-size: 0.8rem; color: var(--gray-300); margin: 0.25rem 0.5rem 0.25rem 0; }
+
+    footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 3rem 0; }
+    footer .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-links { display: flex; gap: 2rem; }
+    .footer-links a { font-size: 0.85rem; color: var(--gray-500); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gray-300); }
+    .footer-copy { font-size: 0.8rem; color: var(--gray-600); }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <a href="/" class="nav-logo">Kavik Works</a>
+      <div class="nav-links">
+        <a href="/#services">Services</a>
+        <a href="/#how-it-works">How It Works</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/build-concepts/">Build Concepts</a>
+        <a href="/#about">About</a>
+        <a href="/intake">Get Started</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="article-header">
+    <div class="container">
+      <a href="/build-concepts/" class="back-link">← Back to Build Concepts</a>
+      <span class="industry-tag">Real Estate</span>
+      <h1>Real Estate Brokerage Lead Intake &amp; Agent Routing</h1>
+      <div class="pipeline">Inquiry → classify → extract → route → draft → notify</div>
+    </div>
+  </section>
+
+  <section class="article-body">
+    <div class="container">
+
+      <h2>The Problem</h2>
+
+      <p>It's 10:07 AM on a Tuesday. A homeowner in the broker's top territory sends an email to <code>info@yourbrokerage.com</code>: she and her husband are relocating and need to sell their home. Four bedrooms, renovated kitchen, desirable school district. Comparable properties are moving at $1.1M–$1.3M. She wants to interview listing agents this week and make a decision by Friday. Her message includes her phone number, the property address, and a clear signal: <strong>she is ready to list now.</strong></p>
+
+      <p>The office admin opens the inbox around 10:30 AM between phone calls. She scans the message, recognizes it's a listing opportunity, and forwards it to the agent who "usually handles that area." Problem is, that agent changed territories six months ago and primarily works downtown now. The email sits in the wrong inbox for two hours before the agent sees it — "not my area" — and forwards it back. The admin re-routes it to the correct agent at 1:15 PM. That agent is in a closing until 3:00 PM and doesn't see the email until 3:45 PM. By the time they call the seller at 4:00 PM, <strong>the seller has already signed with a competing brokerage.</strong> Someone else answered faster. Your brokerage lost a $1.2M listing — roughly $36,000 in gross commission — because an email went to the wrong person.</p>
+
+      <p>That same day, at 8:22 PM, a first-time buyer emails the same <code>info@</code> address. She saw a listing on Zillow, she has a pre-approval letter from a local lender, and she wants to schedule a showing before the weekend open house. Nobody sees her email until the office admin arrives at 9:00 AM the next morning — <strong>nearly 13 hours of dead air.</strong> By then, the buyer has already contacted the listing agent directly. Your brokerage just handed dual-agency commissions to a competitor because nobody was there to respond. This is not an edge case. For a 25-agent independent brokerage handling 20–40 leads per day, these scenarios repeat daily. <strong>Real estate lead automation</strong> doesn't replace your agents. It makes sure the inbox doesn't bleed commissions while your team is busy, misrouted, or off the clock.</p>
+
+      <p>The irony cuts deep in real estate: independent brokerages win on local expertise, personal relationships, and speed — they're more agile than the national franchises. But when every inquiry hits the same shared inbox and waits for a human to manually triage it, that speed advantage evaporates the moment volume spikes or the office closes. The brokerage that responds first wins the listing. The brokerage that responds first gets the buyer showing. <strong>Brokerage lead routing</strong> automation closes the gap between "someone in the office will get to this" and "every inquiry is classified, routed, and acknowledged within minutes — including nights, weekends, and during that 90-minute office meeting when nobody is watching the inbox."</p>
+
+      <h2>How It Breaks Today</h2>
+
+      <p>Here's the chain of events when a buyer or seller inquiry hits <code>info@</code> at a typical 25-agent independent brokerage. The process is manual, error-prone, and structurally incapable of meeting the speed expectations of today's real estate consumer.</p>
+
+      <p><strong>Step one: the undefined triage role.</strong> There's no dedicated intake person at most independent brokerages. The office admin, the managing broker, or whoever happens to be near the computer checks the shared inbox — usually a couple times an hour during business hours, less frequently during busy periods, and not at all after 5:00 PM or on weekends. They open each message and try to figure out what they're looking at. Is this a buyer asking about a specific listing? A seller wanting a CMA? An agent from another brokerage with a referral? A mortgage broker following up? The admin isn't a licensed agent — they're making judgment calls about lead quality, urgency, and routing with no standardized framework.</p>
+
+      <p><strong>Step two: the routing guess.</strong> The admin forwards the email to whoever seems right. Buyer inquiry in the Oak Park neighborhood? Forward to the agent who sold three houses there last year — never mind that agent is now primarily a listing specialist and doesn't work with buyers. Seller inquiry for a luxury property? Forward to the top producer — but that agent is on vacation this week and won't see the email until Monday. The admin is routing based on memory, assumptions, and whoever's name comes to mind first. There's no territory map, no rotation schedule, no workload awareness. <strong>Every routing decision introduces the possibility of a misroute, and every misroute costs hours.</strong></p>
+
+      <p><strong>Step three: the response lottery.</strong> When the forwarded email finally reaches an agent, the quality of the response depends entirely on that agent's current context. An agent between showings might fire off a thoughtful reply in two minutes. An agent in the middle of a negotiation might mentally queue it and forget. An agent who checks email once in the morning and once at night might not see it for six hours. The brokerage has no standard for what a first response should look like — no template, no required information, no quality floor. A $1.2M listing inquiry might receive "thanks, I'll call you tomorrow" while a rental inquiry gets a 500-word email with market data and a CMA offer. The inconsistency isn't just bad process — it's a brand risk.</p>
+
+      <p><strong>Step four: no record, no recovery.</strong> If the lead doesn't convert — because of a misroute, a slow response, or a weak first impression — nobody knows it happened. There's no log of which leads came in, how quickly they were answered, which agent received them, or what happened after routing. The brokerage can't measure conversion rate by lead source, can't identify response-time bottlenecks, and can't tell the difference between "this lead source is low quality" and "we're just slow to respond to this lead source." The entire intake operation is invisible to management. <strong>After-hours inquiries are the single largest unmeasured loss point.</strong></p>
+
+      <h2>The Automated Pipeline</h2>
+
+      <p>An automated lead intake pipeline doesn't replace your agents — it replaces the manual sorting, guessing, and draft-writing that burns hours and kills leads. Here's the workflow when <strong>real estate agent inquiry automation</strong> is applied to the brokerage inbox.</p>
+
+      <div class="pipeline-visual">
+        <div class="pipeline-stage">Inquiry detected</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Classify</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Extract</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Route</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Draft</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Notify</div>
+      </div>
+
+      <p><strong>Stage 1: Inbound inquiry detected.</strong> The system monitors the brokerage's intake address via IMAP — the same standard protocol every email provider supports. The pipeline triggers within seconds of a new message arriving, regardless of time or day. Tuesday at 10:07 AM when the office admin is on a phone call. Thursday at 8:22 PM when everyone has gone home. Saturday at 11:00 AM during the open house rush. Every inquiry gets picked up immediately. No polling by a busy admin. No dependency on anyone being in the office. The pipeline doesn't take lunch breaks.</p>
+
+      <p><strong>Stage 2: Classify.</strong> The message content — subject, body, sender address, any forwarded context — is sent to a cloud AI model with a structured classification prompt tailored to real estate. The model reads the full message and assigns it to one of ten categories. This is comprehension, not keyword matching. A message that says "we're relocating from Chicago and need to sell our home in Fairview" gets classified as <code>SELLER_LISTING_REQUEST</code> — not confused with a buyer inquiry simply because the word "home" appears. A message from another agent's email domain gets classified as <code>AGENT_REFERRAL</code>. The model distinguishes between someone asking "is this property still available?" (<code>SHOWING_REQUEST</code>) and someone asking "can you help me find a three-bedroom under $500K?" (<code>BUYER_INQUIRY</code>). Classification completes in under two seconds.</p>
+
+      <p><strong>Stage 3: Extract.</strong> Once classified, the AI pulls structured data from the message: the sender's full name, phone number, email address, property address (if provided), target price range, neighborhood or territory references, any time-sensitivity signals ("looking to move in 30 days," "need to list before school starts"), and a one-sentence summary of what the person is asking for. For a seller inquiry, it extracts the property address, estimated value range if mentioned, and any timeline cues. For a buyer inquiry, it extracts desired neighborhoods, price range, property type, and whether the sender mentioned pre-approval. This structured data drives every downstream decision.</p>
+
+      <p><strong>Stage 4: Route.</strong> Routing is deterministic — it follows rules the brokerage defines, not probabilistic guesses. A <code>SELLER_LISTING_REQUEST</code> from a property in the North Hills territory goes to the listing specialist assigned to North Hills. If the extracted property value exceeds $1M, it also triggers a priority notification to the managing broker. A <code>BUYER_INQUIRY</code> goes to the next agent on the buyer specialist rotation for that geographic territory. A <code>SHOWING_REQUEST</code> for a specific MLS listing is routed to that listing's agent. An <code>AGENT_REFERRAL</code> goes straight to the managing broker. <strong>No forwarding chains. No "wrong agent" bounce-backs. No leads dying in the wrong inbox.</strong></p>
+
+      <p><strong>Stage 5: Draft.</strong> Based on the classification, extracted data, and brokerage-configured templates, the system generates a draft response. A seller listing request receives a different draft than a buyer inquiry — each tailored to what that specific sender needs to hear first. The draft pulls in relevant data where available: recent neighborhood comps for a seller, a process overview for a first-time buyer, available showing times for a showing request. The draft goes into a review queue where the assigned agent sees the original email, the AI's classification, the extracted data, and the suggested response — all in one consolidated view. <strong>Nothing is sent without human approval.</strong> The AI writes the draft; the agent reviews, edits, or replaces it, then hits send.</p>
+
+      <p><strong>Stage 6: Notify.</strong> The assigned agent receives a notification — email, SMS, or Slack depending on brokerage preference — that a new lead is in their queue with a draft response waiting. For high-value listing inquiries (configurable threshold, e.g., properties above $750K), the notification is immediate and includes an alert to the managing broker. For buyer inquiries received after hours, the notification fires immediately so the agent can review and approve the draft response from their phone over dinner — not the next morning when the buyer has already moved on. Every inquiry is timestamped and logged, creating a complete audit trail from arrival to response.</p>
+
+      <h2>Expected Metrics</h2>
+
+      <p>Here's what a 25-agent independent brokerage handling 20–40 leads/day should expect from deploying <strong>real estate lead automation</strong>:</p>
+
+      <ul>
+        <li><strong>First response time:</strong> drops from 2–24 hours to under 5 minutes for the acknowledgment draft. The agent still has to review and approve, but the draft is waiting for them within seconds — not hours later when they finally open a forwarded email and start typing from scratch.</li>
+        <li><strong>Routing accuracy:</strong> territory-based and role-based routing eliminates misroutes. Leads land with the correct agent — listing specialist, buyer specialist, rental desk, or managing broker — on the first pass. No "wrong agent" delays, no territory confusion.</li>
+        <li><strong>After-hours lead capture:</strong> 100% of inquiries received outside business hours are classified, extracted, and queued with a draft response. The evening buyer inquiry and the weekend seller request no longer vanish into Monday morning's inbox backlog.</li>
+        <li><strong>Lead attribution and logging:</strong> every inquiry is recorded with source, classification, assigned agent, response time, and outcome. For the first time, the managing broker can answer: which lead sources produce the most listing appointments? Which agents convert at the highest rate? Where are response-time bottlenecks?</li>
+        <li><strong>Hours saved per week:</strong> roughly 8–12 hours of administrative and agent time across the brokerage — time previously spent scanning the inbox, guessing at routing, re-forwarding misrouted leads, and composing responses from scratch.</li>
+      </ul>
+
+      <p>These metrics assume the brokerage has clear routing rules: defined agent territories, defined role assignments (buyer specialists vs. listing specialists vs. rental desk), and a rotation schedule for unassigned buyer leads. The automation executes these rules consistently. If the rules are ambiguous, the pipeline can't fix that — but for a brokerage that already has a territory and role structure and just needs the inbox to respect it automatically, these numbers are realistic from week one.</p>
+
+      <h2>Execution Plan</h2>
+
+      <div class="execution-box">
+        <h3>Tools &amp; APIs</h3>
+        <p>This pipeline uses a cloud-based large language model API for classification, extraction, and draft generation, connected to the brokerage's existing email via IMAP. Email intake runs on a lightweight server or cloud function that monitors the inbox at configurable intervals. The AI model is prompted with structured JSON output requirements — classification label, extracted fields, routing target, and draft text — so downstream logic receives clean, predictable data. Deterministic routing code (Python or Node.js) reads the structured output and matches each lead to the correct agent based on pre-configured territory maps, role assignments, and rotation schedules. Notification delivery uses email, SMS (via Twilio), or Slack depending on the brokerage's communication preferences and the urgency tier of the lead. The entire system runs on a $40–60/month cloud instance with per-message AI costs of approximately 3–5 cents per classification and draft generation — or roughly $40–70/month in API costs for a brokerage processing 600–1,200 inquiries per month.</p>
+
+        <h3>Classification Taxonomy</h3>
+        <p>The AI sorts every inbound email into one of these categories:</p>
+        <ul>
+          <li><strong>BUYER_INQUIRY:</strong> A prospective buyer looking for representation — either asking about a specific property or requesting help finding properties matching criteria. Routed to a buyer specialist on rotation or by geographic territory match.</li>
+          <li><strong>SELLER_LISTING_REQUEST:</strong> A homeowner requesting a listing presentation, CMA, or valuation. High-value signal — triggers priority routing to a listing specialist or top producer with immediate notification to the managing broker for properties above a configurable threshold.</li>
+          <li><strong>SHOWING_REQUEST:</strong> Someone asking to view a specific property. Routed to the listing agent for that property. If the extracted property address matches an active MLS listing, the pipeline can pull listing data for the response draft.</li>
+          <li><strong>RENTAL_INQUIRY:</strong> A prospective tenant asking about rental availability, pricing, or application process. Routed to the rental desk agent or the agent designated for property management leads.</li>
+          <li><strong>PROPERTY_MANAGEMENT:</strong> An owner inquiry about property management services — not a listing request, but an owner wanting to convert from self-management to professional management. Routed to the agent handling property management or the managing broker.</li>
+          <li><strong>AGENT_REFERRAL:</strong> Incoming referral from an agent at another brokerage. Identified by sender domain matching known brokerage email patterns or explicit referral language. Routed directly to the managing broker for assignment.</li>
+          <li><strong>MORTGAGE_QUESTION:</strong> A buyer or seller asking about financing, pre-approval, or mortgage rates. Routed to the brokerage's preferred lender relationship or the agent managing that partnership.</li>
+          <li><strong>TITLE_ESCROW:</strong> Communication from a title company, escrow officer, or closing agent about an active transaction. Routed to the transaction coordinator or the agent handling that deal.</li>
+          <li><strong>GENERAL_INQUIRY:</strong> Broad questions about the market, the brokerage, or real estate in general — not clearly a buyer or seller yet. Routed to a designated agent on a general inquiry rotation, with a response focused on qualifying the sender further.</li>
+          <li><strong>OTHER:</strong> Catch-all for spam, vendor solicitations, personal emails sent to the wrong address, newsletters. Logged and archived without routing.</li>
+        </ul>
+
+        <h3>Routing Rules</h3>
+        <p>Routing is configured per brokerage based on agent territories, specializations, and rotation schedules. A typical setup for a 25-agent independent brokerage:</p>
+        <ul>
+          <li><strong>BUYER_INQUIRY → buyer specialist rotation or territory match.</strong> If the extracted message references a specific neighborhood or ZIP code, the lead routes to the buyer specialist assigned to that territory. If no territory is specified, the lead routes to the next agent on the buyer specialist rotation — a round-robin system that distributes unqualified buyer leads evenly across the buyer agent team. The rotation is workload-aware if integrated with the CRM: agents at capacity get skipped until their pipeline opens.</li>
+          <li><strong>SELLER_LISTING_REQUEST → listing specialist or top producer.</strong> The most valuable lead category gets the fastest, most targeted routing. Sellers in a specific territory go to the listing specialist for that territory. High-value properties (configurable threshold, typically $750K+) trigger a secondary notification to the managing broker. The response draft includes neighborhood comps if MLS integration is active, giving the listing agent a head start on the conversation.</li>
+          <li><strong>SHOWING_REQUEST → listing agent for that property.</strong> If the property address or MLS number is extracted and matches an active listing, the lead routes to that listing's agent — the person with the most context and the strongest incentive to respond quickly. If the property can't be matched, it falls back to the buyer specialist rotation.</li>
+          <li><strong>RENTAL_INQUIRY → rental desk agent.</strong> If the brokerage has a dedicated rental desk, all rental inquiries route there. If not, routes to the agent designated for lower-commission leads or to a general inquiry rotation.</li>
+          <li><strong>AGENT_REFERRAL → managing broker.</strong> Referral relationships are brokerage-level assets. The managing broker sees every incoming referral, confirms the referral agreement, and assigns it to the appropriate agent based on territory, specialization, and current capacity — not the rotation.</li>
+          <li><strong>Override: any lead from a past client (identified by email match in CRM) routes to their original agent regardless of classification.</strong> This preserves the relationship and prevents the awkward situation of a past seller client emailing about a new listing and getting routed to a buyer specialist they've never met.</li>
+        </ul>
+
+        <h3>Response Templates</h3>
+        <p>Every draft response follows a classification-specific template with three elements: <strong>acknowledge the specific inquiry, set expectations for next steps, provide immediate value.</strong> The AI fills in the specifics based on extracted data. Example for a <strong>BUYER_INQUIRY</strong>:</p>
+        <pre><code>Subject: Re: Your inquiry about [property address / "finding a home in" area]
+
+[Buyer Name],
+
+Thank you for reaching out about [property address / "finding a home
+in the" neighborhood area]. I'd love to help.
+
+Here's what the process looks like from here: we'll start with a brief
+conversation about what you're looking for — neighborhoods, size,
+budget, timeline — so I can set up a search that matches your criteria.
+Then we'll schedule showings for the properties that fit, and when
+you find the right one, I'll walk you through writing an offer.
+
+If you're working with a lender already, great — a pre-approval letter
+will make us competitive when we find the right property. If not, I'm
+happy to connect you with a few trusted local lenders.
+
+To get the ball rolling: what's the best number to reach you, and
+what time works for a quick 10-minute call?
+
+In the meantime, I've attached a snapshot of current active listings
+in [neighborhood / area] so you can get a sense of what's available
+right now.
+
+Looking forward to helping you find the right place —
+
+[Agent Name]
+[Brokerage Name]
+[Direct phone]</code></pre>
+
+        <p>Example for a <strong>SELLER_LISTING_REQUEST</strong> — the highest-priority draft:</p>
+        <pre><code>Subject: Re: Listing inquiry — [property address]
+
+[Seller Name],
+
+Thank you for reaching out about listing your home at [property
+address]. I'd welcome the opportunity to earn your business.
+
+Here's what you can expect from us: I'll prepare a comprehensive
+listing presentation that covers your home's current market value,
+our marketing strategy to get it in front of qualified buyers, and
+the timeline from listing to closing. I'll also include recent sales
+of comparable properties in [neighborhood] so you can see exactly
+what homes like yours are selling for right now.
+
+We'll have a detailed CMA (Comparative Market Analysis) ready within
+24 hours — often sooner. In the meantime, are you available for a
+brief call or meeting this [week / timeframe] to discuss your goals
+and timeline?
+
+As a preview: in [neighborhood] over the past 90 days, properties
+similar to yours have sold in an average of [X] days at [Y]% of
+asking price. I'll have the full breakdown for your specific property
+when we speak.
+
+[Agent Name]
+[Brokerage Name]
+[Direct phone]</code></pre>
+
+        <p>Both drafts go into the review queue. The agent sees the original email, the classification, the extracted data, and the suggested response — and can approve, edit, or replace the draft in seconds. The seller receives a substantive, personalized acknowledgment with market data within minutes. The buyer receives a process overview, a next-step question, and a market snapshot. <strong>The prospect knows they've been heard, knows what happens next, and has immediate value in their inbox — not a generic "thanks for your inquiry" and not silence.</strong></p>
+
+        <h3>Integration Points</h3>
+        <p>The core pipeline — classify, extract, route, draft, notify — delivers immediate value using only the existing email inbox. These integration points layer in progressive capability:</p>
+        <ul>
+          <li><strong>MLS data</strong> (via local MLS RETS or Web API): When a showing request or buyer inquiry references a specific property, the pipeline pulls listing data — price, DOM, beds/baths, listing agent — and injects it into the response draft. For seller listing requests, the pipeline can pull recent comparable sales in the same neighborhood so the acknowledgment draft includes real market data, not placeholders. An MLS integration turns the response draft from a polite acknowledgment into a conversation starter that demonstrates market knowledge before the agent has even picked up the phone.</li>
+          <li><strong>CRM</strong> (Follow Up Boss, LionDesk, BoomTown): Every inquiry is logged as a lead record with classification, source, assigned agent, timestamp, and response status. This eliminates duplicate data entry and ensures the brokerage's lead pipeline is always current — not dependent on agents manually logging every email they receive. Over time, the CRM builds a complete attribution trail: which lead sources produce the most listing appointments, which agents convert fastest, and where leads stall.</li>
+          <li><strong>Showing scheduling</strong> (ShowingTime, BrokerBay): For showing requests, the response draft can include a scheduling link that lets the buyer book a showing directly into the listing agent's calendar — or, for buyer agent showings, into the assigned buyer agent's available slots. This cuts the back-and-forth of "when works for you?" and gets showings booked faster.</li>
+          <li><strong>Transaction management</strong> (Dotloop, SkySlope): When a lead converts to a transaction, the extracted contact data and property details can flow directly into a new transaction record, pre-populating fields that would otherwise be re-entered manually. The inquiry trail stays connected to the transaction file for compliance and future reference.</li>
+        </ul>
+        <p>None of these integrations are required for the pipeline to deliver results. The immediate win — every lead classified, routed, and acknowledged within minutes instead of hours — works on day one with email access and the AI pipeline alone. MLS, CRM, and scheduling integrations layer in as the brokerage's needs grow, starting with the highest-impact connection: CRM logging for pipeline visibility.</p>
+      </div>
+
+      <div class="execution-box">
+        <h3>Success Metrics to Track</h3>
+        <div>
+          <span class="metric">First response time</span>
+          <span class="metric">Routing accuracy</span>
+          <span class="metric">After-hours capture rate</span>
+          <span class="metric">Lead-to-appointment rate</span>
+          <span class="metric">Listing conversion rate</span>
+          <span class="metric">Hours saved/week</span>
+        </div>
+        <p style="margin-top:1rem;">Track these from day one. Compare first response time before automation (typically 2–24 hours, often longer for after-hours inquiries) against post-deployment (under 5 minutes for draft generation). If routing accuracy drops below 95%, review the territory definitions and agent assignment tables — the most common failure mode is territory boundaries that don't cover every ZIP code or neighborhood reference in the market. Track lead-to-appointment conversion by classification: if buyer inquiries convert at half the rate of seller listing requests, you may need to tune the buyer response template for stronger qualification language. The data will tell you where the pipeline is working and where it needs adjustment — which is itself a capability the manual process never provided.</p>
+      </div>
+
+      <p style="margin-top: 2rem;"><a href="/intake" style="border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 0.15rem;">Interested in this for your brokerage? Start an intake →</a></p>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="/#services">Services</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/build-concepts/">Build Concepts</a>
+        <a href="/#about">About</a>
+        <a href="mailto:contact@kavikworks.com">Contact</a>
+      </div>
+      <div class="footer-copy">&copy; 2026 Robot Arms LLC, dba Kavik Works.</div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Staffing & Recruiting Firm Candidate & Job Req Routing — Kavik Works Build Concepts</title>
+  <meta name="description" content="AI email automation for staffing agencies that classifies, routes, and drafts responses for candidate applications and client job reqs in under three minutes — 24/7, across light industrial, IT, and healthcare verticals.">
+  <link rel="canonical" href="https://kavikworks.com/build-concepts/staffing-recruiting-inquiry-routing.html">
+  <meta name="robots" content="index, follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --white: #ffffff; --gray-300: #d4d4d4; --gray-400: #a3a3a3; --gray-500: #737373; --gray-600: #525252; --gray-700: #404040; --gray-800: #262626; --gray-900: #171717; --gray-950: #0a0a0a; --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: var(--font-sans); color: var(--gray-300); background: var(--gray-950); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3 { color: var(--white); line-height: 1.2; font-weight: 600; }
+    h1 { font-size: clamp(2rem, 4vw, 2.75rem); letter-spacing: -0.03em; margin-bottom: 0.5rem; }
+    h2 { font-size: 1.4rem; letter-spacing: -0.02em; margin: 2.5rem 0 1rem; padding-top: 0.5rem; border-top: 1px solid rgba(255,255,255,0.06); }
+    h3 { font-size: 1.1rem; margin: 1.75rem 0 0.5rem; }
+    p { max-width: 680px; margin-bottom: 1rem; color: var(--gray-400); line-height: 1.7; }
+    a { color: var(--white); text-decoration: none; }
+    ul, ol { margin: 0 0 1.5rem 1.5rem; color: var(--gray-400); }
+    li { margin-bottom: 0.4rem; line-height: 1.6; }
+    .mono { font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gray-500); }
+    .container { max-width: 800px; margin: 0 auto; padding: 0 2rem; }
+    strong { color: var(--white); font-weight: 600; }
+    code { font-family: var(--font-mono); font-size: 0.82rem; background: rgba(255,255,255,0.05); padding: 0.15rem 0.4rem; border-radius: 4px; color: var(--gray-300); }
+    pre { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 1.25rem 1.5rem; overflow-x: auto; margin: 1rem 0 1.5rem; font-size: 0.82rem; }
+    pre code { background: none; padding: 0; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(10,10,10,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    nav .container { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-logo { font-weight: 700; font-size: 1.1rem; color: var(--white); letter-spacing: -0.02em; }
+    .nav-links { display: flex; gap: 1.75rem; align-items: center; }
+    .nav-links a { font-size: 0.875rem; color: var(--gray-400); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--white); }
+
+    .article-header { padding: 8rem 0 2rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .article-header .back-link { font-family: var(--font-mono); font-size: 0.78rem; color: var(--gray-500); display: inline-block; margin-bottom: 1.5rem; }
+    .article-header .back-link:hover { color: var(--gray-300); }
+    .article-header .industry-tag { display: inline-block; font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.2rem 0.6rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; color: var(--gray-500); margin-bottom: 1rem; }
+    .article-header .pipeline { font-family: var(--font-mono); font-size: 0.85rem; color: var(--gray-500); margin: 1rem 0; }
+
+    .pipeline-visual { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin: 1.5rem 0; padding: 1.5rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; }
+    .pipeline-stage { padding: 0.5rem 0.9rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; font-family: var(--font-mono); font-size: 0.75rem; color: var(--gray-300); white-space: nowrap; }
+    .pipeline-arrow { color: var(--gray-600); font-family: var(--font-mono); font-size: 0.85rem; }
+
+    .article-body { padding: 3rem 0 5rem; }
+
+    .execution-box { margin: 2rem 0; padding: 2rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; }
+    .execution-box h3 { margin-top: 0; }
+    .execution-box .metric { display: inline-block; padding: 0.4rem 0.8rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-radius: 6px; font-family: var(--font-mono); font-size: 0.8rem; color: var(--gray-300); margin: 0.25rem 0.5rem 0.25rem 0; }
+
+    footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 3rem 0; }
+    footer .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-links { display: flex; gap: 2rem; }
+    .footer-links a { font-size: 0.85rem; color: var(--gray-500); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gray-300); }
+    .footer-copy { font-size: 0.8rem; color: var(--gray-600); }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <a href="/" class="nav-logo">Kavik Works</a>
+      <div class="nav-links">
+        <a href="/#services">Services</a>
+        <a href="/#how-it-works">How It Works</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/build-concepts/">Build Concepts</a>
+        <a href="/#about">About</a>
+        <a href="/intake">Get Started</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="article-header">
+    <div class="container">
+      <a href="/build-concepts/" class="back-link">← Back to Build Concepts</a>
+      <span class="industry-tag">Staffing & Recruiting</span>
+      <h1>Staffing Firm Candidate Inquiry &amp; Job Req Routing</h1>
+      <div class="pipeline">Inquiry → classify → extract → route → draft → track</div>
+    </div>
+  </section>
+
+  <section class="article-body">
+    <div class="container">
+
+      <h2>The Problem</h2>
+
+      <p>It's Tuesday at 9:00 AM. A healthcare client — a long-term care facility the firm has placed with for three years — sends an urgent email to <code>info@youragency.com</code>. They need five certified nursing assistants for a weekend shift starting Friday. The facility is short-staffed, the DON is pressing send at 9:02 AM already anxious, and she's counting on your agency to come through.</p>
+
+      <p>The email lands in the shared inbox. And there it sits — buried behind seventeen candidate resume submissions, four timesheet emails, two interview confirmations, and a vendor invoice that somehow made it past the spam filter. The healthcare desk recruiter runs through their morning routine: coffee, a quick stand-up, checking their own candidates in the ATS. Nobody looks at the <code>info@</code> inbox until after lunch. When the job req is finally spotted at 2:07 PM, the recruiter immediately starts sourcing — but it's too late. The client, not hearing back by 10:30 AM, called a competing agency. The CNAs are placed. Your firm lost a weekend booking that would have billed $4,800 — and strained a three-year client relationship.</p>
+
+      <p>Same day, different problem. At 10:14 PM, a senior DevOps engineer — exactly the kind of candidate IT recruiters dream about — submits an application through the website contact form. The automated "Thanks for your interest" reply fires. But the IT desk recruiter doesn't see the application until Thursday morning. By then, the candidate has accepted an offer elsewhere. <strong>Two days of silence cost your firm a $22,000 placement fee.</strong></p>
+
+      <p>This is the structural problem that eats staffing agencies alive: <strong>inbound email is the primary pipe for both revenue (client job reqs) and inventory (candidate applications), yet most firms treat it like an administrative afterthought.</strong> A 12-recruiter boutique firm handling light industrial, IT, and healthcare verticals might receive 30–50 inbound emails a day — candidate applications, client job orders, interview confirmations, timesheets, reference checks, compliance documents. When every message goes through the same undifferentiated inbox, speed-of-response becomes a lottery. And in staffing, speed is everything. The first agency to respond to a client job req wins the order. The first agency to reach a qualified candidate wins the placement. <strong>Staffing agency automation</strong> closes the gap — not by replacing recruiters, but by making sure the right person sees the right message in minutes, not hours or days.</p>
+
+      <h2>How It Breaks Today</h2>
+
+      <p>Let's walk through what actually happens when a candidate application or client job req hits a typical boutique staffing firm's shared inbox.</p>
+
+      <p><strong>Step one: the inbox pile-up.</strong> Everything funnels into <code>info@</code> or <code>jobs@</code>. Candidate resumes. Client job orders. Timesheet PDFs. Interview confirmations. Reference check replies. Compliance documents from credentialing bodies. An occasional newsletter. The office manager or a junior admin scans the inbox between phone calls and calendar wrangling. They're not a recruiter — they're triaging based on subject lines and sender names, making their best guess about what's urgent and who should see it.</p>
+
+      <p><strong>Step two: manual classification and forwarding.</strong> The admin squints at each subject line. "FW: Resume — John Chen" — that's probably IT, but which IT recruiter is working on that role? They forward it to both IT desk recruiters and hope for the best. "Urgent: CNA Weekend Shift" — clearly healthcare, but is the healthcare recruiter even in today? The email gets forwarded. No priority flag. No notification. It sits in a personal inbox alongside LinkedIn alerts, internal memos, and a dozen other messages.</p>
+
+      <p><strong>Step three: recruiter overload.</strong> Each recruiter manages 15–25 open reqs at any time. They're sourcing candidates, scheduling interviews, prepping for client calls, and updating the ATS. An email forward about a new candidate or a new job req is one more thing in an already-overflowing queue. If they see it fast, great. If they don't, nobody is tracking that it's there. <strong>There's no system-level awareness of what's waiting.</strong></p>
+
+      <p><strong>Step four: nobody logs anything.</strong> The job req that came in at 9:02 AM — is there a record of when it arrived? When it was forwarded? When the recruiter actually opened it? No. The candidate who applied Tuesday night — did anyone acknowledge receipt beyond the auto-responder? Unknown. The timesheet from a light industrial temp — did payroll get it? Maybe. The entire pipeline runs on institutional memory and hoping people check their email. <strong>Every step introduces latency. Every handoff is a potential failure point.</strong> After hours and on weekends — when the best candidates are searching for jobs and urgent client needs don't clock out — the pipeline stops dead.</p>
+
+      <h2>The Automated Pipeline</h2>
+
+      <p>An automated inquiry and job req routing pipeline doesn't replace recruiters — it removes the waiting, the guessing, and the forgetting. Here's what <strong>recruiting email automation</strong> looks like applied to a 12-recruiter boutique firm.</p>
+
+      <div class="pipeline-visual">
+        <div class="pipeline-stage">Inquiry</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Classify</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Extract</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Route</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Draft</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Track</div>
+      </div>
+
+      <p><strong>Stage 1: Inbound email detected.</strong> The system monitors the firm's intake addresses — <code>info@</code>, <code>jobs@</code>, and the website contact form — via IMAP. When a new message arrives, the pipeline triggers immediately. Tuesday at 9:02 AM, Tuesday at 10:14 PM, Saturday at 7:00 AM — doesn't matter. The message enters the pipeline within seconds of arriving. No polling by a person. No dependency on office hours.</p>
+
+      <p><strong>Stage 2: Classify.</strong> The message content — subject, body, any attachments — is sent to a cloud AI model with a structured classification prompt. The model reads the full email and assigns it to one of ten categories. This is not keyword matching. The model distinguishes between a candidate applying for a specific role and a candidate just checking in. It recognizes when a client is sending a formal job req versus casually asking if the agency "has anyone who might fit." It correctly identifies timesheet submissions, interview confirmations, and compliance documents. Classification happens in under two seconds.</p>
+
+      <p><strong>Stage 3: Extract.</strong> Once classified, the AI pulls structured data from the message. For a candidate application: full name, phone number, email address, resume summary (role type, years of experience, key skills), vertical match (IT, healthcare, light industrial), and any stated availability or salary expectations. For a client job req: company name, contact person, role title, number of positions needed, start date, shift details, must-have certifications, and pay rate range. This structured output drives every downstream decision.</p>
+
+      <p><strong>Stage 4: Route.</strong> Routing is deterministic, following rules the firm configures. A <code>CANDIDATE_APPLICATION</code> with IT keywords in the resume routes to the IT desk recruiter with current bandwidth. A <code>CLIENT_JOB_REQ</code> from a healthcare client routes to both the healthcare vertical recruiter and the account manager for that client — with a HIGH PRIORITY flag. An <code>INTERVIEW_CONFIRMATION</code> goes to the placement coordinator. A <code>TIMESHEET_SUBMISSION</code> goes to payroll. Every message lands with the right person on the first pass. No forwarding chains. No "who handles this?" Slack messages.</p>
+
+      <p><strong>Stage 5: Draft.</strong> Based on the classification and extracted data, the system generates a context-aware draft response. For a candidate application: a warm acknowledgment that references their specific skills, explains what happens next in your process, and asks for any missing information (availability, salary expectations). For a client job req: an immediate acknowledgment with a commitment — "We'll have candidate profiles to you within 4 hours" — plus clarifying questions about start date, shift requirements, and must-have certifications. <strong>Nothing is sent without human review.</strong> The draft goes into a queue alongside the original email, the AI's classification, and the extracted data. The recruiter approves, edits, or rewrites — but they're starting from a complete, accurate draft, not a blank compose window.</p>
+
+      <p><strong>Stage 6: Track.</strong> Every inquiry is logged: timestamp of arrival, classification, extracted data, routing destination, draft generation time, and when the human approved and sent the response. This creates an auditable pipeline record — and feeds into a dashboard that answers the questions every staffing owner should be asking: How many job reqs came in this week? What was the average response time? Which vertical had the most candidate applications? How many placements originated from inbound email? <strong>Candidate inquiry routing</strong> that's logged and measured stops being a black box.</p>
+
+      <h2>Expected Metrics</h2>
+
+      <p>Here's what a 12-recruiter boutique staffing firm should expect from deploying <strong>staffing agency automation</strong> for inbound email routing, based on similar implementations:</p>
+
+      <ul>
+        <li><strong>Client job req response time:</strong> drops from 2–5 hours to under 3 minutes for acknowledgment. The drafted reply — with commitment timeline and clarifying questions — is waiting for recruiter review within seconds, not hours. Even if the recruiter takes 45 minutes to review and send, the client has heard back with substance within the hour.</li>
+        <li><strong>Candidate application acknowledgment:</strong> goes from "auto-responder only, human follow-up in 1–3 days" to "personalized acknowledgment in under 5 minutes, human follow-up same day." Overnight and weekend applicants get a real response before they check their email the next morning.</li>
+        <li><strong>Routing accuracy:</strong> vertical-based routing with resume keyword matching eliminates the "wrong desk" problem. IT candidates land with IT recruiters. Healthcare job reqs land with the healthcare desk. No message sits in the wrong inbox for a day before being re-forwarded.</li>
+        <li><strong>Pipeline visibility:</strong> 100% of inbound inquiries are logged and classified. The firm can see exactly how many job reqs, candidate applications, and timesheets came through the inbox — broken down by vertical, by day, and by response time. This data didn't exist before.</li>
+        <li><strong>Hours saved per week:</strong> roughly 6–10 hours of administrative time across a 12-recruiter firm — time previously spent scanning the shared inbox, forwarding messages, re-entering data into the ATS, and chasing routing questions in Slack or Teams.</li>
+      </ul>
+
+      <p>These numbers are conservative and grounded in the mechanical reality of removing manual triage from a shared inbox. The biggest variable is how quickly recruiters review and approve the drafts — but even with a one-hour review window, the client or candidate has been acknowledged with substance in minutes rather than hours or days.</p>
+
+      <h2>Execution Plan</h2>
+
+      <div class="execution-box">
+        <h3>Tools &amp; APIs</h3>
+        <p>This pipeline uses a cloud-based large language model API for classification, extraction, and draft generation — the same class of model that powers the classification in every other Build Concept on this site. Email intake runs on a lightweight cloud instance (roughly $30–60/month depending on volume) that monitors the firm's intake addresses via IMAP. The AI model is prompted with structured JSON output requirements — classification labels, extracted fields, and draft text — so the routing engine receives clean, predictable data. Deterministic routing code (Python) reads the structured output and delivers each message to the right recruiter, account manager, or back-office function based on the firm's configured rules. The tracking layer writes everything to a lightweight database for dashboard reporting.</p>
+
+        <h3>Classification Taxonomy</h3>
+        <p>The AI sorts every inbound email into one of these categories:</p>
+        <ul>
+          <li><strong>CANDIDATE_APPLICATION:</strong> A candidate applying for a role, whether through the website, a job board redirect, or a direct email. Includes resume attachments. The core of the candidate pipeline.</li>
+          <li><strong>CLIENT_JOB_REQ:</strong> A client submitting a new job order — formal or informal. Flagged HIGH PRIORITY and routed to both the account manager and the relevant vertical recruiter.</li>
+          <li><strong>INTERVIEW_CONFIRMATION:</strong> A candidate or client confirming interview logistics. Routed to the placement coordinator for calendar management.</li>
+          <li><strong>TIMESHEET_SUBMISSION:</strong> A placed candidate submitting hours. Routed to payroll/back office for processing.</li>
+          <li><strong>CLIENT_INQUIRY:</strong> A client asking a question — rates, candidate status, contract terms — but not submitting a new job req. Routed to the account manager.</li>
+          <li><strong>CANDIDATE_FOLLOWUP:</strong> A placed or in-process candidate checking in — start date questions, onboarding status, availability updates. Routed to their assigned recruiter.</li>
+          <li><strong>REFERENCE_CHECK:</strong> A reference responding to a check request. Routed to the recruiter managing that candidate's process.</li>
+          <li><strong>COMPLIANCE_DOCUMENT:</strong> Credentialing documents, certifications, background check results, I-9s. Routed to compliance/onboarding.</li>
+          <li><strong>INTERNAL_COMMUNICATION:</strong> Email from within the firm — team announcements, internal memos. Logged but not processed through the routing pipeline.</li>
+          <li><strong>OTHER:</strong> Catch-all for newsletters, vendor emails, spam that made it through filters. Logged and archived without routing.</li>
+        </ul>
+
+        <h3>Routing Rules</h3>
+        <p>Routing is configured per firm based on verticals, desks, and client assignments. A typical setup for a 12-recruiter firm with light industrial, IT, and healthcare verticals:</p>
+        <ul>
+          <li><strong>CANDIDATE_APPLICATION</strong> → routed to the recruiter for the matching vertical (IT, healthcare, or light industrial) based on resume keyword matching. The system scans extracted skills and experience against vertical keyword sets — "AWS, Kubernetes, Python" maps to IT; "CNA, RN, BLS, patient care" maps to healthcare; "forklift, OSHA, warehouse, assembly" maps to light industrial.</li>
+          <li><strong>CLIENT_JOB_REQ</strong> → routed to the account manager for that client AND the vertical recruiter, with a HIGH PRIORITY flag. The account manager owns the relationship. The recruiter owns the fulfillment. Both see it immediately.</li>
+          <li><strong>INTERVIEW_CONFIRMATION</strong> → routed to the placement coordinator, who manages scheduling across all desks.</li>
+          <li><strong>TIMESHEET_SUBMISSION</strong> → routed to payroll/back office. If integrated with ADP or Gusto, the extracted hours data can feed directly into the payroll run.</li>
+          <li><strong>CLIENT_INQUIRY</strong> → routed to the account manager for that client. If the client isn't recognized, routes to the managing partner for manual assignment.</li>
+          <li><strong>CANDIDATE_FOLLOWUP</strong> → routed to the recruiter assigned to that candidate in the ATS. If no assignment is found, routes to the vertical team lead.</li>
+          <li><strong>REFERENCE_CHECK</strong> → routed to the recruiter whose name appears in the reference request thread or the candidate's assigned recruiter.</li>
+          <li><strong>COMPLIANCE_DOCUMENT</strong> → routed to the compliance/onboarding specialist.</li>
+        </ul>
+
+        <h3>Response Templates</h3>
+        <p>Every draft response follows the same structure: <strong>acknowledge specifically, set expectations clearly, ask for what's missing.</strong> The AI fills in the details from extracted data. Example for a CANDIDATE_APPLICATION (healthcare vertical):</p>
+        <pre><code>Subject: Re: Application — Registered Nurse, Sarah Mendez
+
+Hi Sarah,
+
+Thank you for applying to [Agency Name]. I've reviewed your resume
+and your experience as an RN with [X years] in [specialty if detected —
+e.g., med-surg, ICU] is exactly the kind of background our healthcare
+clients value.
+
+Here's what happens next: I'll be reaching out by phone within one
+business day to discuss your availability, shift preferences, and
+what you're looking for in your next role. In the meantime, a few
+things that would help me move faster:
+
+- What's your general availability for shifts? (days, nights, weekends)
+- Are you open to per diem, contract, or direct-hire?
+- Do you have current BLS/ACLS certification and an active state license?
+
+If you have any questions before we speak, you can reach me directly
+at [recruiter phone] or reply to this email.
+
+Looking forward to connecting,
+
+[Recruiter Name]
+Healthcare Desk, [Agency Name]</code></pre>
+        <p>Example for a CLIENT_JOB_REQ (urgent healthcare order):</p>
+        <pre><code>Subject: Re: Urgent — 5 CNAs needed for weekend shift
+
+[Client Contact Name],
+
+Got it — I'm on this now. We can absolutely help with the 5 CNAs for
+this weekend's shift starting Friday. I'm pulling candidate profiles
+from our active healthcare roster right now.
+
+To make sure I'm sending you the best-fit candidates on the first pass,
+can you confirm:
+
+- Shift hours? (7a-7p, 7p-7a, or something else?)
+- Any specific unit or floor requirements?
+- Any must-have certifications beyond active CNA license and BLS?
+
+I'll have profiles in your inbox within [X hours — e.g., 4 hours].
+If you need to reach me sooner, my direct line is [phone].
+
+[Recruiter Name]
+Healthcare Desk, [Agency Name]
+
+CC: [Account Manager Name]</code></pre>
+        <p>Both drafts go into the review queue. The recruiter approves, tweaks, or rewrites — but the heavy lifting is done. <strong>The client or candidate receives a substantive, personalized response within minutes, not a generic autoresponder and not silence.</strong></p>
+
+        <h3>Integration Points</h3>
+        <p>The core pipeline — classify, extract, route, draft, track — delivers value immediately without connecting to anything else. That said, there are natural integration points that extend its usefulness:</p>
+        <ul>
+          <li><strong>ATS/CRM</strong> (Bullhorn, JobAdder, Greenhouse): Extracted candidate data — name, contact info, skills, resume summary — can be pushed directly into the ATS as a new candidate record, eliminating manual data entry. For CLIENT_JOB_REQ classifications, a new job order can be created automatically with extracted fields pre-populated.</li>
+          <li><strong>Job boards</strong> (Indeed, ZipRecruiter): When a new CLIENT_JOB_REQ is logged, the system can trigger auto-posting to connected job boards based on the extracted role title and requirements — cutting hours off the sourcing timeline.</li>
+          <li><strong>Payroll</strong> (ADP, Gusto): Extracted timesheet data — candidate name, hours worked, dates — can feed directly into payroll processing. No manual re-entry. No "did we get your timesheet?" emails.</li>
+          <li><strong>Calendar / scheduling:</strong> For INTERVIEW_CONFIRMATION classifications, the system can cross-reference the placement coordinator's calendar and suggest available interview slots in the draft response, or push confirmed times directly to the ATS scheduling module.</li>
+        </ul>
+        <p>None of these integrations are required on day one. The immediate win — fast, accurate, logged routing of every candidate application and client job req — works with email access and the AI pipeline alone. Integrations are progressive layers that compound the time savings as the firm's workflow matures.</p>
+      </div>
+
+      <div class="execution-box">
+        <h3>Success Metrics to Track</h3>
+        <div>
+          <span class="metric">Client req response time</span>
+          <span class="metric">Candidate ack time</span>
+          <span class="metric">Routing accuracy</span>
+          <span class="metric">Hours saved/week</span>
+          <span class="metric">Req-to-submit time</span>
+          <span class="metric">Placement rate from inbound</span>
+        </div>
+        <p style="margin-top:1rem;">Track these from day one. The automation should produce a weekly report showing each metric against the firm's manual-intake baseline. If client job req response time doesn't drop below 5 minutes and routing accuracy isn't above 95%, something in the classification or routing configuration needs tuning. The placement-rate-from-inbound metric is the long-term north star — it answers the question that matters most: are we converting more of what comes through the door?</p>
+      </div>
+
+      <p style="margin-top: 2rem;"><a href="/intake" style="border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 0.15rem;">Interested in this for your staffing firm? Start an intake →</a></p>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="/#services">Services</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/build-concepts/">Build Concepts</a>
+        <a href="/#about">About</a>
+        <a href="mailto:contact@kavikworks.com">Contact</a>
+      </div>
+      <div class="footer-copy">&copy; 2026 Robot Arms LLC, dba Kavik Works.</div>
+    </div>
+  </footer>
+</body>
+</html>

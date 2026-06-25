@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medical Practice Patient Inquiry &amp; Appointment Routing — Kavik Works Build Concepts</title>
+  <meta name="description" content="Medical practice email automation that classifies, routes, and drafts responses to patient inquiries in under five minutes — so new patients get same-day replies and post-op concerns never sit unread over the weekend.">
+  <link rel="canonical" href="https://kavikworks.com/build-concepts/medical-practice-inquiry-routing.html">
+  <meta name="robots" content="index, follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --white: #ffffff; --gray-300: #d4d4d4; --gray-400: #a3a3a3; --gray-500: #737373; --gray-600: #525252; --gray-700: #404040; --gray-800: #262626; --gray-900: #171717; --gray-950: #0a0a0a; --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: var(--font-sans); color: var(--gray-300); background: var(--gray-950); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3 { color: var(--white); line-height: 1.2; font-weight: 600; }
+    h1 { font-size: clamp(2rem, 4vw, 2.75rem); letter-spacing: -0.03em; margin-bottom: 0.5rem; }
+    h2 { font-size: 1.4rem; letter-spacing: -0.02em; margin: 2.5rem 0 1rem; padding-top: 0.5rem; border-top: 1px solid rgba(255,255,255,0.06); }
+    h3 { font-size: 1.1rem; margin: 1.75rem 0 0.5rem; }
+    p { max-width: 680px; margin-bottom: 1rem; color: var(--gray-400); line-height: 1.7; }
+    a { color: var(--white); text-decoration: none; }
+    ul, ol { margin: 0 0 1.5rem 1.5rem; color: var(--gray-400); }
+    li { margin-bottom: 0.4rem; line-height: 1.6; }
+    .mono { font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gray-500); }
+    .container { max-width: 800px; margin: 0 auto; padding: 0 2rem; }
+    strong { color: var(--white); font-weight: 600; }
+    code { font-family: var(--font-mono); font-size: 0.82rem; background: rgba(255,255,255,0.05); padding: 0.15rem 0.4rem; border-radius: 4px; color: var(--gray-300); }
+    pre { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 1.25rem 1.5rem; overflow-x: auto; margin: 1rem 0 1.5rem; font-size: 0.82rem; }
+    pre code { background: none; padding: 0; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(10,10,10,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    nav .container { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-logo { font-weight: 700; font-size: 1.1rem; color: var(--white); letter-spacing: -0.02em; }
+    .nav-links { display: flex; gap: 1.75rem; align-items: center; }
+    .nav-links a { font-size: 0.875rem; color: var(--gray-400); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--white); }
+
+    .article-header { padding: 8rem 0 2rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .article-header .back-link { font-family: var(--font-mono); font-size: 0.78rem; color: var(--gray-500); display: inline-block; margin-bottom: 1.5rem; }
+    .article-header .back-link:hover { color: var(--gray-300); }
+    .article-header .industry-tag { display: inline-block; font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.2rem 0.6rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; color: var(--gray-500); margin-bottom: 1rem; }
+    .article-header .pipeline { font-family: var(--font-mono); font-size: 0.85rem; color: var(--gray-500); margin: 1rem 0; }
+
+    .pipeline-visual { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin: 1.5rem 0; padding: 1.5rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; }
+    .pipeline-stage { padding: 0.5rem 0.9rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; font-family: var(--font-mono); font-size: 0.75rem; color: var(--gray-300); white-space: nowrap; }
+    .pipeline-arrow { color: var(--gray-600); font-family: var(--font-mono); font-size: 0.85rem; }
+
+    .article-body { padding: 3rem 0 5rem; }
+
+    .execution-box { margin: 2rem 0; padding: 2rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; }
+    .execution-box h3 { margin-top: 0; }
+    .execution-box .metric { display: inline-block; padding: 0.4rem 0.8rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-radius: 6px; font-family: var(--font-mono); font-size: 0.8rem; color: var(--gray-300); margin: 0.25rem 0.5rem 0.25rem 0; }
+
+    footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 3rem 0; }
+    footer .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-links { display: flex; gap: 2rem; }
+    .footer-links a { font-size: 0.85rem; color: var(--gray-500); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gray-300); }
+    .footer-copy { font-size: 0.8rem; color: var(--gray-600); }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <a href="/" class="nav-logo">Kavik Works</a>
+      <div class="nav-links">
+        <a href="/#services">Services</a>
+        <a href="/#how-it-works">How It Works</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/build-concepts/">Build Concepts</a>
+        <a href="/#about">About</a>
+        <a href="/intake">Get Started</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="article-header">
+    <div class="container">
+      <a href="/build-concepts/" class="back-link">← Back to Build Concepts</a>
+      <span class="industry-tag">Healthcare</span>
+      <h1>Medical Practice Patient Inquiry &amp; Appointment Routing</h1>
+      <div class="pipeline">Inquiry → classify → extract → route → draft → schedule</div>
+    </div>
+  </section>
+
+  <section class="article-body">
+    <div class="container">
+
+      <h2>The Problem</h2>
+
+      <p>It's 10:47 AM on a Tuesday. A prospective patient — someone who's been researching Invisalign for weeks and finally decided to book — finds a three-dentist practice near her office, reads the Google reviews, and sends an email to <code>office@</code>. She writes that she's interested in an Invisalign consultation, mentions she has dental insurance through Delta Dental, and asks about availability before the end of the month. She's motivated, she's done her research, and <strong>she is ready to schedule that appointment today.</strong></p>
+
+      <p>But the office manager is buried. She's on the phone with Blue Cross Blue Shield verifying coverage for a crown procedure that's scheduled tomorrow. Then Aetna calls back about a pre-authorization she submitted last week. Then a patient walks up to the front desk with a billing question. The Invisalign inquiry sits in the inbox — flagged mentally as "I'll get to that after lunch" — and lunch turns into end-of-day, and end-of-day turns into Thursday morning. By the time the front desk replies, the prospective patient has already booked with a competitor who answered her email the same day. She's now on their schedule for next week. Your practice lost a $4,500 Invisalign case because <strong>an email waited 48 hours.</strong></p>
+
+      <p>Meanwhile, in a completely different scenario at the same practice: a patient who had a surgical extraction on Thursday sends an email Friday at 6:15 PM. She's experiencing swelling that wasn't covered in the post-op instructions, and she's worried something might be wrong. Nobody sees that email until Monday at 8:30 AM. The patient spent the entire weekend anxious and in discomfort — and when she finally speaks to someone, she's frustrated and questioning whether she chose the right practice in the first place.</p>
+
+      <p>Neither of these scenarios is hypothetical. They happen routinely in small medical and dental practices. The shared inbox — usually <code>office@</code> or <code>info@</code> — is the front door for new patient inquiries, appointment requests, prescription refills, insurance questions, and post-operative concerns. But that door is only staffed during business hours by people who are already juggling phones, walk-ins, and clinical support. <strong>Medical practice email automation</strong> doesn't replace your front desk — it makes sure nothing gets lost in the shuffle when the front desk is overwhelmed.</p>
+
+      <h2>How It Breaks Today</h2>
+
+      <p>Let's walk through the day-to-day reality of a small practice's shared inbox. A three-dentist office might receive 15 to 30 patient emails per day — not an unmanageable volume, but the problem isn't volume. The problem is that every email requires triage, and the person doing the triage has five other jobs.</p>
+
+      <p><strong>Step one:</strong> the office manager or front desk coordinator opens the <code>office@</code> inbox between phone calls. She scans fifteen new messages. Two are new patient inquiries about different services — one Invisalign, one general dentistry. Three are existing patients asking to reschedule. One is a prescription refill request. One is a post-op patient with a question about their recovery. Two are insurance verification requests from the billing coordinator. Four are vendor emails — supply orders, lab case updates, equipment maintenance. One is a records request from another dental office. One looks urgent but she can't tell from the subject line. <strong>Every single one of these needs a different person, a different response, and a different priority level.</strong></p>
+
+      <p><strong>Step two:</strong> she starts sorting. The new patient inquiries? Forward to the front desk lead who handles new patient onboarding — but that person is currently with a patient checking in and won't see the forward for two hours. The prescription refill request? Forward to the hygienist who handles those — but she's in back-to-back prophies all morning. The post-op question? Forward to the treating dentist — but he's in a crown prep and won't see messages until his lunch break at 1 PM. Each forward adds another hop, another delay, another chance for the ball to get dropped.</p>
+
+      <p><strong>Step three:</strong> when someone finally gets to the forwarded email, they're in reactive mode. They open it, skim it, type a quick reply, and move on. There's no template, no consistency, no guarantee that the response covers everything the patient needs to know. One new patient gets a thorough reply with scheduling links and insurance guidance; another gets two sentences and a phone number. The quality of the response depends entirely on how much bandwidth whoever answered had in that moment.</p>
+
+      <p><strong>Step four:</strong> the post-op email from Friday at 6:15 PM? It doesn't even make it to step three until Monday. There is no process for after-hours triage. The inbox is a black box between close of business Friday and open of business Monday. For a practice that performs surgical procedures — extractions, implants, periodontal surgery — <strong>a 48-hour gap in clinical communication is not just bad service; it's a liability.</strong></p>
+
+      <h2>The Automated Pipeline</h2>
+
+      <p><strong>Dental patient inquiry routing</strong> automation doesn't eliminate the human touch from patient communication — it eliminates the waiting, the manual sorting, and the dropped balls. Here's what happens when the same office@ inbox is instrumented with <strong>healthcare appointment automation</strong>.</p>
+
+      <div class="pipeline-visual">
+        <div class="pipeline-stage">Inquiry detected</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Classify</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Extract</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Route</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Draft</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Schedule</div>
+      </div>
+
+      <p><strong>Stage 1: Inbound email detected.</strong> The system monitors the practice's intake address via IMAP. When a new message arrives at <code>office@</code>, the pipeline triggers immediately — Tuesday at 10:47 AM, Friday at 6:15 PM, Sunday at 11 PM. No polling delays, no dependency on someone being at the front desk. The message is picked up within seconds of landing in the inbox.</p>
+
+      <p><strong>Stage 2: Classify.</strong> The message content is sent to a cloud AI model with a structured classification prompt tuned for healthcare scenarios. The model reads the full email — subject line, body, any thread history — and determines what kind of communication it is. This is not keyword matching. The model reads the message like an experienced front desk coordinator would, understanding context and intent. A patient writing "my gums are still bleeding three days after the extraction, is that normal?" is different from "do you guys do Invisalign and how much does it cost?" — and the model distinguishes between them the same way a person would, in under two seconds.</p>
+
+      <p><strong>Stage 3: Extract.</strong> Once classified, the AI pulls structured data from the message: the patient's full name, phone number, date of birth if provided, the specific concern or request, any provider names mentioned, and a concise one-sentence summary. For new patient inquiries, it extracts the service of interest (Invisalign, general dentistry, endodontics) and insurance carrier. For clinical messages, it flags any symptoms, medications, or timeline details mentioned. This structured data is what drives every downstream decision — routing, response content, and priority level.</p>
+
+      <p><strong>Stage 4: Route.</strong> Routing is deterministic based on the classification and extracted data. A NEW_PATIENT_INQUIRY for Invisalign goes to the front desk coordinator who handles new patient onboarding. A PRESCRIPTION_REFILL request goes to the clinical staff queue. A POST_OP_FOLLOWUP from a surgical patient gets routed to the treating provider with an URGENT flag and a push notification. An INSURANCE_QUESTION goes to the billing coordinator. The routing engine doesn't guess — it follows rules the practice defines during setup. Every message lands with the person who can actually handle it, on the first pass.</p>
+
+      <p><strong>Stage 5: Draft.</strong> Based on the classification and extracted details, the system generates a draft response. For a new patient inquiry, the draft acknowledges the request by name, introduces the relevant provider, sets expectations for the first visit, and includes a scheduling link. For a post-op concern, the draft provides immediate reassurance, clinical triage notes, emergency contact information, and an expected callback time. For a prescription refill, it confirms the request has been received and provides the expected turnaround. Every draft goes into a review queue — the staff member sees the original email, the AI's classification and extraction, and the suggested response, all in one view. <strong>Nothing is sent without human approval.</strong> The AI drafts; the human reviews and sends.</p>
+
+      <p><strong>Stage 6: Schedule.</strong> For appointment-related classifications, the response includes a direct link to the practice's online scheduling system — whether that's Zocdoc, NexHealth, or a custom booking page. The patient can self-schedule into available slots without playing phone tag. The practice's scheduling system updates in real time, and the appointment lands on the calendar without manual data entry. For practices that prefer to schedule manually, the draft response provides available time windows and asks the patient to confirm their preference.</p>
+
+      <h2>Expected Metrics</h2>
+
+      <p>Here's what a three-provider dental practice should expect from deploying <strong>dental patient inquiry routing</strong> automation, based on similar implementations:</p>
+
+      <ul>
+        <li><strong>First response time:</strong> drops from 4–48 hours to under 5 minutes for automated acknowledgment. The draft reply is waiting for staff review within seconds of the inbound email. For urgent clinical messages flagged POST_OP_FOLLOWUP or URGENT_MEDICAL, the provider receives a push notification immediately.</li>
+        <li><strong>New patient capture rate:</strong> 100% of inquiries are classified, extracted, and acknowledged. The Tuesday morning Invisalign inquiry gets a same-hour reply. The prospective patient who emailed after hours doesn't wake up to silence — she wakes up to a response that was drafted at 11 PM and approved by the front desk lead when she arrives at 8 AM.</li>
+        <li><strong>Clinical response gap closed:</strong> post-op patients who email after hours no longer wait 48+ hours for a reply. The URGENT flag and push notification mean that even if the provider doesn't see the email until next business day, the system has already sent an acknowledgment with emergency contact information and triage guidance.</li>
+        <li><strong>Hours saved per week:</strong> roughly 5–8 hours of front desk and clinical staff time across a three-provider practice — time previously spent sorting the inbox, forwarding messages to the wrong person and re-forwarding them, re-typing the same new patient information into different systems, and chasing down who's supposed to handle what.</li>
+      </ul>
+
+      <p>These numbers reflect the mechanical reality of removing manual triage from a high-mix inbox. The biggest variable is how quickly staff choose to review and approve the draft responses — but even with a one-hour review window during business hours, the patient has received acknowledgment in minutes rather than days. And for after-hours messages, <strong>the acknowledgment happens whether anyone is awake or not.</strong></p>
+
+      <h2>Execution Plan</h2>
+
+      <div class="execution-box">
+        <h3>Tools &amp; APIs</h3>
+        <p>This pipeline uses a cloud-based large language model API for classification, extraction, and draft generation, connected to the practice's existing email via IMAP. Email intake runs on a lightweight server or cloud function that monitors the <code>office@</code> inbox at configurable intervals. The AI model is prompted with structured JSON output requirements — classification labels, extracted patient details, and draft response text — so the routing layer receives clean, predictable data every time. Deterministic routing code (Python or Node.js) reads the structured output and distributes everything to the appropriate staff queue. The entire system runs on a $40–60/month cloud instance. No on-premise hardware, no integration with the EHR required for core functionality.</p>
+
+        <h3>Classification Taxonomy</h3>
+        <p>The AI sorts every inbound patient email into one of these categories:</p>
+        <ul>
+          <li><strong>NEW_PATIENT_INQUIRY:</strong> First-time contact from someone seeking to become a patient. The highest-value classification in the pipeline — these are revenue-generating opportunities. Often includes service-specific interest (Invisalign, implants, cosmetic dentistry). Triggers the new patient response template with provider introduction and scheduling link.</li>
+          <li><strong>APPOINTMENT_REQUEST:</strong> An existing patient asking to schedule, reschedule, or confirm an appointment. Routed to the scheduling coordinator with extracted date preferences and provider preferences.</li>
+          <li><strong>PRESCRIPTION_REFILL:</strong> Request for a medication refill. Routed to clinical staff (hygienist or nurse, depending on practice configuration). Requires review by a licensed provider before the prescription is issued, so the draft response sets appropriate turnaround expectations.</li>
+          <li><strong>INSURANCE_QUESTION:</strong> Any inquiry about coverage, benefits, pre-authorization, or billing estimate. Routed to the billing/insurance coordinator. These can be time-consuming to research, so the draft response acknowledges receipt and provides a realistic timeframe for a complete answer.</li>
+          <li><strong>POST_OP_FOLLOWUP:</strong> A patient who has recently had a procedure and is following up — whether a routine progress check or a concern about complications. This classification triggers the URGENT flag. Routed to the treating provider. The draft response includes clinical triage notes and emergency contact info.</li>
+          <li><strong>BILLING_QUESTION:</strong> Questions about statements, payment plans, or charges. Routed to the billing coordinator. Often requires pulling up the patient's ledger, so the draft sets expectations for response time.</li>
+          <li><strong>RECORDS_REQUEST:</strong> Request from another provider or the patient themselves for dental records, X-rays, or treatment history. Routed to the front desk lead who handles records release. Requires HIPAA-compliant handling of PHI transfer.</li>
+          <li><strong>EXISTING_PATIENT_GENERAL:</strong> Catch-all for existing patient communications that don't fit other categories — questions about treatment plans, general dental advice, follow-up on previous conversations. Routed to the front desk for initial triage.</li>
+          <li><strong>URGENT_MEDICAL:</strong> Any email indicating acute pain, swelling, bleeding, infection, or trauma. This is the highest-priority classification. Bypasses the normal review queue and triggers an immediate push notification to the on-call provider. The draft response contains emergency contact numbers, after-hours protocols, and triage guidance — and goes into the queue for immediate human review.</li>
+          <li><strong>OTHER:</strong> Catch-all for newsletters, vendor communications, spam, and misdirected emails. Logged and archived without routing to clinical or front desk staff.</li>
+        </ul>
+
+        <h3>Routing Rules</h3>
+        <p>Routing is configured per practice based on their staff structure and provider assignments. A typical setup for a three-dentist practice:</p>
+        <ul>
+          <li><strong>NEW_PATIENT_INQUIRY</strong> → Front desk lead / new patient coordinator</li>
+          <li><strong>APPOINTMENT_REQUEST</strong> → Scheduling coordinator</li>
+          <li><strong>PRESCRIPTION_REFILL</strong> → Clinical staff queue (hygienists)</li>
+          <li><strong>POST_OP_FOLLOWUP</strong> → Treating provider, with URGENT flag. If the treating provider cannot be identified from the message, routes to the provider who performed the most recent procedure on that patient (looked up from the practice management system).</li>
+          <li><strong>INSURANCE_QUESTION</strong> → Billing / insurance coordinator</li>
+          <li><strong>BILLING_QUESTION</strong> → Billing coordinator</li>
+          <li><strong>RECORDS_REQUEST</strong> → Front desk lead, with HIPAA handling flag</li>
+          <li><strong>EXISTING_PATIENT_GENERAL</strong> → Front desk for initial triage, with option to forward to specific provider</li>
+          <li><strong>URGENT_MEDICAL</strong> → On-call provider immediately via push notification. Skips the normal review queue entirely. The practice defines who is on call by day of week and time of day.</li>
+          <li><strong>OTHER</strong> → Archived without routing. Reviewed monthly for misclassifications.</li>
+        </ul>
+        <p>All routing rules are configurable. A practice can reassign any classification to any staff member, add new classifications, or adjust the rules as their team changes. The system follows the rules the practice defines — it doesn't learn and deviate on its own.</p>
+
+        <h3>Response Templates</h3>
+        <p>Every draft response follows a consistent structure based on the classification. The AI fills in specifics from the extracted data. Here are the two most critical templates — the new patient acknowledgment and the post-op/urgent response.</p>
+
+        <p><strong>New patient inquiry template:</strong></p>
+        <pre><code>Subject: Re: Invisalign consultation — [Practice Name]
+
+Hi [Patient Name],
+
+Thank you for reaching out to [Practice Name]! I'm glad you're
+interested in [Invisalign / general dentistry / service mentioned],
+and we'd love to help.
+
+Dr. [Provider Name] leads our [service] care here, and I've shared
+your inquiry with our new patient team. Here's what you can expect
+at your first visit: we'll do a comprehensive exam, discuss your
+goals, and walk you through options, timeline, and costs — no
+obligation and no pressure.
+
+You can schedule your first visit right now at the link below —
+we have availability [this week / next week]:
+
+[Scheduling link — Zocdoc, NexHealth, or practice booking page]
+
+If you'd like us to verify your insurance before you come in, just
+reply with your carrier and member ID and I'll have our insurance
+coordinator run that for you.
+
+We look forward to meeting you,
+
+[Front desk lead name]
+[Practice Name]
+[Phone number]</code></pre>
+
+        <p><strong>Post-op / urgent response template:</strong></p>
+        <pre><code>Subject: Re: Post-op concern — [Practice Name]
+
+Hi [Patient Name],
+
+I've received your message about [summary of concern — e.g.,
+swelling after extraction] and I want you to know we're taking
+this seriously.
+
+Dr. [Provider Name] has been notified and will review your message
+[immediately / by 8:30 AM tomorrow]. I expect you'll hear from us
+by [expected callback time].
+
+In the meantime:
+• If you're experiencing [severe pain / excessive bleeding /
+  fever / difficulty breathing], please call our emergency line
+  at [emergency number] or go to the nearest ER.
+• For non-emergency concerns after hours, you can also reach our
+  on-call provider at [on-call number].
+• [Practice-specific triage notes — e.g., "Keep your head elevated
+  and apply cold compresses for swelling."]
+
+We'll be in touch very soon. Please don't hesitate to call if
+anything changes.
+
+Best,
+
+[Clinical staff name]
+[Practice Name]
+[Emergency number] | [Office number]</code></pre>
+
+        <p>These drafts go into the review queue. The staff member sees the original email, the AI's classification, the extracted data, and the proposed response — all in one view. They can approve, edit, or discard. The value isn't that the AI writes the perfect reply every time. The value is that <strong>the patient receives acknowledgment within minutes,</strong> with accurate contact information and a clear expectation of what happens next — even when the office is closed.</p>
+
+        <h3>Integration Points</h3>
+        <p>The core pipeline — classify, extract, route, draft, schedule — delivers immediate value without connecting to any external system. The practice's existing email is the only requirement. That said, there are natural integration points that compound the value over time:</p>
+        <ul>
+          <li><strong>Practice management / EHR</strong> (Dentrix, OpenDental, Eaglesoft, Epic): Extracted patient data can be pushed into the practice management system to pre-populate new patient records, reducing manual data entry. For existing patients, the system can match the email address to the patient record and pull in provider history for more accurate routing.</li>
+          <li><strong>Online scheduling</strong> (Zocdoc, NexHealth, LocalMed): The draft response for NEW_PATIENT_INQUIRY and APPOINTMENT_REQUEST includes a live scheduling link. When the patient books through that link, the appointment appears on the practice calendar without any manual step. The pipeline can also check availability and include specific open slots in the response.</li>
+          <li><strong>HIPAA compliance:</strong> The automation layer handles routing, drafting, and logging — it does not store, access, or transmit protected health information beyond what's in the original email. PHI access stays with clinical staff who review and approve responses. For practices that want deeper integration (e.g., pulling treatment history into draft responses), a BAA with the AI provider and secure data handling layers would be required. The pipeline described here operates entirely on the email content that patients have already chosen to send — no PHI is generated or stored by the automation.</li>
+          <li><strong>Phone system / VoIP:</strong> Practices using RingCentral, Grasshopper, or similar can receive push notifications for URGENT_MEDICAL classifications as SMS alerts, ensuring the on-call provider sees critical messages even when not checking email.</li>
+        </ul>
+        <p>None of these integrations are required on day one. The pipeline produces results with email access alone. Integrations layer in as the practice identifies where the automation can extend further into their existing workflows.</p>
+      </div>
+
+      <div class="execution-box">
+        <h3>Success Metrics to Track</h3>
+        <div>
+          <span class="metric">First response time</span>
+          <span class="metric">New patient conversion</span>
+          <span class="metric">Routing accuracy</span>
+          <span class="metric">After-hours gap closure</span>
+          <span class="metric">Staff hours saved/wk</span>
+        </div>
+        <p style="margin-top:1rem;">Track these from day one. Run a monthly report comparing automated-intake numbers against the practice's manual-intake baseline from the preceding quarter. If first response time doesn't drop below 10 minutes and routing accuracy isn't above 95%, something in the pipeline needs tuning. The single most important metric: <strong>after-hours gap closure</strong> — the percentage of emails received outside business hours that receive acknowledgment within five minutes. If that number isn't 100%, the automation isn't working.</p>
+      </div>
+
+      <p style="margin-top: 2rem;"><a href="/intake" style="border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 0.15rem;">Interested in this for your practice? Start an intake →</a></p>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="/#services">Services</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/build-concepts/">Build Concepts</a>
+        <a href="/#about">About</a>
+        <a href="mailto:contact@kavikworks.com">Contact</a>
+      </div>
+      <div class="footer-copy">&copy; 2026 Robot Arms LLC, dba Kavik Works.</div>
+    </div>
+  </footer>
+</body>
+</html>
