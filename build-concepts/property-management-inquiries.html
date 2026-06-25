@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Property Management Tenant Inquiries & Maintenance Routing — Kavik Works Build Concepts</title>
+  <meta name="description" content="AI email automation for property management companies that classifies, escalates, and routes tenant inquiries and maintenance requests from a single inbox — emergency leaks get SMS alerts, prospective tenants get showing times.">
+  <link rel="canonical" href="https://kavikworks.com/build-concepts/property-management-inquiries.html">
+  <meta name="robots" content="index, follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --white: #ffffff; --gray-300: #d4d4d4; --gray-400: #a3a3a3; --gray-500: #737373; --gray-600: #525252; --gray-700: #404040; --gray-800: #262626; --gray-900: #171717; --gray-950: #0a0a0a; --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: var(--font-sans); color: var(--gray-300); background: var(--gray-950); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3 { color: var(--white); line-height: 1.2; font-weight: 600; }
+    h1 { font-size: clamp(2rem, 4vw, 2.75rem); letter-spacing: -0.03em; margin-bottom: 0.5rem; }
+    h2 { font-size: 1.4rem; letter-spacing: -0.02em; margin: 2.5rem 0 1rem; padding-top: 0.5rem; border-top: 1px solid rgba(255,255,255,0.06); }
+    h3 { font-size: 1.1rem; margin: 1.75rem 0 0.5rem; }
+    p { max-width: 680px; margin-bottom: 1rem; color: var(--gray-400); line-height: 1.7; }
+    a { color: var(--white); text-decoration: none; }
+    ul, ol { margin: 0 0 1.5rem 1.5rem; color: var(--gray-400); }
+    li { margin-bottom: 0.4rem; line-height: 1.6; }
+    .mono { font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gray-500); }
+    .container { max-width: 800px; margin: 0 auto; padding: 0 2rem; }
+    strong { color: var(--white); font-weight: 600; }
+    code { font-family: var(--font-mono); font-size: 0.82rem; background: rgba(255,255,255,0.05); padding: 0.15rem 0.4rem; border-radius: 4px; color: var(--gray-300); }
+    pre { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 1.25rem 1.5rem; overflow-x: auto; margin: 1rem 0 1.5rem; font-size: 0.82rem; }
+    pre code { background: none; padding: 0; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(10,10,10,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    nav .container { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-logo { font-weight: 700; font-size: 1.1rem; color: var(--white); letter-spacing: -0.02em; }
+    .nav-links { display: flex; gap: 1.75rem; align-items: center; }
+    .nav-links a { font-size: 0.875rem; color: var(--gray-400); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--white); }
+
+    .article-header { padding: 8rem 0 2rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .article-header .back-link { font-family: var(--font-mono); font-size: 0.78rem; color: var(--gray-500); display: inline-block; margin-bottom: 1.5rem; }
+    .article-header .back-link:hover { color: var(--gray-300); }
+    .article-header .industry-tag { display: inline-block; font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.2rem 0.6rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; color: var(--gray-500); margin-bottom: 1rem; }
+    .article-header .pipeline { font-family: var(--font-mono); font-size: 0.85rem; color: var(--gray-500); margin: 1rem 0; }
+
+    .pipeline-visual { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin: 1.5rem 0; padding: 1.5rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; }
+    .pipeline-stage { padding: 0.5rem 0.9rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; font-family: var(--font-mono); font-size: 0.75rem; color: var(--gray-300); white-space: nowrap; }
+    .pipeline-arrow { color: var(--gray-600); font-family: var(--font-mono); font-size: 0.85rem; }
+
+    .article-body { padding: 3rem 0 5rem; }
+
+    .execution-box { margin: 2rem 0; padding: 2rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; }
+    .execution-box h3 { margin-top: 0; }
+    .execution-box .metric { display: inline-block; padding: 0.4rem 0.8rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-radius: 6px; font-family: var(--font-mono); font-size: 0.8rem; color: var(--gray-300); margin: 0.25rem 0.5rem 0.25rem 0; }
+
+    footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 3rem 0; }
+    footer .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-links { display: flex; gap: 2rem; }
+    .footer-links a { font-size: 0.85rem; color: var(--gray-500); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gray-300); }
+    .footer-copy { font-size: 0.8rem; color: var(--gray-600); }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <a href="/" class="nav-logo">Kavik Works</a>
+      <div class="nav-links">
+        <a href="/#services">Services</a>
+        <a href="/#how-it-works">How It Works</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/build-concepts/">Build Concepts</a>
+        <a href="/#about">About</a>
+        <a href="/intake">Get Started</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="article-header">
+    <div class="container">
+      <a href="/build-concepts/" class="back-link">← Back to Build Concepts</a>
+      <span class="industry-tag">Property Management</span>
+      <h1>Property Management Tenant Inquiries &amp; Maintenance Routing</h1>
+      <div class="pipeline">Inquiry → classify → extract → escalate → route → acknowledge</div>
+    </div>
+  </section>
+
+  <section class="article-body">
+    <div class="container">
+
+      <h2>The Problem</h2>
+
+      <p>It's 11:17 PM on a Tuesday. A tenant in unit 204 hears water dripping inside the wall. She sends an email to <code>info@yourpropertymgmt.com</code> describing the leak and asking someone to please come look at it. The water is soaking through drywall, spreading along the ceiling joists, and beginning to pool on the bathroom floor. Nobody sees her email until 8:00 AM the next morning. <strong>Eight hours of continuous water damage</strong> — drywall replacement, mold remediation, subfloor repair, and one displaced tenant. What should have been a 30-minute emergency plumbing call just became a five-figure insurance claim.</p>
+
+      <p>Two days earlier, on Thursday at 6:03 PM, a prospective tenant emailed the same <code>info@</code> address about a vacant two-bedroom unit. Good income, good credit, ready to move in. She wanted to know if the unit was still available and when she could tour it. By Monday morning, when someone finally opened the email and sent a reply, the prospect had already signed a lease with a competing property down the street. <strong>A qualified tenant leased elsewhere while your response sat in a shared inbox.</strong></p>
+
+      <p>These are not different problems. They are the same problem: a single inbox receiving fundamentally different categories of communication — life-safety emergencies, routine maintenance requests, prospective tenant inquiries, owner questions, vendor invoices — with <strong>no mechanism to distinguish urgency or route to the right person.</strong> Every message gets the same treatment: it waits until a human opens it, reads it, decides what it is, and decides who should handle it. At 11 PM, that human is asleep. On a Saturday, that human isn't working. Every hour that passes without classification and routing is an hour of compounding damage, compounding vacancy, or compounding frustration.</p>
+
+      <p>For an eight-person property management office handling 300 units, the inbox volume is manageable during business hours — but the content mix is lethal without automation. A tenant reporting a broken garbage disposal sits next to a tenant reporting a ceiling leak. A prospective tenant asking about availability sits next to an owner asking about their monthly statement. An HVAC vendor sending an invoice sits next to a tenant whose heat is out in January. <strong>Property management email automation</strong> solves this by reading, classifying, and routing every message the moment it arrives — regardless of whether anyone is in the office.</p>
+
+      <h2>How It Breaks Today</h2>
+
+      <p>Here's what actually happens when a tenant or prospect sends an email to the shared office inbox, and why the current process fails every category of sender simultaneously.</p>
+
+      <p><strong>Step one:</strong> the email arrives and sits. There's one inbox — <code>info@</code> or <code>office@</code> — that catches everything. Maintenance emergencies, leasing inquiries, owner questions, vendor communications, tenant complaints, rent payment questions. The office manager or front-desk person checks it periodically between phone calls, resident walk-ins, and property visits. During a busy morning, the inbox might go unread for three hours. During evenings and weekends, it goes unread for twelve to sixteen hours.</p>
+
+      <p><strong>Step two:</strong> when someone finally reads the message, they have to triage it manually. Is this an emergency? They scan the email looking for keywords — "leak," "flood," "no heat," "broken lock." If the tenant didn't use the right words, or if the person scanning is distracted, the emergency gets treated as routine. Meanwhile, the prospective tenant email gets the same triage: the reader has to open it, figure out which property it's about, check the vacancy list, and decide whether to forward it to the leasing agent who handles that building — if they even know who that is today.</p>
+
+      <p><strong>Step three:</strong> the manual forward. The office manager forwards the email to whoever they think should handle it: a maintenance coordinator, a leasing agent, the property manager. But the forwarding is ad hoc. There's no system assigning ownership, no confirmation that the recipient saw it, no escalation if the recipient is off that day. The email disappears into someone else's inbox, and the only way to track whether it was handled is to follow up manually.</p>
+
+      <p><strong>Step four:</strong> the response — if one happens at all. The maintenance coordinator might see the repair request and add it to a mental list for next week. The leasing agent might read the prospect email on their phone but forget to reply until the next day. The property manager might not see the owner inquiry until after the owner has already called, annoyed, asking why nobody responded. And the tenant with the 11 PM water leak? They've already called the emergency line (maybe) or the fire department (worst case), because nobody acknowledged their email. <strong>The single shared inbox creates a single point of failure for every communication channel the business depends on.</strong></p>
+
+      <p>Each step compounds delay. A process that could take thirty seconds — read, classify, route, acknowledge — takes hours or days because it depends on a human being available, undistracted, and making good judgment calls under time pressure. That's not a staffing problem. It's a structural problem that automation is designed to solve.</p>
+
+      <h2>The Automated Pipeline</h2>
+
+      <p>An automated inquiry pipeline for property management doesn't replace the human team — it makes sure the right human sees the right message at the right time. Here's the workflow when <strong>tenant inquiry routing</strong> and <strong>maintenance request automation</strong> are applied to the same inbox.</p>
+
+      <div class="pipeline-visual">
+        <div class="pipeline-stage">Inquiry detected</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Classify</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Extract</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Escalate</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Route</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Acknowledge</div>
+      </div>
+
+      <p><strong>Stage 1: Inbound email detected.</strong> The system monitors the shared office inbox via IMAP. Every new message — tenant, prospect, owner, vendor — triggers the pipeline immediately. Tuesday at 11:17 PM, Thursday at 6:03 PM, Saturday at 10:00 AM. The pipeline doesn't sleep, doesn't take weekends, and doesn't get distracted by a ringing phone or a resident at the front desk. The message is picked up within seconds of arrival.</p>
+
+      <p><strong>Stage 2: Classify.</strong> The full email — subject, body, sender address — is sent to a cloud AI model with a property-management-specific classification prompt. This is the critical stage. The model reads the message holistically and determines what it is: not by keyword matching, but by comprehending intent and context. It distinguishes between "there's water coming through my ceiling" and "my faucet drips sometimes." It recognizes that a sender from a domain matching a property owner LLC is likely an owner inquiry. It knows that a first-time sender asking about unit availability and move-in dates is a prospective tenant. Classification typically completes in under two seconds.</p>
+
+      <p><strong>Stage 3: Extract.</strong> The AI pulls structured data from the email: tenant name and unit number, the specific maintenance issue described, the property address or building name referenced, the sender's phone number if provided, and any time-sensitivity language ("right away," "ASAP," "it's getting worse"). For prospective tenants, it extracts desired unit size, target move-in date, and any qualification signals like income or pet status mentioned in the email. This structured output feeds every downstream decision.</p>
+
+      <p><strong>Stage 4: Escalate.</strong> This is the stage that distinguishes the property management pipeline from generic email routing. Based on the classification and extracted content, the escalation engine determines urgency. <code>EMERGENCY_MAINTENANCE</code> — water leaks, no heat in freezing weather, gas smells, broken exterior locks, fire alarm issues — triggers an immediate escalation path entirely separate from routine messages. The escalation engine doesn't just route differently; it changes the notification medium. An emergency classification sends an SMS alert to the on-call maintenance technician and the property manager simultaneously, with the tenant's name, unit number, issue description, and contact information. No waiting for someone to check email. No hoping the right person sees it.</p>
+
+      <p><strong>Stage 5: Route.</strong> Routing is deterministic and rule-based, not probabilistic. Each classification maps to a pre-configured destination. Emergency maintenance goes to the on-call technician with the property manager CC'd. Prospective tenant inquiries go to the leasing agent assigned to that property. Routine maintenance goes to the maintenance coordinator for scheduling. Owner inquiries go to the property manager for that building. Vendor communications go to the office manager for invoice processing. Rent payment questions go to the bookkeeper. The rules are configured once and run every time without variation.</p>
+
+      <p><strong>Stage 6: Acknowledge.</strong> An automated acknowledgment is sent to the sender — not a generic "we received your message" autoresponder, but a classification-aware response. A tenant who reported a water leak at 11 PM receives an immediate reply acknowledging the emergency, confirming that maintenance has been notified, providing an ETA when available, and listing the emergency contact number for follow-up. A prospective tenant receives unit availability information, upcoming showing times, and a link to the online application. A tenant reporting a routine repair receives a confirmation with a ticket number and an expected scheduling window. <strong>The sender knows their message landed, was understood, and is being acted on — within minutes, not days.</strong> The draft acknowledgment goes into a review queue for the appropriate team member to approve, personalize, or replace before sending. Nothing goes out without human oversight, but the draft is already written and waiting.</p>
+
+      <h2>Expected Metrics</h2>
+
+      <p>Here's what an eight-person, 300-unit property management office should expect from deploying <strong>property management email automation</strong>, based on comparable implementations:</p>
+
+      <ul>
+        <li><strong>Emergency acknowledgment time:</strong> drops from hours (or overnight) to under 2 minutes, with SMS alerting to on-call staff. The tenant knows help is coming. The property manager knows there's a problem. The maintenance tech is already on the way.</li>
+        <li><strong>Prospective tenant response time:</strong> drops from 12–72 hours to under 5 minutes for the initial acknowledgment with availability and showing information. Qualified prospects stop leaking to competitors who answer first.</li>
+        <li><strong>Classification accuracy:</strong> 95%+ for distinguishing emergencies from routine maintenance, and maintenance from leasing inquiries. The model is prompted specifically for property management use cases and gets better with feedback.</li>
+        <li><strong>Missed emergency rate:</strong> approaches zero. Every water leak, gas smell, and no-heat call is detected and escalated regardless of time of day. The single biggest source of catastrophic property damage — delayed response to tenant reports — is structurally eliminated.</li>
+        <li><strong>Hours saved per week:</strong> roughly 6–10 hours of office staff time across an eight-person team — time previously spent manually scanning the inbox, forwarding messages, following up on forwards, and re-entering data into the maintenance system.</li>
+      </ul>
+
+      <p>These metrics aren't theoretical. They're the direct result of removing the "wait for a human to read it" step from the pipeline. The biggest variable is how quickly the on-call technician responds to the SMS alert — but the tenant already has acknowledgment, the property manager already has visibility, and the clock started the moment the email arrived, not the moment someone woke up.</p>
+
+      <h2>Execution Plan</h2>
+
+      <div class="execution-box">
+        <h3>Tools &amp; APIs</h3>
+        <p>This pipeline uses a cloud-based large language model API for classification and extraction, connected to the existing shared inbox via IMAP. Email intake runs on a lightweight server or cloud function that monitors the inbox at configurable intervals. The AI model is prompted for structured JSON output — classification label, extracted fields, urgency flag, and acknowledgment draft — giving the routing engine clean, predictable data to work with. Deterministic routing code (Python or Node.js) reads the structured output and executes the routing rules. SMS alerts use Twilio or a similar programmable messaging API. The entire system can run on a $40–60/month cloud instance with negligible per-message AI costs, since classification and extraction calls are small and efficient.</p>
+
+        <h3>Classification Taxonomy</h3>
+        <p>The AI sorts every inbound email into one of these categories:</p>
+        <ul>
+          <li><strong>EMERGENCY_MAINTENANCE:</strong> Water leaks, flooding, no heat (during cold weather), gas smell, electrical hazard, broken exterior lock or door, fire alarm issues, sewer backup. Triggers SMS escalation immediately.</li>
+          <li><strong>ROUTINE_MAINTENANCE:</strong> Dripping faucets, running toilets, appliance repairs, minor drywall damage, stuck windows, clogged drains (not backing up). Routed to the maintenance coordinator for scheduling during business hours.</li>
+          <li><strong>PROSPECTIVE_TENANT:</strong> First-time inquiry from someone asking about unit availability, pricing, showing times, or the application process. Routed to the leasing agent with extracted preferences for unit size and move-in timeline.</li>
+          <li><strong>CURRENT_TENANT_ISSUE:</strong> Non-maintenance tenant communication — noise complaints, lease questions, amenity access problems, neighbor disputes, move-out procedures. Routed to the property manager or resident services.</li>
+          <li><strong>OWNER_INQUIRY:</strong> Communication from a property owner about financial statements, maintenance approvals, lease renewals, or capital improvements. Routed to the property manager assigned to that owner's portfolio.</li>
+          <li><strong>VENDOR_COMMUNICATION:</strong> Invoices, quotes, scheduling confirmations, and service reports from contractors and suppliers. Routed to the office manager or accounts payable.</li>
+          <li><strong>RENT_PAYMENT_QUESTION:</strong> Inquiries about rent amounts, due dates, late fees, payment methods, or payment plan requests. Routed to the bookkeeper or rent collection specialist.</li>
+          <li><strong>LEASE_RENEWAL:</strong> Tenant questions about renewal terms, rate changes, or renewal deadlines. Routed to the leasing agent or property manager to handle retention.</li>
+          <li><strong>OTHER:</strong> Catch-all for newsletters, spam that evaded filters, personal emails, and messages that don't fit any category. Logged and archived without routing.</li>
+        </ul>
+
+        <h3>Routing Rules</h3>
+        <p>Routing is configured per office based on staff assignments and property portfolios. A typical setup for an eight-person office managing 300 units:</p>
+        <ul>
+          <li><strong>EMERGENCY_MAINTENANCE</strong> → SMS alert to the on-call maintenance technician (rotating schedule) AND SMS alert to the property manager. The acknowledgment draft includes the tenant's contact info so the tech can call immediately.</li>
+          <li><strong>ROUTINE_MAINTENANCE</strong> → Maintenance coordinator's email inbox with a summary card containing tenant name, unit, issue description, and suggested priority level. Coordinator adds it to the work order queue.</li>
+          <li><strong>PROSPECTIVE_TENANT</strong> → Leasing agent assigned to the property mentioned in the inquiry. If no property is specified, routes to the lead leasing agent for follow-up qualification.</li>
+          <li><strong>CURRENT_TENANT_ISSUE</strong> → Property manager for the building. If the issue references a specific staff member by name, routes to that person.</li>
+          <li><strong>OWNER_INQUIRY</strong> → Property manager assigned to that owner's portfolio, matched via sender email domain or extracted property reference.</li>
+          <li><strong>VENDOR_COMMUNICATION</strong> → Office manager for invoice processing and vendor file updates.</li>
+          <li><strong>RENT_PAYMENT_QUESTION / LEASE_RENEWAL</strong> → Bookkeeper or leasing agent respectively, with a copy to the property manager for visibility.</li>
+        </ul>
+
+        <h3>Response Templates</h3>
+        <p>Every acknowledgment follows a classification-specific template with three elements: <strong>acknowledge the specific issue, set expectations for what happens next, provide actionable contact information.</strong></p>
+
+        <p>Example for <strong>EMERGENCY_MAINTENANCE</strong> (water leak at 11 PM):</p>
+        <pre><code>Subject: Re: Water leak in unit 204 — MAINTENANCE NOTIFIED
+
+[Tenant Name],
+
+We've received your maintenance report about [issue — e.g., water
+leaking from the ceiling in your bathroom] and have immediately
+notified our on-call maintenance team. This has been classified
+as an emergency.
+
+A maintenance technician will contact you directly at [phone
+on file] with an estimated arrival time. If you haven't heard
+from someone within 30 minutes, or if the situation worsens,
+please call our 24-hour emergency line at [emergency phone].
+
+For immediate safety: if water is near electrical outlets or
+fixtures, please do not touch them. If you need to shut off
+water to the unit, the shutoff valve is located [location].
+
+[Property Management Company Name]</code></pre>
+
+        <p>Example for <strong>PROSPECTIVE_TENANT</strong> (Thursday evening inquiry):</p>
+        <pre><code>Subject: Re: [Property Name] — availability and showings
+
+[Prospect Name],
+
+Thank you for your interest in [Property Name]. The [unit type —
+e.g., two-bedroom] unit is currently available.
+
+Here's what you need to know:
+• Monthly rent: $[amount]
+• Available: [move-in date]
+• Next showing times: [list upcoming slots or link to scheduler]
+• Application: [link to online application]
+
+[Leasing Agent Name], our leasing agent for [Property Name],
+will follow up with you personally during business hours to
+answer any questions and confirm your showing. You can also
+reach them directly at [leasing agent email] or [phone].
+
+We process applications on a first-qualified basis, so submitting
+yours early is the best way to secure the unit.
+
+[Property Management Company Name]</code></pre>
+
+        <p>Both drafts go into the review queue for the relevant team member to approve, edit, or replace. The value is that <strong>the draft exists within seconds</strong> — the human doesn't start from a blank email, they start from a structured, accurate draft that already includes the extracted details and follows the office's response standards. For emergency situations, the acknowledgment can be configured to send automatically without review, since speed of acknowledgment is safety-critical and the SMS escalation has already notified the responsible people.</p>
+
+        <h3>Integration Points</h3>
+        <p>The core pipeline — classify, extract, escalate, route, acknowledge — delivers immediate value using only the existing email inbox. These integrations extend its capabilities over time:</p>
+        <ul>
+          <li><strong>Maintenance ticketing system</strong> (UpKeep, Fiix, MaintainX): When a maintenance request is classified, the extracted data can be pushed directly into the ticketing system via API, creating a new work order with tenant name, unit, issue description, and priority — no manual data entry required. The acknowledgment to the tenant can include the ticket number for reference.</li>
+          <li><strong>Property management software</strong> (AppFolio, Buildium, Yardi Breeze): Extracted tenant and prospect data can sync with the PM platform to update contact records, log communications, and attach maintenance requests to the correct unit. For prospects, the inquiry can create a guest card automatically so the leasing pipeline stays current.</li>
+          <li><strong>SMS alerting</strong> (Twilio): The escalation engine uses programmable SMS to push emergency alerts directly to on-call phones. The same integration can send proactive status updates to tenants — "technician dispatched, ETA 20 minutes" — without requiring anyone to type a text.</li>
+          <li><strong>Owner portal / reporting:</strong> Owner inquiries and maintenance approvals can be logged into the owner's portal record so the monthly statement includes a communication trail of what the owner asked about and when it was resolved.</li>
+        </ul>
+        <p>None of these integrations are required on day one. The pipeline works with email alone. Each integration adds progressive value as the office's needs mature — starting with the highest-impact connection (SMS alerting for emergencies) and layering from there.</p>
+      </div>
+
+      <div class="execution-box">
+        <h3>Success Metrics to Track</h3>
+        <div>
+          <span class="metric">Emergency acknowledgment time</span>
+          <span class="metric">Prospect response time</span>
+          <span class="metric">Classification accuracy</span>
+          <span class="metric">Missed emergency rate</span>
+          <span class="metric">Hours saved/week</span>
+          <span class="metric">Lease conversion rate</span>
+        </div>
+        <p style="margin-top:1rem;">Track these from day one. Compare emergency acknowledgment before automation (often 2–8 hours, sometimes overnight) against post-deployment (under 2 minutes). Track prospect-to-tour conversion rates to measure whether faster response translates to more signed leases — the data from comparable deployments says it does. If EMERGENCY_MAINTENANCE classification accuracy dips below 95%, review the false-positive and false-negative cases and refine the classification prompt.</p>
+      </div>
+
+      <p style="margin-top: 2rem;"><a href="/intake" style="border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 0.15rem;">Interested in this for your property management office? Start an intake →</a></p>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="/#services">Services</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/build-concepts/">Build Concepts</a>
+        <a href="/#about">About</a>
+        <a href="mailto:contact@kavikworks.com">Contact</a>
+      </div>
+      <div class="footer-copy">&copy; 2026 Robot Arms LLC, dba Kavik Works.</div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Build Concepts — Kavik Works</title>
+  <meta name="description" content="Detailed automation concepts for real business workflows — law firms, HVAC, property management, accounting, insurance. Industry-specific plans with execution detail.">
+  <link rel="canonical" href="https://kavikworks.com/build-concepts/">
+  <meta name="robots" content="index, follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --white: #ffffff; --gray-50: #fafafa; --gray-100: #f5f5f5; --gray-200: #e5e5e5;
+      --gray-300: #d4d4d4; --gray-400: #a3a3a3; --gray-500: #737373; --gray-600: #525252;
+      --gray-700: #404040; --gray-800: #262626; --gray-900: #171717; --gray-950: #0a0a0a;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+    }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: var(--font-sans); color: var(--gray-300); background: var(--gray-950); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3 { color: var(--white); line-height: 1.2; font-weight: 600; }
+    h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -0.03em; }
+    h2 { font-size: 1.5rem; letter-spacing: -0.02em; margin: 3rem 0 1rem; }
+    h3 { font-size: 1.15rem; margin: 2rem 0 0.75rem; }
+    p { max-width: 680px; margin-bottom: 1rem; color: var(--gray-400); line-height: 1.7; }
+    a { color: var(--white); text-decoration: none; }
+    .mono { font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gray-500); }
+    .container { max-width: 920px; margin: 0 auto; padding: 0 2rem; }
+
+    /* Nav */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(10,10,10,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    nav .container { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-logo { font-weight: 700; font-size: 1.1rem; color: var(--white); letter-spacing: -0.02em; }
+    .nav-links { display: flex; gap: 1.75rem; align-items: center; }
+    .nav-links a { font-size: 0.875rem; color: var(--gray-400); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--white); }
+
+    /* Page header */
+    .page-header { padding: 8rem 0 3rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .page-header h1 { margin-bottom: 0.75rem; }
+    .page-header p { color: var(--gray-500); font-size: 1.05rem; }
+
+    /* Concept cards */
+    .concepts { padding: 4rem 0 6rem; }
+    .concept-card { padding: 2.5rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; margin-bottom: 1.5rem; transition: border-color 0.3s; }
+    .concept-card:hover { border-color: rgba(255,255,255,0.15); }
+    .concept-card h3 { margin: 0 0 0.5rem; font-size: 1.25rem; }
+    .concept-card h3 a { color: var(--white); }
+    .concept-card .industry-tag { display: inline-block; font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.2rem 0.6rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; color: var(--gray-500); margin-bottom: 1rem; }
+    .concept-card .workflow { font-family: var(--font-mono); font-size: 0.78rem; color: var(--gray-500); margin-bottom: 1rem; }
+    .concept-card p { color: var(--gray-400); font-size: 0.95rem; margin-bottom: 0; }
+    .concept-card .read-link { display: inline-block; margin-top: 1.25rem; font-size: 0.875rem; color: var(--gray-300); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.15rem; transition: all 0.2s; }
+    .concept-card .read-link:hover { color: var(--white); border-color: var(--white); }
+
+    /* Footer */
+    footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 3rem 0; }
+    footer .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-links { display: flex; gap: 2rem; }
+    .footer-links a { font-size: 0.85rem; color: var(--gray-500); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gray-300); }
+    .footer-copy { font-size: 0.8rem; color: var(--gray-600); }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <a href="/" class="nav-logo">Kavik Works</a>
+      <div class="nav-links">
+        <a href="/#services">Services</a>
+        <a href="/#how-it-works">How It Works</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/build-concepts/">Build Concepts</a>
+        <a href="/#about">About</a>
+        <a href="/intake">Get Started</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="page-header">
+    <div class="container">
+      <p class="mono">Build Concepts</p>
+      <h1>Automation plans for real businesses.</h1>
+      <p>Industry-specific workflow concepts with full execution detail — taxonomy, routing rules, response templates, and integration points. Built to be deployed.</p>
+    </div>
+  </section>
+
+  <section class="concepts">
+    <div class="container">
+      <div class="concept-card">
+        <span class="industry-tag">Legal</span>
+        <h3><a href="/build-concepts/law-firm-client-intake.html">Law Firm Client Intake & Lead Response</a></h3>
+        <div class="workflow">Inquiry → classify → extract → draft → route → log</div>
+        <p>How a 5-attorney firm can stop losing Friday afternoon prospects to competitors who answer on Saturday. Full pipeline with legal-specific classification taxonomy and conflict-check integration points.</p>
+        <a href="/build-concepts/law-firm-client-intake.html" class="read-link">Read the full concept →</a>
+      </div>
+
+      <div class="concept-card">
+        <span class="industry-tag">Home Services</span>
+        <h3><a href="/build-concepts/hvac-lead-response.html">HVAC Lead Routing & Quote Follow-Up</a></h3>
+        <div class="workflow">Inquiry → classify → extract → route → draft → schedule</div>
+        <p>Turn a shared office@ inbox receiving 20+ quote requests a day into a self-sorting pipeline. Emergency vs. estimate classification, geographic routing, and instant first-response with expected timeline.</p>
+        <a href="/build-concepts/hvac-lead-response.html" class="read-link">Read the full concept →</a>
+      </div>
+
+      <div class="concept-card">
+        <span class="industry-tag">Property Management</span>
+        <h3><a href="/build-concepts/property-management-inquiries.html">Property Management Tenant Inquiries & Maintenance Routing</a></h3>
+        <div class="workflow">Inquiry → classify → extract → escalate → route → acknowledge</div>
+        <p>Handle tenant maintenance emergencies and prospective tenant inquiries through the same inbox without either getting lost. Urgency detection, automatic escalation, and maintenance ticket creation.</p>
+        <a href="/build-concepts/property-management-inquiries.html" class="read-link">Read the full concept →</a>
+      </div>
+
+      <div class="concept-card">
+        <span class="industry-tag">Accounting</span>
+        <h3><a href="/build-concepts/cpa-client-intake-triage.html">CPA Firm Client Intake & Tax Season Triage</a></h3>
+        <div class="workflow">Inquiry → classify → extract → prioritize → route → confirm</div>
+        <p>Tax season inbox management that separates new prospects from existing clients, identifies urgent document submissions, and routes to the right preparer — without anyone manually sorting 50+ emails a day.</p>
+        <a href="/build-concepts/cpa-client-intake-triage.html" class="read-link">Read the full concept →</a>
+      </div>
+
+      <div class="concept-card">
+        <span class="industry-tag">Insurance</span>
+        <h3><a href="/build-concepts/insurance-quote-claims-routing.html">Insurance Agency Quote Requests & Claims Routing</a></h3>
+        <div class="workflow">Inquiry → classify → extract → route → acknowledge → notify</div>
+        <p>Route commercial quotes, personal lines quotes, and claims from a single inbox to the right person in under 60 seconds. Claims urgency detection, line-of-business routing, and automated first-response with next steps.</p>
+        <a href="/build-concepts/insurance-quote-claims-routing.html" class="read-link">Read the full concept →</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="/#services">Services</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/build-concepts/">Build Concepts</a>
+        <a href="/#about">About</a>
+        <a href="mailto:contact@kavikworks.com">Contact</a>
+      </div>
+      <div class="footer-copy">&copy; 2026 Robot Arms LLC, dba Kavik Works.</div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Law Firm Client Intake Automation — Kavik Works Build Concepts</title>
+  <meta name="description" content="AI email automation for law firms that classifies, drafts, and routes new client inquiries in under five minutes — even after hours and on weekends.">
+  <link rel="canonical" href="https://kavikworks.com/build-concepts/law-firm-client-intake.html">
+  <meta name="robots" content="index, follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --white: #ffffff; --gray-300: #d4d4d4; --gray-400: #a3a3a3; --gray-500: #737373; --gray-600: #525252; --gray-700: #404040; --gray-800: #262626; --gray-900: #171717; --gray-950: #0a0a0a; --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: var(--font-sans); color: var(--gray-300); background: var(--gray-950); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3 { color: var(--white); line-height: 1.2; font-weight: 600; }
+    h1 { font-size: clamp(2rem, 4vw, 2.75rem); letter-spacing: -0.03em; margin-bottom: 0.5rem; }
+    h2 { font-size: 1.4rem; letter-spacing: -0.02em; margin: 2.5rem 0 1rem; padding-top: 0.5rem; border-top: 1px solid rgba(255,255,255,0.06); }
+    h3 { font-size: 1.1rem; margin: 1.75rem 0 0.5rem; }
+    p { max-width: 680px; margin-bottom: 1rem; color: var(--gray-400); line-height: 1.7; }
+    a { color: var(--white); text-decoration: none; }
+    ul, ol { margin: 0 0 1.5rem 1.5rem; color: var(--gray-400); }
+    li { margin-bottom: 0.4rem; line-height: 1.6; }
+    .mono { font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gray-500); }
+    .container { max-width: 800px; margin: 0 auto; padding: 0 2rem; }
+    strong { color: var(--white); font-weight: 600; }
+    code { font-family: var(--font-mono); font-size: 0.82rem; background: rgba(255,255,255,0.05); padding: 0.15rem 0.4rem; border-radius: 4px; color: var(--gray-300); }
+    pre { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 1.25rem 1.5rem; overflow-x: auto; margin: 1rem 0 1.5rem; font-size: 0.82rem; }
+    pre code { background: none; padding: 0; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(10,10,10,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    nav .container { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-logo { font-weight: 700; font-size: 1.1rem; color: var(--white); letter-spacing: -0.02em; }
+    .nav-links { display: flex; gap: 1.75rem; align-items: center; }
+    .nav-links a { font-size: 0.875rem; color: var(--gray-400); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--white); }
+
+    .article-header { padding: 8rem 0 2rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .article-header .back-link { font-family: var(--font-mono); font-size: 0.78rem; color: var(--gray-500); display: inline-block; margin-bottom: 1.5rem; }
+    .article-header .back-link:hover { color: var(--gray-300); }
+    .article-header .industry-tag { display: inline-block; font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.2rem 0.6rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; color: var(--gray-500); margin-bottom: 1rem; }
+    .article-header .pipeline { font-family: var(--font-mono); font-size: 0.85rem; color: var(--gray-500); margin: 1rem 0; }
+
+    .pipeline-visual { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin: 1.5rem 0; padding: 1.5rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; }
+    .pipeline-stage { padding: 0.5rem 0.9rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; font-family: var(--font-mono); font-size: 0.75rem; color: var(--gray-300); white-space: nowrap; }
+    .pipeline-arrow { color: var(--gray-600); font-family: var(--font-mono); font-size: 0.85rem; }
+
+    .article-body { padding: 3rem 0 5rem; }
+
+    .execution-box { margin: 2rem 0; padding: 2rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; }
+    .execution-box h3 { margin-top: 0; }
+    .execution-box .metric { display: inline-block; padding: 0.4rem 0.8rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-radius: 6px; font-family: var(--font-mono); font-size: 0.8rem; color: var(--gray-300); margin: 0.25rem 0.5rem 0.25rem 0; }
+
+    footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 3rem 0; }
+    footer .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-links { display: flex; gap: 2rem; }
+    .footer-links a { font-size: 0.85rem; color: var(--gray-500); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gray-300); }
+    .footer-copy { font-size: 0.8rem; color: var(--gray-600); }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <a href="/" class="nav-logo">Kavik Works</a>
+      <div class="nav-links">
+        <a href="/#services">Services</a>
+        <a href="/#how-it-works">How It Works</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/build-concepts/">Build Concepts</a>
+        <a href="/#about">About</a>
+        <a href="/intake">Get Started</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="article-header">
+    <div class="container">
+      <a href="/build-concepts/" class="back-link">← Back to Build Concepts</a>
+      <span class="industry-tag">Legal</span>
+      <h1>Law Firm Client Intake &amp; Lead Response</h1>
+      <div class="pipeline">Inquiry → classify → extract → draft → route → log</div>
+    </div>
+  </section>
+
+  <section class="article-body">
+    <div class="container">
+
+      <h2>The Problem</h2>
+
+      <p>It's 4:17 PM on a Friday. A prospective client — someone who just got served with divorce papers — searches for a family law attorney, finds your firm's website, and sends an email to <code>info@yourfirm.com</code>. She describes her situation, includes her phone number, and asks if she can schedule a consultation. She's anxious, she wants to move quickly, and most importantly, <strong>she is ready to hire an attorney this weekend.</strong></p>
+
+      <p>Nobody sees her email until Monday morning. By then, she's already retained a competitor — a firm that happened to have someone monitoring the inbox on Saturday. That competitor now has a paying client. Your firm has a missed opportunity that cost thousands in unrealized billables, and you'll never know it happened because the lead evaporated without a trace.</p>
+
+      <p>This is not an edge case. For small and mid-sized law firms, <strong>every hour of response delay erodes the likelihood of conversion.</strong> A prospect reaching out after business hours — evenings, weekends, holidays — is a prospect with urgency. They want acknowledgment. They want to know someone heard them. When your firm's intake process is built around a shared inbox checked by office staff during business hours, you are structurally incapable of meeting that expectation.</p>
+
+      <p>The irony is that small firms often win business specifically because they're more responsive and personal than the big shops. A five-attorney firm can move faster, quote more transparently, and build relationships that institutional firms can't. But when the intake mechanism is the same shared inbox everyone else uses, that speed advantage disappears the moment the office closes. <strong>AI email automation for law firms</strong> closes this gap — not by replacing anyone, but by making sure the pipeline stays open when your team isn't at their desks.</p>
+
+      <h2>How It Breaks Today</h2>
+
+      <p>Let's walk through what happens right now when a potential client sends an inquiry to a typical small firm. The email lands in a shared address — <code>info@</code>, <code>office@</code>, or the firm's generic contact form. Here's the chain of events:</p>
+
+      <p><strong>Step one:</strong> an office administrator or receptionist checks the shared inbox, usually once or twice during the day between other tasks. They scan the subject line and sender, open the message, and try to figure out what they're looking at. Is this a new prospect? An existing client with a question? A court filing from opposing counsel? A vendor invoice? The admin isn't an attorney — they're making a best guess.</p>
+
+      <p><strong>Step two:</strong> if it looks like a new prospect, the admin forwards it to whoever seems right. Family law inquiry? Forward to the partner who handles domestic relations. Business dispute? Forward to the litigator. But the admin may not know who's in trial that week, who's at capacity, or who actually has bandwidth for a new matter. The email goes out and waits.</p>
+
+      <p><strong>Step three:</strong> the attorney receives the forward — buried among a dozen other messages — and mentally queues it for later. Later might mean end of day, tomorrow, or after the deposition they're prepping for. When they finally sit down to respond, they open the original message, copy the prospect's name and details, and draft a reply. That reply might be three sentences or it might be thorough — it depends entirely on how much energy the attorney has in that moment.</p>
+
+      <p><strong>Step four:</strong> nobody logs this anywhere. There's no record of the inquiry in the practice management system unless someone manually enters it. If the prospect doesn't follow up, the entire interaction disappears into the email archive. There's no way to measure how many leads came in, how quickly they were answered, or what percentage converted.</p>
+
+      <p>Each of these steps introduces delay. A response that could take three minutes takes three hours — or three days. And during evenings and weekends, the process doesn't slow down; it stops completely. <strong>After-hours inquiries are the single largest loss point in the small firm intake pipeline.</strong></p>
+
+      <h2>The Automated Pipeline</h2>
+
+      <p>An automated intake pipeline doesn't remove the human element from client intake — it removes the waiting. Here's what the workflow looks like when <strong>law firm client intake automation</strong> is applied to the same scenario.</p>
+
+      <div class="pipeline-visual">
+        <div class="pipeline-stage">Inquiry detected</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Classify</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Extract</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Draft</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Route</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Log</div>
+      </div>
+
+      <p><strong>Stage 1: Inbound email detected.</strong> The system monitors the firm's intake address via IMAP — the same standard protocol every email provider supports. When a new message arrives, the pipeline triggers immediately regardless of time or day. No polling, no manual refresh, no dependency on anyone being in the office. Friday at 4:17 PM, Saturday at 9 AM, Tuesday at midnight — doesn't matter. The message is picked up within seconds of hitting the inbox.</p>
+
+      <p><strong>Stage 2: Classify.</strong> The message content is sent to a cloud AI model with a structured classification prompt. The model reads the full email — subject, body, any forwarded context — and assigns it to one of several categories. This is not keyword matching or rule-based filtering; the model reads the message like a person would and determines intent. It distinguishes between a new prospect inquiring about representation and an existing client asking for a case update. It recognizes when opposing counsel is sending a filing versus when someone is asking for a consultation. The classification happens in under two seconds.</p>
+
+      <p><strong>Stage 3: Extract.</strong> Once classified, the AI extracts structured data from the message: the sender's full name, phone number if provided, the legal matter type (divorce, custody, contract dispute, DUI, etc.), any deadlines or court dates mentioned, and a brief one-sentence summary of what the person is asking for. This structured output is what drives every downstream decision — who to route it to, what response template to use, and where to log it.</p>
+
+      <p><strong>Stage 4: Draft.</strong> Based on the classification and extracted details, the system generates a draft response. For a new prospect in a family law matter, the draft acknowledges the inquiry by name, references the specific practice area, gives a realistic timeframe for when an attorney will follow up personally, and sets expectations for next steps. The draft goes into a review queue — the attorney or paralegal sees the original email, the AI's classification, the extracted data, and the suggested response, all in one place. <strong>Nothing is sent without human approval.</strong> The AI drafts; the human decides.</p>
+
+      <p><strong>Stage 5: Route.</strong> Routing is deterministic, not probabilistic. The system uses the practice area and classification to send the matter to the correct attorney or paralegal based on pre-configured rules. A family law inquiry goes to the attorney designated for domestic relations. An urgent criminal matter gets flagged and pushed to the defense attorney with a priority notification. An existing client message is matched to their assigned attorney in the practice management system. The routing engine doesn't guess — it follows rules the firm defines.</p>
+
+      <p><strong>Stage 6: Log.</strong> Every inquiry is recorded with a timestamp, classification, routing decision, and response time. This creates an auditable intake record and feeds into the metrics dashboard. For the first time, the firm can answer basic questions about its pipeline: how many leads came in this month, what the average response time was, which practice areas generate the most inquiries, and what percentage of consultations come from initial email contact.</p>
+
+      <h2>Expected Metrics</h2>
+
+      <p>Here's what a five-attorney firm should expect from deploying <strong>legal lead response</strong> automation, based on similar implementations:</p>
+
+      <ul>
+        <li><strong>First response time:</strong> drops from 4–48 hours to under 5 minutes for acknowledgment. The drafted reply is waiting for attorney review within seconds of the inbound email, not days later.</li>
+        <li><strong>Lead capture rate:</strong> 100% of inquiries are classified, extracted, and logged. Nothing falls through the cracks. Every Friday 4:17 PM email has a record.</li>
+        <li><strong>Routing accuracy:</strong> practice-area-based routing eliminates the "wrong attorney" forwarding loop. Matters land with the right person on the first pass.</li>
+        <li><strong>Hours saved per week:</strong> roughly 4–7 hours of administrative time across a five-attorney firm — time previously spent scanning the inbox, forwarding messages, re-entering data, and chasing routing questions.</li>
+      </ul>
+
+      <p>These are not projections based on best-case assumptions. They're conservative estimates grounded in the mechanical reality of removing manual steps from a linear process. The biggest variable is how quickly attorneys choose to review and approve the drafts — but even with a two-hour review window, the prospect has received acknowledgment in minutes rather than days.</p>
+
+      <h2>Execution Plan</h2>
+
+      <div class="execution-box">
+        <h3>Tools &amp; APIs</h3>
+        <p>This pipeline uses a cloud-based large language model API for classification and draft generation, connected to the firm's existing email via IMAP. Email intake runs on a lightweight server or cloud function that polls the inbox at configurable intervals (or uses push notifications where the email provider supports it). The AI model is prompted with structured JSON output requirements — classification labels, extracted fields, and draft text — so the downstream routing logic receives clean, predictable data. Deterministic routing code (Python or Node.js) reads the structured output and forwards everything to the right destination. The entire system can run on a $30–50/month cloud instance.</p>
+
+        <h3>Classification Taxonomy</h3>
+        <p>The AI sorts every inbound email into one of these categories:</p>
+        <ul>
+          <li><strong>NEW_PROSPECT:</strong> First-time inquiry from someone seeking legal representation. The core of the intake pipeline.</li>
+          <li><strong>EXISTING_CLIENT:</strong> Message from someone the firm already represents. Routed directly to their assigned attorney, not the intake flow.</li>
+          <li><strong>COURT_FILING:</strong> Documents or notices from a court. Flagged for immediate paralegal review.</li>
+          <li><strong>OPPOSING_COUNSEL:</strong> Communication from another attorney on an active matter. Routed to the handling attorney.</li>
+          <li><strong>VENDOR_INVOICE:</strong> Bills or service communications from experts, court reporters, process servers. Routed to the office manager.</li>
+          <li><strong>CONSULTATION_REQUEST:</strong> A subset of NEW_PROSPECT where the sender explicitly asks to schedule a meeting. Triggers a response with calendar availability.</li>
+          <li><strong>URGENT_MATTER:</strong> Any email indicating an immediate deadline, court appearance, or time-sensitive legal need. Flagged with priority and pushes a notification to the relevant attorney.</li>
+          <li><strong>OTHER:</strong> Catch-all for newsletters, spam that made it through filters, personal emails sent to the wrong address. Logged and archived without routing.</li>
+        </ul>
+
+        <h3>Routing Rules</h3>
+        <p>Routing is configured per firm based on their practice areas and staff assignments. A typical setup for a five-attorney general practice firm:</p>
+        <ul>
+          <li><strong>Family law</strong> (divorce, custody, adoption) → Attorney A</li>
+          <li><strong>Corporate &amp; business</strong> (contracts, entity formation, disputes) → Attorney B</li>
+          <li><strong>Criminal defense</strong> (DUI, misdemeanors, felonies) → Attorney C</li>
+          <li><strong>Estate planning &amp; probate</strong> → Attorney D</li>
+          <li><strong>Personal injury</strong> → Attorney E</li>
+          <li>Any inquiry flagged <strong>URGENT_MATTER</strong> skips the normal queue and sends a priority notification (SMS or push) to the relevant attorney immediately.</li>
+          <li><strong>EXISTING_CLIENT</strong> messages are matched to their assigned attorney from the practice management system record. If no record is found, they route to the managing partner for manual assignment.</li>
+        </ul>
+
+        <h3>Response Templates</h3>
+        <p>Every draft response follows a three-part structure: <strong>acknowledge, set expectations, give next steps.</strong> The AI fills in the specifics based on the extracted data. Example for a NEW_PROSPECT family law inquiry:</p>
+        <pre><code>Subject: Re: Consultation request — family law matter
+
+Dear [Prospect Name],
+
+Thank you for reaching out to [Firm Name]. I've received your inquiry
+regarding [matter type — e.g., divorce proceedings] and have forwarded
+it to [Attorney Name], who handles family law matters for our firm.
+
+[Attorney Name] reviews new inquiries within [timeframe — e.g., one
+business day] and will reach out to you directly at [phone number] or
+[email address] to discuss your situation and next steps.
+
+In the meantime, here's what you can expect from an initial consultation:
+we'll discuss your circumstances, outline the legal framework that
+applies, and give you a clear picture of timeline, costs, and your
+options — no obligation, no pressure.
+
+If you have any urgent questions before [Attorney Name] contacts you,
+please call our office at [phone] during business hours.
+
+Best regards,
+[Firm Name]</code></pre>
+        <p>This draft goes into the review queue. The attorney can approve it as-is, edit it, or discard it and write their own. The key is that <strong>the prospect receives a substantive acknowledgment within minutes,</strong> not a generic autoresponder and not silence.</p>
+
+        <h3>Integration Points</h3>
+        <p>The core pipeline — classify, extract, draft, route, log — delivers value immediately without connecting to anything else. That said, there are natural integration points that extend its usefulness over time:</p>
+        <ul>
+          <li><strong>Conflict check database:</strong> Before a draft response is generated for a NEW_PROSPECT, the system could query the firm's conflict database using the extracted names and flag potential conflicts for attorney review.</li>
+          <li><strong>Practice management software</strong> (Clio, MyCase, PracticePanther): Extracted contact data can be pushed directly into the firm's matter management system, creating a new contact record or inquiry entry without manual data entry.</li>
+          <li><strong>Calendar / scheduling:</strong> For CONSULTATION_REQUEST classifications, the draft response can include a link to the attorney's scheduling page so the prospect can book directly into an open slot.</li>
+        </ul>
+        <p>None of these integrations are required for the pipeline to produce results. They're progressive enhancements that layer in as the firm's needs grow. The immediate win — fast, consistent, logged intake — works on day one with email access and the AI pipeline alone.</p>
+      </div>
+
+      <div class="execution-box">
+        <h3>Success Metrics to Track</h3>
+        <div>
+          <span class="metric">First response time</span>
+          <span class="metric">Lead capture rate</span>
+          <span class="metric">Routing accuracy</span>
+          <span class="metric">Hours saved/week</span>
+          <span class="metric">Conversion rate</span>
+        </div>
+        <p style="margin-top:1rem;">Track these from day one. The automation should produce a monthly report showing each metric against baseline — the firm's manual-intake numbers from the preceding quarter. If first response time doesn't drop below 10 minutes and routing accuracy isn't above 95%, something in the pipeline needs adjustment.</p>
+      </div>
+
+      <p style="margin-top: 2rem;"><a href="/intake" style="border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 0.15rem;">Interested in this for your firm? Start an intake →</a></p>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="/#services">Services</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/build-concepts/">Build Concepts</a>
+        <a href="/#about">About</a>
+        <a href="mailto:contact@kavikworks.com">Contact</a>
+      </div>
+      <div class="footer-copy">&copy; 2026 Robot Arms LLC, dba Kavik Works.</div>
+    </div>
+  </footer>
+</body>
+</html>

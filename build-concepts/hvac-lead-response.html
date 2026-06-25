@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HVAC Lead Routing &amp; Quote Follow-Up — Kavik Works Build Concepts</title>
+  <meta name="description" content="Automated email pipeline for HVAC contractors that classifies, routes, and responds to lead inquiries in under two minutes — so emergency calls get dispatched immediately and estimate requests get acknowledged before the homeowner calls your competitor.">
+  <link rel="canonical" href="https://kavikworks.com/build-concepts/hvac-lead-response.html">
+  <meta name="robots" content="index, follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --white: #ffffff; --gray-300: #d4d4d4; --gray-400: #a3a3a3; --gray-500: #737373; --gray-600: #525252; --gray-700: #404040; --gray-800: #262626; --gray-900: #171717; --gray-950: #0a0a0a; --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: var(--font-sans); color: var(--gray-300); background: var(--gray-950); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3 { color: var(--white); line-height: 1.2; font-weight: 600; }
+    h1 { font-size: clamp(2rem, 4vw, 2.75rem); letter-spacing: -0.03em; margin-bottom: 0.5rem; }
+    h2 { font-size: 1.4rem; letter-spacing: -0.02em; margin: 2.5rem 0 1rem; padding-top: 0.5rem; border-top: 1px solid rgba(255,255,255,0.06); }
+    h3 { font-size: 1.1rem; margin: 1.75rem 0 0.5rem; }
+    p { max-width: 680px; margin-bottom: 1rem; color: var(--gray-400); line-height: 1.7; }
+    a { color: var(--white); text-decoration: none; }
+    ul, ol { margin: 0 0 1.5rem 1.5rem; color: var(--gray-400); }
+    li { margin-bottom: 0.4rem; line-height: 1.6; }
+    .mono { font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gray-500); }
+    .container { max-width: 800px; margin: 0 auto; padding: 0 2rem; }
+    strong { color: var(--white); font-weight: 600; }
+    code { font-family: var(--font-mono); font-size: 0.82rem; background: rgba(255,255,255,0.05); padding: 0.15rem 0.4rem; border-radius: 4px; color: var(--gray-300); }
+    pre { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 1.25rem 1.5rem; overflow-x: auto; margin: 1rem 0 1.5rem; font-size: 0.82rem; }
+    pre code { background: none; padding: 0; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(10,10,10,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    nav .container { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-logo { font-weight: 700; font-size: 1.1rem; color: var(--white); letter-spacing: -0.02em; }
+    .nav-links { display: flex; gap: 1.75rem; align-items: center; }
+    .nav-links a { font-size: 0.875rem; color: var(--gray-400); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--white); }
+
+    .article-header { padding: 8rem 0 2rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .article-header .back-link { font-family: var(--font-mono); font-size: 0.78rem; color: var(--gray-500); display: inline-block; margin-bottom: 1.5rem; }
+    .article-header .back-link:hover { color: var(--gray-300); }
+    .article-header .industry-tag { display: inline-block; font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.2rem 0.6rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; color: var(--gray-500); margin-bottom: 1rem; }
+    .article-header .pipeline { font-family: var(--font-mono); font-size: 0.85rem; color: var(--gray-500); margin: 1rem 0; }
+
+    .pipeline-visual { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin: 1.5rem 0; padding: 1.5rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; }
+    .pipeline-stage { padding: 0.5rem 0.9rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; font-family: var(--font-mono); font-size: 0.75rem; color: var(--gray-300); white-space: nowrap; }
+    .pipeline-arrow { color: var(--gray-600); font-family: var(--font-mono); font-size: 0.85rem; }
+
+    .article-body { padding: 3rem 0 5rem; }
+
+    .execution-box { margin: 2rem 0; padding: 2rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; }
+    .execution-box h3 { margin-top: 0; }
+    .execution-box .metric { display: inline-block; padding: 0.4rem 0.8rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-radius: 6px; font-family: var(--font-mono); font-size: 0.8rem; color: var(--gray-300); margin: 0.25rem 0.5rem 0.25rem 0; }
+
+    footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 3rem 0; }
+    footer .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-links { display: flex; gap: 2rem; }
+    .footer-links a { font-size: 0.85rem; color: var(--gray-500); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gray-300); }
+    .footer-copy { font-size: 0.8rem; color: var(--gray-600); }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <a href="/" class="nav-logo">Kavik Works</a>
+      <div class="nav-links">
+        <a href="/#services">Services</a>
+        <a href="/#how-it-works">How It Works</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/build-concepts/">Build Concepts</a>
+        <a href="/#about">About</a>
+        <a href="/intake">Get Started</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="article-header">
+    <div class="container">
+      <a href="/build-concepts/" class="back-link">← Back to Build Concepts</a>
+      <span class="industry-tag">Home Services</span>
+      <h1>HVAC Lead Routing &amp; Quote Follow-Up</h1>
+      <div class="pipeline">Inquiry → classify → extract → route → draft → schedule</div>
+    </div>
+  </section>
+
+  <section class="article-body">
+    <div class="container">
+
+      <h2>The Problem</h2>
+
+      <p>It's 7:30 PM on a July evening in Phoenix. The temperature outside is 107°F. A homeowner with two young children comes home to find the AC has quit — the house is 89°F and climbing. She pulls out her phone, searches "emergency AC repair near me," and sends an email to the first contractor whose website loads: <code>office@acmepros.com</code>. She describes the situation, includes her address and phone number, and asks how soon someone can come out. Her kids won't sleep in this heat. <strong>She needs a technician tonight — not tomorrow, not "sometime this week."</strong></p>
+
+      <p>Nobody sees her email until 8:00 AM the next morning, when the office manager arrives and starts sorting through the overnight inbox. By then, the homeowner has already called three other contractors. One of them answered the phone at 8:45 PM and had a tech at her door by 10:00 PM. That contractor now has a customer for life — and your company has another silent loss that the owner will never know about, buried in a shared inbox alongside vendor invoices, warranty claims, and "how much for a new furnace" estimate requests.</p>
+
+      <p>This is the daily reality for HVAC contractors handling 20+ inbound quote requests per day across a shared office email address. The problem isn't that the owner doesn't care about response time — it's that <strong>the inbox treats every message the same way.</strong> An emergency no-cool call in 107°F heat gets the same treatment as a homeowner casually asking for a ballpark furnace replacement quote they might act on in six months. By the time a human reads and sorts the inbox, the urgent leads have already moved on. That's the cost of manual <strong>HVAC lead response automation</strong> you don't have yet: not just missed revenue, but the reputation damage that comes from being the contractor who never replied.</p>
+
+      <p>The contractors winning in home services today aren't necessarily the ones with the best technicians or the lowest prices. They're the ones who respond first. In roofing, plumbing, electrical, and HVAC — the entire home services category — <strong>speed of response is the single biggest predictor of lead conversion.</strong> A homeowner with no AC doesn't fill out five contact forms and wait patiently. They send two or three inquiries and hire whoever gets back to them fastest. Automating the lead response pipeline doesn't eliminate the need for skilled technicians or good pricing. It just ensures you're the one who shows up first.</p>
+
+      <h2>How It Breaks Today</h2>
+
+      <p>Let's walk through what happens right now when a quote request or service call lands in <code>office@</code> at a typical 15–30 employee HVAC shop. The workflow is manual, sequential, and bottlenecked around a single person — usually the office manager or the owner.</p>
+
+      <p><strong>Step one: manual triage.</strong> Someone opens the shared inbox and scans the subject lines. "AC not cooling" — emergency? Maybe. "Furnace estimate" — low urgency. "Schedule change for tomorrow" — needs attention but isn't a lead. "Invoice from Carrier" — vendor mail, ignore. The office manager reads each message and tries to decide who it goes to, based on geography and service type. This takes 30–90 seconds per email. At 20 messages a day, that's 10–30 minutes of pure sorting — and that's on a good day, before the emergency calls start disrupting everything.</p>
+
+      <p><strong>Step two: the forwarding lottery.</strong> The office manager forwards the message to whichever technician seems right. "Phoenix metro, residential AC repair — that's Mike's territory." But Mike might be booked tomorrow, or already on a call, or taking the day off. The office manager doesn't always know. So the email goes to Mike. Mike reads it an hour later between jobs, sees he can't take it, and forwards it to Dave. Dave reads it forty minutes later. The homeowner hasn't heard anything from anyone for two hours. Three hours. They've already called someone else.</p>
+
+      <p><strong>Step three: the response vacuum.</strong> Even when the right technician gets the lead, drafting a reply takes time. They're in a truck, or on a roof, or up to their elbows in a condenser unit. They might fire off a quick "can come by tomorrow" from their phone, or they might mentally queue it and forget. There's no standard response, no guarantee anything went out, and no record that the lead existed at all unless it turns into a job. The entire interaction evaporates into the email archive.</p>
+
+      <p><strong>Step four: the emergency blind spot.</strong> After hours, weekends, and holidays — the pipeline stops completely. Not because the company can't run emergency calls (most HVAC contractors have an on-call rotation), but because <strong>nobody is reading the inbox.</strong> The on-call tech relies on phone calls to a separate dispatch number. But homeowners don't always call — they email, they fill out web forms, they send Facebook messages. Every one of those channels flows into the same unmonitored inbox. The emergency that should have triggered an immediate dispatch sits unread until Monday morning.</p>
+
+      <h2>The Automated Pipeline</h2>
+
+      <p>An automated lead routing pipeline doesn't replace your dispatcher or your technicians. It replaces the manual sorting, forwarding, and draft-writing that consumes hours every week and introduces the delays that kill leads. Here's what the workflow looks like with <strong>home services email automation</strong> in place.</p>
+
+      <div class="pipeline-visual">
+        <div class="pipeline-stage">Inquiry detected</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Classify</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Extract</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Route</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Draft</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Schedule</div>
+      </div>
+
+      <p><strong>Stage 1: Inbound inquiry detected.</strong> The system monitors the contractor's intake address via IMAP — the same protocol every email provider supports. When a new message arrives, the pipeline triggers immediately. Doesn't matter if it's 7:30 PM on a Saturday or 5:00 AM on a Tuesday. The message is picked up within seconds of hitting the inbox. Web form submissions, forwarded Facebook messages, emails sent directly from the website — all land in the same intake address and get processed the same way.</p>
+
+      <p><strong>Stage 2: Classify.</strong> The message content goes to a cloud AI model with a structured classification prompt. The model reads the full email and assigns it a category. This is not keyword matching — a message that says "my AC quit" gets classified differently than "how much to replace a 3-ton unit." The model distinguishes between an emergency repair call that needs a technician tonight and a routine estimate request that can wait until business hours. It also recognizes non-lead emails: schedule changes, vendor inquiries, warranty claims, and existing customer follow-ups. Classification takes under two seconds.</p>
+
+      <p><strong>Stage 3: Extract.</strong> The AI pulls structured data from the message: the homeowner's name, phone number, full address, the service type (AC repair, furnace replacement, heat pump install, duct cleaning), any equipment details mentioned (brand, model, age), and the urgency signals in the language ("need this fixed tonight," "no heat with a newborn," "just looking for a ballpark"). This structured output drives every downstream decision — routing, response template selection, and scheduling priority.</p>
+
+      <p><strong>Stage 4: Route.</strong> Routing is deterministic, based on rules the contractor defines. A residential AC emergency in Mesa goes to the tech covering that territory this week. A commercial HVAC estimate goes to the commercial estimator. A warranty claim goes to the service manager. The routing engine uses the extracted location and service type to match each lead to the right person — no forwarding chains, no "wrong tech" delays, no messages sitting in someone's inbox while they're on vacation.</p>
+
+      <p><strong>Stage 5: Draft.</strong> The system generates a response based on the classification. Emergency repair inquiries get an immediate acknowledgement with an ETA window and dispatch status. Estimate requests get a confirmation that someone will follow up with a quote within a defined timeline. The draft goes into a review queue — the technician or dispatcher sees the original email, the classification, the extracted data, and the suggested response all in one place. <strong>Nothing is sent without human approval.</strong> But because the draft is already written, approval takes seconds, not minutes.</p>
+
+      <p><strong>Stage 6: Schedule.</strong> For emergency repair classifications, the pipeline feeds directly into the dispatch calendar — flagging availability based on the on-call rotation and the tech's current location. For estimate requests, the system suggests scheduling windows and can push availability into the contractor's existing scheduling or CRM tool. Every lead is timestamped and logged, creating a complete audit trail from inquiry to response to outcome.</p>
+
+      <h2>Expected Metrics</h2>
+
+      <p>Here's what a 15–30 employee HVAC contractor handling 20+ quote requests per day should expect from deploying <strong>contractor lead routing</strong> automation:</p>
+
+      <ul>
+        <li><strong>First response time:</strong> drops from 3+ hours to under 2 minutes for emergency classifications, and under 15 minutes for estimate requests. The drafted reply is waiting for review within seconds, not hours later when someone finally reads the inbox.</li>
+        <li><strong>Emergency dispatch speed:</strong> emergency repair calls that used to sit in the shared inbox overnight are now classified, routed, and pushed to the on-call technician's phone within 60 seconds — 24/7, including weekends and holidays.</li>
+        <li><strong>Lead capture rate:</strong> 100% of inquiries are classified, extracted, and logged. Nothing disappears into the email archive. Every quote request has a record, whether it converts or not.</li>
+        <li><strong>Routing accuracy:</strong> geographic and service-type routing eliminates the forwarding chain. Leads land with the right technician on the first pass, based on territory, equipment type, and current workload.</li>
+        <li><strong>Hours saved per week:</strong> roughly 5–10 hours of office staff time — time previously spent reading, sorting, forwarding, and manually drafting responses to routine inquiries.</li>
+      </ul>
+
+      <p>These numbers assume the contractor has clear routing rules in place — defined territories, defined service type assignments, and an on-call rotation the pipeline can reference. The automation doesn't create those rules; it executes them. If the routing logic is sloppy, the output will be too. But for a shop that already has a dispatch structure and just needs the inbox to feed into it automatically, these metrics are realistic from week one.</p>
+
+      <h2>Execution Plan</h2>
+
+      <div class="execution-box">
+        <h3>Tools &amp; APIs</h3>
+        <p>This pipeline uses a cloud-based large language model API for classification and draft generation, connected to the contractor's existing email via IMAP. Email intake runs on a lightweight server or cloud function that triggers on new messages. The AI model is prompted with structured JSON output requirements — classification labels, extracted fields, and draft text — so the downstream routing logic receives clean, predictable data. Deterministic routing code (Python or Node.js) reads the structured output from the AI and forwards leads to the correct technician based on the contractor's pre-configured rules for territory, service type, and on-call rotation. A notification layer (SMS, push notification, or Slack) alerts the assigned technician when an emergency classification hits their queue. The entire system runs on a $30–60/month cloud instance with no per-message costs beyond the AI API usage — roughly 3–5 cents per classification and draft, or about $30–50/month in API costs for a shop handling 600+ inbound inquiries.</p>
+
+        <h3>Classification Taxonomy</h3>
+        <p>The AI sorts every inbound email into one of these categories:</p>
+        <ul>
+          <li><strong>EMERGENCY_REPAIR:</strong> No heat, no cooling, water leak, gas smell — any situation where the homeowner needs a technician dispatched immediately. Triggers instant routing to the on-call tech with a priority notification.</li>
+          <li><strong>ESTIMATE_REQUEST:</strong> A homeowner asking for pricing on new equipment, replacement, or installation. No urgency signals. Triggers an acknowledgement with a defined quote timeline and routes to the appropriate estimator.</li>
+          <li><strong>SCHEDULE_CHANGE:</strong> An existing customer rescheduling or confirming an appointment. Routed to the dispatcher or office manager for calendar adjustment.</li>
+          <li><strong>EXISTING_CUSTOMER:</strong> Follow-up questions, service issues on previously completed work, or general inquiries from someone already in the customer database. Routed to the original technician or service manager.</li>
+          <li><strong>VENDOR_INQUIRY:</strong> Communications from equipment suppliers, parts distributors, or subcontractors. Routed to the office manager or purchasing.</li>
+          <li><strong>WARRANTY_CLAIM:</strong> A homeowner or builder submitting a warranty issue on installed equipment. Routed to the warranty or service manager with equipment and install date details extracted.</li>
+          <li><strong>OTHER:</strong> Catch-all for spam, solicitations, personal emails sent to the wrong address, generic newsletters. Logged and archived without routing.</li>
+        </ul>
+
+        <h3>Routing Rules</h3>
+        <p>Routing is configured per contractor based on their service territory map, technician specialties, and on-call schedule. A typical setup for a Phoenix-area HVAC contractor with 15 technicians:</p>
+        <ul>
+          <li><strong>Geographic routing:</strong> Leads are assigned to the technician whose territory covers the extracted address. Territories might be defined by ZIP code ranges (85001–85099 → Tech A), city boundaries, or drive-time zones from the shop's dispatch center.</li>
+          <li><strong>Service type routing:</strong> Residential AC repair goes to residential service techs. Commercial HVAC goes to the commercial team. New construction and rough-in inquiries go to the install crew. Refrigeration calls go to the refrigeration specialist.</li>
+          <li><strong>Emergency escalation:</strong> Any email classified EMERGENCY_REPAIR skips the normal review queue and triggers an immediate notification (SMS or push) to the on-call technician for that geography. The notification includes the customer's name, address, phone number, and a one-line summary of the issue — everything the tech needs to call the homeowner back from the truck.</li>
+          <li><strong>Workload awareness:</strong> The routing logic checks the assigned technician's current schedule. If Tech A has five open jobs and Tech B in the same territory has two, the lead routes to Tech B. This requires integration with the dispatch calendar but eliminates the "I forwarded it to Mike but he's slammed" problem.</li>
+          <li><strong>Override rules:</strong> Specific customers or high-value accounts can be flagged for priority routing to a designated account manager regardless of geography. Builders and property managers who send repeat business get white-glove routing.</li>
+        </ul>
+
+        <h3>Response Templates</h3>
+        <p>Every draft response follows a three-part structure: <strong>acknowledge the specific situation, set expectations for next steps, give a concrete timeline.</strong> The AI fills in the specifics based on extracted data. Example for an EMERGENCY_REPAIR classification:</p>
+        <pre><code>Subject: Re: AC not cooling — technician dispatched
+
+[Homeowner Name],
+
+We've received your emergency service request regarding your [AC unit /
+furnace / heat pump] at [extracted address]. We understand this is
+urgent — [summary of issue from the email].
+
+A technician has been notified and will be in touch within [ETA window,
+e.g., 15 minutes] with an estimated arrival time. Our on-call tech
+covers your area and is equipped with common repair parts for [brand /
+equipment type if mentioned].
+
+If you haven't heard from the technician within 30 minutes, please call
+our emergency dispatch line at [phone number].
+
+[Company Name]
+24-Hour Emergency Service: [phone]</code></pre>
+        <p>For an ESTIMATE_REQUEST:</p>
+        <pre><code>Subject: Re: Estimate request — [equipment type]
+
+[Homeowner Name],
+
+Thanks for reaching out about [equipment type — furnace replacement, AC
+install, heat pump conversion] at [address if provided].
+
+[Estimator Name], who handles [geographic area], will follow up with
+you by [timeframe — e.g., end of next business day] to discuss your
+project, answer questions, and schedule a site visit if needed. In the
+meantime, here's what helps us give you the most accurate quote:
+
+- The approximate square footage of your home
+- The age and model of your current equipment (if known)
+- Any specific concerns or preferences (efficiency, budget range, noise)
+
+If you have photos of your existing setup, feel free to reply with
+those — they help us prepare before we come out.
+
+[Company Name]
+[phone number]</code></pre>
+        <p>Both drafts go into the review queue. The technician or dispatcher approves, edits, or replaces them. The homeowner receives a substantive, personalized response within minutes — not a generic "thanks for your inquiry" autoresponder, and not silence. For emergency calls, the combination of instant classification and SMS notification to the on-call tech means the homeowner gets both the acknowledgement <em>and</em> a phone call from a real person, often within 10–15 minutes of hitting send.</p>
+
+        <h3>Integration Points</h3>
+        <p>The core pipeline — classify, extract, route, draft, schedule — delivers immediate value with nothing more than email access and the AI pipeline. There are integration points that extend it further:</p>
+        <ul>
+          <li><strong>Dispatch software</strong> (ServiceTitan, Housecall Pro, Jobber): Push classified leads directly into the dispatch board. Emergency calls create a new job with priority flagging. Estimate requests create a lead record with the extracted details pre-filled. This eliminates duplicate data entry and ensures the dispatch calendar reflects every inbound inquiry, not just the ones that get manually entered.</li>
+          <li><strong>CRM</strong> (HubSpot, Salesforce, or industry-specific tools): Log every inquiry as a contact record with classification, source, timestamp, and outcome. Over time, this builds a lead database the contractor actually owns — instead of relying on the email archive as the system of record. It also enables follow-up sequences: if an estimate request doesn't convert in 30 days, the CRM can trigger a re-engagement email.</li>
+          <li><strong>Scheduling tool</strong> (Calendly, Acuity, or dispatch-native scheduling): For estimate requests, the response draft can include a link that lets the homeowner self-schedule a site visit directly into an open slot on the estimator's calendar. This reduces the back-and-forth of "what time works for you" and gets the estimate booked faster.</li>
+        </ul>
+        <p>None of these integrations are required for the pipeline to produce results. The immediate win — emergency calls dispatched in minutes instead of hours, estimate requests acknowledged before the homeowner calls a competitor — works on day one with just the email pipeline and the contractor's existing on-call rotation. The integrations layer in as the contractor's needs grow.</p>
+      </div>
+
+      <div class="execution-box">
+        <h3>Success Metrics to Track</h3>
+        <div>
+          <span class="metric">First response time</span>
+          <span class="metric">Emergency dispatch time</span>
+          <span class="metric">Lead capture rate</span>
+          <span class="metric">Routing accuracy</span>
+          <span class="metric">Hours saved/week</span>
+          <span class="metric">Conversion rate</span>
+        </div>
+        <p style="margin-top:1rem;">Track these from day one. The automation should produce a weekly report showing each metric against baseline — the contractor's manual-intake numbers from the preceding month. If emergency response time doesn't drop below 2 minutes and routing accuracy isn't above 90% within the first two weeks, the classification prompts or routing rules need tuning. The most common failure mode is under-specified territory definitions — if the extracted address lands in a ZIP code the routing table doesn't recognize, it falls to manual review. Close that gap and the pipeline runs clean.</p>
+      </div>
+
+      <p style="margin-top: 2rem;"><a href="/intake" style="border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 0.15rem;">Interested in this for your home services business? Start an intake →</a></p>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="/#services">Services</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/build-concepts/">Build Concepts</a>
+        <a href="/#about">About</a>
+        <a href="mailto:contact@kavikworks.com">Contact</a>
+      </div>
+      <div class="footer-copy">&copy; 2026 Robot Arms LLC, dba Kavik Works.</div>
+    </div>
+  </footer>
+</body>
+</html>

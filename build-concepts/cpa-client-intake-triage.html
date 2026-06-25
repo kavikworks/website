@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CPA Firm Client Intake & Tax Season Triage — Kavik Works Build Concepts</title>
+  <meta name="description" content="AI email automation for CPA firms that classifies, prioritizes, and routes 50+ daily tax season emails — new prospects, tax document submissions, IRS notices — in under two minutes.">
+  <link rel="canonical" href="https://kavikworks.com/build-concepts/cpa-client-intake-triage.html">
+  <meta name="robots" content="index, follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --white: #ffffff; --gray-300: #d4d4d4; --gray-400: #a3a3a3; --gray-500: #737373; --gray-600: #525252; --gray-700: #404040; --gray-800: #262626; --gray-900: #171717; --gray-950: #0a0a0a; --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: var(--font-sans); color: var(--gray-300); background: var(--gray-950); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3 { color: var(--white); line-height: 1.2; font-weight: 600; }
+    h1 { font-size: clamp(2rem, 4vw, 2.75rem); letter-spacing: -0.03em; margin-bottom: 0.5rem; }
+    h2 { font-size: 1.4rem; letter-spacing: -0.02em; margin: 2.5rem 0 1rem; padding-top: 0.5rem; border-top: 1px solid rgba(255,255,255,0.06); }
+    h3 { font-size: 1.1rem; margin: 1.75rem 0 0.5rem; }
+    p { max-width: 680px; margin-bottom: 1rem; color: var(--gray-400); line-height: 1.7; }
+    a { color: var(--white); text-decoration: none; }
+    ul, ol { margin: 0 0 1.5rem 1.5rem; color: var(--gray-400); }
+    li { margin-bottom: 0.4rem; line-height: 1.6; }
+    .mono { font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gray-500); }
+    .container { max-width: 800px; margin: 0 auto; padding: 0 2rem; }
+    strong { color: var(--white); font-weight: 600; }
+    code { font-family: var(--font-mono); font-size: 0.82rem; background: rgba(255,255,255,0.05); padding: 0.15rem 0.4rem; border-radius: 4px; color: var(--gray-300); }
+    pre { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 1.25rem 1.5rem; overflow-x: auto; margin: 1rem 0 1.5rem; font-size: 0.82rem; }
+    pre code { background: none; padding: 0; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(10,10,10,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    nav .container { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-logo { font-weight: 700; font-size: 1.1rem; color: var(--white); letter-spacing: -0.02em; }
+    .nav-links { display: flex; gap: 1.75rem; align-items: center; }
+    .nav-links a { font-size: 0.875rem; color: var(--gray-400); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--white); }
+
+    .article-header { padding: 8rem 0 2rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .article-header .back-link { font-family: var(--font-mono); font-size: 0.78rem; color: var(--gray-500); display: inline-block; margin-bottom: 1.5rem; }
+    .article-header .back-link:hover { color: var(--gray-300); }
+    .article-header .industry-tag { display: inline-block; font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.2rem 0.6rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; color: var(--gray-500); margin-bottom: 1rem; }
+    .article-header .pipeline { font-family: var(--font-mono); font-size: 0.85rem; color: var(--gray-500); margin: 1rem 0; }
+
+    .pipeline-visual { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin: 1.5rem 0; padding: 1.5rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; }
+    .pipeline-stage { padding: 0.5rem 0.9rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; font-family: var(--font-mono); font-size: 0.75rem; color: var(--gray-300); white-space: nowrap; }
+    .pipeline-arrow { color: var(--gray-600); font-family: var(--font-mono); font-size: 0.85rem; }
+
+    .article-body { padding: 3rem 0 5rem; }
+
+    .execution-box { margin: 2rem 0; padding: 2rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; }
+    .execution-box h3 { margin-top: 0; }
+    .execution-box .metric { display: inline-block; padding: 0.4rem 0.8rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-radius: 6px; font-family: var(--font-mono); font-size: 0.8rem; color: var(--gray-300); margin: 0.25rem 0.5rem 0.25rem 0; }
+
+    footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 3rem 0; }
+    footer .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-links { display: flex; gap: 2rem; }
+    .footer-links a { font-size: 0.85rem; color: var(--gray-500); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gray-300); }
+    .footer-copy { font-size: 0.8rem; color: var(--gray-600); }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <a href="/" class="nav-logo">Kavik Works</a>
+      <div class="nav-links">
+        <a href="/#services">Services</a>
+        <a href="/#how-it-works">How It Works</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/build-concepts/">Build Concepts</a>
+        <a href="/#about">About</a>
+        <a href="/intake">Get Started</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="article-header">
+    <div class="container">
+      <a href="/build-concepts/" class="back-link">← Back to Build Concepts</a>
+      <span class="industry-tag">Accounting</span>
+      <h1>CPA Firm Client Intake &amp; Tax Season Triage</h1>
+      <div class="pipeline">Inquiry → classify → extract → prioritize → route → confirm</div>
+    </div>
+  </section>
+
+  <section class="article-body">
+    <div class="container">
+
+      <h2>The Problem</h2>
+
+      <p>It's March 15th — the Ides of March, and for a five-CPA firm, the deepest trench of tax season. The inbox at <code>office@firmnamecpa.com</code> has 62 unread messages and it's not even noon. A high-net-worth prospect with a complex multi-state return, partnership K-1s, and foreign asset reporting requirements emailed at 9:07 AM asking to discuss engagement. That email is now buried beneath 14 existing-client document submissions — 1099 packets, W-2 scans, brokerage statements — each with a subject line like "tax docs" and an attachment from a different client.</p>
+
+      <p>Nobody sees the prospect's email until 4:15 PM when a partner, exhausted from reviewing returns, scrolls far enough back in the inbox. By then the prospect has called another firm — one that answered in 20 minutes. That prospect represented roughly $4,500 in billings this season and a recurring annual relationship worth $35,000+ over five years. All of it gone, silently, without anyone in the firm ever knowing what was lost.</p>
+
+      <p>Meanwhile, an IRS CP2000 notice for an existing client — flagged <code>URGENT</code> in the subject line by the IRS itself — has been sitting unopened for two days. The administrative assistant saw it but didn't know who it belonged to. The tax preparer who handles that client is deep in a 1040 and hasn't checked non-client email since Tuesday. The notice has a 30-day response window, and 48 of those hours just evaporated because nothing in the firm's manual intake process identified it as a priority item.</p>
+
+      <p>This is what tax season looks like inside the typical small CPA practice. The volume of inbound email triples or quadruples between February and April, but the sorting mechanism doesn't scale — it's still the same admin clicking through the same inbox, making the same judgment calls on <strong>62 emails a day while also answering phones, greeting walk-ins, and processing payments.</strong> <strong>Accounting firm workflow automation</strong> addresses this directly: not by replacing the admin or the preparers, but by making sure every email is read, classified, and routed before a human ever needs to look at it.</p>
+
+      <p>The irony in accounting is particularly sharp. CPA firms sell precision, timeliness, and attention to detail. Their entire brand is built on not missing things. Yet the very mechanism that brings work into the firm — the shared inbox — is a black box where things get missed every single day during the busiest weeks of the year. A firm that files 800 returns on time can still lose a $35,000 client because an email scrolled off the first page of the inbox.</p>
+
+      <h2>How It Breaks Today</h2>
+
+      <p>Let's trace the path of a single email through the manual intake process during tax season. This isn't hypothetical — it's the daily reality for thousands of small to mid-sized CPA firms.</p>
+
+      <p><strong>Step one:</strong> an email arrives. It could be anything. A new prospect asking about tax prep services. An existing client attaching 14 brokerage statements for their Schedule D. An IRS notice with a deadline. A payroll provider confirming Q4 filings. A vendor sending an invoice for the firm's own subscription software. All of it lands in the same place, and all of it looks the same in the inbox: a subject line and a sender name.</p>
+
+      <p><strong>Step two:</strong> the front-desk administrator opens the inbox and starts triaging. They're not a CPA. They don't know which clients have which preparer without looking it up, and they don't know what an IRS CP2000 letter even means. They sort by what feels urgent — usually whatever is newest or whoever called to follow up. The rest gets mentally categorized as "someone will deal with it." The admin is doing their best, but they're being asked to perform triage in a domain they weren't trained for.</p>
+
+      <p><strong>Step three:</strong> forwarded emails land in preparers' inboxes with zero context. The forward says "FYI" or "can you handle?" with no indication of whether this is a new prospect, a document submission for an in-progress return, or something time-sensitive. The preparer, already working 60-hour weeks, opens the forward, reads the original message, and has to reconstruct the intent from scratch. This takes 2–5 minutes per email. Multiply by 50 emails a day, and the firm is burning 2–4 hours of CPA billable time on reading and re-classifying messages that could have been sorted automatically.</p>
+
+      <p><strong>Step four:</strong> acknowledgment is inconsistent. Some clients get a reply in 10 minutes because their preparer happened to be at their desk. Others wait two days because the email went to someone who's out sick or buried in a deadline. The prospect who emailed at 9 AM gets silence until 4 PM. The IRS notice sits. The existing client who submitted documents two days ago starts wondering if anyone received them, so they send a follow-up — adding yet another email to the pile. The firm's response behavior varies wildly, and variation is indistinguishable from unreliability in the client's eyes.</p>
+
+      <p>Each step compounds the problem. The manual intake process isn't just slow — it's <strong>non-deterministic</strong>. The same email received at 8 AM on a Tuesday gets handled differently than the same email received at 3 PM on a Friday. The outcome depends on who's in the office, who's overwhelmed, and who happens to scroll far enough. That's not a process — it's a lottery. And during tax season, the stakes are measured in lost clients, IRS penalties, and burned-out staff.</p>
+
+      <h2>The Automated Pipeline</h2>
+
+      <p><strong>CPA client intake automation</strong> doesn't replace the accountant's judgment — it makes sure their judgment is applied to the right things at the right time. Here's the workflow applied to the March 15th scenario.</p>
+
+      <div class="pipeline-visual">
+        <div class="pipeline-stage">Inquiry detected</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Classify</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Extract</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Prioritize</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Route</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Confirm</div>
+      </div>
+
+      <p><strong>Stage 1: Inbound email detected.</strong> The system monitors the firm's shared inbox via IMAP — no special email provider needed, no migration, no change to the firm's existing address. When a message arrives, the pipeline triggers immediately. March 15th at 9:07 AM, Saturday at 2 PM, April 14th at 11 PM — timing is irrelevant. The message is ingested within seconds of hitting the server.</p>
+
+      <p><strong>Stage 2: Classify.</strong> The message content — subject, body, attachments metadata — is sent to a cloud AI model with a tax-season-aware classification prompt. The model reads the full email contextually and assigns it to one of ten categories. It distinguishes between a new prospect inquiring about tax prep services and an existing client submitting W-2s for their in-progress return. It recognizes IRS notice formatting even when the subject line is cryptic. This is not regex pattern matching on keywords; the model understands that "here are the docs you asked for" is a document submission and "do you have availability to take on a new client this season?" is a prospect inquiry.</p>
+
+      <p><strong>Stage 3: Extract.</strong> Once classified, the AI pulls structured data from the message: sender name and email, client match (against the firm's existing client list if available), tax year referenced, document types mentioned (W-2, 1099, K-1, brokerage statement), any deadlines or IRS response dates, and a one-sentence summary of what the sender needs. This structured output is what the preparer sees — not a raw email, but a digest that tells them what they're looking at before they open it.</p>
+
+      <p><strong>Stage 4: Prioritize.</strong> This is the step that separates <strong>tax season email triage</strong> from generic inbox routing. The system assigns a priority level based on classification and extracted content. An IRS notice with a 30-day deadline gets <code>URGENT</code> — it pushes a notification to the relevant partner immediately. A new prospect inquiry gets <code>HIGH</code> — response-time-sensitive, but not an emergency. A vendor invoice gets <code>LOW</code> — it can wait until after April 15th. Document submissions from existing clients get <code>NORMAL</code> with an automatic confirmation (Stage 6). The priority flag ensures that partners see the IRS notice before the newsletter, every time.</p>
+
+      <p><strong>Stage 5: Route.</strong> Routing is deterministic based on pre-configured firm rules. A new prospect inquiry routes to the partner or senior CPA designated for consultations. Tax document submissions route to the assigned preparer for that client. IRS notices route to the partner responsible for IRS correspondence — with the URGENT flag if deadlines are detected. Bookkeeping questions go to the staff accountant handling that engagement. Payroll issues route to whoever manages payroll clients. The routing engine doesn't guess. It follows a routing table the firm defines once and updates as staff changes.</p>
+
+      <p><strong>Stage 6: Confirm.</strong> For document submissions from existing clients, the system automatically sends a confirmation reply: "We received your [W-2s, 1099s, brokerage statements] for tax year [2025] and [Preparer Name] will review them within [X business days]. Nothing else is needed from you right now." This acknowledgment — sent within 60 seconds of the client hitting send — eliminates the follow-up email cycle entirely. The client knows their documents arrived. They stop wondering. They stop calling. For new prospect inquiries, the system drafts an acknowledgment that goes to the partner's review queue — not sent automatically, but ready for one-click approval.</p>
+
+      <h2>Expected Metrics</h2>
+
+      <p>Here's what a five-CPA firm should expect from deploying <strong>accounting firm workflow automation</strong> for intake and triage, based on comparable implementations in professional services:</p>
+
+      <ul>
+        <li><strong>Prospect response time:</strong> drops from 4–8 hours (or next business day) to under 5 minutes for acknowledgment. The drafted reply is waiting for partner review within seconds of the inbound email. During tax season, this directly translates to prospects who stay versus prospects who call the next firm on Google.</li>
+        <li><strong>Document submission acknowledgment:</strong> 100% of existing-client document submissions receive confirmation within 60 seconds. The "did you get my documents?" follow-up email cycle — a major inbox multiplier during tax season — is eliminated.</li>
+        <li><strong>IRS notice detection:</strong> 100% of IRS correspondence is classified and flagged. The two-day notice blackout becomes impossible because the system doesn't get distracted, doesn't get tired, and doesn't skip emails it doesn't understand.</li>
+        <li><strong>Inbox sorting time saved:</strong> roughly 8–12 hours per week across a five-CPA firm during peak tax season — time the front-desk admin previously spent manually reading, guessing, and forwarding 50+ emails a day.</li>
+        <li><strong>CPA billable time recovered:</strong> 2–4 hours per week of preparer time that was spent re-reading forwarded emails and reconstructing context. At blended CPA rates, that's $400–$1,200 per week of recovered billable capacity — during the weeks when capacity is scarcest.</li>
+      </ul>
+
+      <p>These are not aspirational. They follow directly from removing manual classification and forwarding from a linear process. The system doesn't need to be perfect — it needs to be consistent. Consistency alone eliminates the lottery dynamic that costs firms prospects and puts clients at risk.</p>
+
+      <h2>Execution Plan</h2>
+
+      <div class="execution-box">
+        <h3>Tools &amp; APIs</h3>
+        <p>This pipeline uses a cloud-based large language model API for classification, extraction, and draft generation, connected to the firm's existing email via IMAP. Email intake runs on a lightweight server or cloud function — the same infrastructure used across all Build Concepts pipelines. The AI model is prompted for structured JSON output: classification label, extracted fields (client name, tax year, document types, deadlines), priority level, and draft response text. Routing logic is deterministic code (Python or Node.js) that reads the structured output and forwards to the correct preparer, partner, or staff member. The entire system runs on a $30–50/month cloud instance and operates independently of the firm's tax preparation software.</p>
+
+        <h3>Classification Taxonomy</h3>
+        <p>Every inbound email is sorted into one of these ten categories — designed specifically for the CPA firm inbox during and outside of tax season:</p>
+        <ul>
+          <li><strong>NEW_PROSPECT:</strong> First-time inquiry from someone seeking tax preparation, bookkeeping, or advisory services. Triggers partner review and a draft acknowledgment with consultation timeline.</li>
+          <li><strong>TAX_DOCUMENT_SUBMISSION:</strong> Existing client sending W-2s, 1099s, K-1s, brokerage statements, or other return-related documents. Triggers automatic confirmation reply and routing to assigned preparer.</li>
+          <li><strong>IRS_NOTICE:</strong> Any IRS correspondence — CP2000, audit notice, penalty assessment, installment agreement letter. Flagged URGENT if a response deadline is detected. Routes to the partner responsible for IRS representation.</li>
+          <li><strong>EXTENSION_REQUEST:</strong> Client requesting a filing extension. Seasonally time-sensitive. Routes to assigned preparer with an elevated priority during the weeks leading up to filing deadlines.</li>
+          <li><strong>BOOKKEEPING_QUESTION:</strong> Existing client with a question about ongoing bookkeeping, reconciliation, or financial statements. Routes to the staff accountant or bookkeeper assigned to that engagement.</li>
+          <li><strong>PAYROLL_ISSUE:</strong> Client question or problem related to payroll processing, quarterly filings, or W-2 issuance. Routes to the payroll specialist. Flagged HIGH if it involves a payroll deadline.</li>
+          <li><strong>VENDOR_INVOICE:</strong> Bills, subscriptions, or service communications from the firm's own vendors — software licenses, office supplies, continuing education providers. Routes to the office manager. LOW priority during tax season.</li>
+          <li><strong>EXISTING_CLIENT_GENERAL:</strong> Communication from an existing client that doesn't fit the above categories — scheduling, general questions, status updates. Routes to the assigned preparer or account manager.</li>
+          <li><strong>URGENT_DEADLINE:</strong> Any email indicating an imminent filing deadline, IRS response due date, or time-sensitive tax matter regardless of category. Overrides normal priority and pushes immediate notification to the relevant partner.</li>
+          <li><strong>OTHER:</strong> Catch-all for newsletters, professional organization communications, spam that evaded filters, personal emails. Logged and archived without routing. Keeps the triage pipeline clean.</li>
+        </ul>
+
+        <h3>Routing Rules</h3>
+        <p>Routing is configured per firm based on staff assignments and client relationships. A typical setup for a five-CPA firm during tax season:</p>
+        <ul>
+          <li><strong>NEW_PROSPECT</strong> → managing partner or senior CPA designated for new client consultations. If the prospect mentions a specific service (e.g., international tax, estate planning), routes to the CPA with that specialty.</li>
+          <li><strong>TAX_DOCUMENT_SUBMISSION</strong> → assigned preparer for that client, matched from the firm's client management system. If no preparer is assigned, routes to the tax manager for assignment.</li>
+          <li><strong>IRS_NOTICE</strong> → partner responsible for IRS correspondence, always with the URGENT flag if a response deadline is detected. A secondary notification goes to the firm's managing partner as a safety net.</li>
+          <li><strong>EXTENSION_REQUEST</strong> → assigned preparer. If received within 7 days of a filing deadline, elevated to HIGH priority with a 24-hour expected response window.</li>
+          <li><strong>BOOKKEEPING_QUESTION</strong> → staff accountant or bookkeeper assigned to that client's engagement.</li>
+          <li><strong>PAYROLL_ISSUE</strong> → payroll specialist or CPA managing payroll clients. HIGH priority if it references a payroll tax deposit deadline.</li>
+          <li><strong>VENDOR_INVOICE</strong> → office manager or firm administrator. LOW priority, batched for weekly review during tax season.</li>
+          <li><strong>URGENT_DEADLINE</strong> overrides all standard routing — pushes SMS or push notification to the relevant preparer or partner immediately, regardless of time of day.</li>
+        </ul>
+
+        <h3>Response Templates</h3>
+        <p>Every draft response follows a consistent structure: <strong>acknowledge what was received, set expectations for timing, provide next steps.</strong> The AI fills in specifics from the extracted data. Two core templates cover the highest-volume scenarios:</p>
+
+        <p><strong>TAX_DOCUMENT_SUBMISSION — automatic confirmation (sent immediately, no human review needed):</strong></p>
+        <pre><code>Subject: Re: Tax documents received — [Tax Year]
+
+Dear [Client Name],
+
+We've received your [document types — e.g., W-2s, 1099-DIV,
+brokerage statements] for the [Tax Year] tax year. [Preparer Name]
+will review these and reach out if anything additional is needed.
+
+Your return is currently in our preparation queue, and we expect to
+have it ready for your review by [estimated timeframe based on current
+workload — e.g., within 10 business days]. We'll contact you as soon
+as it's complete.
+
+Nothing else is needed from you at this time. If you have questions
+in the meantime, you can reach [Preparer Name] directly at
+[preparer email] or call our office at [phone].
+
+Best regards,
+[Firm Name]</code></pre>
+
+        <p><strong>NEW_PROSPECT — draft for partner review (human-approved before sending):</strong></p>
+        <pre><code>Subject: Re: Tax preparation inquiry
+
+Dear [Prospect Name],
+
+Thank you for reaching out to [Firm Name] about your [tax year /
+specific need — e.g., 2025 tax preparation, multi-state filing].
+I've forwarded your inquiry to [Partner Name], who handles new
+client consultations for our firm.
+
+[Partner Name] typically responds to new inquiries within [timeframe —
+e.g., one business day] and will reach out to you directly at
+[phone or email] to discuss your situation, answer your questions,
+and outline how we would approach your engagement.
+
+In the meantime, here's what an initial consultation involves:
+we'll discuss your tax situation, identify any areas of complexity
+or opportunity, and provide a clear engagement letter with scope
+and fee structure — transparent pricing, no surprises.
+
+If you need immediate assistance, please call our office at [phone].
+
+Best regards,
+[Firm Name]</code></pre>
+
+        <p>For IRS notices, a third template flags the notice for urgent partner attention without sending an automated reply to the IRS — all IRS correspondence handling decisions remain with the partner. The system's role is to make sure the partner sees it within minutes, not to communicate with the IRS on the firm's behalf.</p>
+
+        <h3>Integration Points</h3>
+        <p>The core pipeline — classify, extract, prioritize, route, confirm — delivers measurable results from day one without connecting to anything beyond email. Integration points add progressive value over time:</p>
+        <ul>
+          <li><strong>Tax preparation software</strong> (UltraTax, Lacerte, ProSeries, Drake): Extracted document metadata and submission records can be pushed into the firm's tax prep workflow. When a client submits documents, a notation can be added to that client's return record indicating documents received, date, and what was included — all without manual data entry.</li>
+          <li><strong>Document portal</strong> (ShareFile, Liscio, Canopy): For firms that use a client portal instead of email attachments, the pipeline can be extended to monitor portal uploads in addition to or instead of email. The same classification and routing logic applies; only the intake source changes.</li>
+          <li><strong>Calendar scheduling:</strong> For NEW_PROSPECT classifications, the draft response can include a link to the partner's scheduling page (Calendly, Acuity, or the firm's practice management scheduler) so the prospect can book a consultation directly into an open slot — reducing the back-and-forth of finding a mutually available time.</li>
+          <li><strong>Practice management software</strong> (CCH, TaxDome, Canopy): Extracted client data and inquiry records can be pushed into the firm's practice management system, creating an audit trail of every prospect inquiry, document submission, and IRS notice — organized by client, date, and type.</li>
+        </ul>
+        <p>None of these integrations are prerequisites. The immediate operational improvement — faster triage, consistent acknowledgments, zero missed IRS notices, and captured prospect inquiries — works with email alone. Everything else layers in as the firm's needs evolve.</p>
+      </div>
+
+      <div class="execution-box">
+        <h3>Success Metrics to Track</h3>
+        <div>
+          <span class="metric">Prospect response time</span>
+          <span class="metric">Doc confirmation rate</span>
+          <span class="metric">IRS notice detection</span>
+          <span class="metric">Sorting hours saved/wk</span>
+          <span class="metric">Prospect conversion rate</span>
+          <span class="metric">Billable hours recovered</span>
+        </div>
+        <p style="margin-top:1rem;">Track these from deployment day one. Compare tax season metrics to the prior year's baseline — same firm, same volume, different intake mechanism. The system should produce a weekly summary during tax season showing classification breakdown, average response times by category, and any URGENT items that required escalation. If document confirmation rate drops below 100% or IRS notices aren't detected within 60 seconds, something needs adjustment.</p>
+      </div>
+
+      <p style="margin-top: 2rem;"><a href="/intake" style="border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 0.15rem;">Interested in this for your firm? Start an intake →</a></p>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="/#services">Services</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/build-concepts/">Build Concepts</a>
+        <a href="/#about">About</a>
+        <a href="mailto:contact@kavikworks.com">Contact</a>
+      </div>
+      <div class="footer-copy">&copy; 2026 Robot Arms LLC, dba Kavik Works.</div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insurance Agency Quote Requests & Claims Routing — Kavik Works Build Concepts</title>
+  <meta name="description" content="AI email automation for independent insurance agencies that classifies, routes, and acknowledges commercial quotes, personal lines inquiries, and claims — so nothing sits in the inbox for hours.">
+  <link rel="canonical" href="https://kavikworks.com/build-concepts/insurance-quote-claims-routing.html">
+  <meta name="robots" content="index, follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --white: #ffffff; --gray-300: #d4d4d4; --gray-400: #a3a3a3; --gray-500: #737373; --gray-600: #525252; --gray-700: #404040; --gray-800: #262626; --gray-900: #171717; --gray-950: #0a0a0a; --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: var(--font-sans); color: var(--gray-300); background: var(--gray-950); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3 { color: var(--white); line-height: 1.2; font-weight: 600; }
+    h1 { font-size: clamp(2rem, 4vw, 2.75rem); letter-spacing: -0.03em; margin-bottom: 0.5rem; }
+    h2 { font-size: 1.4rem; letter-spacing: -0.02em; margin: 2.5rem 0 1rem; padding-top: 0.5rem; border-top: 1px solid rgba(255,255,255,0.06); }
+    h3 { font-size: 1.1rem; margin: 1.75rem 0 0.5rem; }
+    p { max-width: 680px; margin-bottom: 1rem; color: var(--gray-400); line-height: 1.7; }
+    a { color: var(--white); text-decoration: none; }
+    ul, ol { margin: 0 0 1.5rem 1.5rem; color: var(--gray-400); }
+    li { margin-bottom: 0.4rem; line-height: 1.6; }
+    .mono { font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gray-500); }
+    .container { max-width: 800px; margin: 0 auto; padding: 0 2rem; }
+    strong { color: var(--white); font-weight: 600; }
+    code { font-family: var(--font-mono); font-size: 0.82rem; background: rgba(255,255,255,0.05); padding: 0.15rem 0.4rem; border-radius: 4px; color: var(--gray-300); }
+    pre { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 1.25rem 1.5rem; overflow-x: auto; margin: 1rem 0 1.5rem; font-size: 0.82rem; }
+    pre code { background: none; padding: 0; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(10,10,10,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    nav .container { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-logo { font-weight: 700; font-size: 1.1rem; color: var(--white); letter-spacing: -0.02em; }
+    .nav-links { display: flex; gap: 1.75rem; align-items: center; }
+    .nav-links a { font-size: 0.875rem; color: var(--gray-400); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--white); }
+
+    .article-header { padding: 8rem 0 2rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .article-header .back-link { font-family: var(--font-mono); font-size: 0.78rem; color: var(--gray-500); display: inline-block; margin-bottom: 1.5rem; }
+    .article-header .back-link:hover { color: var(--gray-300); }
+    .article-header .industry-tag { display: inline-block; font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.2rem 0.6rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; color: var(--gray-500); margin-bottom: 1rem; }
+    .article-header .pipeline { font-family: var(--font-mono); font-size: 0.85rem; color: var(--gray-500); margin: 1rem 0; }
+
+    .pipeline-visual { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin: 1.5rem 0; padding: 1.5rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; }
+    .pipeline-stage { padding: 0.5rem 0.9rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; font-family: var(--font-mono); font-size: 0.75rem; color: var(--gray-300); white-space: nowrap; }
+    .pipeline-arrow { color: var(--gray-600); font-family: var(--font-mono); font-size: 0.85rem; }
+
+    .article-body { padding: 3rem 0 5rem; }
+
+    .execution-box { margin: 2rem 0; padding: 2rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; }
+    .execution-box h3 { margin-top: 0; }
+    .execution-box .metric { display: inline-block; padding: 0.4rem 0.8rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-radius: 6px; font-family: var(--font-mono); font-size: 0.8rem; color: var(--gray-300); margin: 0.25rem 0.5rem 0.25rem 0; }
+
+    footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 3rem 0; }
+    footer .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-links { display: flex; gap: 2rem; }
+    .footer-links a { font-size: 0.85rem; color: var(--gray-500); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gray-300); }
+    .footer-copy { font-size: 0.8rem; color: var(--gray-600); }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <a href="/" class="nav-logo">Kavik Works</a>
+      <div class="nav-links">
+        <a href="/#services">Services</a>
+        <a href="/#how-it-works">How It Works</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/build-concepts/">Build Concepts</a>
+        <a href="/#about">About</a>
+        <a href="/intake">Get Started</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="article-header">
+    <div class="container">
+      <a href="/build-concepts/" class="back-link">← Back to Build Concepts</a>
+      <span class="industry-tag">Insurance</span>
+      <h1>Insurance Agency Quote Requests &amp; Claims Routing</h1>
+      <div class="pipeline">Inquiry → classify → extract → route → acknowledge → notify</div>
+    </div>
+  </section>
+
+  <section class="article-body">
+    <div class="container">
+
+      <h2>The Problem</h2>
+
+      <p>It's 3:00 PM on a Tuesday. A commercial client — a manufacturing company with a $50,000 annual commercial package policy — discovers water damage at their facility and submits a claim by email to <code>info@agency.com</code>. Twelve minutes earlier, three quote requests came in: a personal auto inquiry from a website referral, a request for a general liability quote from a new contractor, and an existing client asking about adding a vehicle to their personal lines policy. All four messages land in the same inbox. Nobody sees the claim until the office manager clears the queue at 4:30 PM — and even then, she has to read each message to figure out what's what.</p>
+
+      <p>By the time the claims adjuster opens the water damage notification at 5:15 PM, the client's facilities manager has already called twice. The adjuster is now starting the claims process at the end of the business day, when carrier offices are closing and the restoration contractor can't be dispatched until morning. An extra day of water sitting in a commercial facility costs real money — and the client remembers who was slow to respond.</p>
+
+      <p>This pattern repeats daily at independent insurance agencies. <strong>A single info@ inbox receives everything:</strong> commercial quote requests worth tens of thousands in commission, personal lines inquiries from referral sources, claims that need immediate attention, certificate requests that should take 90 seconds, and routine carrier correspondence. Every message gets the same treatment: it sits in the queue until someone reads it, figures out what it is, and decides who should handle it. The $50K commercial package inquiry gets the same priority as the auto ID card request. The water damage claim waits behind a billing question.</p>
+
+      <p><strong>Insurance agency automation</strong> isn't about removing the human judgment that makes independent agencies valuable — it's about making sure that judgment gets applied to the right message at the right time. An 8-person agency writing $3-5 million in premium doesn't need more staff to handle 30-50 emails a day. It needs those emails to route themselves, so producers are working commercial opportunities while adjusters are handling claims — not both groups sifting through the same undifferentiated pile.</p>
+
+      <h2>How It Breaks Today</h2>
+
+      <p>Let's walk through what happens right now at a typical 8-person independent agency — two commercial lines producers, two personal lines agents, one claims adjuster, one CSR/account manager, one office manager, and the agency principal. All client and carrier email flows to <code>info@</code>.</p>
+
+      <p><strong>Step one:</strong> the office manager checks the inbox 3-4 times a day between answering phones, processing endorsements, and handling walk-in clients. She scans subject lines and sender names, opens each message, and makes a judgment call. Is this a new business opportunity? A claim? A certificate request? She's been doing this for years and is good at it — but she's not a producer and she's not an adjuster. She's making her best guess about commercial vs. personal lines, urgent vs. routine, $50K opportunity vs. $500 policy change.</p>
+
+      <p><strong>Step two:</strong> she forwards messages to whoever seems right. Commercial quote → commercial producer. Personal lines → personal lines agent. Claim → adjuster. But the commercial producer might be out at a client meeting. The adjuster might be on the phone with a carrier. The forward lands in their individual inbox, where it competes with internal emails, carrier notifications, and everything else they're juggling. No one knows how long it sat before being forwarded, and no one knows how long it sits after.</p>
+
+      <p><strong>Step three:</strong> the producer or agent eventually opens the forwarded message, reads the original inquiry, and starts from scratch. They pull the sender's name, look for a phone number buried in the signature, try to figure out what exactly is being requested, and draft a response. That response might go out in 30 minutes or 4 hours — entirely dependent on their schedule and whether they saw the forward at all.</p>
+
+      <p><strong>Step four:</strong> claims are the worst-case scenario. When a claim arrives at 3:00 PM and doesn't get forwarded until 4:30 PM, the adjuster is already wrapping up for the day. The acknowledgment doesn't go out until the next morning. For a commercial property claim, that delay means the client spent an evening wondering if their insurance agent even got the message — and started calling restoration companies themselves, potentially creating coverage problems that the adjuster now has to unwind.</p>
+
+      <p><strong>Step five:</strong> none of this is tracked. The agency has no data on how many commercial quotes came in, how quickly they were acknowledged, or what percentage converted. The principal knows they're probably losing opportunities to slow response, but they can't quantify it because the inbox is a black box. <strong>An agency that handles $5M in premium with an 85% retention rate is leaving real money on the table — not because the team isn't working hard, but because the work isn't reaching the right person fast enough.</strong></p>
+
+      <h2>The Automated Pipeline</h2>
+
+      <p>An automated routing pipeline doesn't replace the producer's expertise or the adjuster's judgment — it removes the sorting and forwarding that delays both. Here's what the workflow looks like when <strong>insurance quote routing</strong> and <strong>claims automation for agencies</strong> are applied to the same scenario.</p>
+
+      <div class="pipeline-visual">
+        <div class="pipeline-stage">Inquiry detected</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Classify</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Extract</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Route</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Acknowledge</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-stage">Notify</div>
+      </div>
+
+      <p><strong>Stage 1: Inbound email detected.</strong> The system monitors the agency's <code>info@</code> address via IMAP. When a new message arrives — whether it's a commercial quote request, a claim submission, or a certificate request — the pipeline triggers immediately. Tuesday at 3:00 PM, Saturday morning, 11:00 PM on a holiday. Doesn't matter. The message is picked up within seconds of landing in the inbox, not when someone gets around to checking.</p>
+
+      <p><strong>Stage 2: Classify.</strong> The message content is sent to a cloud AI model with a structured classification prompt tuned specifically for insurance agency operations. The model reads the full email and assigns it to one of ten categories: commercial quote, personal lines quote, new claim, claim status inquiry, policy change, certificate request, renewal inquiry, carrier communication, billing question, or other. This isn't keyword matching — the model reads the message contextually and understands that "I need to add a vehicle to my BOP" is a policy change, not a new quote, and that "water coming through the roof at our warehouse" is a claim that needs immediate attention regardless of whether the word "claim" appears in the subject line.</p>
+
+      <p><strong>Stage 3: Extract.</strong> Once classified, the system extracts structured data from the message: the sender's name and contact information, the named insured or business name, the line of business, any policy numbers mentioned, the nature of the request in a single sentence, and — critically for claims — any urgency signals like "water," "fire," "accident," "immediately," or "as soon as possible." This structured output drives every downstream decision: who gets routed what, which response template fires, and whether a priority alert should go out.</p>
+
+      <p><strong>Stage 4: Route.</strong> Routing follows pre-configured rules based on the agency's team structure. A commercial quote lands in the commercial producer's queue with all extracted details summarized. A personal lines inquiry goes to the personal lines agent. A new claim goes to the claims adjuster — <strong>and simultaneously triggers a notification to the agency principal</strong> so they know a claim has come in and can confirm it's been picked up. A certificate request goes straight to the CSR, who can process it in under two minutes when they don't have to find it first.</p>
+
+      <p><strong>Stage 5: Acknowledge.</strong> Based on the classification and routing decision, the system generates a draft acknowledgment response. For a commercial quote, it confirms receipt, signals the agency's expertise in the relevant line, and gives a clear timeline for when the producer will follow up with a full proposal. For a claim, it provides immediate acknowledgment with the adjuster's name and direct contact information, an overview of the claims process, and specific instructions for what the client should do right now (document damage, prevent further loss, don't begin repairs until the adjuster confirms coverage). Every draft goes into a review queue for human approval — <strong>nothing is sent automatically without someone signing off.</strong> But the draft is ready in seconds, not hours, and the reviewer can approve it in one click.</p>
+
+      <p><strong>Stage 6: Notify.</strong> For urgent classifications — a new claim, a commercial quote from an existing large client, a renewal inquiry with a looming deadline — the system sends a push notification or SMS alert to the assigned team member. The adjuster gets a text: "New claim — water damage at [client name]. Draft acknowledgment ready for review." The commercial producer gets: "Commercial package quote request from [prospect]. $50K estimated premium. Draft response in your queue." No one has to check the inbox to know something needs their attention.</p>
+
+      <h2>Expected Metrics</h2>
+
+      <p>Here's what an 8-person independent agency handling 30-50 inbound emails per day should expect from deploying <strong>insurance agency automation</strong> for their shared inbox:</p>
+
+      <ul>
+        <li><strong>Claim acknowledgment time:</strong> drops from 2–4 hours to under 5 minutes. The adjuster's draft response is ready before they even know a claim came in. For the client, the difference between "we got your claim and [Adjuster Name] will be in touch within the hour" at 3:05 PM versus radio silence until the next morning is the difference between a client who feels protected and one who starts calling competitors.</li>
+        <li><strong>Commercial quote response:</strong> drops from 4–24 hours to under 15 minutes for initial acknowledgment. The producer still needs time to prepare the actual quote — but the prospect knows they've been heard and that someone specific is working on it.</li>
+        <li><strong>Routing accuracy:</strong> 95%+ correct classification and routing on the first pass. Personal lines inquiries no longer sit in the commercial producer's inbox because someone guessed wrong. Claims don't wait behind certificate requests.</li>
+        <li><strong>Hours saved per week:</strong> 5–8 hours of office manager and producer time previously spent reading, sorting, and forwarding emails — time redirected to actual client work and revenue-generating activity.</li>
+      </ul>
+
+      <p>These numbers come from real implementations in similar-volume professional service environments. The biggest variable is how quickly team members adopt the review-and-approve workflow — but even with a one-hour review window, the client has received acknowledgment in minutes, and the agency has a complete record of every inbound request with timestamps, classifications, and routing decisions.</p>
+
+      <h2>Execution Plan</h2>
+
+      <div class="execution-box">
+        <h3>Tools &amp; APIs</h3>
+        <p>This pipeline uses a cloud-based large language model API for classification, extraction, and response drafting, connected to the agency's existing email via IMAP. Email monitoring runs on a lightweight server or cloud function that detects new messages in real time. The AI model is prompted with structured JSON output requirements — classification labels, extracted fields, and draft text — so the routing engine receives clean, predictable data. Deterministic routing code (Python or Node.js) reads the structured output and forwards everything to the right destination based on the agency's team configuration. SMS or push notifications for urgent classifications use Twilio or a similar messaging API. The entire system runs on a $30–50/month cloud instance and doesn't require any changes to the agency's existing email setup or management system.</p>
+
+        <h3>Classification Taxonomy</h3>
+        <p>The AI sorts every inbound email into one of these categories, calibrated for independent agency operations:</p>
+        <ul>
+          <li><strong>COMMERCIAL_QUOTE:</strong> New business inquiry for commercial lines — general liability, property, workers' comp, commercial auto, umbrella, or package policies. The highest-value category. Triggers a draft response that signals expertise and sets timeline expectations.</li>
+          <li><strong>PERSONAL_LINES_QUOTE:</strong> New business inquiry for personal lines — auto, home, renters, umbrella. Standard priority. Acknowledged with timeline for quote preparation.</li>
+          <li><strong>CLAIM_NEW:</strong> First notice of loss. The highest-urgency category. Triggers immediate notification to the adjuster and agency principal, plus a draft acknowledgment with claims process instructions.</li>
+          <li><strong>CLAIM_STATUS:</strong> Existing client asking for an update on an open claim. Routed to the assigned adjuster with the claim context preserved.</li>
+          <li><strong>POLICY_CHANGE:</strong> Endorsement requests, vehicle additions/replacements, coverage changes, address updates. Routed to the appropriate lines agent or CSR.</li>
+          <li><strong>CERTIFICATE_REQUEST:</strong> Request for a certificate of insurance, typically from a contractor or vendor client. Low complexity, high volume — routed directly to the CSR.</li>
+          <li><strong>RENEWAL_INQUIRY:</strong> Questions about upcoming renewals, premium changes, or renewal timelines. Routed to the assigned producer or account manager.</li>
+          <li><strong>CARRIER_COMMUNICATION:</strong> Emails from insurance carriers — underwriting questions, policy documents, loss runs, audit requests. Routed to the relevant producer or CSR.</li>
+          <li><strong>BILLING_QUESTION:</strong> Premium billing inquiries, payment questions, installment issues. Routed to the CSR or office manager.</li>
+          <li><strong>OTHER:</strong> Catch-all for spam that made it through filters, vendor solicitations, newsletters, personal emails. Logged and archived without routing.</li>
+        </ul>
+
+        <h3>Routing Rules</h3>
+        <p>Routing is configured per agency based on their team structure and producer assignments. A typical setup for an 8-person independent agency:</p>
+        <ul>
+          <li><strong>COMMERCIAL_QUOTE</strong> → Commercial lines producer (based on industry specialization if multiple producers — construction to Producer A, hospitality to Producer B)</li>
+          <li><strong>PERSONAL_LINES_QUOTE</strong> → Personal lines agent</li>
+          <li><strong>CLAIM_NEW</strong> → Claims adjuster (primary) + agency principal (alert only, for oversight)</li>
+          <li><strong>CLAIM_STATUS</strong> → Assigned claims adjuster (matched from agency management system)</li>
+          <li><strong>POLICY_CHANGE</strong> → Assigned producer or lines agent (matched from agency management system)</li>
+          <li><strong>CERTIFICATE_REQUEST</strong> → CSR / account manager</li>
+          <li><strong>RENEWAL_INQUIRY</strong> → Assigned producer or account manager</li>
+          <li><strong>CARRIER_COMMUNICATION</strong> → Relevant producer or CSR (matched by carrier and line of business)</li>
+          <li><strong>BILLING_QUESTION</strong> → CSR or office manager</li>
+          <li>Any CLAIM_NEW classification pushes an SMS alert to the adjuster's phone via Twilio, regardless of time of day</li>
+        </ul>
+
+        <h3>Response Templates</h3>
+        <p>Every draft response follows a structure tailored to the classification. The AI fills in specifics from the extracted data. Two key templates:</p>
+
+        <p><strong>Commercial Quote Acknowledgment:</strong></p>
+        <pre><code>Subject: Re: Commercial insurance quote — [Line of Business]
+
+[Prospect Name],
+
+Thank you for reaching out to [Agency Name] regarding commercial
+insurance coverage for [Business Name]. I've reviewed your inquiry
+and have forwarded it to [Producer Name], who specializes in [line
+of business — e.g., construction, manufacturing, hospitality]
+coverage for our commercial clients.
+
+[Producer Name] will follow up with you within [timeframe — e.g.,
+one business day] to discuss your specific needs, gather the
+necessary underwriting details, and provide a proposal tailored
+to your operation. In the meantime, here's a quick overview of
+what we'll cover:
+
+• [Coverage area 1]
+• [Coverage area 2]
+• [Coverage area 3 — pulled from extracted details]
+
+If you have any immediate questions, please call our office at
+[phone] or reply to this email directly.
+
+Best regards,
+[Agency Name]</code></pre>
+
+        <p><strong>New Claim Acknowledgment:</strong></p>
+        <pre><code>Subject: Re: Claim — [Loss Type] at [Location/Property] — Claim #[if available]
+
+[Client Name],
+
+We've received your claim notification regarding [loss description
+— e.g., water damage at your [location] facility] and I want to
+confirm that [Adjuster Name], our claims specialist, is handling
+this immediately.
+
+Here's what happens next:
+
+1. [Adjuster Name] will contact you within [timeframe — e.g., the
+   hour] at [phone number] to gather details and initiate the
+   claims process with [Carrier Name].
+
+2. While you wait, please take these steps right now:
+   • Document the damage with photos and video if safe to do so
+   • Take reasonable steps to prevent further loss (cover exposed
+     areas, shut off water if applicable)
+   • Do not begin permanent repairs until the adjuster confirms
+     coverage and approves the work
+   • Save all receipts for emergency mitigation
+
+3. [Adjuster Name] will coordinate directly with the carrier's
+   claims team and keep you updated at each stage.
+
+Your direct contact for this claim:
+[Adjuster Name] | [phone] | [email]
+
+We'll have this moving within the hour. If anything changes or
+worsens before [Adjuster Name] reaches you, call our office
+immediately at [phone].
+
+[Agency Name]</code></pre>
+
+        <p>Every draft goes into the review queue. The adjuster or producer can approve as-is, edit, or discard and write their own. The value isn't that the AI writes perfect responses — it's that the acknowledgment goes from zero to draft in seconds, and the human only needs to review and approve, not compose from scratch.</p>
+
+        <h3>Integration Points</h3>
+        <p>The core pipeline — classify, extract, route, acknowledge, notify — delivers value immediately without connecting to any other system. That said, there are natural integration points that extend its usefulness as the agency grows:</p>
+        <ul>
+          <li><strong>Agency management system</strong> (Applied Epic, Vertafore, QQCatalyst, Hawksoft): Extracted contact and policy data can be pushed into the AMS to create inquiry records, update client files, or log claims activity without manual data entry. For CLAIM_NEW and CLAIM_STATUS classifications, the system can query the AMS for the existing adjuster assignment and claim number.</li>
+          <li><strong>Carrier portals:</strong> For claims, the extracted loss details can pre-populate the first notice of loss (FNOL) fields, cutting data entry time when the adjuster opens the claim in the carrier's system. For commercial quotes, extracted underwriting information can feed into the carrier's appetite guide or submission portal.</li>
+          <li><strong>Document management:</strong> Attachments to claim emails — photos of damage, police reports, repair estimates — can be automatically saved to the client's document folder in the agency's DMS with the claim date and type in the filename.</li>
+          <li><strong>SMS alerting</strong> (Twilio or similar): CLAIM_NEW classifications push an immediate text alert to the adjuster's mobile phone with the client name, loss type, and a link to the full email and draft response. After-hours claims no longer wait until someone checks email in the morning.</li>
+        </ul>
+        <p>None of these integrations are required for the pipeline to produce results. They're progressive enhancements. The immediate win — fast, accurate routing with draft acknowledgments ready within seconds — works on day one with email access and the AI pipeline alone.</p>
+      </div>
+
+      <div class="execution-box">
+        <h3>Success Metrics to Track</h3>
+        <div>
+          <span class="metric">Claim acknowledgment time</span>
+          <span class="metric">Quote response time</span>
+          <span class="metric">Routing accuracy</span>
+          <span class="metric">Hours saved/week</span>
+          <span class="metric">Quote-to-bind ratio</span>
+          <span class="metric">Claim satisfaction</span>
+        </div>
+        <p style="margin-top:1rem;">Track these from day one. The automation should produce a monthly report showing each metric against the agency's manual-intake baseline from the preceding quarter. If claim acknowledgment time doesn't drop below 10 minutes and routing accuracy isn't above 95%, something in the classification prompts or routing rules needs adjustment. Watch quote-to-bind ratio over 6 months — faster, more consistent acknowledgment should correlate with higher conversion, especially on commercial lines where prospects are typically shopping 2-3 agencies.</p>
+      </div>
+
+      <p style="margin-top: 2rem;"><a href="/intake" style="border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 0.15rem;">Interested in this for your agency? Start an intake →</a></p>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="/#services">Services</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/build-concepts/">Build Concepts</a>
+        <a href="/#about">About</a>
+        <a href="mailto:contact@kavikworks.com">Contact</a>
+      </div>
+      <div class="footer-copy">&copy; 2026 Robot Arms LLC, dba Kavik Works.</div>
+    </div>
+  </footer>
+</body>
+</html>
