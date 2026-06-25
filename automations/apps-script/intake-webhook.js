@@ -6,17 +6,17 @@
  *
  * This script:
  *   1. Receives the form POST from intake.html
- *   2. Logs the submission to a Google Sheet
+ *   2. Logs the submission to a Google Sheet (8 columns)
  *   3. Saves raw JSON to Drive
  *   4. Sends a notification email to contact@kavikworks.com
- *   5. Calls Claude API to generate an AI feasibility report
- *   6. Emails the report to josh@kavikworks.com
- *   7. Saves the report HTML to Drive
- *   8. Updates the Sheet row status to 'report_sent'
+ *   5. Sends intake data to VPS pipeline via webhook
+ *   6. Updates the Sheet row status to 'pipeline_triggered'
  *
- * Setup:
- *   - In Apps Script → Project Settings → Script Properties:
- *     Add property: ANTHROPIC_API_KEY = <your key from console.anthropic.com>
+ * The VPS pipeline (port 9092) runs a 4-stage process:
+ *   - LLM analysis of workflow description
+ *   - Company research via web search
+ *   - Relevant industry stats selection
+ *   - Draft email generation in Josh's voice, saved to Gmail drafts
  */
 
 // ── Configuration ────────────────────────────────────────────
@@ -25,11 +25,10 @@ const CONFIG = {
   SHEET_ID: '1mbknvaua8n_imAmeg2GcpcJqteShRwYuJGNvDjyY-Ak',
   SHEET_TAB: 'Intake Submissions',
   NOTIFICATION_EMAIL: 'contact@kavikworks.com',
-  REPORT_EMAIL: 'josh@kavikworks.com',
   DRIVE_FOLDER_ID: '10kNDc0gR6ar-9AvlDYZ7wO0u4dE8m8pW',
-  // VPS intake pipeline webhook — generates draft email with AI analysis + research
-  VPS_WEBHOOK_URL: 'https://kavikworks.com:9092/intake',
-  VPS_WEBHOOK_TOKEN: 'kavik-...re',
+  // VPS intake pipeline — generates draft email with AI analysis + research
+  VPS_WEBHOOK_URL: 'http://167.235.152.228:9092/intake',
+  VPS_WEBHOOK_TOKEN: 'kavik-intake-2024-secure-webhook',
 };
 
 // ── Main Handler ─────────────────────────────────────────────
@@ -48,8 +47,8 @@ function doPost(e) {
     // 3. Send basic notification to contact@
     sendNotification(data, timestamp);
 
-    // 4. Generate AI report and email to josh@
-    generateAndSendReport(data, timestamp, rowIndex);
+    // 4. Send to VPS pipeline for AI analysis + draft generation
+    triggerVPSPipeline(data, rowIndex);
 
     return ContentService
       .createTextOutput(JSON.stringify({ status: 'ok', row: rowIndex }))
@@ -63,7 +62,7 @@ function doPost(e) {
   }
 }
 
-// Handle GET for CORS preflight / health checks
+// Handle GET for health checks
 function doGet(e) {
   return ContentService
     .createTextOutput(JSON.stringify({ status: 'ok', service: 'kavik-intake-webhook' }))
@@ -108,7 +107,7 @@ function saveJsonToDrive(data, timestamp) {
   const folder = DriveApp.getFolderById(CONFIG.DRIVE_FOLDER_ID);
   const slug = makeSlug(data.business_name);
   const dateStr = timestamp.slice(0, 10);
-  folder.createFile(`${slug}_intake_${dateStr}.json`, JSON.stringify(data, null, 2), 'application/json');
+  folder.createFile(slug + '_intake_' + dateStr + '.json', JSON.stringify(data, null, 2), 'application/json');
 }
 
 // ── Notification Email (contact@) ────────────────────────────
@@ -116,22 +115,22 @@ function saveJsonToDrive(data, timestamp) {
 function sendNotification(data, timestamp) {
   MailApp.sendEmail({
     to: CONFIG.NOTIFICATION_EMAIL,
-    subject: `New Intake: ${data.business_name || 'Unknown Business'}`,
+    subject: 'New Intake: ' + (data.business_name || 'Unknown Business'),
     body: [
-      `New intake form submission received at ${timestamp}`,
+      'New intake form submission received at ' + timestamp,
       '',
       'CONTACT',
-      `  Name: ${data.contact_name || 'N/A'}`,
-      `  Email: ${data.contact_email || 'N/A'}`,
-      `  Phone: ${data.contact_phone || 'N/A'}`,
+      '  Name: ' + (data.contact_name || 'N/A'),
+      '  Email: ' + (data.contact_email || 'N/A'),
+      '  Phone: ' + (data.contact_phone || 'N/A'),
       '',
       'BUSINESS',
-      `  Name: ${data.business_name || 'N/A'}`,
-      `  Industry: ${data.industry || 'N/A'}`,
+      '  Name: ' + (data.business_name || 'N/A'),
+      '  Industry: ' + (data.industry || 'N/A'),
       '',
       'WORKFLOW',
-      `  Description: ${data.workflow_description || 'None provided'}`,
-      `  Referral: ${data.referral_source || 'N/A'}`,
+      '  Description: ' + (data.workflow_description || 'None provided'),
+      '  Referral: ' + (data.referral_source || 'N/A'),
       '',
       '---',
       'VPS pipeline is generating a draft outreach email. Check josh@kavikworks.com drafts.',
@@ -141,35 +140,37 @@ function sendNotification(data, timestamp) {
 
 // ── VPS Pipeline Trigger ─────────────────────────────────────
 
-function generateAndSendReport(data, timestamp, rowIndex) {
+function triggerVPSPipeline(data, rowIndex) {
   try {
-    // Send intake data to VPS pipeline for AI analysis + research + draft generation
-    triggerVPSPipeline(data);
-    updateSheetStatus(rowIndex, 'pipeline_triggered');
-    console.log('VPS pipeline triggered for:', data.business_name);
+    if (!CONFIG.VPS_WEBHOOK_URL || !CONFIG.VPS_WEBHOOK_TOKEN) {
+      console.error('VPS webhook URL or token not configured');
+      return;
+    }
+
+    const response = UrlFetchApp.fetch(CONFIG.VPS_WEBHOOK_URL, {
+      method: 'post',
+      contentType: 'application/json',
+      headers: {
+        'Authorization': 'Bearer ' + CONFIG.VPS_WEBHOOK_TOKEN,
+      },
+      payload: JSON.stringify(data),
+      muteHttpExceptions: true,
+    });
+
+    const code = response.getResponseCode();
+    const body = response.getContentText();
+    console.log('VPS pipeline response: ' + code + ' ' + body);
+
+    if (code === 202 || code === 200) {
+      updateSheetStatus(rowIndex, 'pipeline_triggered');
+    } else {
+      updateSheetStatus(rowIndex, 'vps_error_' + code);
+    }
   } catch (err) {
     console.error('VPS pipeline trigger error:', err);
-    // Don't throw — intake is already logged
+    updateSheetStatus(rowIndex, 'vps_connection_failed');
+    // Don't throw — intake is already logged and notification sent
   }
-}
-
-function triggerVPSPipeline(data) {
-  if (!CONFIG.VPS_WEBHOOK_URL || !CONFIG.VPS_WEBHOOK_TOKEN) {
-    console.error('VPS webhook URL or token not configured');
-    return;
-  }
-
-  const response = UrlFetchApp.fetch(CONFIG.VPS_WEBHOOK_URL, {
-    method: 'post',
-    contentType: 'application/json',
-    headers: {
-      'Authorization': 'Bearer ' + CONFIG.VPS_WEBHOOK_TOKEN,
-    },
-    payload: JSON.stringify(data),
-    muteHttpExceptions: true,
-  });
-
-  console.log('VPS pipeline response:', response.getResponseCode(), response.getContentText());
 }
 
 // ── Sheet Status Update ───────────────────────────────────────
@@ -200,35 +201,29 @@ function makeSlug(name) {
 // ── Test Helpers (run from editor to verify) ──────────────────
 
 /**
- * testFullPipeline — exercises ALL four steps exactly like a real form submission:
- *   1. Logs to Google Sheet (pipeline_status: received → report_sent)
+ * testFullPipeline — exercises ALL steps exactly like a real form submission:
+ *   1. Logs to Google Sheet (pipeline_status: received -> pipeline_triggered)
  *   2. Saves raw JSON to Drive
  *   3. Sends plain-text notification to contact@kavikworks.com
- *   4. Generates AI report and emails to josh@kavikworks.com
+ *   4. Sends intake data to VPS pipeline webhook
  * Use this to verify the complete end-to-end pipeline.
  */
 function testFullPipeline() {
   const testData = {
     contact_name: 'Jane Smith',
     contact_email: 'jane@acme.com',
+    contact_phone: '(555) 123-4567',
     business_name: 'Acme Corp (Full Pipeline Test)',
-    industry: 'Professional Services',
-    team_size: '11-50',
-    hours_per_week: '20+',
-    volume: '50-200',
-    tools: ['Gmail', 'HubSpot', 'QuickBooks'],
-    pain_points: ['lead_followup', 'invoicing', 'reporting'],
-    workflow_description: 'Sales team manually follows up on leads 2-3 days after inquiry. Invoices are created manually in QuickBooks after each project. Monthly reports are assembled by hand from multiple spreadsheets.',
-    pricing_tier: 'core',
-    timeline: '1-3 months',
+    industry: 'professional_services',
+    workflow_description: 'Sales team manually follows up on leads 2-3 days after inquiry. We get 30-40 leads per week through our website and Google. Someone on the team reads each one, decides if it is a real inquiry, then forwards it to the right salesperson. This takes hours and leads fall through the cracks.',
     referral_source: 'test',
-    additional_notes: 'FULL PIPELINE TEST — verify sheet row, Drive JSON, notification email, and AI report all complete.',
+    submitted_at: new Date().toISOString(),
   };
   const timestamp = new Date().toISOString();
 
   console.log('Step 1: Logging to Sheet...');
   const rowIndex = logToSheet(testData, timestamp);
-  console.log('Sheet row:', rowIndex);
+  console.log('Sheet row: ' + rowIndex);
 
   console.log('Step 2: Saving JSON to Drive...');
   saveJsonToDrive(testData, timestamp);
@@ -236,55 +231,29 @@ function testFullPipeline() {
   console.log('Step 3: Sending notification to contact@...');
   sendNotification(testData, timestamp);
 
-  console.log('Step 4: Generating AI report...');
-  generateAndSendReport(testData, timestamp, rowIndex);
+  console.log('Step 4: Triggering VPS pipeline...');
+  triggerVPSPipeline(testData, rowIndex);
 
-  console.log('Full pipeline test complete. Check: Sheet row', rowIndex, '| Drive JSON | contact@ email | josh@ report');
+  console.log('Full pipeline test complete. Check: Sheet row ' + rowIndex + ' | Drive JSON | contact@ email | VPS logs | josh@ drafts');
 }
 
 /**
- * testReport — exercises ONLY the AI report generation (steps 3-4).
+ * testWebhookOnly — sends test data directly to the VPS pipeline.
  * Does NOT log to Sheet, Drive, or send notification email.
- * Use this to iterate on the Claude prompt without polluting the Sheet.
+ * Use this to test the VPS pipeline without side effects.
  */
-function testReport() {
+function testWebhookOnly() {
   const testData = {
-    contact_name: 'Jane Smith',
-    contact_email: 'jane@acme.com',
-    business_name: 'Acme Corp',
-    industry: 'Professional Services',
-    team_size: '11-50',
-    hours_per_week: '20+',
-    volume: '50-200',
-    tools: ['Gmail', 'HubSpot', 'QuickBooks'],
-    pain_points: ['lead_followup', 'invoicing', 'reporting'],
-    workflow_description: 'Sales team manually follows up on leads 2-3 days after inquiry. Invoices are created manually in QuickBooks after each project. Monthly reports are assembled by hand from multiple spreadsheets.',
-    pricing_tier: 'core',
-    timeline: '1-3 months',
-    additional_notes: 'We lose deals to competitors who respond faster.',
+    contact_name: 'Mike Kowalski',
+    contact_email: 'mike@testcompany.com',
+    contact_phone: '(843) 555-0192',
+    business_name: 'Test Company Inc',
+    industry: 'construction',
+    workflow_description: 'We get 40+ leads a day through our website and Google. Our office manager reads each one, decides if it is a real inquiry, then forwards it to the right salesperson. This takes 2-3 hours every morning and leads fall through the cracks during busy season.',
+    referral_source: 'test',
+    submitted_at: new Date().toISOString(),
   };
-  generateAndSendReport(testData, new Date().toISOString(), null);
-}
 
-/**
- * testPoorFit — exercises ONLY the AI report for a poor-fit client.
- * Does NOT log to Sheet, Drive, or send notification email.
- */
-function testPoorFit() {
-  const testData = {
-    contact_name: 'Bob Carpenter',
-    contact_email: 'bob@bobscarpentry.com',
-    business_name: "Bob's Carpentry",
-    industry: 'Construction / Trades',
-    team_size: '1-5',
-    hours_per_week: '1-5',
-    volume: '<10',
-    tools: ['Gmail'],
-    pain_points: ['scheduling'],
-    workflow_description: 'I get maybe 2-3 calls a week from customers asking for estimates. I call them back when I can.',
-    pricing_tier: 'not_sure',
-    timeline: 'flexible',
-    additional_notes: 'Not sure if I need this.',
-  };
-  generateAndSendReport(testData, new Date().toISOString(), null);
+  triggerVPSPipeline(testData, null);
+  console.log('Webhook test sent. Check VPS logs and josh@ drafts.');
 }
