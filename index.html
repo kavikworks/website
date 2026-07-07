@@ -48,431 +48,407 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --white: #ffffff;
-      --gray-50: #fafafa;
-      --gray-100: #f5f5f5;
-      --gray-200: #e5e5e5;
-      --gray-300: #d4d4d4;
-      --gray-400: #a3a3a3;
-      --gray-500: #737373;
-      --gray-600: #525252;
-      --gray-700: #404040;
-      --gray-800: #262626;
-      --gray-900: #171717;
-      --gray-950: #0a0a0a;
-      --accent: #e5e5e5;
+      --bg: #05060a;
+      --ink: #eef1f6;
+      --ink-dim: #9aa3b2;
+      --ink-faint: #5c6472;
+      --cyan: #5eead4;
+      --violet: #a78bfa;
+      --blue: #60a5fa;
+      --glass: rgba(255,255,255,0.04);
+      --glass-strong: rgba(255,255,255,0.07);
+      --edge: rgba(255,255,255,0.09);
+      --edge-bright: rgba(255,255,255,0.22);
       --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+      --font-display: 'Space Grotesk', 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
     }
 
     html { scroll-behavior: smooth; font-size: 16px; }
     body {
       font-family: var(--font-sans);
-      color: var(--gray-300);
-      background: var(--gray-950);
-      line-height: 1.6;
+      color: var(--ink-dim);
+      background: var(--bg);
+      line-height: 1.65;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
 
+    /* ── Aurora backdrop ── */
+    .aurora {
+      position: fixed; inset: 0; z-index: -2; overflow: hidden;
+      background: var(--bg);
+    }
+    .aurora::after {
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,0.028) 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 20%, transparent 80%);
+      -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 20%, transparent 80%);
+    }
+    .blob {
+      position: absolute; border-radius: 50%;
+      filter: blur(90px); opacity: 0.35;
+      will-change: transform;
+    }
+    .blob-1 {
+      width: 620px; height: 620px; top: -220px; left: -120px;
+      background: radial-gradient(circle, rgba(94,234,212,0.24), transparent 65%);
+      animation: drift-1 26s ease-in-out infinite alternate;
+    }
+    .blob-2 {
+      width: 720px; height: 720px; top: -140px; right: -220px;
+      background: radial-gradient(circle, rgba(167,139,250,0.22), transparent 65%);
+      animation: drift-2 32s ease-in-out infinite alternate;
+    }
+    .blob-3 {
+      width: 540px; height: 540px; top: 55%; left: 30%;
+      background: radial-gradient(circle, rgba(96,165,250,0.13), transparent 65%);
+      animation: drift-3 38s ease-in-out infinite alternate;
+    }
+    @keyframes drift-1 { to { transform: translate(140px, 90px) scale(1.15); } }
+    @keyframes drift-2 { to { transform: translate(-120px, 130px) scale(0.9); } }
+    @keyframes drift-3 { to { transform: translate(90px, -110px) scale(1.1); } }
+
     /* ── Typography ── */
-    h1, h2, h3, h4 { color: var(--white); line-height: 1.2; font-weight: 600; }
-    h1 { font-size: clamp(2.5rem, 5vw, 4rem); letter-spacing: -0.03em; }
-    h2 { font-size: clamp(1.75rem, 3vw, 2.5rem); letter-spacing: -0.02em; }
-    h3 { font-size: 1.25rem; }
-    p { max-width: 640px; }
-    a { color: var(--white); text-decoration: none; }
+    h1, h2, h3 { font-family: var(--font-display); color: var(--ink); line-height: 1.12; font-weight: 600; }
+    h1 { font-size: clamp(2.6rem, 5.5vw, 4.2rem); letter-spacing: -0.03em; }
+    h2 { font-size: clamp(1.7rem, 3vw, 2.4rem); letter-spacing: -0.02em; }
+    h3 { font-size: 1.15rem; letter-spacing: -0.01em; }
+    p { max-width: 620px; }
+    a { color: var(--ink); text-decoration: none; }
+    .mono {
+      font-family: var(--font-mono); font-size: 0.72rem;
+      text-transform: uppercase; letter-spacing: 0.16em;
+      color: var(--ink-faint);
+    }
+    .grad-text {
+      background: linear-gradient(100deg, var(--cyan), var(--blue) 55%, var(--violet));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
 
-    .mono { font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gray-500); }
-
-    /* ── Layout ── */
     .container { max-width: 1120px; margin: 0 auto; padding: 0 2rem; }
-    section { padding: 7rem 0; }
+    section { padding: 6rem 0; }
+    .section-head { margin-bottom: 3rem; }
+    .section-head .mono { display: block; margin-bottom: 0.9rem; }
 
-    /* ── Nav ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(10, 10, 10, 0.8);
-      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-    nav .container {
-      display: flex; align-items: center; justify-content: space-between;
-      height: 64px;
-    }
-    .nav-logo {
-      font-weight: 700; font-size: 1.1rem; color: var(--white);
-      letter-spacing: -0.02em;
-      display: flex; align-items: center; gap: 0.6rem;
-    }
-    .nav-logo-icon {
-      width: 28px; height: 28px;
-      border: 2px solid var(--gray-400);
-      border-radius: 6px;
-      display: flex; align-items: center; justify-content: center;
+    /* ── Liquid glass primitives ── */
+    .glass {
       position: relative;
-    }
-    .nav-logo-icon::after {
-      content: '';
-      width: 8px; height: 8px;
-      background: var(--white);
-      border-radius: 2px;
-    }
-    .nav-links { display: flex; gap: 2rem; align-items: center; }
-    .nav-links a {
-      font-size: 0.875rem; color: var(--gray-400);
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--white); }
-    .nav-cta {
-      background: var(--white) !important; color: var(--gray-950) !important;
-      padding: 0.5rem 1.25rem; border-radius: 6px;
-      font-weight: 500; font-size: 0.875rem;
-      transition: opacity 0.2s;
-    }
-    .nav-cta:hover { opacity: 0.9; }
-
-    .mobile-menu-btn {
-      display: none; background: none; border: none; cursor: pointer;
-      padding: 0.5rem;
-    }
-    .mobile-menu-btn span {
-      display: block; width: 20px; height: 2px;
-      background: var(--gray-400); margin: 4px 0;
-      transition: all 0.3s;
-    }
-
-    /* ── Hero ── */
-    .hero {
-      padding: 10rem 0 7rem;
-      position: relative;
+      background: linear-gradient(160deg, rgba(255,255,255,0.07), rgba(255,255,255,0.02) 45%, rgba(255,255,255,0.045));
+      border: 1px solid var(--edge);
+      border-radius: 20px;
+      backdrop-filter: blur(18px) saturate(1.5);
+      -webkit-backdrop-filter: blur(18px) saturate(1.5);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.12),
+        inset 0 -1px 0 rgba(255,255,255,0.03),
+        0 18px 46px -18px rgba(0,0,0,0.6);
       overflow: hidden;
+      transition: border-color 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease;
     }
-    .hero::before {
-      content: '';
-      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-      width: 800px; height: 600px;
-      background: radial-gradient(ellipse, rgba(255,255,255,0.03) 0%, transparent 70%);
+    /* cursor sheen */
+    .glass::before {
+      content: ''; position: absolute; inset: 0; border-radius: inherit;
+      background: radial-gradient(420px circle at var(--mx, 50%) var(--my, -20%),
+        rgba(255,255,255,0.08), transparent 55%);
+      opacity: 0; transition: opacity 0.4s ease; pointer-events: none;
+    }
+    .glass:hover::before { opacity: 1; }
+    .glass:hover {
+      border-color: var(--edge-bright);
+      transform: translateY(-3px);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.16),
+        0 26px 60px -20px rgba(0,0,0,0.7);
+    }
+    .glass > * { position: relative; }
+
+    /* ── Nav (floating glass pill) ── */
+    nav {
+      position: fixed; top: 14px; left: 0; right: 0; z-index: 100;
       pointer-events: none;
     }
-    .hero-grid {
-      position: absolute; inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-      background-size: 64px 64px;
-      mask-image: radial-gradient(ellipse 60% 50% at 50% 40%, black 30%, transparent 100%);
-      -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 40%, black 30%, transparent 100%);
-    }
-    .hero .container { position: relative; }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.35rem 1rem;
-      border: 1px solid rgba(255,255,255,0.1);
+    .nav-pill {
+      pointer-events: auto;
+      max-width: 1120px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.55rem 0.65rem 0.55rem 1.25rem;
+      background: rgba(10,12,18,0.55);
+      border: 1px solid var(--edge);
       border-radius: 100px;
-      font-size: 0.8rem; color: var(--gray-400);
-      margin-bottom: 2rem;
+      backdrop-filter: blur(22px) saturate(1.6);
+      -webkit-backdrop-filter: blur(22px) saturate(1.6);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 12px 32px -12px rgba(0,0,0,0.6);
     }
-    .hero-badge-dot {
-      width: 6px; height: 6px;
-      background: var(--gray-400);
-      border-radius: 50%;
-      animation: pulse 2s ease-in-out infinite;
+    @media (max-width: 1180px) { .nav-pill { margin: 0 1rem; } }
+    .nav-logo {
+      font-family: var(--font-display); font-weight: 700; font-size: 1.05rem;
+      letter-spacing: -0.02em; display: flex; align-items: center; gap: 0.6rem;
     }
-    @keyframes pulse {
-      0%, 100% { opacity: 0.4; }
-      50% { opacity: 1; }
+    .nav-logo-icon {
+      width: 26px; height: 26px; border: 2px solid var(--ink-faint);
+      border-radius: 7px; display: flex; align-items: center; justify-content: center;
     }
-    .hero h1 { margin-bottom: 1.5rem; max-width: 700px; }
-    .hero h1 .accent { color: var(--gray-400); }
-    .hero-sub {
-      font-size: 1.15rem; color: var(--gray-400);
-      max-width: 540px; margin-bottom: 2.5rem; line-height: 1.7;
+    .nav-logo-icon::after {
+      content: ''; width: 8px; height: 8px; border-radius: 2px;
+      background: linear-gradient(135deg, var(--cyan), var(--violet));
     }
+    .nav-links { display: flex; gap: 1.6rem; align-items: center; }
+    .nav-links a { font-size: 0.85rem; color: var(--ink-dim); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-cta {
+      color: #05060a !important; font-weight: 600; font-size: 0.85rem;
+      padding: 0.5rem 1.2rem; border-radius: 100px;
+      background: linear-gradient(120deg, #d7fff5, #ffffff 50%, #e6dcff);
+      box-shadow: 0 0 18px -4px rgba(94,234,212,0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 0 26px -4px rgba(94,234,212,0.5); }
+    .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem 0.75rem; }
+    .mobile-menu-btn span { display: block; width: 20px; height: 2px; background: var(--ink-dim); margin: 4px 0; transition: all 0.3s; }
+
+    /* ── Hero ── */
+    .hero { padding: 10.5rem 0 6rem; position: relative; }
+    .hero-layout {
+      display: grid; grid-template-columns: 1.15fr 0.85fr;
+      gap: 4rem; align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      padding: 0.35rem 1rem; border-radius: 100px;
+      border: 1px solid var(--edge);
+      background: rgba(255,255,255,0.03);
+      font-size: 0.8rem; color: var(--ink-dim);
+      margin-bottom: 1.8rem;
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    }
+    .live-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 0 0 rgba(94,234,212,0.5);
+      animation: ping 2.4s ease-out infinite;
+    }
+    @keyframes ping {
+      0% { box-shadow: 0 0 0 0 rgba(94,234,212,0.45); }
+      70% { box-shadow: 0 0 0 9px rgba(94,234,212,0); }
+      100% { box-shadow: 0 0 0 0 rgba(94,234,212,0); }
+    }
+    .hero h1 { margin-bottom: 1.4rem; }
+    .hero-sub { font-size: 1.1rem; color: var(--ink-dim); max-width: 480px; margin-bottom: 2.4rem; }
     .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
     .btn-primary {
       display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.75rem 1.75rem; background: var(--white); color: var(--gray-950);
-      border-radius: 8px; font-weight: 500; font-size: 0.95rem;
-      transition: all 0.2s; border: none; cursor: pointer;
+      padding: 0.8rem 1.7rem; border-radius: 100px;
+      color: #05060a; font-weight: 600; font-size: 0.95rem;
+      background: linear-gradient(120deg, #d7fff5, #ffffff 50%, #e6dcff);
+      box-shadow: 0 0 24px -6px rgba(94,234,212,0.4);
+      transition: transform 0.2s, box-shadow 0.2s; border: none; cursor: pointer;
     }
-    .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 34px -6px rgba(167,139,250,0.55); }
     .btn-secondary {
       display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.75rem 1.75rem;
-      background: transparent; color: var(--gray-300);
-      border: 1px solid var(--gray-700); border-radius: 8px;
+      padding: 0.8rem 1.7rem; border-radius: 100px;
+      background: rgba(255,255,255,0.04); color: var(--ink-dim);
+      border: 1px solid var(--edge);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
       font-weight: 500; font-size: 0.95rem;
       transition: all 0.2s; cursor: pointer;
     }
-    .btn-secondary:hover { border-color: var(--gray-500); color: var(--white); }
+    .btn-secondary:hover { border-color: var(--edge-bright); color: var(--ink); }
 
-    /* ── Problem ── */
-    .problem { border-top: 1px solid rgba(255,255,255,0.06); }
-    .problem-header { margin-bottom: 4rem; }
-    .problem-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
-    }
-    .problem-card {
-      padding: 2rem;
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 12px;
-      transition: border-color 0.3s;
-    }
-    .problem-card:hover { border-color: rgba(255,255,255,0.12); }
-    .problem-card .mono { margin-bottom: 1rem; }
-    .problem-card h3 { margin-bottom: 0.75rem; }
-    .problem-card p { font-size: 0.925rem; color: var(--gray-400); }
-
-    /* ── Audience ── */
-    .audience { border-top: 1px solid rgba(255,255,255,0.06); }
-    .audience-header { margin-bottom: 4rem; }
-    .audience-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
-    }
-    .audience-card {
-      padding: 2rem;
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 12px;
-      transition: border-color 0.3s;
-    }
-    .audience-card:hover { border-color: rgba(255,255,255,0.12); }
-    .audience-card .mono { margin-bottom: 1rem; }
-    .audience-card h3 { margin-bottom: 0.75rem; }
-    .audience-card p { font-size: 0.925rem; color: var(--gray-400); }
-
-    /* ── How it works ── */
-    .how { background: var(--gray-900); border-top: 1px solid rgba(255,255,255,0.06); }
-    .how-header { margin-bottom: 4rem; }
-    .how-steps { display: flex; flex-direction: column; gap: 0; }
-    .how-step {
-      display: grid; grid-template-columns: 80px 1fr; gap: 2rem;
-      padding: 2.5rem 0;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-    .how-step:last-child { border-bottom: none; }
-    .step-num {
-      font-family: var(--font-mono); font-size: 3rem; font-weight: 700;
-      color: rgba(255,255,255,0.08); line-height: 1;
-    }
-    .step-content h3 { margin-bottom: 0.5rem; }
-    .step-content p { font-size: 0.925rem; color: var(--gray-400); }
-
-    /* ── Workflow ── */
-    .workflow { border-top: 1px solid rgba(255,255,255,0.06); }
-    .workflow-header { margin-bottom: 3rem; }
-    .workflow-visual {
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 16px;
-      padding: 3rem;
-      position: relative;
-      overflow: hidden;
-    }
-    .workflow-visual::before {
-      content: '';
-      position: absolute; top: 0; right: 0;
-      width: 300px; height: 300px;
-      background: radial-gradient(circle, rgba(255,255,255,0.02) 0%, transparent 70%);
-    }
-    .wf-title {
-      font-family: var(--font-mono); font-size: 0.8rem;
-      color: var(--gray-500); text-transform: uppercase;
-      letter-spacing: 0.1em; margin-bottom: 2rem;
+    /* ── Live ops console ── */
+    .console { padding: 0; border-radius: 22px; }
+    .console-bar {
       display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.85rem 1.25rem;
+      border-bottom: 1px solid var(--edge);
+      background: rgba(255,255,255,0.025);
     }
-    .wf-title::before {
-      content: ''; width: 8px; height: 8px;
-      background: var(--gray-500); border-radius: 2px;
+    .console-bar .dots { display: flex; gap: 6px; }
+    .console-bar .dots i { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.12); }
+    .console-title { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); display: flex; align-items: center; gap: 0.5rem; margin-left: auto; }
+    .console-body {
+      padding: 1.1rem 1.25rem 1.25rem;
+      font-family: var(--font-mono); font-size: 0.78rem; line-height: 1.5;
+      height: 305px; display: flex; flex-direction: column; justify-content: flex-end;
+      gap: 0.55rem; overflow: hidden;
     }
-    .wf-pipeline { display: flex; flex-direction: column; gap: 0; }
-    .wf-stage {
-      display: flex; align-items: center; gap: 1.5rem;
-      padding: 1rem 0;
-      position: relative;
+    .evt {
+      display: flex; gap: 0.7rem; align-items: baseline;
+      opacity: 0; transform: translateY(8px);
+      animation: evt-in 0.5s ease forwards;
     }
-    .wf-stage::before {
-      content: '';
-      position: absolute; left: 15px; top: 0; bottom: 0;
-      width: 1px; background: rgba(255,255,255,0.08);
-    }
-    .wf-stage:first-child::before { top: 50%; }
-    .wf-stage:last-child::before { bottom: 50%; }
-    .wf-dot {
-      width: 30px; height: 30px; min-width: 30px;
-      border: 2px solid rgba(255,255,255,0.15);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      background: var(--gray-950);
-      z-index: 1;
-    }
-    .wf-dot-inner {
-      width: 8px; height: 8px;
-      background: var(--gray-400);
-      border-radius: 50%;
-    }
-    .wf-stage-content { flex: 1; }
-    .wf-stage-name {
-      font-weight: 500; color: var(--white);
-      font-size: 0.95rem; margin-bottom: 0.15rem;
-    }
-    .wf-stage-desc { font-size: 0.825rem; color: var(--gray-500); }
-    .wf-stage-tag {
-      font-family: var(--font-mono); font-size: 0.7rem;
-      padding: 0.2rem 0.6rem;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 4px;
-      color: var(--gray-500);
-      white-space: nowrap;
-    }
-
-    /* ── Pricing ── */
-    .pricing { background: var(--gray-900); border-top: 1px solid rgba(255,255,255,0.06); }
-    .pricing-header { margin-bottom: 4rem; }
-    .pricing-grid {
-      display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;
-      max-width: 820px; margin: 0 auto;
-    }
-    .price-card {
-      padding: 2.5rem 2rem;
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 12px;
-      display: flex; flex-direction: column;
-      transition: border-color 0.3s;
-    }
-    .price-card:hover { border-color: rgba(255,255,255,0.12); }
-    .price-card.featured {
-      border-color: rgba(255,255,255,0.2);
+    @keyframes evt-in { to { opacity: 1; transform: translateY(0); } }
+    .evt .t { color: var(--ink-faint); flex-shrink: 0; }
+    .evt .msg { color: var(--ink-dim); }
+    .evt .tag {
+      flex-shrink: 0; font-size: 0.62rem; padding: 0.1rem 0.5rem;
+      border-radius: 4px; border: 1px solid var(--edge);
       background: rgba(255,255,255,0.04);
     }
-    .price-tier { margin-bottom: 0.5rem; }
+    .tag.c { color: var(--cyan); border-color: rgba(94,234,212,0.3); }
+    .tag.v { color: var(--violet); border-color: rgba(167,139,250,0.3); }
+    .tag.b { color: var(--blue); border-color: rgba(96,165,250,0.3); }
+    .console-foot {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.8rem 1.25rem;
+      border-top: 1px solid var(--edge);
+      font-family: var(--font-mono); font-size: 0.68rem; color: var(--ink-faint);
+    }
+    .console-foot b { color: var(--cyan); font-weight: 500; }
+
+    /* ── Stats strip ── */
+    .stats { padding: 0 0 5rem; }
+    .stats-row {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;
+    }
+    .stat { padding: 1.6rem 1.8rem; border-radius: 18px; }
+    .stat-num {
+      font-family: var(--font-display); font-size: 2rem; font-weight: 700;
+      color: var(--ink); letter-spacing: -0.02em;
+    }
+    .stat-label { font-size: 0.85rem; color: var(--ink-faint); margin-top: 0.15rem; }
+
+    /* ── Cards grids ── */
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .card { padding: 1.9rem; }
+    .card .mono { display: block; margin-bottom: 0.9rem; }
+    .card h3 { margin-bottom: 0.6rem; }
+    .card p { font-size: 0.9rem; color: var(--ink-dim); }
+
+    /* ── How it works ── */
+    .how-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+    .how-card { padding: 1.7rem 1.5rem; }
+    .how-num {
+      font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500;
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px; border-radius: 10px;
+      border: 1px solid var(--edge);
+      background: rgba(255,255,255,0.04);
+      color: var(--cyan);
+      margin-bottom: 1.1rem;
+    }
+    .how-card h3 { font-size: 1.02rem; margin-bottom: 0.5rem; }
+    .how-card p { font-size: 0.86rem; color: var(--ink-dim); }
+
+    /* ── Pricing ── */
+    .pricing-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem;
+      max-width: 840px; margin: 0 auto;
+    }
+    .price-card { padding: 2.3rem 2rem; display: flex; flex-direction: column; }
+    .price-card.featured {
+      border-color: rgba(94,234,212,0.28);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.14),
+        0 0 44px -14px rgba(94,234,212,0.28),
+        0 18px 46px -18px rgba(0,0,0,0.6);
+    }
     .price-amount {
-      font-size: 2.25rem; font-weight: 700; color: var(--white);
-      margin-bottom: 0.25rem;
+      font-family: var(--font-display); font-size: 2.3rem; font-weight: 700;
+      color: var(--ink); margin: 0.4rem 0 0.2rem;
     }
-    .price-amount span { font-size: 1rem; font-weight: 400; color: var(--gray-500); }
-    .price-setup { font-size: 0.85rem; color: var(--gray-500); margin-bottom: 1.5rem; }
-    .price-desc {
-      font-size: 0.9rem; color: var(--gray-400);
-      margin-bottom: 1.5rem; flex: 1;
-    }
+    .price-amount span { font-size: 1rem; font-weight: 400; color: var(--ink-faint); font-family: var(--font-sans); }
+    .price-setup { font-size: 0.84rem; color: var(--ink-faint); margin-bottom: 1.4rem; }
+    .price-desc { font-size: 0.9rem; color: var(--ink-dim); margin-bottom: 1.4rem; flex: 1; }
     .price-features { list-style: none; margin-bottom: 2rem; }
     .price-features li {
-      padding: 0.4rem 0; font-size: 0.875rem; color: var(--gray-400);
-      display: flex; align-items: flex-start; gap: 0.75rem;
+      padding: 0.38rem 0; font-size: 0.87rem; color: var(--ink-dim);
+      display: flex; align-items: flex-start; gap: 0.7rem;
     }
-    .price-features li::before {
-      content: '—';
-      color: var(--gray-600);
-      flex-shrink: 0;
-    }
+    .price-features li::before { content: '→'; color: var(--cyan); opacity: 0.7; flex-shrink: 0; }
     .price-btn {
-      display: block; text-align: center;
-      padding: 0.75rem; border-radius: 8px;
+      display: block; text-align: center; padding: 0.75rem; border-radius: 100px;
       font-size: 0.9rem; font-weight: 500;
-      transition: all 0.2s;
-      border: 1px solid rgba(255,255,255,0.15);
-      color: var(--gray-300);
-      background: transparent;
-      cursor: pointer;
+      border: 1px solid var(--edge-bright); color: var(--ink);
+      transition: all 0.2s; cursor: pointer; background: transparent;
     }
-    .price-btn:hover { border-color: var(--white); color: var(--white); }
+    .price-btn:hover { border-color: var(--ink); }
     .price-card.featured .price-btn {
-      background: var(--white); color: var(--gray-950);
-      border-color: var(--white);
+      background: linear-gradient(120deg, #d7fff5, #ffffff 50%, #e6dcff);
+      color: #05060a; border-color: transparent; font-weight: 600;
     }
-    .price-card.featured .price-btn:hover { opacity: 0.9; }
+    .price-card.featured .price-btn:hover { box-shadow: 0 0 24px -6px rgba(94,234,212,0.5); }
 
     /* ── About ── */
-    .about { border-top: 1px solid rgba(255,255,255,0.06); }
-    .about-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
-      align-items: start;
-    }
-    .about-text h2 { margin-bottom: 1.5rem; }
-    .about-text p { margin-bottom: 1.25rem; color: var(--gray-400); font-size: 0.95rem; }
-    .about-details {
-      display: flex; flex-direction: column; gap: 1.5rem;
-    }
-    .about-detail {
-      padding: 1.5rem;
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 10px;
-    }
-    .about-detail .mono { margin-bottom: 0.5rem; }
-    .about-detail p { font-size: 0.9rem; color: var(--gray-400); }
+    .about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3.5rem; align-items: start; }
+    .about-text h2 { margin-bottom: 1.4rem; }
+    .about-text p { margin-bottom: 1.1rem; font-size: 0.95rem; }
+    .about-chips { display: flex; flex-direction: column; gap: 1rem; }
+    .about-chip { padding: 1.4rem 1.6rem; border-radius: 16px; }
+    .about-chip .mono { display: block; margin-bottom: 0.4rem; }
+    .about-chip p { font-size: 0.88rem; color: var(--ink-dim); }
 
     /* ── CTA ── */
-    .cta {
-      background: var(--gray-900);
-      border-top: 1px solid rgba(255,255,255,0.06);
-      text-align: center;
+    .cta-panel {
+      text-align: center; padding: 4.5rem 2rem; border-radius: 28px;
     }
-    .cta h2 { margin-bottom: 1rem; }
-    .cta p { margin: 0 auto 2.5rem; color: var(--gray-400); font-size: 1.05rem; }
+    .cta-panel h2 { margin-bottom: 1rem; }
+    .cta-panel p { margin: 0 auto 2.3rem; font-size: 1.02rem; }
     .cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
     /* ── Footer ── */
-    footer {
-      padding: 3rem 0;
-      border-top: 1px solid rgba(255,255,255,0.06);
-    }
-    .footer-inner {
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 1rem;
-    }
-    .footer-left { font-size: 0.85rem; color: var(--gray-600); }
-    .footer-links { display: flex; gap: 1.5rem; }
-    .footer-links a { font-size: 0.85rem; color: var(--gray-500); transition: color 0.2s; }
-    .footer-links a:hover { color: var(--white); }
+    footer { padding: 3rem 0 2.5rem; border-top: 1px solid rgba(255,255,255,0.05); }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-left { font-size: 0.82rem; color: var(--ink-faint); }
+    .footer-links { display: flex; gap: 1.4rem; }
+    .footer-links a { font-size: 0.82rem; color: var(--ink-faint); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--ink); }
+
+    /* ── Reveal ── */
+    .fade-in { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
 
     /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .hero-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+      .how-grid { grid-template-columns: repeat(2, 1fr); }
+    }
     @media (max-width: 768px) {
       section { padding: 4rem 0; }
+      .hero { padding: 8.5rem 0 4rem; }
       .nav-links { display: none; }
       .mobile-menu-btn { display: block; }
       .nav-links.open {
-        display: flex; flex-direction: column;
-        position: absolute; top: 64px; left: 0; right: 0;
-        background: rgba(10,10,10,0.95);
-        backdrop-filter: blur(20px);
-        padding: 1.5rem 2rem;
-        border-bottom: 1px solid rgba(255,255,255,0.06);
+        display: flex; flex-direction: column; align-items: flex-start;
+        position: absolute; top: 62px; left: 1rem; right: 1rem;
+        background: rgba(10,12,18,0.92);
+        backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px);
+        padding: 1.4rem 1.6rem; gap: 1.1rem;
+        border: 1px solid var(--edge); border-radius: 20px;
       }
-      .problem-grid { grid-template-columns: 1fr; }
-      .audience-grid { grid-template-columns: 1fr; }
-      .pricing-grid { grid-template-columns: 1fr; max-width: 480px; }
+      .grid-3, .stats-row, .how-grid, .pricing-grid { grid-template-columns: 1fr; }
+      .pricing-grid { max-width: 480px; }
       .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .how-step { grid-template-columns: 48px 1fr; gap: 1rem; }
-      .step-num { font-size: 2rem; }
-      .hero { padding: 8rem 0 5rem; }
-      .wf-stage { flex-wrap: wrap; }
-      .wf-stage-tag { margin-top: 0.25rem; }
+      .console-body { height: 250px; }
     }
 
-    /* ── Animations ── */
-    .fade-in {
-      opacity: 0; transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+    /* ── Reduced motion ── */
+    @media (prefers-reduced-motion: reduce) {
+      .blob, .live-dot { animation: none !important; }
+      .fade-in { opacity: 1; transform: none; transition: none; }
+      .evt { animation: none; opacity: 1; transform: none; }
+      html { scroll-behavior: auto; }
     }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
 
+  <div class="aurora" aria-hidden="true">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
   <!-- Nav -->
   <nav>
-    <div class="container">
+    <div class="nav-pill">
       <a href="#" class="nav-logo">
         <div class="nav-logo-icon"></div>
         Kavik Works
@@ -480,7 +456,6 @@
       <div class="nav-links" id="navLinks">
         <a href="#problem">The Problem</a>
         <a href="#how">How It Works</a>
-        <a href="#workflow">First Workflow</a>
         <a href="#pricing">Pricing</a>
         <a href="#about">About</a>
         <a href="/intake" class="nav-cta">Free Analysis</a>
@@ -493,218 +468,178 @@
 
   <!-- Hero -->
   <section class="hero">
-    <div class="hero-grid"></div>
     <div class="container">
-      <div class="hero-badge fade-in">
-        <span class="hero-badge-dot"></span>
-        AI workflow automation for real businesses
-      </div>
-      <h1 class="fade-in">Your business runs<br>on workflows.<br><span class="accent">We automate them.</span></h1>
-      <p class="hero-sub fade-in">
-        Kavik Works integrates AI directly into your business operations: inbox, sales, admin, back-office. Not chatbots. Not consulting. Measurable automation that runs every day.
-      </p>
-      <div class="hero-actions fade-in">
-        <a href="/intake" class="btn-primary">
-          Get a free analysis
-          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-        <a href="#how" class="btn-secondary">See how it works</a>
+      <div class="hero-layout">
+        <div>
+          <div class="hero-badge fade-in">
+            <span class="live-dot"></span>
+            Automations running right now
+          </div>
+          <h1 class="fade-in">Your business runs on workflows. <span class="grad-text">We automate them.</span></h1>
+          <p class="hero-sub fade-in">
+            AI wired directly into your operations — inbox, sales, admin, back-office. Not chatbots. Not consulting. Automation that runs every day and proves it with numbers.
+          </p>
+          <div class="hero-actions fade-in">
+            <a href="/intake" class="btn-primary">
+              Get a free analysis
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#how" class="btn-secondary">See how it works</a>
+          </div>
+        </div>
+        <div class="glass console fade-in" aria-label="Simulated automation activity">
+          <div class="console-bar">
+            <div class="dots"><i></i><i></i><i></i></div>
+            <div class="console-title"><span class="live-dot"></span> live pipeline</div>
+          </div>
+          <div class="console-body" id="consoleBody"></div>
+          <div class="console-foot">
+            <span>avg response <b>&lt; 2 min</b></span>
+            <span>uptime <b>99.9%</b></span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Problem -->
-  <section class="problem" id="problem">
+  <!-- Stats strip -->
+  <div class="stats">
     <div class="container">
-      <div class="problem-header fade-in">
+      <div class="stats-row">
+        <div class="glass stat fade-in">
+          <div class="stat-num grad-text">&lt; 2 min</div>
+          <div class="stat-label">Lead response time, down from hours</div>
+        </div>
+        <div class="glass stat fade-in">
+          <div class="stat-num grad-text">30 days</div>
+          <div class="stat-label">To measurable ROI — proof before commitment</div>
+        </div>
+        <div class="glass stat fade-in">
+          <div class="stat-num grad-text">0 hrs</div>
+          <div class="stat-label">Of your team's time spent sorting the inbox</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Problem -->
+  <section id="problem">
+    <div class="container">
+      <div class="section-head fade-in">
         <p class="mono">The problem</p>
         <h2>Most businesses use AI to chat.<br>Almost none use it to <em>work</em>.</h2>
       </div>
-      <div class="problem-grid">
-        <div class="problem-card fade-in">
+      <div class="grid-3">
+        <div class="glass card fade-in">
           <p class="mono">01</p>
           <h3>Inquiries go unanswered</h3>
-          <p>Leads hit a shared inbox and sit there for hours, or even days. By the time someone responds, the prospect has moved on.</p>
+          <p>Leads hit a shared inbox and sit for hours. By the time someone responds, the prospect has moved on.</p>
         </div>
-        <div class="problem-card fade-in">
+        <div class="glass card fade-in">
           <p class="mono">02</p>
           <h3>Manual work burns time</h3>
-          <p>Your team spends hours on data entry, email sorting, lead routing, and follow-ups that should happen automatically.</p>
+          <p>Data entry, email sorting, lead routing, follow-ups — hours of work that should happen automatically.</p>
         </div>
-        <div class="problem-card fade-in">
+        <div class="glass card fade-in">
           <p class="mono">03</p>
           <h3>AI stays in the chat tab</h3>
-          <p>You might use ChatGPT for one-off questions, but it's not connected to your inbox, your CRM, or your actual processes.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Who this is for -->
-  <section class="audience">
-    <div class="container">
-      <div class="audience-header fade-in">
-        <p class="mono">Who this is for</p>
-        <h2>If this sounds like your day,<br>we should talk.</h2>
-      </div>
-      <div class="audience-grid">
-        <div class="audience-card fade-in">
-          <p class="mono">Home services</p>
-          <h3>Drowning in leads</h3>
-          <p>Roofing, HVAC, plumbing, electrical. You get 40+ inquiries a day through your website, Google, and Angi's List. Your office manager spends hours sorting them. Leads fall through the cracks during busy season.</p>
-        </div>
-        <div class="audience-card fade-in">
-          <p class="mono">Professional services</p>
-          <h3>Routing inquiries manually</h3>
-          <p>Law firms, accounting, insurance, consulting. New client emails need to be read, qualified, and routed to the right person. It takes hours every day and urgent matters get buried.</p>
-        </div>
-        <div class="audience-card fade-in">
-          <p class="mono">Property management</p>
-          <h3>Triageing maintenance requests</h3>
-          <p>200+ rental units, maintenance requests coming in by email around the clock. Someone has to read each one, decide if it's an emergency, and assign it to the right vendor. 3-4 hours a day, every day.</p>
+          <p>ChatGPT answers one-off questions, but it isn't connected to your inbox, your CRM, or your actual processes.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- How it works -->
-  <section class="how" id="how">
+  <section id="how">
     <div class="container">
-      <div class="how-header fade-in">
+      <div class="section-head fade-in">
         <p class="mono">How it works</p>
-        <h2>We wire AI into the processes<br>your business already runs.</h2>
+        <h2>One workflow at a time,<br>proven with numbers.</h2>
       </div>
-      <div class="how-steps">
-        <div class="how-step fade-in">
-          <div class="step-num">01</div>
-          <div class="step-content">
-            <h3>Identify one workflow</h3>
-            <p>We start with a single process: your inbox, your lead pipeline, your intake form. Wherever the bottleneck lives. One workflow, one problem, one measurable goal.</p>
-          </div>
+      <div class="how-grid">
+        <div class="glass how-card fade-in">
+          <span class="how-num">01</span>
+          <h3>Identify one workflow</h3>
+          <p>Your inbox, lead pipeline, or intake form — wherever the bottleneck lives.</p>
         </div>
-        <div class="how-step fade-in">
-          <div class="step-num">02</div>
-          <div class="step-content">
-            <h3>Build the automation</h3>
-            <p>We connect cloud AI to your existing tools. The system reads, classifies, extracts, routes, and responds, with structured outputs and human review where it matters.</p>
-          </div>
+        <div class="glass how-card fade-in">
+          <span class="how-num">02</span>
+          <h3>Build the automation</h3>
+          <p>Cloud AI connected to your existing tools, with human review where it matters.</p>
         </div>
-        <div class="how-step fade-in">
-          <div class="step-num">03</div>
-          <div class="step-content">
-            <h3>Prove the ROI</h3>
-            <p>Within 30 days you see the numbers: response time, lead capture rate, routing accuracy, hours saved. Most clients start with a 30-day proof-of-value deployment before moving to a full managed service. Real metrics, not a vague "AI strategy."</p>
-          </div>
+        <div class="glass how-card fade-in">
+          <span class="how-num">03</span>
+          <h3>Prove the ROI</h3>
+          <p>30 days of real metrics: response time, lead capture, hours saved. Not a vague "AI strategy."</p>
         </div>
-        <div class="how-step fade-in">
-          <div class="step-num">04</div>
-          <div class="step-content">
-            <h3>We manage it ongoing</h3>
-            <p>The workflow runs as a managed service. We monitor, maintain, tune, and report. You focus on your business. Add more workflows when you're ready.</p>
-          </div>
+        <div class="glass how-card fade-in">
+          <span class="how-num">04</span>
+          <h3>We manage it ongoing</h3>
+          <p>Monitored, tuned, and reported monthly. Add workflows when you're ready.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Workflow spotlight -->
-  <section class="workflow" id="workflow">
+  <!-- Who this is for -->
+  <section>
     <div class="container">
-      <div class="workflow-header fade-in">
-        <p class="mono">First workflow</p>
-        <h2>Inquiry email automation</h2>
-        <p style="margin-top: 1rem; color: var(--gray-400); font-size: 1rem;">
-          Every business has email. Every business loses leads in their inbox. This is where we start.
-        </p>
+      <div class="section-head fade-in">
+        <p class="mono">Who this is for</p>
+        <h2>If this sounds like your day,<br>we should talk.</h2>
       </div>
-      <div class="workflow-visual fade-in">
-        <div class="wf-title">Lead Response Automation: Live Pipeline</div>
-        <div class="wf-pipeline">
-          <div class="wf-stage">
-            <div class="wf-dot"><div class="wf-dot-inner"></div></div>
-            <div class="wf-stage-content">
-              <div class="wf-stage-name">Inbound email detected</div>
-              <div class="wf-stage-desc">New inquiry hits the shared inbox</div>
-            </div>
-            <div class="wf-stage-tag">trigger</div>
-          </div>
-          <div class="wf-stage">
-            <div class="wf-dot"><div class="wf-dot-inner"></div></div>
-            <div class="wf-stage-content">
-              <div class="wf-stage-name">AI classification</div>
-              <div class="wf-stage-desc">Intent, urgency, and category extracted in structured JSON</div>
-            </div>
-            <div class="wf-stage-tag">ai · classify</div>
-          </div>
-          <div class="wf-stage">
-            <div class="wf-dot"><div class="wf-dot-inner"></div></div>
-            <div class="wf-stage-content">
-              <div class="wf-stage-name">Lead details extracted</div>
-              <div class="wf-stage-desc">Name, company, phone, request details pulled automatically</div>
-            </div>
-            <div class="wf-stage-tag">ai · extract</div>
-          </div>
-          <div class="wf-stage">
-            <div class="wf-dot"><div class="wf-dot-inner"></div></div>
-            <div class="wf-stage-content">
-              <div class="wf-stage-name">Instant acknowledgement sent</div>
-              <div class="wf-stage-desc">Personalized first response within minutes, not hours</div>
-            </div>
-            <div class="wf-stage-tag">ai · draft</div>
-          </div>
-          <div class="wf-stage">
-            <div class="wf-dot"><div class="wf-dot-inner"></div></div>
-            <div class="wf-stage-content">
-              <div class="wf-stage-name">Routed to the right person</div>
-              <div class="wf-stage-desc">Sales, support, or specific team member, automatically</div>
-            </div>
-            <div class="wf-stage-tag">logic · route</div>
-          </div>
-          <div class="wf-stage">
-            <div class="wf-dot"><div class="wf-dot-inner"></div></div>
-            <div class="wf-stage-content">
-              <div class="wf-stage-name">Logged and tracked</div>
-              <div class="wf-stage-desc">Every inquiry captured, every metric recorded</div>
-            </div>
-            <div class="wf-stage-tag">log · report</div>
-          </div>
+      <div class="grid-3">
+        <div class="glass card fade-in">
+          <p class="mono">Home services</p>
+          <h3>Drowning in leads</h3>
+          <p>Roofing, HVAC, plumbing. 40+ inquiries a day across your website, Google, and Angi — and leads fall through the cracks during busy season.</p>
+        </div>
+        <div class="glass card fade-in">
+          <p class="mono">Professional services</p>
+          <h3>Routing inquiries manually</h3>
+          <p>Law, accounting, insurance. Every new client email needs to be read, qualified, and routed — and urgent matters get buried.</p>
+        </div>
+        <div class="glass card fade-in">
+          <p class="mono">Property management</p>
+          <h3>Triaging maintenance requests</h3>
+          <p>Requests around the clock. Someone reads each one, judges urgency, assigns a vendor — 3–4 hours a day, every day.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Pricing -->
-  <section class="pricing" id="pricing">
+  <section id="pricing">
     <div class="container">
-      <div class="pricing-header fade-in">
+      <div class="section-head fade-in">
         <p class="mono">Pricing</p>
         <h2>Simple, productized, recurring.</h2>
-        <p style="margin-top: 1rem; color: var(--gray-400);">Setup fee to build it right. Monthly fee to keep it running. No surprises.</p>
+        <p style="margin-top: 0.9rem;">Setup fee to build it right. Monthly fee to keep it running. No surprises.</p>
       </div>
       <div class="pricing-grid">
-        <div class="price-card featured fade-in">
-          <p class="mono price-tier">Lead Response Automation</p>
+        <div class="glass price-card featured fade-in">
+          <p class="mono">Lead Response Automation</p>
           <div class="price-amount">$797 <span>/mo</span></div>
-          <p class="price-setup">$1,497 one-time setup <span style="color: var(--gray-600);">(includes 30-day proof-of-value deployment)</span></p>
+          <p class="price-setup">$1,497 one-time setup — includes 30-day proof-of-value</p>
           <p class="price-desc">Lead response running in your inbox with measurable ROI from day one.</p>
           <ul class="price-features">
-            <li>AI email triage, classification & response</li>
-            <li>Lead capture & automatic routing</li>
+            <li>AI email triage, classification &amp; response</li>
+            <li>Lead capture &amp; automatic routing</li>
             <li>Automated monthly ROI report</li>
-            <li>System monitoring & maintenance</li>
+            <li>System monitoring &amp; maintenance</li>
             <li>Email support</li>
           </ul>
           <a href="/intake" class="price-btn">Start your intake</a>
         </div>
-        <div class="price-card fade-in">
-          <p class="mono price-tier">What clients expand into</p>
-          <div class="price-amount" style="font-size:1.6rem;line-height:1.2;">from $1,497 <span style="font-size:0.9rem;">setup + from $247/mo</span></div>
+        <div class="glass price-card fade-in">
+          <p class="mono">What clients expand into</p>
+          <div class="price-amount" style="font-size:1.5rem;">from $1,497 <span>setup + from $247/mo</span></div>
           <p class="price-setup">Scoped after core is live</p>
-          <p class="price-desc">Common next steps for clients once the core product is running. Each module is individually scoped. We only recommend one when the ROI is clear.</p>
+          <p class="price-desc">Each module is individually scoped. We only recommend one when the ROI is clear.</p>
           <ul class="price-features">
-            <li>Growth Sustainment: quarterly optimization + priority support (+$397/mo)</li>
-            <li>CRM & pipeline integration</li>
-            <li>Invoice & AR automation</li>
+            <li>Growth Sustainment: quarterly optimization (+$397/mo)</li>
+            <li>CRM &amp; pipeline integration</li>
+            <li>Invoice &amp; AR automation</li>
             <li>Multi-channel (SMS, Slack, portal)</li>
             <li>Custom analytics dashboard</li>
           </ul>
@@ -715,28 +650,28 @@
   </section>
 
   <!-- About -->
-  <section class="about" id="about">
+  <section id="about">
     <div class="container">
       <div class="about-grid">
         <div class="about-text fade-in">
-          <p class="mono">About</p>
+          <p class="mono" style="margin-bottom:0.9rem;">About</p>
           <h2>Built for businesses<br>that do real work.</h2>
-          <p>Kavik Works was founded on a simple observation: most businesses don't need an AI strategy. They need AI wired into the processes they already run, reliably, measurably, and without the hype.</p>
-          <p>We're a small, focused operation. We build repeatable workflow automation using cloud AI APIs, structured outputs, and deterministic code. No black boxes. No vendor lock-in. Everything is auditable, observable, and designed to run without babysitting.</p>
+          <p>Most businesses don't need an AI strategy. They need AI wired into the processes they already run — reliably, measurably, without the hype.</p>
+          <p>We're a small, focused operation building repeatable automation with cloud AI, structured outputs, and deterministic code. No black boxes. No vendor lock-in. Everything auditable and designed to run without babysitting.</p>
           <p>Based in Denver, Colorado. Available remotely.</p>
         </div>
-        <div class="about-details fade-in">
-          <div class="about-detail">
+        <div class="about-chips fade-in">
+          <div class="glass about-chip">
             <p class="mono">Architecture</p>
-            <p>Cloud AI APIs for the reasoning. Structured JSON for the outputs. Deterministic code for the logic. Git-versioned configs per client. Repeatable deployments, not one-off custom stacks.</p>
+            <p>Cloud AI for the reasoning, structured JSON for the outputs, deterministic code for the logic. Git-versioned configs per client.</p>
           </div>
-          <div class="about-detail">
+          <div class="glass about-chip">
             <p class="mono">Philosophy</p>
-            <p>Start narrow. Prove value fast. Expand when the numbers justify it. Every workflow we build has defined success metrics before we write a single line of code.</p>
+            <p>Start narrow. Prove value fast. Expand when the numbers justify it — success metrics defined before a line of code.</p>
           </div>
-          <div class="about-detail">
+          <div class="glass about-chip">
             <p class="mono">What we don't do</p>
-            <p>We don't build chatbots, run AI strategy workshops, do open-ended consulting, or schedule quarterly check-ins. The system runs autonomously and reports to you automatically every month. No babysitting required, from either of us.</p>
+            <p>No chatbots, strategy workshops, or open-ended consulting. The system runs autonomously and reports to you monthly.</p>
           </div>
         </div>
       </div>
@@ -744,20 +679,18 @@
   </section>
 
   <!-- CTA -->
-  <section class="cta" id="contact">
+  <section id="contact">
     <div class="container">
-      <div class="fade-in">
-        <p class="mono">Get started</p>
+      <div class="glass cta-panel fade-in">
+        <p class="mono" style="margin-bottom:0.9rem;">Get started</p>
         <h2>Ready to stop losing<br>leads in your inbox?</h2>
-        <p>Fill out the intake form and we'll send you a free feasibility report: how many hours you'd save, estimated ROI, and whether we're the right fit. If it looks like a strong fit, we'll reach out about a 30-day proof-of-value deployment. No call required to get started.</p>
+        <p>Fill out the intake form and we'll send you a free feasibility report: hours saved, estimated ROI, and whether we're the right fit. No call required.</p>
         <div class="cta-actions">
           <a href="/intake" class="btn-primary">
             Get your free analysis
             <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
-          <a href="mailto:contact@kavikworks.com" class="btn-secondary">
-            Or email directly: contact@kavikworks.com
-          </a>
+          <a href="mailto:contact@kavikworks.com" class="btn-secondary">contact@kavikworks.com</a>
         </div>
       </div>
     </div>
@@ -783,24 +716,74 @@
     // Mobile menu toggle
     const menuBtn = document.getElementById('menuBtn');
     const navLinks = document.getElementById('navLinks');
-    menuBtn.addEventListener('click', () => {
-      navLinks.classList.toggle('open');
-    });
-    // Close menu on link click
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => navLinks.classList.remove('open'));
-    });
+    menuBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
+    navLinks.querySelectorAll('a').forEach(link =>
+      link.addEventListener('click', () => navLinks.classList.remove('open')));
 
     // Scroll fade-in
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
+        if (entry.isIntersecting) entry.target.classList.add('visible');
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Cursor sheen on glass cards
+    const fine = window.matchMedia('(pointer: fine)').matches;
+    if (fine) {
+      document.querySelectorAll('.glass').forEach(card => {
+        card.addEventListener('pointermove', e => {
+          const r = card.getBoundingClientRect();
+          card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+          card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+        });
+      });
+    }
+
+    // Live ops console — simulated event stream
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const consoleBody = document.getElementById('consoleBody');
+    const EVENTS = [
+      { msg: 'inbound email detected — new inquiry', tag: 'trigger', cls: 'b' },
+      { msg: 'classified: quote request · high intent', tag: 'ai · classify', cls: 'c' },
+      { msg: 'lead extracted: name, phone, job details', tag: 'ai · extract', cls: 'c' },
+      { msg: 'personalized acknowledgement sent (41s)', tag: 'ai · draft', cls: 'v' },
+      { msg: 'routed → sales · flagged for follow-up', tag: 'route', cls: 'b' },
+      { msg: 'logged to sheet · metrics updated', tag: 'report', cls: 'v' },
+      { msg: 'inbound email detected — maintenance request', tag: 'trigger', cls: 'b' },
+      { msg: 'classified: urgent · water leak', tag: 'ai · classify', cls: 'c' },
+      { msg: 'escalated → on-call vendor · SMS sent', tag: 'route', cls: 'v' },
+      { msg: 'tenant acknowledgement sent (28s)', tag: 'ai · draft', cls: 'v' },
+      { msg: 'logged · response SLA met', tag: 'report', cls: 'b' },
+      { msg: 'weekly ROI digest generated', tag: 'report', cls: 'c' },
+    ];
+    const MAX_ROWS = 9;
+    let idx = 0;
+
+    function stamp() {
+      const d = new Date();
+      return String(d.getHours()).padStart(2,'0') + ':' +
+             String(d.getMinutes()).padStart(2,'0') + ':' +
+             String(d.getSeconds()).padStart(2,'0');
+    }
+    function pushEvent() {
+      const e = EVENTS[idx % EVENTS.length];
+      idx++;
+      const row = document.createElement('div');
+      row.className = 'evt';
+      row.innerHTML = '<span class="t">' + stamp() + '</span>' +
+                      '<span class="msg">' + e.msg + '</span>' +
+                      '<span class="tag ' + e.cls + '">' + e.tag + '</span>';
+      consoleBody.appendChild(row);
+      while (consoleBody.children.length > MAX_ROWS) consoleBody.removeChild(consoleBody.firstChild);
+    }
+    // Seed a few rows immediately so the card never looks empty
+    for (let i = 0; i < 5; i++) pushEvent();
+    if (!reduceMotion) {
+      (function loop() {
+        setTimeout(() => { pushEvent(); loop(); }, 1400 + Math.random() * 2200);
+      })();
+    }
   </script>
 </body>
 </html>
