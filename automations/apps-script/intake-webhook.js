@@ -4,15 +4,22 @@
  * Deploy as a Web App (Execute as: Me, Access: Anyone).
  * Set the resulting URL as GOOGLE_APPS_SCRIPT_URL in intake.html.
  *
+ * SECRETS: All sensitive values (Sheet ID, Drive folder ID, VPS webhook URL,
+ * webhook token) are read from Script Properties, NOT hardcoded here.
+ *
+ * To set Script Properties, run `setupScriptProperties()` once from the
+ * editor (after filling in your values), or set them manually at:
+ *   Project Settings → Script properties
+ *
  * This script:
  *   1. Receives the form POST from intake.html
- *   2. Logs the submission to a Google Sheet (8 columns)
+ *   2. Logs the submission to a Google Sheet
  *   3. Saves raw JSON to Drive
  *   4. Sends a notification email to contact@kavikworks.com
  *   5. Sends intake data to VPS pipeline via webhook
  *   6. Updates the Sheet row status to 'pipeline_triggered'
  *
- * The VPS pipeline (port 9092) runs a 4-stage process:
+ * The VPS pipeline runs a 4-stage process:
  *   - LLM analysis of workflow description
  *   - Company research via web search
  *   - Relevant industry stats selection
@@ -22,14 +29,42 @@
 // ── Configuration ────────────────────────────────────────────
 
 const CONFIG = {
-  SHEET_ID: '1mbknvaua8n_imAmeg2GcpcJqteShRwYuJGNvDjyY-Ak',
   SHEET_TAB: 'Intake Submissions',
   NOTIFICATION_EMAIL: 'contact@kavikworks.com',
-  DRIVE_FOLDER_ID: '10kNDc0gR6ar-9AvlDYZ7wO0u4dE8m8pW',
-  // VPS intake pipeline — generates draft email with AI analysis + research
-  VPS_WEBHOOK_URL: 'http://167.235.152.228:9092/intake',
-  VPS_WEBHOOK_TOKEN: 'kavik-intake-2024-secure-webhook',
+
+  // Secrets loaded from Script Properties at runtime
+  get SHEET_ID()        { return getProp('SHEET_ID'); },
+  get DRIVE_FOLDER_ID() { return getProp('DRIVE_FOLDER_ID'); },
+  get VPS_WEBHOOK_URL() { return getProp('VPS_WEBHOOK_URL'); },
+  get VPS_WEBHOOK_TOKEN() { return getProp('VPS_WEBHOOK_TOKEN'); },
 };
+
+/**
+ * Read a Script Property, falling back to '' if unset.
+ */
+function getProp(key) {
+  return PropertiesService.getScriptProperties().getProperty(key) || '';
+}
+
+/**
+ * Run this ONCE to set all script properties from the editor.
+ * Fill in your real values below, run the function, then delete
+ * the values from the source (or just don't commit them).
+ */
+function setupScriptProperties() {
+  const props = {
+    // Google Sheet ID (from the Sheet URL)
+    SHEET_ID: 'YOUR_SHEET_ID_HERE',
+    // Google Drive folder ID (from the folder URL)
+    DRIVE_FOLDER_ID: 'YOUR_DRIVE_FOLDER_ID_HERE',
+    // VPS intake pipeline URL
+    VPS_WEBHOOK_URL: 'https://your-tunnel-domain.example.com/intake',
+    // Webhook bearer token (must match config.yaml on the VPS)
+    VPS_WEBHOOK_TOKEN: 'YOUR_WEBHOOK_TOKEN_HERE',
+  };
+  PropertiesService.getScriptProperties().setProperties(props);
+  console.log('Script properties set. Verify with: PropertiesService.getScriptProperties().getProperties()');
+}
 
 // ── Main Handler ─────────────────────────────────────────────
 
@@ -143,7 +178,7 @@ function sendNotification(data, timestamp) {
 function triggerVPSPipeline(data, rowIndex) {
   try {
     if (!CONFIG.VPS_WEBHOOK_URL || !CONFIG.VPS_WEBHOOK_TOKEN) {
-      console.error('VPS webhook URL or token not configured');
+      console.error('VPS webhook URL or token not configured in Script Properties');
       return;
     }
 
