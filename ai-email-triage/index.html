@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Email Triage | Kavik Works</title>
+  <meta name="description" content="AI email triage for shared inboxes: classify messages, extract structured details, route work, and escalate uncertainty without unrestricted autonomous replies.">
+  <link rel="canonical" href="https://kavikworks.com/ai-email-triage/">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="AI Email Triage | Kavik Works">
+  <meta property="og:description" content="A controlled workflow for classifying shared-inbox messages, extracting details, routing work, and escalating uncertainty.">
+  <meta property="og:url" content="https://kavikworks.com/ai-email-triage/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Kavik Works">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI Email Triage | Kavik Works">
+  <meta name="twitter:description" content="A controlled workflow for classifying shared-inbox messages, extracting details, routing work, and escalating uncertainty.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Service",
+        "@id": "https://kavikworks.com/ai-email-triage/#service",
+        "name": "AI Email Triage",
+        "serviceType": "AI email triage",
+        "description": "A controlled workflow for classifying shared-inbox messages, extracting structured details, routing work, and escalating uncertainty rather than allowing unrestricted autonomous email behavior.",
+        "provider": { "@type": "Organization", "name": "Kavik Works", "url": "https://kavikworks.com/" },
+        "url": "https://kavikworks.com/ai-email-triage/"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Kavik Works", "item": "https://kavikworks.com/" },
+          { "@type": "ListItem", "position": 2, "name": "AI Email Triage", "item": "https://kavikworks.com/ai-email-triage/" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "Will it read every email?", "acceptedAnswer": { "@type": "Answer", "text": "The workflow is scoped to the inboxes, message categories, and data boundaries agreed during implementation. It should not be assumed that every mailbox or every message is in scope." } },
+          { "@type": "Question", "name": "Can it send replies automatically?", "acceptedAnswer": { "@type": "Answer", "text": "It can prepare an approved reply or take a permitted sending step when that boundary is explicitly defined and tested. Unrestricted autonomous replies are not the default." } },
+          { "@type": "Question", "name": "What happens when classification is incorrect?", "acceptedAnswer": { "@type": "Answer", "text": "The workflow should stop or route to review when confidence is low or the category is sensitive. Human overrides and the final route are recorded so the taxonomy and rules can be improved." } },
+          { "@type": "Question", "name": "Can it distinguish emergencies?", "acceptedAnswer": { "@type": "Answer", "text": "It can flag stated urgency against a defined taxonomy, but an emergency or safety decision remains human-owned. Unclear or safety-sensitive messages escalate instead of receiving an autonomous judgment." } },
+          { "@type": "Question", "name": "How is sensitive content handled?", "acceptedAnswer": { "@type": "Answer", "text": "Sensitive categories are identified during process design and assigned a human-review boundary. Credential boundaries, processing path, retention, and access controls are documented for the specific workflow; no certification or guarantee is implied." } },
+          { "@type": "Question", "name": "Can staff override decisions?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Staff should be able to review exceptions, change a route, and record an override. The final route or action is part of the audit history." } },
+          { "@type": "Question", "name": "How is the workflow evaluated before launch?", "acceptedAnswer": { "@type": "Answer", "text": "The process starts with an inbox review, a category and schema design, representative historical-example testing, confidence thresholds, controlled deployment, exception review, and ongoing measurement." } }
+        ]
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/commercial-pages.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="site-nav">
+    <div class="container nav-inner">
+      <a class="brand" href="/" aria-label="Kavik Works home"><span class="brand-mark" aria-hidden="true"></span>Kavik Works</a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#candidates">Good candidates</a>
+        <a href="#controls">Human control</a>
+        <a href="#audit">Auditability</a>
+        <a href="/lead-response-automation/">Lead Response Automation</a>
+        <a class="nav-cta" href="/intake">Free analysis</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">Controlled inbox workflow</p>
+          <h1>AI Email <span class="gradient">Triage</span></h1>
+          <p class="hero-lede">AI email triage classifies messages in a shared inbox, extracts the details a workflow needs, routes work to the right destination, and escalates uncertainty. It is an operating control for repetitive email work—not permission for unrestricted autonomous replies.</p>
+          <div class="hero-actions">
+            <a class="button-primary" href="/intake">Describe the inbox workflow <span aria-hidden="true">→</span></a>
+            <a class="button-secondary" href="/lead-response-automation/">See Lead Response Automation</a>
+          </div>
+        </div>
+        <div class="glass hero-panel" aria-label="Illustrative AI email triage flow">
+          <div class="panel-label"><span class="mono">Illustrative triage</span><span class="mono"><span class="status-dot" aria-hidden="true"></span>review boundary</span></div>
+          <div class="panel-flow">
+            <div class="flow-row"><span class="flow-index">01</span><span>Original message referenced</span><span class="flow-tag">inbox</span></div>
+            <div class="flow-row"><span class="flow-index">02</span><span>Category and fields extracted</span><span class="flow-tag">json</span></div>
+            <div class="flow-row"><span class="flow-index">03</span><span>Confidence is checked</span><span class="flow-tag">rule</span></div>
+            <div class="flow-row"><span class="flow-index">04</span><span>Route or escalate</span><span class="flow-tag">human</span></div>
+          </div>
+          <div class="panel-foot"><span>original reference</span><span>rule version</span><span>override trail</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="candidates">
+      <div class="container">
+        <div class="section-heading"><p class="eyebrow">Good workflow candidates</p><h2>Start where the inbox repeats a decision.</h2><p>The strongest candidates have recurring categories, a known owner, a defined next action, and a safe way to stop when the message does not fit.</p></div>
+        <div class="grid-4">
+          <article class="glass card"><p class="mono">01</p><h3>New leads</h3><p>Identify a new inquiry, extract contact and request details, and route it to the agreed owner.</p></article>
+          <article class="glass card"><p class="mono">02</p><h3>Estimate requests</h3><p>Separate estimate questions from other messages and prepare the permitted next step.</p></article>
+          <article class="glass card"><p class="mono">03</p><h3>Maintenance requests</h3><p>Capture property and stated urgency details before routing to the defined queue.</p></article>
+          <article class="glass card"><p class="mono">04</p><h3>Client intake</h3><p>Classify a new intake, existing matter, billing question, or vendor message under explicit rules.</p></article>
+        </div>
+        <div class="mini-links"><a href="/build-concepts/property-management-inquiries.html">Property-management pattern →</a><a href="/build-concepts/law-firm-client-intake.html">Professional-services pattern →</a><a href="/build-concepts/msp-support-ticket-routing.html">Support-ticket pattern →</a></div>
+      </div>
+    </section>
+
+    <section id="controls">
+      <div class="container">
+        <div class="section-heading"><p class="eyebrow">What should not run without review</p><h2>Keep judgment, authorization, and commitments human-owned.</h2></div>
+        <div class="grid-2">
+          <article class="glass card"><p class="mono">Always escalate</p><h3>Messages that change the risk</h3><ul class="rich-list"><li>Legal or contractual commitments.</li><li>Sensitive customer disputes or unclear identity.</li><li>Low-confidence classifications or missing required facts.</li><li>Safety-sensitive requests and professional judgment.</li></ul></article>
+          <article class="glass card"><p class="mono">Do not assume</p><h3>Autonomy is not the objective</h3><ul class="rich-list"><li>Do not send unrestricted replies because a model produced fluent text.</li><li>Do not let a category decide pricing, eligibility, or a final promise.</li><li>Do not hide uncertainty inside a generic catch-all route.</li><li>Do not expand the scope before the exception queue is understood.</li></ul></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="payload">
+      <div class="container">
+        <div class="section-heading"><p class="eyebrow">Structured output</p><h2>Make the decision inspectable.</h2><p>The following payload is illustrative only. It is not customer data and does not describe a live implementation.</p></div>
+        <pre aria-label="Illustrative AI email triage structured output"><code>{
+  "message_type": "maintenance_request",
+  "identity": {
+    "customer_or_tenant": "stated name",
+    "property_or_account": "stated reference"
+  },
+  "urgency": "routine | urgent | unclear",
+  "requested_action": "route for maintenance review",
+  "destination": "defined maintenance queue",
+  "confidence": 0.86,
+  "escalation_reason": null
+}</code></pre>
+        <p class="payload-note">Illustrative schema: the actual fields, allowed values, and confidence policy are designed for the selected workflow.</p>
+      </div>
+    </section>
+
+    <section id="confidence">
+      <div class="container">
+        <div class="section-heading"><p class="eyebrow">Confidence and escalation</p><h2>Confidence changes the permitted action.</h2></div>
+        <div class="grid-3">
+          <article class="glass step"><span class="step-number">HIGH CONFIDENCE</span><h3>Perform the permitted step</h3><p>Only the workflow action already approved for that category runs. The result is logged.</p></article>
+          <article class="glass step"><span class="step-number">MEDIUM CONFIDENCE</span><h3>Draft or route for review</h3><p>Prepare structured context or a draft, but keep the final decision with the assigned person.</p></article>
+          <article class="glass step"><span class="step-number">LOW CONFIDENCE</span><h3>Stop and escalate</h3><p>Do not guess. Send the original reference, available facts, and escalation reason to a human.</p></article>
+        </div>
+        <div class="callout" style="margin-top:1rem;"><strong>Some categories always require a person</strong><span>Legal, contractual, safety-sensitive, disputed, or otherwise high-consequence messages do not become safe merely because the classification score is high.</span></div>
+      </div>
+    </section>
+
+    <section id="audit">
+      <div class="container">
+        <div class="section-heading"><p class="eyebrow">Auditability</p><h2>Keep the original message connected to the final action.</h2></div>
+        <div class="grid-3">
+          <article class="glass card"><p class="mono">Input</p><h3>Original reference</h3><p>Record which message or event entered the workflow and the structured fields extracted from it.</p></article>
+          <article class="glass card"><p class="mono">Decision</p><h3>Configuration and rule</h3><p>Record the model or configuration version, applied rule, confidence result, and escalation reason.</p></article>
+          <article class="glass card"><p class="mono">Outcome</p><h3>Route and override</h3><p>Record the final route or action, any human override, timestamp, and outcome for later review.</p></article>
+        </div>
+        <div class="callout" style="margin-top:1rem;"><strong>Architecture boundary</strong><span>Kavik Works uses cloud AI for reasoning, structured JSON outputs, deterministic code for logic, and Git-versioned configuration per client.</span></div>
+      </div>
+    </section>
+
+    <section id="comparison">
+      <div class="container">
+        <div class="section-heading"><p class="eyebrow">Compare the operating choices</p><h2>No single tool is best for every inbox.</h2><p>The right choice depends on message ambiguity, routing complexity, audit needs, maintenance capacity, and how much human control the team requires.</p></div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Approach</th><th>Ambiguity handling</th><th>Routing flexibility</th><th>Auditability</th><th>Human control</th></tr></thead>
+            <tbody>
+              <tr><td>Static inbox rules</td><td>Low; matches explicit patterns</td><td>Good for simple destinations</td><td>Depends on mailbox history and rule logs</td><td>High, if sending stays manual</td></tr>
+              <tr><td>Help-desk software</td><td>Varies by configured categories</td><td>Strong within its ticket model</td><td>Usually strong for tickets and assignments</td><td>Configured by queue and permissions</td></tr>
+              <tr><td>AI-assisted triage</td><td>Can interpret bounded language with confidence limits</td><td>Flexible when rules define the allowed routes</td><td>Requires original references, versioning, and event logs</td><td>Strong when uncertainty escalates</td></tr>
+              <tr><td>Custom workflow automation</td><td>Designed for a specific taxonomy</td><td>Can connect several agreed destinations</td><td>Designed into the workflow and configuration</td><td>Set by explicit boundaries and overrides</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="security">
+      <div class="container">
+        <div class="section-heading"><p class="eyebrow">Security and data handling</p><h2>Define the data path before the model sees the message.</h2><p>Security decisions belong to the specific workflow. This page describes implementation questions, not a certification or guarantee.</p></div>
+        <div class="grid-3">
+          <article class="glass card"><p class="mono">Boundaries</p><h3>Credentials and access</h3><p>Define which systems the workflow can access, which credentials are kept outside public code, and which people can review or override actions.</p></article>
+          <article class="glass card"><p class="mono">Processing</p><h3>Path and retention</h3><p>Document what content is processed, which third-party processors are involved, what is logged, and the retention choice for the selected workflow.</p></article>
+          <article class="glass card"><p class="mono">Control</p><h3>Review and escalation</h3><p>Keep sensitive categories and uncertain messages inside a human-review boundary, with a record of the final route or action.</p></article>
+        </div>
+        <div class="callout" style="margin-top:1rem;"><strong>Practical limit</strong><span>Do not treat a fluent classification as authorization to disclose information, make a commitment, or send a sensitive response.</span></div>
+      </div>
+    </section>
+
+    <section id="implementation">
+      <div class="container">
+        <div class="section-heading"><p class="eyebrow">Implementation stages</p><h2>Evaluate the workflow before you expand it.</h2></div>
+        <div class="grid-4">
+          <article class="glass step"><span class="step-number">01 / REVIEW</span><h3>Map the inbox</h3><p>Identify sources, categories, owners, sensitive content, and current failure points.</p></article>
+          <article class="glass step"><span class="step-number">02 / DESIGN</span><h3>Define schema and rules</h3><p>Choose fields, thresholds, approved actions, exception reasons, and destinations.</p></article>
+          <article class="glass step"><span class="step-number">03 / TEST</span><h3>Evaluate examples</h3><p>Use representative historical examples to test categories, extraction, confidence, and escalation.</p></article>
+          <article class="glass step"><span class="step-number">04 / OPERATE</span><h3>Deploy and measure</h3><p>Launch in a controlled boundary, review exceptions, and measure the workflow over time.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="measures">
+      <div class="container">
+        <div class="section-heading"><p class="eyebrow">Success measures</p><h2>Measure the work the inbox is supposed to improve.</h2></div>
+        <div class="grid-3">
+          <article class="glass card"><p class="mono">Speed</p><h3>Time to first classification</h3><p>How long a new message waits before a category and owner are recorded.</p></article>
+          <article class="glass card"><p class="mono">Quality</p><h3>Routing and exception accuracy</h3><p>Whether the right queue receives the work and how often a person must correct it.</p></article>
+          <article class="glass card"><p class="mono">Capacity</p><h3>Manual triage time</h3><p>How much reading, copying, forwarding, and duplicate work the team still performs.</p></article>
+          <article class="glass card"><p class="mono">Coverage</p><h3>Missed or delayed messages</h3><p>Whether important messages remain unowned or wait past the agreed response target.</p></article>
+          <article class="glass card"><p class="mono">Safety</p><h3>Human-review volume</h3><p>How many messages appropriately stop for review and which categories create the exceptions.</p></article>
+          <article class="glass card"><p class="mono">Duplication</p><h3>Duplicate-response rate</h3><p>Whether the workflow reduces multiple people responding to the same message.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="container">
+        <div class="section-heading"><p class="eyebrow">FAQ</p><h2>Questions before an inbox workflow is put under control.</h2></div>
+        <div class="faq-list">
+          <details><summary>Will it read every email?</summary><p>The workflow is scoped to the inboxes, message categories, and data boundaries agreed during implementation. It should not be assumed that every mailbox or every message is in scope.</p></details>
+          <details><summary>Can it send replies automatically?</summary><p>It can prepare an approved reply or take a permitted sending step when that boundary is explicitly defined and tested. Unrestricted autonomous replies are not the default.</p></details>
+          <details><summary>What happens when classification is incorrect?</summary><p>The workflow should stop or route to review when confidence is low or the category is sensitive. Human overrides and the final route are recorded so the taxonomy and rules can be improved.</p></details>
+          <details><summary>Can it distinguish emergencies?</summary><p>It can flag stated urgency against a defined taxonomy, but an emergency or safety decision remains human-owned. Unclear or safety-sensitive messages escalate instead of receiving an autonomous judgment.</p></details>
+          <details><summary>How is sensitive content handled?</summary><p>Sensitive categories are identified during process design and assigned a human-review boundary. Credential boundaries, processing path, retention, and access controls are documented for the specific workflow; no certification or guarantee is implied.</p></details>
+          <details><summary>Can staff override decisions?</summary><p>Yes. Staff should be able to review exceptions, change a route, and record an override. The final route or action is part of the audit history.</p></details>
+          <details><summary>How is the workflow evaluated before launch?</summary><p>The process starts with an inbox review, a category and schema design, representative historical-example testing, confidence thresholds, controlled deployment, exception review, and ongoing measurement.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container"><div class="glass band"><p class="eyebrow">Next step</p><h2>Describe the inbox workflow you want to improve.</h2><p>Request a free feasibility analysis. We will help identify whether a bounded triage workflow is a sensible first step.</p><div class="hero-actions"><a class="button-primary" href="/intake">Describe your workflow <span aria-hidden="true">→</span></a><a class="button-secondary" href="/lead-response-automation/">Explore Lead Response Automation</a></div></div></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner"><span>© 2026 Robot Arms LLC, dba Kavik Works · Denver, CO.</span><span class="footer-links"><a href="/">Home</a><a href="/lead-response-automation/">Lead Response Automation</a><a href="/intake">Free analysis</a><a href="mailto:contact@kavikworks.com">Contact</a></span></div>
+  </footer>
+</body>
+</html>
