@@ -4,12 +4,18 @@
 ## Site
 - Home: https://kavikworks.com/
 - Pricing: https://kavikworks.com/#pricing
-- Intake Form: https://kavikworks.com/intake
+- Workflow Assessment: https://kavikworks.com/intake
 - Sitemap: https://kavikworks.com/sitemap.xml
 
 ## Commercial workflows
 - Lead Response Automation: https://kavikworks.com/lead-response-automation/ — A managed workflow for capturing, classifying, acknowledging, routing, and measuring inbound leads without removing human control.
 - AI Email Triage: https://kavikworks.com/ai-email-triage/ — A controlled workflow for classifying shared-inbox messages, extracting details, routing work, and escalating uncertainty without unrestricted autonomous replies.
+
+## Engagement model
+- Implementation is $1,497, paid upfront. One workflow is built, tested, and deployed before measurement begins.
+- The first 30 live days are the 30-Day Proof of Value. A value report follows with observed results and next-step recommendations.
+- Managed operation for a live Lead Response Automation workflow begins at go-live at $797/month and is required while that workflow remains live. It covers the agreed AI/API connection, monitoring, maintenance, reporting, and in-scope support. Any exceptional transition is separately scoped.
+- AI Email Triage has no standalone price; the $797/month managed-operation price does not apply to it independently.
 
 ## Build Concepts
 Detailed automation plans for specific industries — each includes a full pipeline breakdown, classification taxonomy, routing rules, response templates, and integration points.
