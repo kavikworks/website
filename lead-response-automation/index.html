@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0a'/%3E%3Crect x='6' y='6' width='20' height='20' rx='4' fill='none' stroke='%23a3a3a3' stroke-width='2'/%3E%3Crect x='12' y='12' width='8' height='8' rx='1' fill='%23ffffff'/%3E%3C/svg%3E">
   <title>Lead Response Automation | Kavik Works</title>
   <meta name="description" content="Kavik Works implements a managed lead-response workflow that captures, classifies, routes, acknowledges, and measures inbound inquiries with human escalation where it matters.">
   <link rel="canonical" href="https://kavikworks.com/lead-response-automation/">
@@ -43,8 +44,9 @@
           { "@type": "Question", "name": "Can it work with an existing CRM?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, when the existing CRM can be part of the agreed workflow. The implementation starts by mapping the inboxes, forms, lead sources, records, and routing destinations already in use; no named integration is assumed before verification." } },
           { "@type": "Question", "name": "Does it replace the office team?", "acceptedAnswer": { "@type": "Answer", "text": "No. It handles repeatable classification, extraction, routing, logging, and approved acknowledgements while people retain judgment over ambiguity, pricing, safety, legal matters, and exceptions." } },
           { "@type": "Question", "name": "What volume makes the workflow worth evaluating?", "acceptedAnswer": { "@type": "Answer", "text": "There is no universal threshold. It is worth evaluating when inbound work is operationally important and the team can identify a measurable bottleneck in response time, coverage, routing, or manual triage." } },
-          { "@type": "Question", "name": "What is included in setup?", "acceptedAnswer": { "@type": "Answer", "text": "Setup covers one selected workflow, its categories and rules, representative-example testing, controlled validation, launch preparation, and the included 30-day proof-of-value period. Additional systems or workflows are scoped separately." } },
-          { "@type": "Question", "name": "What gets measured during the first 30 days?", "acceptedAnswer": { "@type": "Answer", "text": "The baseline and workflow determine the measures, which can include time to first acknowledgement, captured and routed inquiries, manual triage time, exception rate, duplicate responses, and delayed or missed messages." } }
+          { "@type": "Question", "name": "What is included in implementation?", "acceptedAnswer": { "@type": "Answer", "text": "The $1,497 one-time implementation fee is paid upfront and covers one selected workflow, its categories and rules, representative-example testing, controlled validation, deployment, and the 30-Day Proof of Value. Additional systems or workflows are scoped separately." } },
+          { "@type": "Question", "name": "What gets measured during the first 30 days?", "acceptedAnswer": { "@type": "Answer", "text": "The first 30 live days are the Proof of Value measurement window. The baseline and workflow determine the measures, which can include time to first acknowledgement, captured and routed inquiries, manual triage time, exception rate, duplicate responses, and delayed or missed messages. A value report summarizes the evidence and informs optimization, expansion, or retirement." } },
+          { "@type": "Question", "name": "What happens after the first 30 days?", "acceptedAnswer": { "@type": "Answer", "text": "The $797/month managed operation begins at go-live and is required while the workflow remains live. It covers the agreed AI/API connection, monitoring, maintenance, reporting, and support within scope. The value report informs optimization, expansion, or retirement; an exceptional transition can be scoped separately if the service ends." } }
         ]
       }
     ]
@@ -65,7 +67,7 @@
         <a href="#proof">30-day proof</a>
         <a href="#pricing">Pricing</a>
         <a href="/ai-email-triage/">AI Email Triage</a>
-        <a class="nav-cta" href="/intake">Free analysis</a>
+        <a class="nav-cta" href="/intake">Workflow assessment</a>
       </nav>
     </div>
   </header>
@@ -78,8 +80,8 @@
           <h1>Lead Response <span class="gradient">Automation</span></h1>
           <p class="hero-lede">Lead response automation is a controlled workflow that captures inbound inquiries, classifies what they need, prepares an approved acknowledgement, routes the work, and measures what happened. Kavik Works builds it around the systems your business already runs, with human escalation for uncertain or sensitive cases.</p>
           <div class="hero-actions">
-            <a class="button-primary" href="/intake">Request a free feasibility analysis <span aria-hidden="true">→</span></a>
-            <a class="button-secondary" href="#workflow">See the workflow</a>
+            <a class="button-primary" href="/intake">Request a workflow assessment <span aria-hidden="true">→</span></a>
+            <a class="button-secondary" href="#demo">View the 8-second demo</a>
           </div>
         </div>
         <div class="glass hero-panel" aria-label="Illustrative lead-response workflow">
@@ -91,6 +93,23 @@
             <div class="flow-row"><span class="flow-index">04</span><span>Work is routed and logged</span><span class="flow-tag">control</span></div>
           </div>
           <div class="panel-foot"><span>structured output</span><span>deterministic rules</span><span>exception queue</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="demo">
+      <div class="container">
+        <div class="section-heading"><p class="eyebrow">Illustrative demo</p><h2>See one inquiry move from arrival to a logged next step.</h2><p>This fictional example shows the kind of bounded workflow Kavik Works can build: classify the request, route it to an owner, and record the event for measurement.</p></div>
+        <div class="glass demo-shell" aria-label="Eight-second illustrative lead-response workflow demo">
+          <div class="demo-header"><span class="mono">Illustrative demo · fictional inquiry</span><div class="demo-controls"><span class="demo-duration">8-second sequence</span><button class="button-secondary demo-replay" type="button" aria-controls="workflowDemoStage">Replay demo</button></div></div>
+          <div class="demo-stage" id="workflowDemoStage">
+            <article class="demo-step"><span class="demo-step-index">01 / ARRIVE</span><h3>Inquiry received</h3><p>“Need a quote for a two-zone repair.”</p><span class="demo-detail"><strong>source</strong> website form</span><span class="demo-detail"><strong>reference</strong> demo-inquiry-042</span></article>
+            <article class="demo-step"><span class="demo-step-index">02 / CLASSIFY</span><h3>Request categorized</h3><p>Estimate request with required contact and job details present.</p><span class="demo-detail"><strong>confidence</strong> permitted path</span><span class="demo-detail"><strong>review</strong> policy checked</span></article>
+            <article class="demo-step"><span class="demo-step-index">03 / ROUTE</span><h3>Owner selected</h3><p>Route to the sales queue and prepare the approved acknowledgement.</p><span class="demo-detail"><strong>destination</strong> sales queue</span><span class="demo-detail"><strong>human</strong> follow-up owner</span></article>
+            <article class="demo-step"><span class="demo-step-index">04 / LOG</span><h3>Outcome recorded</h3><p>Capture the route, timestamp, and next measure for the value report.</p><span class="demo-detail"><strong>event</strong> inquiry_routed</span><span class="demo-detail"><strong>status</strong> logged for review</span></article>
+          </div>
+          <div class="demo-outcome"><span><strong>MEASURE</strong> time-to-route captured</span><span><strong>CONTROL</strong> human override available</span><span><strong>RESULT</strong> illustrative only</span></div>
+          <p class="demo-note">No customer data or customer result is shown. With reduced motion enabled, all four steps remain visible without animation.</p>
         </div>
       </div>
     </section>
@@ -161,20 +180,23 @@
 
     <section id="proof">
       <div class="container">
-        <div class="section-heading"><p class="eyebrow">30-day proof-of-value</p><h2>Baseline first. Controlled launch second. Decision with evidence.</h2><p>Setup includes a 30-day proof-of-value period. It is a measurement window, not a promise of a particular conversion lift or payback period.</p></div>
+        <div class="section-heading"><p class="eyebrow">30-Day Proof of Value</p><h2>Build first. Measure after launch. Decide with evidence.</h2><p>The measurement window begins only after the selected workflow is live. It is a defined evaluation period, not a promise of a particular conversion lift, payback period, or business outcome.</p></div>
         <div class="grid-3">
-          <article class="glass step"><span class="step-number">01 / BASELINE</span><h3>Measure the current path</h3><p>Record the relevant response, routing, coverage, manual-work, and outcome measures before changing the workflow.</p></article>
-          <article class="glass step"><span class="step-number">02 / VALIDATE</span><h3>Test representative examples</h3><p>Run known messages through the categories, structured fields, rules, approved language, and exception paths.</p></article>
-          <article class="glass step"><span class="step-number">03 / MEASURE</span><h3>Continue, adjust, or stop</h3><p>Launch the selected workflow, review exceptions, measure for 30 days, and decide what the numbers support next.</p></article>
+          <article class="glass step"><span class="step-number">01 / BASELINE</span><h3>Define success measures</h3><p>Agree on the current baseline, the workflow boundary, and the measures that will make the value report useful.</p></article>
+          <article class="glass step"><span class="step-number">02 / COMMIT</span><h3>Pay the implementation fee upfront</h3><p>The full one-time implementation fee is paid before work begins so the scope, build, test, and launch can be planned clearly.</p></article>
+          <article class="glass step"><span class="step-number">03 / BUILD</span><h3>Build, test, and deploy</h3><p>Configure the selected workflow, test representative examples and exception paths, then launch it in the agreed boundary.</p></article>
+          <article class="glass step"><span class="step-number">04 / MEASURE</span><h3>Start the 30-day window after launch</h3><p>Review live events and exceptions against the baseline for 30 days. The clock starts when the workflow is live, not at payment.</p></article>
+          <article class="glass step"><span class="step-number">05 / REPORT</span><h3>Receive a value report</h3><p>Summarize the agreed measures, observed workflow behavior, exceptions, and evidence for the next decision.</p></article>
+          <article class="glass step"><span class="step-number">06 / MANAGE</span><h3>Operate the live workflow</h3><p>$797/month managed operation begins at go-live and is required while the workflow remains live. It covers the agreed AI/API connection, monitoring, maintenance, reporting, and support within scope. Additional workflows are separately scoped.</p></article>
         </div>
       </div>
     </section>
 
     <section id="pricing">
       <div class="container">
-        <div class="section-heading"><p class="eyebrow">Pricing</p><h2>One workflow, one setup, managed operation.</h2><p>The price is for the Lead Response Automation offer described here. Additional workflows or modules are separately scoped.</p></div>
+        <div class="section-heading"><p class="eyebrow">Pricing</p><h2>One workflow, one implementation, managed operation while live.</h2><p>The $1,497 full implementation fee is paid upfront before work begins. The $797/month managed operation starts at go-live and remains in place while the workflow is live. The first 30 live days are the Proof of Value measurement window; its value report informs optimization, expansion, or retirement.</p></div>
         <div class="grid-2">
-          <article class="glass price-card featured"><p class="mono">Lead Response Automation</p><div class="price">$1,497 <small>one-time setup</small></div><p class="price-note">Includes the 30-day proof-of-value period.</p><div class="price">$797 <small>per month for managed operation</small></div><p>Managed operation covers the agreed workflow, monitoring, maintenance, reporting, and email support within the defined scope.</p><a class="button-primary" href="/intake">Request a feasibility analysis <span aria-hidden="true">→</span></a></article>
+          <article class="glass price-card featured"><p class="mono">Lead Response Automation</p><div class="price">$1,497 <small>one-time implementation</small></div><p class="price-note">Paid upfront before work begins; includes build, test, deployment, and the 30-Day Proof of Value.</p><div class="price">$797 <small>per month, managed operation while live</small></div><p>Managed operation begins at go-live and is required while the workflow remains live. It covers the agreed AI/API connection, monitoring, maintenance, reporting, and email support within scope. The value report informs optimization, expansion, or retirement; an exceptional transition can be scoped separately if the service ends.</p><a class="button-primary" href="/intake">Workflow assessment <span aria-hidden="true">→</span></a></article>
           <article class="glass card"><p class="mono">Assumptions and exclusions</p><h3>Scope stays explicit</h3><ul class="rich-list"><li>One selected workflow is the starting point.</li><li>Access, data fields, response language, destinations, and exception owners must be available for the agreed scope.</li><li>New channels, major CRM work, custom dashboards, and expansion modules are not implied by this page.</li><li>The proof window measures the selected workflow; it does not guarantee a business outcome.</li></ul></article>
         </div>
       </div>
@@ -212,19 +234,44 @@
           <details><summary>Can it work with an existing CRM?</summary><p>Yes, when the existing CRM can be part of the agreed workflow. The implementation starts by mapping the inboxes, forms, lead sources, records, and routing destinations already in use; no named integration is assumed before verification.</p></details>
           <details><summary>Does it replace the office team?</summary><p>No. It handles repeatable classification, extraction, routing, logging, and approved acknowledgements while people retain judgment over ambiguity, pricing, safety, legal matters, and exceptions.</p></details>
           <details><summary>What volume makes the workflow worth evaluating?</summary><p>There is no universal threshold. It is worth evaluating when inbound work is operationally important and the team can identify a measurable bottleneck in response time, coverage, routing, or manual triage.</p></details>
-          <details><summary>What is included in setup?</summary><p>Setup covers one selected workflow, its categories and rules, representative-example testing, controlled validation, launch preparation, and the included 30-day proof-of-value period. Additional systems or workflows are scoped separately.</p></details>
-          <details><summary>What gets measured during the first 30 days?</summary><p>The baseline and workflow determine the measures, which can include time to first acknowledgement, captured and routed inquiries, manual triage time, exception rate, duplicate responses, and delayed or missed messages.</p></details>
+          <details><summary>What is included in implementation?</summary><p>The $1,497 one-time implementation fee is paid upfront and covers one selected workflow, its categories and rules, representative-example testing, controlled validation, deployment, and the 30-Day Proof of Value. Additional systems or workflows are scoped separately.</p></details>
+          <details><summary>What gets measured during the first 30 days?</summary><p>The first 30 live days are the Proof of Value measurement window. The baseline and workflow determine the measures, which can include time to first acknowledgement, captured and routed inquiries, manual triage time, exception rate, duplicate responses, and delayed or missed messages. A value report summarizes the evidence and informs optimization, expansion, or retirement.</p></details>
+          <details><summary>What happens after the first 30 days?</summary><p>The $797/month managed operation begins at go-live and is required while the workflow remains live. It covers the agreed AI/API connection, monitoring, maintenance, reporting, and support within scope. The value report informs optimization, expansion, or retirement; an exceptional transition can be scoped separately if the service ends.</p></details>
         </div>
       </div>
     </section>
 
     <section>
-      <div class="container"><div class="glass band"><p class="eyebrow">Next step</p><h2>Describe the workflow that is getting stuck.</h2><p>Request a free feasibility analysis. We will help determine whether one measurable lead-response workflow is a sensible place to start.</p><div class="hero-actions"><a class="button-primary" href="/intake">Request a free feasibility analysis <span aria-hidden="true">→</span></a><a class="button-secondary" href="/ai-email-triage/">See AI Email Triage</a></div></div></div>
+      <div class="container"><div class="glass band"><p class="eyebrow">Next step</p><h2>Start with one workflow assessment.</h2><p>Share the process that is getting stuck. We will help define a sensible baseline, success measures, and a bounded first workflow before implementation.</p><div class="hero-actions"><a class="button-primary" href="/intake">Workflow assessment <span aria-hidden="true">→</span></a><a class="button-secondary" href="/ai-email-triage/">See AI Email Triage</a></div></div></div>
     </section>
   </main>
 
   <footer class="footer">
     <div class="container footer-inner"><span>© 2026 Robot Arms LLC, dba Kavik Works · Denver, CO.</span><span class="footer-links"><a href="/">Home</a><a href="/guides/lead-response-cost.html">Lead-response cost guide</a><a href="/guides/lead-response-automation-vs-crm.html">Automation vs. CRM</a><a href="mailto:contact@kavikworks.com">Contact</a></span></div>
   </footer>
+
+  <script>
+    const demoStage = document.getElementById('workflowDemoStage');
+    const demoReplay = document.querySelector('.demo-replay');
+    const demoReduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    function playWorkflowDemo() {
+      if (!demoStage || demoReduceMotion.matches) return;
+      demoStage.classList.remove('is-playing');
+      void demoStage.offsetWidth;
+      demoStage.classList.add('is-playing');
+    }
+
+    if (demoStage && 'IntersectionObserver' in window) {
+      const demoObserver = new IntersectionObserver((entries, observer) => {
+        if (entries.some(entry => entry.isIntersecting)) {
+          playWorkflowDemo();
+          observer.disconnect();
+        }
+      }, { threshold: 0.25 });
+      demoObserver.observe(demoStage);
+    }
+    if (demoReplay) demoReplay.addEventListener('click', playWorkflowDemo);
+  </script>
 </body>
 </html>

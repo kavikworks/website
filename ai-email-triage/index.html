@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0a'/%3E%3Crect x='6' y='6' width='20' height='20' rx='4' fill='none' stroke='%23a3a3a3' stroke-width='2'/%3E%3Crect x='12' y='12' width='8' height='8' rx='1' fill='%23ffffff'/%3E%3C/svg%3E">
   <title>AI Email Triage | Kavik Works</title>
   <meta name="description" content="AI email triage for shared inboxes: classify messages, extract structured details, route work, and escalate uncertainty without unrestricted autonomous replies.">
   <link rel="canonical" href="https://kavikworks.com/ai-email-triage/">
@@ -44,7 +45,8 @@
           { "@type": "Question", "name": "Can it distinguish emergencies?", "acceptedAnswer": { "@type": "Answer", "text": "It can flag stated urgency against a defined taxonomy, but an emergency or safety decision remains human-owned. Unclear or safety-sensitive messages escalate instead of receiving an autonomous judgment." } },
           { "@type": "Question", "name": "How is sensitive content handled?", "acceptedAnswer": { "@type": "Answer", "text": "Sensitive categories are identified during process design and assigned a human-review boundary. Credential boundaries, processing path, retention, and access controls are documented for the specific workflow; no certification or guarantee is implied." } },
           { "@type": "Question", "name": "Can staff override decisions?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Staff should be able to review exceptions, change a route, and record an override. The final route or action is part of the audit history." } },
-          { "@type": "Question", "name": "How is the workflow evaluated before launch?", "acceptedAnswer": { "@type": "Answer", "text": "The process starts with an inbox review, a category and schema design, representative historical-example testing, confidence thresholds, controlled deployment, exception review, and ongoing measurement." } }
+          { "@type": "Question", "name": "How is the workflow evaluated before launch?", "acceptedAnswer": { "@type": "Answer", "text": "The process starts with an inbox review, a category and schema design, representative historical-example testing, confidence thresholds, controlled deployment, exception review, and ongoing measurement." } },
+          { "@type": "Question", "name": "What happens after the first 30 days?", "acceptedAnswer": { "@type": "Answer", "text": "The first 30 live days are the Proof of Value measurement window. Managed operation begins at go-live and is required while the workflow remains live. Its price and precise scope are defined in the workflow agreement; the service covers the agreed AI/API connection, monitoring, maintenance, reporting, and support. The value report informs optimization, expansion, or retirement; an exceptional transition can be scoped separately if the service ends." } }
         ]
       }
     ]
@@ -62,10 +64,11 @@
       <a class="brand" href="/" aria-label="Kavik Works home"><span class="brand-mark" aria-hidden="true"></span>Kavik Works</a>
       <nav class="nav-links" aria-label="Primary navigation">
         <a href="#candidates">Good candidates</a>
+        <a href="#proof">30-day proof</a>
         <a href="#controls">Human control</a>
         <a href="#audit">Auditability</a>
         <a href="/lead-response-automation/">Lead Response Automation</a>
-        <a class="nav-cta" href="/intake">Free analysis</a>
+        <a class="nav-cta" href="/intake">Workflow assessment</a>
       </nav>
     </div>
   </header>
@@ -78,8 +81,8 @@
           <h1>AI Email <span class="gradient">Triage</span></h1>
           <p class="hero-lede">AI email triage classifies messages in a shared inbox, extracts the details a workflow needs, routes work to the right destination, and escalates uncertainty. It is an operating control for repetitive email work—not permission for unrestricted autonomous replies.</p>
           <div class="hero-actions">
-            <a class="button-primary" href="/intake">Describe the inbox workflow <span aria-hidden="true">→</span></a>
-            <a class="button-secondary" href="/lead-response-automation/">See Lead Response Automation</a>
+            <a class="button-primary" href="/intake">Request a workflow assessment <span aria-hidden="true">→</span></a>
+            <a class="button-secondary" href="/lead-response-automation/#demo">View the illustrative demo</a>
           </div>
         </div>
         <div class="glass hero-panel" aria-label="Illustrative AI email triage flow">
@@ -91,6 +94,20 @@
             <div class="flow-row"><span class="flow-index">04</span><span>Route or escalate</span><span class="flow-tag">human</span></div>
           </div>
           <div class="panel-foot"><span>original reference</span><span>rule version</span><span>override trail</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="proof">
+      <div class="container">
+        <div class="section-heading"><p class="eyebrow">30-Day Proof of Value</p><h2>Scope one inbox decision, then measure what the workflow changes.</h2><p>The same controlled sequence applies when inbox triage is the first workflow: define the baseline, launch the tested boundary, and report the evidence to inform optimization, expansion, or retirement.</p></div>
+        <div class="grid-3">
+          <article class="glass step"><span class="step-number">01 / BASELINE</span><h3>Define success measures</h3><p>Agree on the current path, categories, owners, exception boundary, and the measures that matter for the selected inbox.</p></article>
+          <article class="glass step"><span class="step-number">02 / COMMIT</span><h3>Pay the implementation fee upfront</h3><p>The full implementation fee is paid before work begins; the exact scope and any additional workflow are documented separately.</p></article>
+          <article class="glass step"><span class="step-number">03 / BUILD</span><h3>Build, test, and deploy</h3><p>Configure the taxonomy and rules, test representative messages, validate escalation, and launch the agreed boundary.</p></article>
+          <article class="glass step"><span class="step-number">04 / MEASURE</span><h3>Start measuring after the workflow is live</h3><p>Review events, overrides, and exceptions for 30 days. The measurement window starts after launch, not at payment.</p></article>
+          <article class="glass step"><span class="step-number">05 / REPORT</span><h3>Receive a value report</h3><p>Summarize the agreed measures and observed workflow behavior so the next operating decision is evidence-led.</p></article>
+          <article class="glass step"><span class="step-number">06 / MANAGE</span><h3>Operate the live workflow</h3><p>Managed operation begins at go-live and is required while the workflow remains live. Its price and precise scope are defined in the workflow agreement; the service covers the agreed AI/API connection, monitoring, maintenance, reporting, and support. Additional workflows are separately scoped.</p></article>
         </div>
       </div>
     </section>
@@ -192,12 +209,12 @@
 
     <section id="implementation">
       <div class="container">
-        <div class="section-heading"><p class="eyebrow">Implementation stages</p><h2>Evaluate the workflow before you expand it.</h2></div>
+        <div class="section-heading"><p class="eyebrow">Implementation detail</p><h2>Test the boundary before the 30-day window begins.</h2></div>
         <div class="grid-4">
           <article class="glass step"><span class="step-number">01 / REVIEW</span><h3>Map the inbox</h3><p>Identify sources, categories, owners, sensitive content, and current failure points.</p></article>
           <article class="glass step"><span class="step-number">02 / DESIGN</span><h3>Define schema and rules</h3><p>Choose fields, thresholds, approved actions, exception reasons, and destinations.</p></article>
           <article class="glass step"><span class="step-number">03 / TEST</span><h3>Evaluate examples</h3><p>Use representative historical examples to test categories, extraction, confidence, and escalation.</p></article>
-          <article class="glass step"><span class="step-number">04 / OPERATE</span><h3>Deploy and measure</h3><p>Launch in a controlled boundary, review exceptions, and measure the workflow over time.</p></article>
+          <article class="glass step"><span class="step-number">04 / LAUNCH</span><h3>Deploy, then measure</h3><p>Launch in the controlled boundary first; the 30-day measurement window begins only after the workflow is live.</p></article>
         </div>
       </div>
     </section>
@@ -227,17 +244,18 @@
           <details><summary>How is sensitive content handled?</summary><p>Sensitive categories are identified during process design and assigned a human-review boundary. Credential boundaries, processing path, retention, and access controls are documented for the specific workflow; no certification or guarantee is implied.</p></details>
           <details><summary>Can staff override decisions?</summary><p>Yes. Staff should be able to review exceptions, change a route, and record an override. The final route or action is part of the audit history.</p></details>
           <details><summary>How is the workflow evaluated before launch?</summary><p>The process starts with an inbox review, a category and schema design, representative historical-example testing, confidence thresholds, controlled deployment, exception review, and ongoing measurement.</p></details>
+          <details><summary>What happens after the first 30 days?</summary><p>The first 30 live days are the Proof of Value measurement window. Managed operation begins at go-live and is required while the workflow remains live. Its price and precise scope are defined in the workflow agreement; the service covers the agreed AI/API connection, monitoring, maintenance, reporting, and support. The value report informs optimization, expansion, or retirement; an exceptional transition can be scoped separately if the service ends.</p></details>
         </div>
       </div>
     </section>
 
     <section>
-      <div class="container"><div class="glass band"><p class="eyebrow">Next step</p><h2>Describe the inbox workflow you want to improve.</h2><p>Request a free feasibility analysis. We will help identify whether a bounded triage workflow is a sensible first step.</p><div class="hero-actions"><a class="button-primary" href="/intake">Describe your workflow <span aria-hidden="true">→</span></a><a class="button-secondary" href="/lead-response-automation/">Explore Lead Response Automation</a></div></div></div>
+      <div class="container"><div class="glass band"><p class="eyebrow">Next step</p><h2>Start with a workflow assessment.</h2><p>Share the inbox decision that repeats. We will help define the baseline, success measures, and review boundary for a sensible first workflow.</p><div class="hero-actions"><a class="button-primary" href="/intake">Workflow assessment <span aria-hidden="true">→</span></a><a class="button-secondary" href="/lead-response-automation/">Explore Lead Response Automation</a></div></div></div>
     </section>
   </main>
 
   <footer class="footer">
-    <div class="container footer-inner"><span>© 2026 Robot Arms LLC, dba Kavik Works · Denver, CO.</span><span class="footer-links"><a href="/">Home</a><a href="/lead-response-automation/">Lead Response Automation</a><a href="/intake">Free analysis</a><a href="mailto:contact@kavikworks.com">Contact</a></span></div>
+    <div class="container footer-inner"><span>© 2026 Robot Arms LLC, dba Kavik Works · Denver, CO.</span><span class="footer-links"><a href="/">Home</a><a href="/lead-response-automation/">Lead Response Automation</a><a href="/intake">Workflow assessment</a><a href="mailto:contact@kavikworks.com">Contact</a></span></div>
   </footer>
 </body>
 </html>
