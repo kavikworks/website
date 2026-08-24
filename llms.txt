@@ -5,6 +5,11 @@
 - Home: https://kavikworks.com/
 - Pricing: https://kavikworks.com/#pricing
 - Intake Form: https://kavikworks.com/intake
+- Sitemap: https://kavikworks.com/sitemap.xml
+
+## Commercial workflows
+- Lead Response Automation: https://kavikworks.com/lead-response-automation/ — A managed workflow for capturing, classifying, acknowledging, routing, and measuring inbound leads without removing human control.
+- AI Email Triage: https://kavikworks.com/ai-email-triage/ — A controlled workflow for classifying shared-inbox messages, extracting details, routing work, and escalating uncertainty without unrestricted autonomous replies.
 
 ## Build Concepts
 Detailed automation plans for specific industries — each includes a full pipeline breakdown, classification taxonomy, routing rules, response templates, and integration points.
@@ -19,6 +24,10 @@ Detailed automation plans for specific industries — each includes a full pipel
 - Financial Advisor Prospect & Client Service Routing: https://kavikworks.com/build-concepts/financial-advisor-inquiry-routing.html — New prospect vs. client service classification, withdrawal request urgency routing, and compliance item flagging for RIAs managing $150M+ AUM.
 - MSP Support Ticket Intake & Client Routing: https://kavikworks.com/build-concepts/msp-support-ticket-routing.html — P1 outage auto-detection, PSA ticket creation, on-call engineer escalation, and new business inquiry routing for MSPs handling 40-60 client emails/day.
 - Insurance Agency Quote Requests & Claims Routing: https://kavikworks.com/build-concepts/insurance-quote-claims-routing.html — Routing commercial quotes, personal lines, certificates, and claims from a single inbox with claims urgency detection and SMS alerting.
+
+## Buyer guides
+- How to Calculate the Cost of Slow Lead Response: https://kavikworks.com/guides/lead-response-cost.html — A practical worksheet for measuring manual intake cost and testing whether faster acknowledgement changes booked-job outcomes using your own data.
+- Lead Response Automation vs. a CRM vs. a Shared Inbox: https://kavikworks.com/guides/lead-response-automation-vs-crm.html — A practical guide for deciding whether your intake problem needs a better shared inbox process, CRM discipline, or a dedicated automation workflow.
 
 ## About
 Kavik Works is the public brand of Robot Arms LLC, founded by Joshua Lynch in Denver, Colorado. We build repeatable workflow automation using cloud AI APIs, structured outputs, and deterministic code. One workflow at a time.
