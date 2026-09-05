@@ -1,6 +1,6 @@
 # Kavik Works agent instructions
 
-Read `docs/operating-architecture.md`, `docs/business-desk.md`, and the current private Notion Operations page before business work. The September 2026 low-maintenance model supersedes older volume-first instructions in the wiki and unmerged architecture proposals. An explicit newer owner instruction takes precedence.
+Read `docs/operating-architecture.md`, `docs/business-desk.md`, `docs/marketing.md`, and the current private Notion Operations page before business work. The September 2026 low-maintenance model supersedes older volume-first instructions in the wiki and unmerged architecture proposals. An explicit newer owner instruction takes precedence.
 
 Keep this public repository free of customer details, private workspace URLs, email message IDs, credentials, and payment data. Current operational facts belong in the private Notion operations board. Gmail is the evidence for sent mail; a spreadsheet row is not proof of sending.
 
@@ -13,3 +13,5 @@ For website changes, run `python3 scripts/check_site.py` and `node --test tests/
 Business agents must verify the connected sender and full thread, record intent before a side effect, and reconcile uncertain completion before retrying. No new cold sequences during migration. Honor replies, opt-outs, bounces, existing drafts, and later human messages. Only the Business Desk may send routine business replies. No personal inbox cleanup under this mandate.
 
 Use existing connected tools. Do not repeatedly request Google Apps Script domain access for this project. Record one actionable blocker when a required capability is absent. Do not manufacture data or instructions to bypass it.
+
+The owner requested campaign attribution and acquisition review on September 5, 2026. Nonpersonal campaign labels passed into an optional email brief implement that request. They are not authorization for advertising spend, tracking pixels, background analytics, or reopening stopped outreach. Follow `docs/marketing.md` for campaign evidence and attribution limits.

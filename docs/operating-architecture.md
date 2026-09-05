@@ -13,7 +13,7 @@ Start at two new paid orders per week and two in progress. The first three paid 
 | Job | Ownership | Normal output |
 | --- | --- | --- |
 | Business Desk | Business inbox, cases, routine inbound replies, delivery preparation, suppression | Updated private board; exceptional alerts only |
-| Growth Studio | One bounded website or distribution improvement and its experiment | Evidence, change, validation, and observation window |
+| Growth Studio | Customer acquisition, one bounded campaign/asset improvement, and website conversion | Campaign and asset evidence, attribution, outcomes, and next experiment |
 | Owner Brief | Profit, known costs, founder time, delivery quality, incidents, next decision | One concise weekly owner report |
 
 Business Desk runs on working mornings and afternoons. Growth Studio runs weekly. Owner Brief runs weekly and absorbs the monthly visibility check. Their actual schedules live in the personal cloud scheduler. This repository does not create a second scheduler. Personal automations are separate.
@@ -29,6 +29,8 @@ Finish pagination or persist the continuation before advancing a scan cursor. Us
 ## Acquisition and feedback
 
 The primary path is a free public sample and workflow check, followed by an optional email request for the blueprint. Cold-email generation and legacy follow-up sending are stopped during migration. Do not introduce a second sender while vendor and local jobs remain unverified. A vendor-reported LinkedIn response is evidence to inspect, not a paid sale or permission to expand campaigns.
+
+Growth Studio owns the acquisition ledger and authorized organic distribution. Business Desk attaches campaign evidence to inquiries and verified orders; Owner Brief compares results and assigns the next improvement. Follow `docs/marketing.md`. Campaign labels pass through the website into optional email briefs; they do not count visits or clicks. Native platform metrics and verified payment evidence remain separate requirements.
 
 Measure qualified requests, verified payments, known attributable cost, contribution, actual founder minutes, material errors, and revisions. Mark missing metrics UNKNOWN. Report cost subtotals with coverage. Never treat unknown revenue or time as zero.
 

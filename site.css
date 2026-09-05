@@ -130,3 +130,5 @@ body{background:white;font-size:12pt}
 .plan-card{transform:none;box-shadow:none;color:black;background:white;border:1px solid #888}
 .flow-step p,.card-foot{color:#333}
 }
+.source-choice { margin: 1rem 0; }
+.source-choice input[type="checkbox"] { width: auto; display: inline; margin-right: .4rem; }
