@@ -1,42 +1,23 @@
 # Kavik Works
-> AI workflow automation for small and midsize businesses — inbox triage, lead routing, inquiry response, and back-office automation. Not chatbots. Not consulting. Measurable automation, one workflow at a time.
+> Kavik Works (Robot Arms LLC) is a Denver business offering written workflow blueprints for small service businesses and property teams.
 
-## Site
-- Home: https://kavikworks.com/
-- Pricing: https://kavikworks.com/#pricing
-- Workflow Assessment: https://kavikworks.com/intake
-- Sitemap: https://kavikworks.com/sitemap.xml
+## Current offer
+- Workflow Blueprint: $149 USD one time for one intake or follow-up workflow. Any applicable tax, scope, payment method, and delivery timing are confirmed before payment.
+- Includes a workflow map, capture fields, routing rules, three editable templates, setup steps, a test checklist, and one clarification revision within seven days of delivery.
+- AI-assisted preparation, checked against the customer brief. No call or account access required. No payment is collected on the website.
+- This is a written plan. Installation, live inbox operation, and ongoing monitoring are not included. No customer results, conversion lift, or time savings are claimed.
+- Current focus: quote requests, leasing inquiries, and shared administrative inboxes. Medical decisions, legal advice, financial decisions, tenant screening, and emergency dispatch are outside the offer.
 
-## Commercial workflows
-- Lead Response Automation: https://kavikworks.com/lead-response-automation/ — A managed workflow for capturing, classifying, acknowledging, routing, and measuring inbound leads without removing human control.
-- AI Email Triage: https://kavikworks.com/ai-email-triage/ — A controlled workflow for classifying shared-inbox messages, extracting details, routing work, and escalating uncertainty without unrestricted autonomous replies.
+## Useful pages
+- [Home](https://kavikworks.com/): current scope and price.
+- [Free workflow check](https://kavikworks.com/intake): local starter template and optional email request.
+- [Complete free sample](https://kavikworks.com/sample-workflow/): fields, routing rules, templates, and tests.
+- [Lead follow-up planning](https://kavikworks.com/lead-response-automation/)
+- [Shared inbox planning](https://kavikworks.com/ai-email-triage/)
+- [Workflow examples](https://kavikworks.com/build-concepts/): examples, not case studies.
+- [Lead-response cost worksheet](https://kavikworks.com/guides/lead-response-cost.html)
+- [Automation, CRM, or shared inbox](https://kavikworks.com/guides/lead-response-automation-vs-crm.html)
 
-## Engagement model
-- Implementation is $1,497, paid upfront. One workflow is built, tested, and deployed before measurement begins.
-- The first 30 live days are the 30-Day Proof of Value. A value report follows with observed results and next-step recommendations.
-- Managed operation for a live Lead Response Automation workflow begins at go-live at $797/month and is required while that workflow remains live. It covers the agreed AI/API connection, monitoring, maintenance, reporting, and in-scope support. Any exceptional transition is separately scoped.
-- AI Email Triage has no standalone price; the $797/month managed-operation price does not apply to it independently.
-
-## Build Concepts
-Detailed automation plans for specific industries — each includes a full pipeline breakdown, classification taxonomy, routing rules, response templates, and integration points.
-
-- Law Firm Client Intake & Lead Response: https://kavikworks.com/build-concepts/law-firm-client-intake.html — How a 5-attorney firm automates prospect inquiry classification, drafting, and routing. Taxonomy covers new prospects, existing clients, court filings, opposing counsel, and urgent matters.
-- HVAC Lead Routing & Quote Follow-Up: https://kavikworks.com/build-concepts/hvac-lead-response.html — Emergency vs. estimate classification, geographic routing, and instant first-response for home services contractors handling 20+ quote requests/day.
-- Property Management Tenant Inquiries & Maintenance Routing: https://kavikworks.com/build-concepts/property-management-inquiries.html — Handling emergency maintenance and prospective tenant inquiries through a single inbox with urgency detection and auto-escalation.
-- CPA Firm Client Intake & Tax Season Triage: https://kavikworks.com/build-concepts/cpa-client-intake-triage.html — Tax season inbox management that separates prospects from clients, identifies urgent IRS notices, and routes to the right preparer.
-- Medical Practice Patient Inquiry & Appointment Routing: https://kavikworks.com/build-concepts/medical-practice-inquiry-routing.html — Patient inquiry classification, appointment scheduling, Rx refill routing, and post-op follow-up for dental and medical practices handling 15-30 patient emails/day.
-- Real Estate Brokerage Lead Intake & Agent Routing: https://kavikworks.com/build-concepts/real-estate-lead-routing.html — Territory-based buyer/seller classification, showing request routing, and instant first-response for 25-agent brokerages handling 20-40 leads/day.
-- Staffing Firm Candidate Inquiry & Job Req Routing: https://kavikworks.com/build-concepts/staffing-recruiting-inquiry-routing.html — Vertical-matched candidate routing (IT/healthcare/industrial), urgent client job req escalation, and recruiter assignment for firms handling 30-50 emails/day.
-- Financial Advisor Prospect & Client Service Routing: https://kavikworks.com/build-concepts/financial-advisor-inquiry-routing.html — New prospect vs. client service classification, withdrawal request urgency routing, and compliance item flagging for RIAs managing $150M+ AUM.
-- MSP Support Ticket Intake & Client Routing: https://kavikworks.com/build-concepts/msp-support-ticket-routing.html — P1 outage auto-detection, PSA ticket creation, on-call engineer escalation, and new business inquiry routing for MSPs handling 40-60 client emails/day.
-- Insurance Agency Quote Requests & Claims Routing: https://kavikworks.com/build-concepts/insurance-quote-claims-routing.html — Routing commercial quotes, personal lines, certificates, and claims from a single inbox with claims urgency detection and SMS alerting.
-
-## Buyer guides
-- How to Calculate the Cost of Slow Lead Response: https://kavikworks.com/guides/lead-response-cost.html — A practical worksheet for measuring manual intake cost and testing whether faster acknowledgement changes booked-job outcomes using your own data.
-- Lead Response Automation vs. a CRM vs. a Shared Inbox: https://kavikworks.com/guides/lead-response-automation-vs-crm.html — A practical guide for deciding whether your intake problem needs a better shared inbox process, CRM discipline, or a dedicated automation workflow.
-
-## About
-Kavik Works is the public brand of Robot Arms LLC, founded by Joshua Lynch in Denver, Colorado. We build repeatable workflow automation using cloud AI APIs, structured outputs, and deterministic code. One workflow at a time.
-
-- Contact: contact@kavikworks.com
-- Location: Denver, CO, United States
+## Contact
+- Email: josh@kavikworks.com
+- Business: Robot Arms LLC, dba Kavik Works, Denver, Colorado, United States.

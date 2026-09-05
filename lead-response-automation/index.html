@@ -1,277 +1,78 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0a'/%3E%3Crect x='6' y='6' width='20' height='20' rx='4' fill='none' stroke='%23a3a3a3' stroke-width='2'/%3E%3Crect x='12' y='12' width='8' height='8' rx='1' fill='%23ffffff'/%3E%3C/svg%3E">
-  <title>Lead Response Automation | Kavik Works</title>
-  <meta name="description" content="Kavik Works implements a managed lead-response workflow that captures, classifies, routes, acknowledges, and measures inbound inquiries with human escalation where it matters.">
-  <link rel="canonical" href="https://kavikworks.com/lead-response-automation/">
-  <meta name="robots" content="index, follow">
-  <meta property="og:title" content="Lead Response Automation | Kavik Works">
-  <meta property="og:description" content="A managed workflow for capturing, classifying, acknowledging, routing, and measuring inbound leads without removing human control.">
-  <meta property="og:url" content="https://kavikworks.com/lead-response-automation/">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Kavik Works">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Lead Response Automation | Kavik Works">
-  <meta name="twitter:description" content="A managed workflow for capturing, classifying, acknowledging, routing, and measuring inbound leads without removing human control.">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Service",
-        "@id": "https://kavikworks.com/lead-response-automation/#service",
-        "name": "Lead Response Automation",
-        "serviceType": "Lead response automation",
-        "description": "A managed workflow for capturing, classifying, acknowledging, routing, and measuring inbound leads with human escalation for uncertain or sensitive cases.",
-        "provider": { "@type": "Organization", "name": "Kavik Works", "url": "https://kavikworks.com/" },
-        "url": "https://kavikworks.com/lead-response-automation/"
-      },
-      {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Kavik Works", "item": "https://kavikworks.com/" },
-          { "@type": "ListItem", "position": 2, "name": "Lead Response Automation", "item": "https://kavikworks.com/lead-response-automation/" }
-        ]
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
-          { "@type": "Question", "name": "How quickly can the system acknowledge a lead?", "acceptedAnswer": { "@type": "Answer", "text": "The workflow is designed around a response-time target agreed during the baseline. It can prepare or send an approved acknowledgement after classification, but the actual timing depends on the source system, rules, and human-review boundary." } },
-          { "@type": "Question", "name": "What happens when it is unsure?", "acceptedAnswer": { "@type": "Answer", "text": "Low-confidence, ambiguous, sensitive, or out-of-policy messages stop at an exception queue and go to a person. The workflow records the escalation reason so the rule can be reviewed." } },
-          { "@type": "Question", "name": "Can it work with an existing CRM?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, when the existing CRM can be part of the agreed workflow. The implementation starts by mapping the inboxes, forms, lead sources, records, and routing destinations already in use; no named integration is assumed before verification." } },
-          { "@type": "Question", "name": "Does it replace the office team?", "acceptedAnswer": { "@type": "Answer", "text": "No. It handles repeatable classification, extraction, routing, logging, and approved acknowledgements while people retain judgment over ambiguity, pricing, safety, legal matters, and exceptions." } },
-          { "@type": "Question", "name": "What volume makes the workflow worth evaluating?", "acceptedAnswer": { "@type": "Answer", "text": "There is no universal threshold. It is worth evaluating when inbound work is operationally important and the team can identify a measurable bottleneck in response time, coverage, routing, or manual triage." } },
-          { "@type": "Question", "name": "What is included in implementation?", "acceptedAnswer": { "@type": "Answer", "text": "The $1,497 one-time implementation fee is paid upfront and covers one selected workflow, its categories and rules, representative-example testing, controlled validation, deployment, and the 30-Day Proof of Value. Additional systems or workflows are scoped separately." } },
-          { "@type": "Question", "name": "What gets measured during the first 30 days?", "acceptedAnswer": { "@type": "Answer", "text": "The first 30 live days are the Proof of Value measurement window. The baseline and workflow determine the measures, which can include time to first acknowledgement, captured and routed inquiries, manual triage time, exception rate, duplicate responses, and delayed or missed messages. A value report summarizes the evidence and informs optimization, expansion, or retirement." } },
-          { "@type": "Question", "name": "What happens after the first 30 days?", "acceptedAnswer": { "@type": "Answer", "text": "The $797/month managed operation begins at go-live and is required while the workflow remains live. It covers the agreed AI/API connection, monitoring, maintenance, reporting, and support within scope. The value report informs optimization, expansion, or retirement; an exceptional transition can be scoped separately if the service ends." } }
-        ]
-      }
-    ]
-  }
-  </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/commercial-pages.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A practical plan for lead follow-up — Kavik Works</title>
+<meta name="description" content="Capture quote requests, assign an owner, and make the next action visible before adding another tool.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://kavikworks.com/lead-response-automation/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="A practical plan for lead follow-up">
+<meta property="og:description" content="Capture quote requests, assign an owner, and make the next action visible before adding another tool.">
+<meta property="og:url" content="https://kavikworks.com/lead-response-automation/">
+<meta name="theme-color" content="#132e28">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/site.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "A practical plan for lead follow-up", "description": "Capture quote requests, assign an owner, and make the next action visible before adding another tool.", "url": "https://kavikworks.com/lead-response-automation/"}</script>
 </head>
 <body>
-  <a class="skip-link" href="#main-content">Skip to content</a>
-  <header class="site-nav">
-    <div class="container nav-inner">
-      <a class="brand" href="/" aria-label="Kavik Works home"><span class="brand-mark" aria-hidden="true"></span>Kavik Works</a>
-      <nav class="nav-links" aria-label="Primary navigation">
-        <a href="#workflow">Workflow</a>
-        <a href="#proof">30-day proof</a>
-        <a href="#pricing">Pricing</a>
-        <a href="/ai-email-triage/">AI Email Triage</a>
-        <a class="nav-cta" href="/intake">Workflow assessment</a>
-      </nav>
-    </div>
-  </header>
-
-  <main id="main-content">
-    <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <p class="eyebrow">Managed workflow automation</p>
-          <h1>Lead Response <span class="gradient">Automation</span></h1>
-          <p class="hero-lede">Lead response automation is a controlled workflow that captures inbound inquiries, classifies what they need, prepares an approved acknowledgement, routes the work, and measures what happened. Kavik Works builds it around the systems your business already runs, with human escalation for uncertain or sensitive cases.</p>
-          <div class="hero-actions">
-            <a class="button-primary" href="/intake">Request a workflow assessment <span aria-hidden="true">→</span></a>
-            <a class="button-secondary" href="#demo">View the 8-second demo</a>
-          </div>
-        </div>
-        <div class="glass hero-panel" aria-label="Illustrative lead-response workflow">
-          <div class="panel-label"><span class="mono">Illustrative flow</span><span class="mono"><span class="status-dot" aria-hidden="true"></span>human-controlled</span></div>
-          <div class="panel-flow">
-            <div class="flow-row"><span class="flow-index">01</span><span>Inquiry arrives</span><span class="flow-tag">capture</span></div>
-            <div class="flow-row"><span class="flow-index">02</span><span>Message is classified</span><span class="flow-tag">reason</span></div>
-            <div class="flow-row"><span class="flow-index">03</span><span>Approved response is prepared</span><span class="flow-tag">draft</span></div>
-            <div class="flow-row"><span class="flow-index">04</span><span>Work is routed and logged</span><span class="flow-tag">control</span></div>
-          </div>
-          <div class="panel-foot"><span>structured output</span><span>deterministic rules</span><span>exception queue</span></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="demo">
-      <div class="container">
-        <div class="section-heading"><p class="eyebrow">Illustrative demo</p><h2>See one inquiry move from arrival to a logged next step.</h2><p>This fictional example shows the kind of bounded workflow Kavik Works can build: classify the request, route it to an owner, and record the event for measurement.</p></div>
-        <div class="glass demo-shell" aria-label="Eight-second illustrative lead-response workflow demo">
-          <div class="demo-header"><span class="mono">Illustrative demo · fictional inquiry</span><div class="demo-controls"><span class="demo-duration">8-second sequence</span><button class="button-secondary demo-replay" type="button" aria-controls="workflowDemoStage">Replay demo</button></div></div>
-          <div class="demo-stage" id="workflowDemoStage">
-            <article class="demo-step"><span class="demo-step-index">01 / ARRIVE</span><h3>Inquiry received</h3><p>“Need a quote for a two-zone repair.”</p><span class="demo-detail"><strong>source</strong> website form</span><span class="demo-detail"><strong>reference</strong> demo-inquiry-042</span></article>
-            <article class="demo-step"><span class="demo-step-index">02 / CLASSIFY</span><h3>Request categorized</h3><p>Estimate request with required contact and job details present.</p><span class="demo-detail"><strong>confidence</strong> permitted path</span><span class="demo-detail"><strong>review</strong> policy checked</span></article>
-            <article class="demo-step"><span class="demo-step-index">03 / ROUTE</span><h3>Owner selected</h3><p>Route to the sales queue and prepare the approved acknowledgement.</p><span class="demo-detail"><strong>destination</strong> sales queue</span><span class="demo-detail"><strong>human</strong> follow-up owner</span></article>
-            <article class="demo-step"><span class="demo-step-index">04 / LOG</span><h3>Outcome recorded</h3><p>Capture the route, timestamp, and next measure for the value report.</p><span class="demo-detail"><strong>event</strong> inquiry_routed</span><span class="demo-detail"><strong>status</strong> logged for review</span></article>
-          </div>
-          <div class="demo-outcome"><span><strong>MEASURE</strong> time-to-route captured</span><span><strong>CONTROL</strong> human override available</span><span><strong>RESULT</strong> illustrative only</span></div>
-          <p class="demo-note">No customer data or customer result is shown. With reduced motion enabled, all four steps remain visible without animation.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="problem">
-      <div class="container">
-        <div class="section-heading">
-          <p class="eyebrow">The operating problem</p>
-          <h2>Important inquiries should not depend on inbox luck.</h2>
-          <p>Most lead-response failures are ordinary process failures: messages are unowned, facts are retyped, and the next action is unclear.</p>
-        </div>
-        <div class="grid-3">
-          <article class="glass card"><p class="mono">01 / coverage</p><h3>Leads wait in a shared inbox</h3><p>New inquiries can sit beside routine messages while the team works through the queue manually.</p></article>
-          <article class="glass card"><p class="mono">02 / routing</p><h3>Qualification happens from memory</h3><p>People read, interpret, forward, and re-enter the same details before the right owner can act.</p></article>
-          <article class="glass card"><p class="mono">03 / visibility</p><h3>The process is hard to measure</h3><p>Without a consistent event record, it is difficult to see response time, exceptions, duplicate work, or missed follow-up.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section id="fit">
-      <div class="container">
-        <div class="section-heading"><p class="eyebrow">Who it is for</p><h2>Good fit is an operating condition, not a lead-count promise.</h2></div>
-        <div class="grid-2">
-          <article class="glass card"><p class="mono">Good fit</p><h3>A repeatable inbound workflow</h3><ul class="rich-list"><li>Inbound inquiries arrive through known forms, inboxes, or lead sources.</li><li>A small set of categories, owners, and routing rules can be described.</li><li>The business can name a measurable baseline and a person who owns exceptions.</li><li>The team wants a managed workflow that works with its current operating tools.</li></ul></article>
-          <article class="glass card"><p class="mono">Poor fit</p><h3>Unbounded judgment with no owner</h3><ul class="rich-list"><li>Every message is unique or requires professional judgment before it can be classified.</li><li>There is no agreed source of truth for ownership, urgency, or approved responses.</li><li>The desired outcome is unrestricted autonomous email behavior.</li><li>The business is not ready to review exceptions or measure the workflow for 30 days.</li></ul></article>
-        </div>
-      </div>
-    </section>
-
-    <section id="workflow">
-      <div class="container">
-        <div class="section-heading"><p class="eyebrow">How the workflow operates</p><h2>Every automated step has a defined boundary.</h2><p>The exact categories and destinations are designed around the business. The pattern stays legible.</p></div>
-        <div class="grid-4">
-          <article class="glass step"><span class="step-number">01 / CAPTURE</span><h3>Inquiry arrives</h3><p>Receive a new message or form event from an agreed lead source.</p></article>
-          <article class="glass step"><span class="step-number">02 / NORMALIZE</span><h3>Data is normalized</h3><p>Keep the original reference and organize the stated contact, request, and source details.</p></article>
-          <article class="glass step"><span class="step-number">03 / CLASSIFY</span><h3>Message is classified</h3><p>Use a limited category set such as new lead, estimate request, maintenance, or other.</p></article>
-          <article class="glass step"><span class="step-number">04 / EXTRACT</span><h3>Details are structured</h3><p>Extract only the fields the next permitted workflow step needs.</p></article>
-          <article class="glass step"><span class="step-number">05 / ACKNOWLEDGE</span><h3>Response is prepared</h3><p>Prepare an approved acknowledgement or response that stays within the defined policy.</p></article>
-          <article class="glass step"><span class="step-number">06 / ROUTE</span><h3>Rules select the route</h3><p>Deterministic business rules select an owner, queue, notification, or next system.</p></article>
-          <article class="glass step"><span class="step-number">07 / ESCALATE</span><h3>Uncertainty stops</h3><p>Low-confidence, sensitive, or out-of-policy cases go to a person with a reason attached.</p></article>
-          <article class="glass step"><span class="step-number">08 / MEASURE</span><h3>Actions are logged</h3><p>Record the workflow result, overrides, timing, and outcome for review.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section id="controls">
-      <div class="container">
-        <div class="section-heading"><p class="eyebrow">Human controls</p><h2>Automation handles repeatable work. People keep judgment.</h2></div>
-        <div class="grid-2">
-          <div class="glass band"><h3>Always human-owned</h3><p>Ambiguous requests, pricing commitments, safety-sensitive situations, legal or professional judgment, unusual exceptions, and final policy decisions are routed for human review.</p></div>
-          <div class="glass band"><h3>Allowed only by rule</h3><p>Classification, extraction, routing, logging, and an acknowledgement can run only when the category, data fields, destination, and permitted language are defined and tested.</p></div>
-        </div>
-        <div class="callout" style="margin-top:1rem;"><strong>No black box handoff</strong><span>The architecture uses cloud AI for reasoning, structured JSON outputs, deterministic code for logic, and Git-versioned configuration per client.</span></div>
-      </div>
-    </section>
-
-    <section id="systems">
-      <div class="container">
-        <div class="section-heading"><p class="eyebrow">Systems and assumptions</p><h2>Start with the tools already carrying the work.</h2><p>Integration is an implementation question, not a logo list. We map the current process before naming a supported connection.</p></div>
-        <div class="grid-3">
-          <article class="glass card"><p class="mono">Inputs</p><h3>Forms, inboxes, lead sources</h3><p>Identify where inquiries originate, how duplicates appear, and which source details must remain attached.</p></article>
-          <article class="glass card"><p class="mono">Work records</p><h3>CRMs, sheets, and queues</h3><p>Define where structured details, ownership, status, and the original message reference should live.</p></article>
-          <article class="glass card"><p class="mono">Destinations</p><h3>Calendars, alerts, and teams</h3><p>Specify which permitted actions notify a person, create a task, or prepare the next step for review.</p></article>
-        </div>
-        <div class="mini-links"><a href="/build-concepts/hvac-lead-response.html">Illustrative HVAC workflow →</a><a href="/build-concepts/law-firm-client-intake.html">Professional-services intake →</a><a href="/build-concepts/property-management-inquiries.html">Property-management requests →</a></div>
-      </div>
-    </section>
-
-    <section id="proof">
-      <div class="container">
-        <div class="section-heading"><p class="eyebrow">30-Day Proof of Value</p><h2>Build first. Measure after launch. Decide with evidence.</h2><p>The measurement window begins only after the selected workflow is live. It is a defined evaluation period, not a promise of a particular conversion lift, payback period, or business outcome.</p></div>
-        <div class="grid-3">
-          <article class="glass step"><span class="step-number">01 / BASELINE</span><h3>Define success measures</h3><p>Agree on the current baseline, the workflow boundary, and the measures that will make the value report useful.</p></article>
-          <article class="glass step"><span class="step-number">02 / COMMIT</span><h3>Pay the implementation fee upfront</h3><p>The full one-time implementation fee is paid before work begins so the scope, build, test, and launch can be planned clearly.</p></article>
-          <article class="glass step"><span class="step-number">03 / BUILD</span><h3>Build, test, and deploy</h3><p>Configure the selected workflow, test representative examples and exception paths, then launch it in the agreed boundary.</p></article>
-          <article class="glass step"><span class="step-number">04 / MEASURE</span><h3>Start the 30-day window after launch</h3><p>Review live events and exceptions against the baseline for 30 days. The clock starts when the workflow is live, not at payment.</p></article>
-          <article class="glass step"><span class="step-number">05 / REPORT</span><h3>Receive a value report</h3><p>Summarize the agreed measures, observed workflow behavior, exceptions, and evidence for the next decision.</p></article>
-          <article class="glass step"><span class="step-number">06 / MANAGE</span><h3>Operate the live workflow</h3><p>$797/month managed operation begins at go-live and is required while the workflow remains live. It covers the agreed AI/API connection, monitoring, maintenance, reporting, and support within scope. Additional workflows are separately scoped.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section id="pricing">
-      <div class="container">
-        <div class="section-heading"><p class="eyebrow">Pricing</p><h2>One workflow, one implementation, managed operation while live.</h2><p>The $1,497 full implementation fee is paid upfront before work begins. The $797/month managed operation starts at go-live and remains in place while the workflow is live. The first 30 live days are the Proof of Value measurement window; its value report informs optimization, expansion, or retirement.</p></div>
-        <div class="grid-2">
-          <article class="glass price-card featured"><p class="mono">Lead Response Automation</p><div class="price">$1,497 <small>one-time implementation</small></div><p class="price-note">Paid upfront before work begins; includes build, test, deployment, and the 30-Day Proof of Value.</p><div class="price">$797 <small>per month, managed operation while live</small></div><p>Managed operation begins at go-live and is required while the workflow remains live. It covers the agreed AI/API connection, monitoring, maintenance, reporting, and email support within scope. The value report informs optimization, expansion, or retirement; an exceptional transition can be scoped separately if the service ends.</p><a class="button-primary" href="/intake">Workflow assessment <span aria-hidden="true">→</span></a></article>
-          <article class="glass card"><p class="mono">Assumptions and exclusions</p><h3>Scope stays explicit</h3><ul class="rich-list"><li>One selected workflow is the starting point.</li><li>Access, data fields, response language, destinations, and exception owners must be available for the agreed scope.</li><li>New channels, major CRM work, custom dashboards, and expansion modules are not implied by this page.</li><li>The proof window measures the selected workflow; it does not guarantee a business outcome.</li></ul></article>
-        </div>
-      </div>
-    </section>
-
-    <section id="reliability">
-      <div class="container">
-        <div class="section-heading"><p class="eyebrow">Reliability and auditability</p><h2>Make the workflow inspectable when something matters.</h2></div>
-        <div class="grid-4">
-          <article class="glass card"><p class="mono">Structured</p><h3>Outputs have a shape</h3><p>Important extracted fields and decisions are represented as structured data rather than hidden in prose.</p></article>
-          <article class="glass card"><p class="mono">Deterministic</p><h3>Rules select actions</h3><p>Business logic controls the permitted route, destination, and escalation path.</p></article>
-          <article class="glass card"><p class="mono">Versioned</p><h3>Configuration can be reviewed</h3><p>Per-client configuration is Git-versioned so changes can be inspected and rolled back through the normal review process.</p></article>
-          <article class="glass card"><p class="mono">Measured</p><h3>Events leave a trail</h3><p>Monitoring and an audit history make it possible to review exceptions, overrides, timing, and outcomes.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section id="scenarios">
-      <div class="container">
-        <div class="section-heading"><p class="eyebrow">Illustrative scenarios</p><h2>Patterns, not customer results.</h2><p>These examples show how a workflow could be scoped. They are not testimonials, case studies, or performance claims.</p></div>
-        <div class="grid-3">
-          <article class="glass card"><p class="mono">Example / HVAC</p><h3>Quote request versus urgent service</h3><p>Classify the stated request, extract location and service details, prepare the approved acknowledgement, and route urgent or unclear messages for a person.</p></article>
-          <article class="glass card"><p class="mono">Example / professional services</p><h3>New inquiry versus existing matter</h3><p>Separate a new intake from an existing-client message, capture the stated practice area, and route sensitive or unclear content to the responsible team.</p></article>
-          <article class="glass card"><p class="mono">Example / property management</p><h3>Maintenance request versus routine question</h3><p>Extract the property reference and stated urgency, route according to defined rules, and escalate emergencies or uncertain identity for human review.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section id="faq">
-      <div class="container">
-        <div class="section-heading"><p class="eyebrow">FAQ</p><h2>Questions buyers ask before they automate.</h2></div>
-        <div class="faq-list">
-          <details><summary>How quickly can the system acknowledge a lead?</summary><p>The workflow is designed around a response-time target agreed during the baseline. It can prepare or send an approved acknowledgement after classification, but the actual timing depends on the source system, rules, and human-review boundary.</p></details>
-          <details><summary>What happens when it is unsure?</summary><p>Low-confidence, ambiguous, sensitive, or out-of-policy messages stop at an exception queue and go to a person. The workflow records the escalation reason so the rule can be reviewed.</p></details>
-          <details><summary>Can it work with an existing CRM?</summary><p>Yes, when the existing CRM can be part of the agreed workflow. The implementation starts by mapping the inboxes, forms, lead sources, records, and routing destinations already in use; no named integration is assumed before verification.</p></details>
-          <details><summary>Does it replace the office team?</summary><p>No. It handles repeatable classification, extraction, routing, logging, and approved acknowledgements while people retain judgment over ambiguity, pricing, safety, legal matters, and exceptions.</p></details>
-          <details><summary>What volume makes the workflow worth evaluating?</summary><p>There is no universal threshold. It is worth evaluating when inbound work is operationally important and the team can identify a measurable bottleneck in response time, coverage, routing, or manual triage.</p></details>
-          <details><summary>What is included in implementation?</summary><p>The $1,497 one-time implementation fee is paid upfront and covers one selected workflow, its categories and rules, representative-example testing, controlled validation, deployment, and the 30-Day Proof of Value. Additional systems or workflows are scoped separately.</p></details>
-          <details><summary>What gets measured during the first 30 days?</summary><p>The first 30 live days are the Proof of Value measurement window. The baseline and workflow determine the measures, which can include time to first acknowledgement, captured and routed inquiries, manual triage time, exception rate, duplicate responses, and delayed or missed messages. A value report summarizes the evidence and informs optimization, expansion, or retirement.</p></details>
-          <details><summary>What happens after the first 30 days?</summary><p>The $797/month managed operation begins at go-live and is required while the workflow remains live. It covers the agreed AI/API connection, monitoring, maintenance, reporting, and support within scope. The value report informs optimization, expansion, or retirement; an exceptional transition can be scoped separately if the service ends.</p></details>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="container"><div class="glass band"><p class="eyebrow">Next step</p><h2>Start with one workflow assessment.</h2><p>Share the process that is getting stuck. We will help define a sensible baseline, success measures, and a bounded first workflow before implementation.</p><div class="hero-actions"><a class="button-primary" href="/intake">Workflow assessment <span aria-hidden="true">→</span></a><a class="button-secondary" href="/ai-email-triage/">See AI Email Triage</a></div></div></div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="container footer-inner"><span>© 2026 Robot Arms LLC, dba Kavik Works · Denver, CO.</span><span class="footer-links"><a href="/">Home</a><a href="/guides/lead-response-cost.html">Lead-response cost guide</a><a href="/guides/lead-response-automation-vs-crm.html">Automation vs. CRM</a><a href="mailto:contact@kavikworks.com">Contact</a></span></div>
-  </footer>
-
-  <script>
-    const demoStage = document.getElementById('workflowDemoStage');
-    const demoReplay = document.querySelector('.demo-replay');
-    const demoReduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-
-    function playWorkflowDemo() {
-      if (!demoStage || demoReduceMotion.matches) return;
-      demoStage.classList.remove('is-playing');
-      void demoStage.offsetWidth;
-      demoStage.classList.add('is-playing');
-    }
-
-    if (demoStage && 'IntersectionObserver' in window) {
-      const demoObserver = new IntersectionObserver((entries, observer) => {
-        if (entries.some(entry => entry.isIntersecting)) {
-          playWorkflowDemo();
-          observer.disconnect();
-        }
-      }, { threshold: 0.25 });
-      demoObserver.observe(demoStage);
-    }
-    if (demoReplay) demoReplay.addEventListener('click', playWorkflowDemo);
-  </script>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+<nav class="wrap" aria-label="Main navigation">
+<a class="brand" href="/">
+<span class="brand-mark" aria-hidden="true">K</span>Kavik Works</a>
+<div class="nav-links">
+<a href="/sample-workflow/">See a sample</a>
+<a href="/#blueprint">The blueprint</a>
+<a class="button small" href="/intake">Check your workflow <span aria-hidden="true">↗</span>
+</a>
+</div>
+</nav>
+</header>
+<main id="main">
+<div class="wrap narrow">
+<header class="article-head">
+<p class="eyebrow">Practical workflow planning</p>
+<h1>A practical plan for lead follow-up</h1>
+<p class="lede">Capture quote requests, assign an owner, and make the next action visible before adding another tool.</p>
+</header>
+<article class="article">
+<h2>What lead-response automation can cover</h2>
+<p>A narrow workflow can copy relevant details into a shared record, suggest the right owner, and prepare an acknowledgement for review. Pricing, availability, and customer commitments still need an accurate source.</p>
+<h2>Start with the handoff</h2>
+<p>Write down what arrives, what information is needed, who acts next, and how you know the request is complete. If those rules are unclear, automation will carry the confusion forward.</p>
+<h2>What your blueprint includes</h2>
+<p>A workflow map, request fields, routing rules, three reusable templates, setup steps, and a test checklist for your existing tools. The blueprint is a written plan; installation and ongoing monitoring are separate.</p>
+<h2>Measure your own result</h2>
+<p>Track time to a useful reply, requests without an owner, manual handling time, and known outcomes. We do not promise a conversion lift or a universal response-time target.</p>
+<p>
+<a href="/sample-workflow/">Read the full sample blueprint</a> or use the <a href="/guides/lead-response-cost.html">lead-response cost worksheet</a>.</p>
+<div class="note">
+<h3>Start with a clear plan.</h3>
+<p>Our $149 Workflow Blueprint covers one intake or follow-up process. Start with a free workflow check; we confirm scope and timing before payment.</p>
+<a class="button" href="/intake">Check my workflow →</a>
+</div>
+</article>
+</div>
+</main>
+<footer class="site-footer">
+<div class="wrap footer-grid">
+<div>
+<a class="brand" href="/">Kavik Works</a>
+<p>Practical workflow plans. Denver, Colorado.</p>
+<p class="fine">© 2026 Robot Arms LLC, dba Kavik Works.</p>
+</div>
+<div>
+<a href="mailto:josh@kavikworks.com">josh@kavikworks.com</a>
+<div class="footer-links">
+<a href="/build-concepts/">Workflow examples</a>
+<a href="/privacy">Privacy</a>
+<a href="/terms">Terms</a>
+<a href="/refunds">Refunds</a>
+</div>
+</div>
+</div>
+</footer>
 </body>
 </html>
