@@ -1,527 +1,130 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0a'/%3E%3Crect x='6' y='6' width='20' height='20' rx='4' fill='none' stroke='%23a3a3a3' stroke-width='2'/%3E%3Crect x='12' y='12' width='8' height='8' rx='1' fill='%23ffffff'/%3E%3C/svg%3E">
-  <title>Workflow Assessment — Kavik Works</title>
-  <meta name="description" content="Request a low-friction workflow assessment from Kavik Works. Tell us what repeats, what gets stuck, and what you want to improve.">
-  <link rel="canonical" href="https://kavikworks.com/intake">
-  <meta name="robots" content="index, follow">
-  <meta property="og:title" content="Workflow Assessment — Kavik Works">
-  <meta property="og:description" content="Request a low-friction workflow assessment from Kavik Works. Tell us what repeats, what gets stuck, and what you want to improve.">
-  <meta property="og:url" content="https://kavikworks.com/intake">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Kavik Works">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Workflow Assessment — Kavik Works">
-  <meta name="twitter:description" content="Request a low-friction workflow assessment. Tell us what repeats, what gets stuck, and what you want to improve.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg: #05060a;
-      --ink: #eef1f6;
-      --ink-dim: #9aa3b2;
-      --ink-faint: #5c6472;
-      --cyan: #5eead4;
-      --violet: #a78bfa;
-      --blue: #60a5fa;
-      --glass: rgba(255,255,255,0.04);
-      --edge: rgba(255,255,255,0.09);
-      --edge-bright: rgba(255,255,255,0.22);
-      --green: #34d399;
-      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-display: 'Space Grotesk', 'Inter', sans-serif;
-      --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
-    }
-
-    html { scroll-behavior: smooth; font-size: 16px; }
-    body {
-      font-family: var(--font-sans);
-      color: var(--ink-dim);
-      background: var(--bg);
-      line-height: 1.65;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
-
-    /* ── Aurora backdrop ── */
-    .aurora {
-      position: fixed; inset: 0; z-index: -2; overflow: hidden;
-      background: var(--bg);
-    }
-    .aurora::after {
-      content: ''; position: absolute; inset: 0;
-      background-image: radial-gradient(rgba(255,255,255,0.028) 1px, transparent 1px);
-      background-size: 28px 28px;
-      mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 20%, transparent 80%);
-      -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 20%, transparent 80%);
-    }
-    .blob {
-      position: absolute; border-radius: 50%;
-      filter: blur(90px); opacity: 0.35;
-      will-change: transform;
-    }
-    .blob-1 {
-      width: 620px; height: 620px; top: -220px; left: -120px;
-      background: radial-gradient(circle, rgba(94,234,212,0.24), transparent 65%);
-      animation: drift-1 26s ease-in-out infinite alternate;
-    }
-    .blob-2 {
-      width: 720px; height: 720px; top: -140px; right: -220px;
-      background: radial-gradient(circle, rgba(167,139,250,0.22), transparent 65%);
-      animation: drift-2 32s ease-in-out infinite alternate;
-    }
-    .blob-3 {
-      width: 540px; height: 540px; top: 55%; left: 30%;
-      background: radial-gradient(circle, rgba(96,165,250,0.13), transparent 65%);
-      animation: drift-3 38s ease-in-out infinite alternate;
-    }
-    @keyframes drift-1 { to { transform: translate(140px, 90px) scale(1.15); } }
-    @keyframes drift-2 { to { transform: translate(-120px, 130px) scale(0.9); } }
-    @keyframes drift-3 { to { transform: translate(90px, -110px) scale(1.1); } }
-
-    /* ── Typography ── */
-    h1, h2, h3 { font-family: var(--font-display); color: var(--ink); line-height: 1.12; font-weight: 600; }
-    h1 { font-size: clamp(2.1rem, 4vw, 3.1rem); letter-spacing: -0.03em; }
-    h2 { font-size: clamp(1.4rem, 2.5vw, 1.9rem); letter-spacing: -0.02em; }
-    a { color: var(--ink); text-decoration: none; }
-    .mono {
-      font-family: var(--font-mono); font-size: 0.72rem;
-      text-transform: uppercase; letter-spacing: 0.16em;
-      color: var(--ink-faint);
-    }
-    .grad-text {
-      background: linear-gradient(100deg, var(--cyan), var(--blue) 55%, var(--violet));
-      -webkit-background-clip: text; background-clip: text; color: transparent;
-    }
-
-    .container { max-width: 860px; margin: 0 auto; padding: 0 2rem; }
-
-    /* ── Liquid glass primitives ── */
-    .glass {
-      position: relative;
-      background: linear-gradient(160deg, rgba(255,255,255,0.07), rgba(255,255,255,0.02) 45%, rgba(255,255,255,0.045));
-      border: 1px solid var(--edge);
-      border-radius: 20px;
-      backdrop-filter: blur(18px) saturate(1.5);
-      -webkit-backdrop-filter: blur(18px) saturate(1.5);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.12),
-        inset 0 -1px 0 rgba(255,255,255,0.03),
-        0 18px 46px -18px rgba(0,0,0,0.6);
-      overflow: hidden;
-      transition: border-color 0.35s ease, box-shadow 0.35s ease;
-    }
-    .glass::before {
-      content: ''; position: absolute; inset: 0; border-radius: inherit;
-      background: radial-gradient(420px circle at var(--mx, 50%) var(--my, -20%),
-        rgba(255,255,255,0.07), transparent 55%);
-      opacity: 0; transition: opacity 0.4s ease; pointer-events: none;
-    }
-    .glass:hover::before { opacity: 1; }
-    .glass:hover { border-color: var(--edge-bright); }
-    .glass > * { position: relative; }
-
-    /* ── Nav (floating glass pill) ── */
-    nav {
-      position: fixed; top: 14px; left: 0; right: 0; z-index: 100;
-      pointer-events: none;
-    }
-    .nav-pill {
-      pointer-events: auto;
-      max-width: 1120px; margin: 0 auto;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0.55rem 0.65rem 0.55rem 1.25rem;
-      background: rgba(10,12,18,0.55);
-      border: 1px solid var(--edge);
-      border-radius: 100px;
-      backdrop-filter: blur(22px) saturate(1.6);
-      -webkit-backdrop-filter: blur(22px) saturate(1.6);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 12px 32px -12px rgba(0,0,0,0.6);
-    }
-    @media (max-width: 1180px) { .nav-pill { margin: 0 1rem; } }
-    .nav-logo {
-      font-family: var(--font-display); font-weight: 700; font-size: 1.05rem;
-      letter-spacing: -0.02em; display: flex; align-items: center; gap: 0.6rem;
-    }
-    .nav-logo-icon {
-      width: 26px; height: 26px; border: 2px solid var(--ink-faint);
-      border-radius: 7px; display: flex; align-items: center; justify-content: center;
-    }
-    .nav-logo-icon::after {
-      content: ''; width: 8px; height: 8px; border-radius: 2px;
-      background: linear-gradient(135deg, var(--cyan), var(--violet));
-    }
-    .nav-links { display: flex; gap: 1.6rem; align-items: center; }
-    .nav-links a { font-size: 0.85rem; color: var(--ink-dim); transition: color 0.2s; }
-    .nav-links a:hover { color: var(--ink); }
-    .nav-cta {
-      color: #05060a !important; font-weight: 600; font-size: 0.85rem;
-      padding: 0.5rem 1.2rem; border-radius: 100px;
-      background: linear-gradient(120deg, #d7fff5, #ffffff 50%, #e6dcff);
-      box-shadow: 0 0 18px -4px rgba(94,234,212,0.35);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 0 26px -4px rgba(94,234,212,0.5); }
-    .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem 0.75rem; }
-    .mobile-menu-btn span { display: block; width: 20px; height: 2px; background: var(--ink-dim); margin: 4px 0; transition: all 0.3s; }
-
-    /* ── Hero ── */
-    .intake-hero { padding: 9.5rem 0 3.5rem; text-align: center; }
-    .intake-hero .mono { display: block; margin-bottom: 1rem; }
-    .intake-hero h1 { margin: 0 auto 1rem; max-width: 620px; }
-    .intake-hero p { color: var(--ink-dim); font-size: 1.05rem; max-width: 540px; margin: 0 auto; }
-
-    /* ── Form cards ── */
-    .form-wrap { padding: 1rem 0 5rem; display: flex; flex-direction: column; gap: 1.5rem; }
-    .form-card { padding: 2.4rem; }
-    .card-head { margin-bottom: 1.8rem; }
-    .card-head .mono { display: block; margin-bottom: 0.6rem; }
-    .card-head h2 { margin-bottom: 0.35rem; }
-    .card-head p { font-size: 0.92rem; }
-
-    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; }
-    .form-grid .full-width { grid-column: 1 / -1; }
-
-    /* ── Fields ── */
-    .field { display: flex; flex-direction: column; gap: 0.45rem; }
-    .field label { font-size: 0.85rem; font-weight: 500; color: var(--ink); }
-    .field label .required { color: var(--cyan); margin-left: 0.2rem; }
-    .field label .optional { color: var(--ink-faint); font-weight: 400; font-size: 0.78rem; margin-left: 0.3rem; }
-    .field input,
-    .field select,
-    .field textarea {
-      width: 100%;
-      padding: 0.75rem 1rem;
-      background: rgba(255,255,255,0.035);
-      border: 1px solid var(--edge);
-      border-radius: 12px;
-      color: var(--ink);
-      font-family: var(--font-sans);
-      font-size: 0.925rem;
-      transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
-      outline: none;
-    }
-    .field input::placeholder,
-    .field textarea::placeholder { color: var(--ink-faint); opacity: 0.7; }
-    .field input:focus,
-    .field select:focus,
-    .field textarea:focus {
-      border-color: rgba(94,234,212,0.45);
-      background: rgba(255,255,255,0.055);
-      box-shadow: 0 0 0 3px rgba(94,234,212,0.12);
-    }
-    .field select {
-      appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%235c6472' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 1rem center;
-      padding-right: 2.5rem;
-      cursor: pointer;
-    }
-    .field select option { background: #12141c; color: var(--ink-dim); }
-    .field textarea { min-height: 140px; resize: vertical; }
-
-    /* ── Submit ── */
-    .submit-card { padding: 3rem 2.4rem; text-align: center; }
-    .submit-card h2 { margin-bottom: 0.9rem; }
-    .submit-card p { margin: 0 auto 2rem; font-size: 0.92rem; max-width: 480px; }
-    .btn-submit {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.85rem 2.4rem; border-radius: 100px;
-      color: #05060a; font-weight: 600; font-size: 1rem;
-      font-family: var(--font-sans);
-      background: linear-gradient(120deg, #d7fff5, #ffffff 50%, #e6dcff);
-      box-shadow: 0 0 24px -6px rgba(94,234,212,0.4);
-      border: none; cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
-    }
-    .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 0 34px -6px rgba(167,139,250,0.55); }
-    .btn-submit:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
-    .btn-submit svg { transition: transform 0.2s; }
-    .btn-submit:hover svg { transform: translateX(3px); }
-    .privacy-note { margin-top: 2rem; font-size: 0.78rem; color: var(--ink-faint); }
-
-    /* ── Success ── */
-    .success-message { display: none; padding: 2rem 0 6rem; }
-    .success-message.visible { display: block; }
-    .success-card { padding: 4rem 2.4rem; text-align: center; }
-    .success-icon {
-      width: 64px; height: 64px;
-      border: 2px solid var(--green);
-      border-radius: 50%;
-      display: inline-flex; align-items: center; justify-content: center;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 0 28px -8px rgba(52,211,153,0.5);
-    }
-    .success-icon svg { color: var(--green); }
-    .success-card h2 { margin-bottom: 1rem; }
-    .success-card p { margin: 0 auto; color: var(--ink-dim); max-width: 480px; }
-
-    /* ── Footer ── */
-    footer { padding: 3rem 0 2.5rem; border-top: 1px solid rgba(255,255,255,0.05); }
-    footer .container { max-width: 1120px; }
-    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
-    .footer-left { font-size: 0.82rem; color: var(--ink-faint); }
-    .footer-links { display: flex; gap: 1.4rem; }
-    .footer-links a { font-size: 0.82rem; color: var(--ink-faint); transition: color 0.2s; }
-    .footer-links a:hover { color: var(--ink); }
-
-    /* ── Reveal ── */
-    .fade-in { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
-
-    /* ── Responsive ── */
-    @media (max-width: 768px) {
-      .form-grid { grid-template-columns: 1fr; }
-      .form-card, .submit-card { padding: 1.8rem 1.5rem; }
-      .nav-links { display: none; }
-      .mobile-menu-btn { display: block; }
-      .nav-links.open {
-        display: flex; flex-direction: column; align-items: flex-start;
-        position: absolute; top: 62px; left: 1rem; right: 1rem;
-        background: rgba(10,12,18,0.92);
-        backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px);
-        padding: 1.4rem 1.6rem; gap: 1.1rem;
-        border: 1px solid var(--edge); border-radius: 20px;
-      }
-      .intake-hero { padding: 8rem 0 2.5rem; }
-    }
-
-    /* ── Reduced motion ── */
-    @media (prefers-reduced-motion: reduce) {
-      .blob { animation: none !important; }
-      .fade-in { opacity: 1; transform: none; transition: none; }
-      html { scroll-behavior: auto; }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A free check for your intake workflow — Kavik Works</title>
+<meta name="description" content="Answer three questions for a free starter workflow, then request a tailored $149 blueprint by email if useful.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://kavikworks.com/intake">
+<meta property="og:type" content="website">
+<meta property="og:title" content="A free check for your intake workflow">
+<meta property="og:description" content="Answer three questions for a free starter workflow, then request a tailored $149 blueprint by email if useful.">
+<meta property="og:url" content="https://kavikworks.com/intake">
+<meta name="theme-color" content="#132e28">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/site.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "A free check for your intake workflow", "description": "Answer three questions for a free starter workflow, then request a tailored $149 blueprint by email if useful.", "url": "https://kavikworks.com/intake"}</script>
+<script src="/workflow-check.js" defer>
+</script>
 </head>
 <body>
-
-  <div class="aurora" aria-hidden="true">
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
-  </div>
-
-  <!-- Nav -->
-  <nav>
-    <div class="nav-pill">
-      <a href="/" class="nav-logo">
-        <div class="nav-logo-icon"></div>
-        Kavik Works
-      </a>
-      <div class="nav-links" id="navLinks">
-        <a href="/#problem">The Problem</a>
-        <a href="/#how">How It Works</a>
-        <a href="/#pricing">Pricing</a>
-        <a href="/#about">About</a>
-        <a href="#intakeForm" class="nav-cta">Workflow assessment</a>
-      </div>
-      <button class="mobile-menu-btn" id="menuBtn" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </nav>
-
-  <!-- Hero -->
-  <section class="intake-hero">
-    <div class="container">
-      <p class="mono fade-in">Workflow assessment</p>
-      <h1 class="fade-in">Tell us about your business <span class="grad-text">and workflow.</span></h1>
-      <p class="fade-in">Two minutes. No commitment, no sales calls unless you want one. We'll review and reach out within one business day.</p>
-    </div>
-  </section>
-
-  <!-- Form -->
-  <form id="intakeForm">
-    <div class="container form-wrap">
-
-      <!-- Section 1: Your Business -->
-      <div class="glass form-card fade-in">
-        <div class="card-head">
-          <p class="mono">01 · Your business</p>
-          <h2>The basics</h2>
-          <p>Help us understand who you are and what you do.</p>
-        </div>
-        <div class="form-grid">
-          <div class="field">
-            <label for="f-name">Your name <span class="required">*</span></label>
-            <input id="f-name" type="text" name="contact_name" required placeholder="Jane Smith">
-          </div>
-          <div class="field">
-            <label for="f-email">Email <span class="required">*</span></label>
-            <input id="f-email" type="email" name="contact_email" required placeholder="jane@company.com">
-          </div>
-          <div class="field">
-            <label for="f-business">Business name <span class="required">*</span></label>
-            <input id="f-business" type="text" name="business_name" required placeholder="Acme Corp">
-          </div>
-          <div class="field">
-            <label for="f-industry">Industry <span class="required">*</span></label>
-            <select id="f-industry" name="industry" required>
-              <option value="">Select your industry...</option>
-              <option value="real_estate">Real estate</option>
-              <option value="legal">Legal / Law firm</option>
-              <option value="healthcare">Healthcare / Medical</option>
-              <option value="financial">Financial services / Insurance</option>
-              <option value="construction">Construction / Trades</option>
-              <option value="professional_services">Professional services / Consulting</option>
-              <option value="marketing">Marketing / Creative agency</option>
-              <option value="ecommerce">E-commerce / Retail</option>
-              <option value="saas">SaaS / Technology</option>
-              <option value="hospitality">Hospitality / Food service</option>
-              <option value="nonprofit">Nonprofit</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="f-phone">Phone <span class="optional">(optional)</span></label>
-            <input id="f-phone" type="tel" name="contact_phone" placeholder="(555) 123-4567">
-          </div>
-          <div class="field">
-            <label for="f-referral">How did you hear about us? <span class="optional">(optional)</span></label>
-            <select id="f-referral" name="referral_source">
-              <option value="">Select...</option>
-              <option value="search">Google search</option>
-              <option value="referral">Referral</option>
-              <option value="linkedin">LinkedIn</option>
-              <option value="cold_email">Email outreach</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      <!-- Section 2: The Workflow -->
-      <div class="glass form-card fade-in">
-        <div class="card-head">
-          <p class="mono">02 · The workflow</p>
-          <h2>What do you want to automate?</h2>
-          <p>Walk us through the process. The more specific, the better — what happens today, who's involved, and what goes wrong.</p>
-        </div>
-        <div class="form-grid">
-          <div class="field full-width">
-            <label for="f-workflow">Describe the workflow you'd most like to automate <span class="required">*</span></label>
-            <textarea id="f-workflow" name="workflow_description" required placeholder="A lead emails our info@ address. Someone on the team reads it, decides if it's a real inquiry, then forwards it to the right salesperson. This takes hours and leads fall through the cracks."></textarea>
-          </div>
-        </div>
-      </div>
-
-      <!-- Submit -->
-      <div class="glass submit-card fade-in">
-        <h2>Ready to send?</h2>
-        <p>We'll review what you shared and reach out within one business day. If it looks like a fit, we'll follow up with a focused workflow assessment: the current process, a useful baseline, and a sensible first step.</p>
-        <button type="submit" class="btn-submit" id="submitBtn">
-          Submit workflow assessment
-          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </button>
-        <p class="privacy-note">Your info goes straight to our team — never sold, never spammed.</p>
-      </div>
-
-    </div>
-  </form>
-
-  <!-- Success -->
-  <div class="success-message" id="successMessage">
-    <div class="container">
-      <div class="glass success-card">
-        <div class="success-icon">
-          <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-        </div>
-        <h2>We got it. Thank you.</h2>
-        <p>We'll review what you shared and reach out within one business day. If it looks like a fit, we'll follow up with a focused workflow assessment covering the current process, a useful baseline, and a sensible first step.</p>
-        <p style="margin-top: 1rem;">Questions in the meantime? Reach out at <a href="mailto:contact@kavikworks.com" style="text-decoration: underline;">contact@kavikworks.com</a>.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <div class="footer-inner">
-        <div class="footer-left">&copy; 2026 Robot Arms LLC, dba Kavik Works. Denver, CO.</div>
-        <div class="footer-links">
-          <a href="/#problem">The Problem</a>
-          <a href="/#pricing">Pricing</a>
-          <a href="/#about">About</a>
-          <a href="mailto:contact@kavikworks.com">Contact</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    // ── Mobile menu ──
-    const menuBtn = document.getElementById('menuBtn');
-    const navLinks = document.getElementById('navLinks');
-    menuBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => navLinks.classList.remove('open'));
-    });
-
-    // ── Scroll fade-in ──
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-    // ── Cursor sheen on glass cards ──
-    if (window.matchMedia('(pointer: fine)').matches) {
-      document.querySelectorAll('.glass').forEach(card => {
-        card.addEventListener('pointermove', e => {
-          const r = card.getBoundingClientRect();
-          card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
-          card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
-        });
-      });
-    }
-
-    // ── Form submission ──
-    const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyAjgf0UnyGZjxGWP5A2pkiWulmkRmUlpW5iBhbvJBGClnDmGXF1SU3DzFUuo7PPdRmtw/exec';
-
-    document.getElementById('intakeForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const btn = document.getElementById('submitBtn');
-      btn.disabled = true;
-      btn.textContent = 'Submitting...';
-
-      const formData = new FormData(e.target);
-      const data = {};
-      for (const [key, value] of formData.entries()) {
-        data[key] = value;
-      }
-      data.submitted_at = new Date().toISOString();
-
-      if (GOOGLE_APPS_SCRIPT_URL) {
-        try {
-          await fetch(GOOGLE_APPS_SCRIPT_URL, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data),
-          });
-        } catch (err) {
-          console.error('Submission error:', err);
-        }
-      } else {
-        const subject = encodeURIComponent('New Intake: ' + (data.business_name || 'Unknown'));
-        const body = encodeURIComponent(Object.entries(data).map(([k,v]) => `${k}: ${v}`).join('\n'));
-        window.open(`mailto:contact@kavikworks.com?subject=${subject}&body=${body}`);
-      }
-
-      document.getElementById('intakeForm').style.display = 'none';
-      const success = document.getElementById('successMessage');
-      success.classList.add('visible');
-      success.scrollIntoView({ behavior: 'smooth' });
-    });
-  </script>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+<nav class="wrap" aria-label="Main navigation">
+<a class="brand" href="/">
+<span class="brand-mark" aria-hidden="true">K</span>Kavik Works</a>
+<div class="nav-links">
+<a href="/sample-workflow/">See a sample</a>
+<a href="/#blueprint">The blueprint</a>
+<a class="button small" href="/intake">Check your workflow <span aria-hidden="true">↗</span>
+</a>
+</div>
+</nav>
+</header>
+<main id="main">
+<div class="wrap">
+<header class="article-head narrow">
+<p class="eyebrow">The free workflow check</p>
+<h1>What should happen after a request arrives?</h1>
+<p class="lede">Answer three questions to get a starter plan. You can keep it, or email a brief for a tailored $149 blueprint.</p>
+</header>
+<div class="intake-grid">
+<div>
+<form id="workflow-form">
+<div class="field">
+<label for="workflow">1. Which workflow would you like to improve?</label>
+<select id="workflow" name="workflow" required>
+<option value="">Choose a workflow</option>
+<option value="quotes">Quote or estimate requests</option>
+<option value="leasing">Leasing or availability inquiries</option>
+<option value="inbox">A shared administrative inbox</option>
+</select>
+</div>
+<div class="field">
+<label for="tools">2. Where does the work happen today?</label>
+<input id="tools" name="tools" placeholder="For example: Gmail and a shared spreadsheet" maxlength="150" required autocomplete="off">
+</div>
+<div class="field">
+<label for="handoff">3. Which handoff would you like to make clearer?</label>
+<textarea id="handoff" name="handoff" maxlength="500" required placeholder="For example: We forward quote requests to an estimator, but it is hard to see which ones have an owner." aria-describedby="handoff-help">
+</textarea>
+<p class="help" id="handoff-help">Describe the process only. Leave out passwords, customer details, and sensitive records.</p>
+</div>
+<button class="button" type="submit">Show my starter plan <span aria-hidden="true">→</span>
+</button>
+<p class="help">These answers stay in this page unless you choose to email them.</p>
+</form>
+<section class="result" id="starter-result" aria-labelledby="result-title" hidden>
+<p class="eyebrow">Your starting point</p>
+<h2 id="result-title" tabindex="-1">A small workflow to test</h2>
+<ol id="plan-steps">
+</ol>
+<p class="fine">This is a general starting template, not a tailored assessment or installed automation.</p>
+<hr>
+<h3>Want this tailored to your team?</h3>
+<p>Request the $149 Workflow Blueprint. We will confirm fit, scope, and timing before payment. No charge is made here.</p>
+<label for="email-brief">Your email brief</label>
+<textarea id="email-brief" class="summary-text" readonly>
+</textarea>
+<div class="button-row">
+<a id="email-request" class="button" href="mailto:josh@kavikworks.com">Open email draft <span aria-hidden="true">↗</span>
+</a>
+<button class="button secondary" id="copy-brief" type="button">Copy brief</button>
+</div>
+<p class="fine">Opening a draft does not send your request. Send it from your email app to <a href="mailto:josh@kavikworks.com">josh@kavikworks.com</a>. If an app does not open, copy the brief into your usual email.</p>
+<p id="copy-status" class="fine" role="status">
+</p>
+</section>
+<noscript>
+<div class="note">
+<p>Your browser has JavaScript disabled. <a href="/sample-workflow/">Read the free sample</a>, or email your workflow, current tools, and desired handoff to <a href="mailto:josh@kavikworks.com?subject=Workflow%20Blueprint%20request">josh@kavikworks.com</a>.</p>
+</div>
+</noscript>
+</div>
+<aside class="tile">
+<p class="eyebrow">Keep it useful</p>
+<h3>One process at a time.</h3>
+<p>A good starting point has a repeatable input, a clear owner, and a next action you can check.</p>
+<p>We start with quote requests, leasing inquiries, and administrative handoffs. Urgent or sensitive decisions belong with the people responsible for them.</p>
+<p>
+<a href="/sample-workflow/">Read a complete example →</a>
+</p>
+<hr>
+<h3>Prefer to email directly?</h3>
+<p>Tell us what arrives, where you handle it, and what should happen next.</p>
+<a href="mailto:josh@kavikworks.com?subject=Workflow%20Blueprint%20request">josh@kavikworks.com</a>
+</aside>
+</div>
+</div>
+</main>
+<footer class="site-footer">
+<div class="wrap footer-grid">
+<div>
+<a class="brand" href="/">Kavik Works</a>
+<p>Practical workflow plans. Denver, Colorado.</p>
+<p class="fine">© 2026 Robot Arms LLC, dba Kavik Works.</p>
+</div>
+<div>
+<a href="mailto:josh@kavikworks.com">josh@kavikworks.com</a>
+<div class="footer-links">
+<a href="/build-concepts/">Workflow examples</a>
+<a href="/privacy">Privacy</a>
+<a href="/terms">Terms</a>
+<a href="/refunds">Refunds</a>
+</div>
+</div>
+</div>
+</footer>
 </body>
 </html>

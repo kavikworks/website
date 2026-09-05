@@ -1,279 +1,82 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Build Concepts — Kavik Works</title>
-  <meta name="description" content="Detailed automation concepts for real business workflows — law firms, HVAC, property management, accounting, insurance. Industry-specific plans with execution detail.">
-  <link rel="canonical" href="https://kavikworks.com/build-concepts/">
-  <meta name="robots" content="index, follow">
-
-  <!-- FAQ Schema for AI Overviews -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "How can a law firm automate client intake?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "An AI pipeline classifies inbound emails by practice area (family law, corporate, criminal defense), extracts contact details, drafts a first response, and routes to the right attorney — all within minutes instead of hours."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How does HVAC lead response automation work?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Inbound quote requests are classified as emergency repairs or estimates, routed geographically to the right technician, and acknowledged instantly with an expected response timeline."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What is property management email automation?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "It classifies tenant maintenance emergencies separately from prospective tenant inquiries, auto-escalates urgent issues, and routes each to the correct person — maintenance coordinator or leasing agent."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How do CPA firms handle tax season email triage?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "AI sorts tax season inboxes by classifying new prospects, client document submissions, IRS notices, and general questions — routing each to the right preparer with appropriate urgency."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Can insurance agencies automate quote and claims routing?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes — an AI pipeline classifies commercial quotes, personal lines, and claims, routes each to the appropriate agent or adjuster, and triggers SMS alerts for urgent claims."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How can staffing agencies automate candidate and job req routing?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "An AI pipeline classifies inbound emails as candidate applications, client job reqs, timesheets, or interview confirmations, extracts key details, and routes each to the right recruiter by vertical (IT, healthcare, light industrial) — with urgent client reqs flagged high priority."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How can medical practices automate patient inquiry routing?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "An AI pipeline classifies new patient inquiries, appointment requests, prescription refills, and post-op follow-ups separately — routing each to the right person (front desk, clinical staff, or provider) in minutes."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How does real estate lead automation work for brokerages?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Inbound buyer inquiries, seller listing requests, and showing requests are classified by type and territory, then routed to the correct agent with an instant acknowledgment — so a $1.2M listing never goes to the wrong person."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How do financial advisors automate prospect and client service routing?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "New prospect inquiries and client service requests (withdrawals, account paperwork, compliance items) are classified and routed with appropriate urgency — so a $2.1M rollover prospect gets a same-day response and a withdrawal request never misses a closing deadline."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Can MSPs automate support ticket intake and routing?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes — critical outages, standard support requests, alert notifications, and new business inquiries are classified at intake. P1 incidents auto-escalate via SMS to on-call engineers while standard tickets route into the PSA with priority-based queuing."
-        }
-      }
-    ]
-  }
-  </script>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --white: #ffffff; --gray-50: #fafafa; --gray-100: #f5f5f5; --gray-200: #e5e5e5;
-      --gray-300: #d4d4d4; --gray-400: #a3a3a3; --gray-500: #737373; --gray-600: #525252;
-      --gray-700: #404040; --gray-800: #262626; --gray-900: #171717; --gray-950: #0a0a0a;
-      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
-    }
-    html { scroll-behavior: smooth; font-size: 16px; }
-    body { font-family: var(--font-sans); color: var(--gray-300); background: var(--gray-950); line-height: 1.6; -webkit-font-smoothing: antialiased; }
-    h1, h2, h3 { color: var(--white); line-height: 1.2; font-weight: 600; }
-    h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -0.03em; }
-    h2 { font-size: 1.5rem; letter-spacing: -0.02em; margin: 3rem 0 1rem; }
-    h3 { font-size: 1.15rem; margin: 2rem 0 0.75rem; }
-    p { max-width: 680px; margin-bottom: 1rem; color: var(--gray-400); line-height: 1.7; }
-    a { color: var(--white); text-decoration: none; }
-    .mono { font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gray-500); }
-    .container { max-width: 920px; margin: 0 auto; padding: 0 2rem; }
-
-    /* Nav */
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(10,10,10,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.06); }
-    nav .container { display: flex; align-items: center; justify-content: space-between; height: 64px; }
-    .nav-logo { font-weight: 700; font-size: 1.1rem; color: var(--white); letter-spacing: -0.02em; }
-    .nav-links { display: flex; gap: 1.75rem; align-items: center; }
-    .nav-links a { font-size: 0.875rem; color: var(--gray-400); transition: color 0.2s; }
-    .nav-links a:hover { color: var(--white); }
-
-    /* Page header */
-    .page-header { padding: 8rem 0 3rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
-    .page-header h1 { margin-bottom: 0.75rem; }
-    .page-header p { color: var(--gray-500); font-size: 1.05rem; }
-
-    /* Concept cards */
-    .concepts { padding: 4rem 0 6rem; }
-    .concept-card { padding: 2.5rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; margin-bottom: 1.5rem; transition: border-color 0.3s; }
-    .concept-card:hover { border-color: rgba(255,255,255,0.15); }
-    .concept-card h3 { margin: 0 0 0.5rem; font-size: 1.25rem; }
-    .concept-card h3 a { color: var(--white); }
-    .concept-card .industry-tag { display: inline-block; font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.2rem 0.6rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; color: var(--gray-500); margin-bottom: 1rem; }
-    .concept-card .workflow { font-family: var(--font-mono); font-size: 0.78rem; color: var(--gray-500); margin-bottom: 1rem; }
-    .concept-card p { color: var(--gray-400); font-size: 0.95rem; margin-bottom: 0; }
-    .concept-card .read-link { display: inline-block; margin-top: 1.25rem; font-size: 0.875rem; color: var(--gray-300); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.15rem; transition: all 0.2s; }
-    .concept-card .read-link:hover { color: var(--white); border-color: var(--white); }
-
-    /* Footer */
-    footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 3rem 0; }
-    footer .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
-    .footer-links { display: flex; gap: 2rem; }
-    .footer-links a { font-size: 0.85rem; color: var(--gray-500); transition: color 0.2s; }
-    .footer-links a:hover { color: var(--gray-300); }
-    .footer-copy { font-size: 0.8rem; color: var(--gray-600); }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Workflow examples — Kavik Works</title>
+<meta name="description" content="A few focused ways to make intake and follow-up easier to manage.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://kavikworks.com/build-concepts/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Workflow examples">
+<meta property="og:description" content="A few focused ways to make intake and follow-up easier to manage.">
+<meta property="og:url" content="https://kavikworks.com/build-concepts/">
+<meta name="theme-color" content="#132e28">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/site.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Workflow examples", "description": "A few focused ways to make intake and follow-up easier to manage.", "url": "https://kavikworks.com/build-concepts/"}</script>
 </head>
 <body>
-  <nav>
-    <div class="container">
-      <a href="/" class="nav-logo">Kavik Works</a>
-      <div class="nav-links">
-        <a href="/#problem">The Problem</a>
-        <a href="/#how">How It Works</a>
-        <a href="/#pricing">Pricing</a>
-        <a href="/build-concepts/">Build Concepts</a>
-        <a href="/#about">About</a>
-        <a href="/intake">Get Started</a>
-      </div>
-    </div>
-  </nav>
-
-  <section class="page-header">
-    <div class="container">
-      <p class="mono">Build Concepts</p>
-      <h1>Automation plans for real businesses.</h1>
-      <p>Industry-specific workflow concepts with full execution detail — taxonomy, routing rules, response templates, and integration points. Built to be deployed.</p>
-    </div>
-  </section>
-
-  <section class="concepts">
-    <div class="container">
-      <div class="concept-card">
-        <span class="industry-tag">Legal</span>
-        <h3><a href="/build-concepts/law-firm-client-intake.html">Law Firm Client Intake & Lead Response</a></h3>
-        <div class="workflow">Inquiry → classify → extract → draft → route → log</div>
-        <p>How a 5-attorney firm can stop losing Friday afternoon prospects to competitors who answer on Saturday. Full pipeline with legal-specific classification taxonomy and conflict-check integration points.</p>
-        <a href="/build-concepts/law-firm-client-intake.html" class="read-link">Read the full concept →</a>
-      </div>
-
-      <div class="concept-card">
-        <span class="industry-tag">Home Services</span>
-        <h3><a href="/build-concepts/hvac-lead-response.html">HVAC Lead Routing & Quote Follow-Up</a></h3>
-        <div class="workflow">Inquiry → classify → extract → route → draft → schedule</div>
-        <p>Turn a shared office@ inbox receiving 20+ quote requests a day into a self-sorting pipeline. Emergency vs. estimate classification, geographic routing, and instant first-response with expected timeline.</p>
-        <a href="/build-concepts/hvac-lead-response.html" class="read-link">Read the full concept →</a>
-      </div>
-
-      <div class="concept-card">
-        <span class="industry-tag">Property Management</span>
-        <h3><a href="/build-concepts/property-management-inquiries.html">Property Management Tenant Inquiries & Maintenance Routing</a></h3>
-        <div class="workflow">Inquiry → classify → extract → escalate → route → acknowledge</div>
-        <p>Handle tenant maintenance emergencies and prospective tenant inquiries through the same inbox without either getting lost. Urgency detection, automatic escalation, and maintenance ticket creation.</p>
-        <a href="/build-concepts/property-management-inquiries.html" class="read-link">Read the full concept →</a>
-      </div>
-
-      <div class="concept-card">
-        <span class="industry-tag">Accounting</span>
-        <h3><a href="/build-concepts/cpa-client-intake-triage.html">CPA Firm Client Intake & Tax Season Triage</a></h3>
-        <div class="workflow">Inquiry → classify → extract → prioritize → route → confirm</div>
-        <p>Tax season inbox management that separates new prospects from existing clients, identifies urgent document submissions, and routes to the right preparer — without anyone manually sorting 50+ emails a day.</p>
-        <a href="/build-concepts/cpa-client-intake-triage.html" class="read-link">Read the full concept →</a>
-      </div>
-
-      <div class="concept-card">
-        <span class="industry-tag">Insurance</span>
-        <h3><a href="/build-concepts/insurance-quote-claims-routing.html">Insurance Agency Quote Requests &amp; Claims Routing</a></h3>
-        <div class="workflow">Inquiry → classify → extract → route → acknowledge → notify</div>
-        <p>Route commercial quotes, personal lines quotes, and claims from a single inbox to the right person in under 60 seconds. Claims urgency detection, line-of-business routing, and automated first-response with next steps.</p>
-        <a href="/build-concepts/insurance-quote-claims-routing.html" class="read-link">Read the full concept →</a>
-      </div>
-
-      <div class="concept-card">
-        <span class="industry-tag">Staffing &amp; Recruiting</span>
-        <h3><a href="/build-concepts/staffing-recruiting-inquiry-routing.html">Staffing Firm Candidate Inquiry &amp; Job Req Routing</a></h3>
-        <div class="workflow">Inquiry → classify → extract → route → draft → track</div>
-        <p>Never lose a $22K placement to a 3-day response delay. Route candidate applications and client job reqs to the right recruiter by vertical in under 3 minutes — 24/7, covering IT, healthcare, and light industrial desks.</p>
-        <a href="/build-concepts/staffing-recruiting-inquiry-routing.html" class="read-link">Read the full concept →</a>
-      </div>
-
-      <div class="concept-card">
-        <span class="industry-tag">Healthcare</span>
-        <h3><a href="/build-concepts/medical-practice-inquiry-routing.html">Medical Practice Patient Inquiry & Appointment Routing</a></h3>
-        <div class="workflow">Inquiry → classify → extract → route → draft → schedule</div>
-        <p>How a 3-dentist practice stops losing Invisalign consults to competitors and ensures post-op complications never sit unread over a weekend. Clinical triage without clinical staff touching every email.</p>
-        <a href="/build-concepts/medical-practice-inquiry-routing.html" class="read-link">Read the full concept →</a>
-      </div>
-
-      <div class="concept-card">
-        <span class="industry-tag">Real Estate</span>
-        <h3><a href="/build-concepts/real-estate-lead-routing.html">Real Estate Brokerage Lead Intake & Agent Routing</a></h3>
-        <div class="workflow">Inquiry → classify → extract → route → draft → notify</div>
-        <p>Never route a $1.2M listing to the wrong agent again. Territory-based routing, buyer/seller classification, and instant first-response that keeps leads from calling the listing agent directly.</p>
-        <a href="/build-concepts/real-estate-lead-routing.html" class="read-link">Read the full concept →</a>
-      </div>
-
-      <div class="concept-card">
-        <span class="industry-tag">Financial Services</span>
-        <h3><a href="/build-concepts/financial-advisor-inquiry-routing.html">Financial Advisor Prospect Inquiry & Client Service Routing</a></h3>
-        <div class="workflow">Inquiry → classify → extract → route → draft → schedule</div>
-        <p>$2.1M rollover prospect vs. $75K withdrawal request — same inbox, wildly different urgency. Classify, route, and acknowledge both in minutes so neither revenue nor trust is lost to response delay.</p>
-        <a href="/build-concepts/financial-advisor-inquiry-routing.html" class="read-link">Read the full concept →</a>
-      </div>
-
-      <div class="concept-card">
-        <span class="industry-tag">IT & Managed Services</span>
-        <h3><a href="/build-concepts/msp-support-ticket-routing.html">MSP Support Ticket Intake & Client Routing</a></h3>
-        <div class="workflow">Inquiry → classify → extract → route → draft → escalate</div>
-        <p>Server-down emergencies shouldn't sit behind password resets. P1 auto-detection, PSA ticket creation, on-call escalation, and new business inquiry routing — all from the same support@ inbox.</p>
-        <a href="/build-concepts/msp-support-ticket-routing.html" class="read-link">Read the full concept →</a>
-      </div>
-
-    </div>
-  </section>
-
-  <footer>
-    <div class="container">
-      <div class="footer-links">
-        <a href="/#problem">The Problem</a>
-        <a href="/#pricing">Pricing</a>
-        <a href="/build-concepts/">Build Concepts</a>
-        <a href="/#about">About</a>
-        <a href="mailto:contact@kavikworks.com">Contact</a>
-      </div>
-      <div class="footer-copy">&copy; 2026 Robot Arms LLC, dba Kavik Works.</div>
-    </div>
-  </footer>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+<nav class="wrap" aria-label="Main navigation">
+<a class="brand" href="/">
+<span class="brand-mark" aria-hidden="true">K</span>Kavik Works</a>
+<div class="nav-links">
+<a href="/sample-workflow/">See a sample</a>
+<a href="/#blueprint">The blueprint</a>
+<a class="button small" href="/intake">Check your workflow <span aria-hidden="true">↗</span>
+</a>
+</div>
+</nav>
+</header>
+<main id="main">
+<div class="wrap narrow">
+<header class="article-head">
+<p class="eyebrow">Practical workflow planning</p>
+<h1>Workflow examples</h1>
+<p class="lede">A few focused ways to make intake and follow-up easier to manage.</p>
+</header>
+<article class="article">
+<p>These are planning examples, not customer case studies. Each starts with a repeatable request, an owner, and a visible next step.</p>
+<ul>
+<li>
+<a href="/build-concepts/hvac-lead-response.html">Home service quote requests</a>
+</li>
+<li>
+<a href="/build-concepts/property-management-inquiries.html">Property-team leasing inquiries</a>
+</li>
+<li>
+<a href="/ai-email-triage/">Shared administrative inboxes</a>
+</li>
+</ul>
+<p>
+<a href="/sample-workflow/">Read the complete free sample</a>, including record fields, templates, and a test checklist.</p>
+<div class="note">
+<h3>Start with a clear plan.</h3>
+<p>Our $149 Workflow Blueprint covers one intake or follow-up process. Start with a free workflow check; we confirm scope and timing before payment.</p>
+<a class="button" href="/intake">Check my workflow →</a>
+</div>
+</article>
+</div>
+</main>
+<footer class="site-footer">
+<div class="wrap footer-grid">
+<div>
+<a class="brand" href="/">Kavik Works</a>
+<p>Practical workflow plans. Denver, Colorado.</p>
+<p class="fine">© 2026 Robot Arms LLC, dba Kavik Works.</p>
+</div>
+<div>
+<a href="mailto:josh@kavikworks.com">josh@kavikworks.com</a>
+<div class="footer-links">
+<a href="/build-concepts/">Workflow examples</a>
+<a href="/privacy">Privacy</a>
+<a href="/terms">Terms</a>
+<a href="/refunds">Refunds</a>
+</div>
+</div>
+</div>
+</footer>
 </body>
 </html>

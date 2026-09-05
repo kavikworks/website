@@ -1,830 +1,231 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0a'/%3E%3Crect x='6' y='6' width='20' height='20' rx='4' fill='none' stroke='%23a3a3a3' stroke-width='2'/%3E%3Crect x='12' y='12' width='8' height='8' rx='1' fill='%23ffffff'/%3E%3C/svg%3E">
-  <title>Kavik Works — AI Workflow Automation for Business</title>
-  <meta name="description" content="Kavik Works helps small and midsize businesses launch one bounded AI workflow through a 30-Day Proof of Value and managed operation while it remains live.">
-  <meta name="msvalidate.01" content="C5A229FDE4D010499796137AAFF75329">
-  <link rel="canonical" href="https://kavikworks.com/">
-  <meta name="robots" content="index, follow">
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Kavik Works — AI Workflow Automation for Small Business">
-  <meta property="og:description" content="We wire AI into one bounded business workflow, define the baseline, launch it, and report what the first 30 live days show. Managed operation keeps the workflow connected and supported while it remains live.">
-  <meta property="og:url" content="https://kavikworks.com/">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Kavik Works">
-  <meta property="og:locale" content="en_US">
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Kavik Works — AI Workflow Automation for Small Business">
-  <meta name="twitter:description" content="We wire AI into one bounded business workflow, define the baseline, launch it, and report what the first 30 live days show. Managed operation keeps the workflow connected and supported while it remains live.">
-
-  <!-- Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "Kavik Works",
-    "description": "AI workflow automation for small and midsize businesses — inbox triage, lead routing, inquiry response, and back-office automation.",
-    "url": "https://kavikworks.com",
-    "email": "contact@kavikworks.com",
-    "foundingDate": "2026-04-10",
-    "founder": { "@type": "Person", "name": "Joshua Lynch" },
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Denver",
-      "addressRegion": "CO",
-      "addressCountry": "US"
-    },
-    "priceRange": "$$",
-    "areaServed": { "@type": "Country", "name": "United States" },
-    "knowsAbout": ["AI workflow automation", "email automation", "lead response automation", "inbox triage", "business process automation"]
-  }
-  </script>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg: #05060a;
-      --ink: #eef1f6;
-      --ink-dim: #9aa3b2;
-      --ink-faint: #5c6472;
-      --cyan: #5eead4;
-      --violet: #a78bfa;
-      --blue: #60a5fa;
-      --glass: rgba(255,255,255,0.04);
-      --glass-strong: rgba(255,255,255,0.07);
-      --edge: rgba(255,255,255,0.09);
-      --edge-bright: rgba(255,255,255,0.22);
-      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-display: 'Space Grotesk', 'Inter', sans-serif;
-      --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
-    }
-
-    html { scroll-behavior: smooth; font-size: 16px; }
-    body {
-      font-family: var(--font-sans);
-      color: var(--ink-dim);
-      background: var(--bg);
-      line-height: 1.65;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
-
-    /* ── Aurora backdrop ── */
-    .aurora {
-      position: fixed; inset: 0; z-index: -2; overflow: hidden;
-      background: var(--bg);
-    }
-    .aurora::after {
-      content: ''; position: absolute; inset: 0;
-      background-image: radial-gradient(rgba(255,255,255,0.028) 1px, transparent 1px);
-      background-size: 28px 28px;
-      mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 20%, transparent 80%);
-      -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 20%, transparent 80%);
-    }
-    .blob {
-      position: absolute; border-radius: 50%;
-      filter: blur(90px); opacity: 0.35;
-      will-change: transform;
-    }
-    .blob-1 {
-      width: 620px; height: 620px; top: -220px; left: -120px;
-      background: radial-gradient(circle, rgba(94,234,212,0.24), transparent 65%);
-      animation: drift-1 26s ease-in-out infinite alternate;
-    }
-    .blob-2 {
-      width: 720px; height: 720px; top: -140px; right: -220px;
-      background: radial-gradient(circle, rgba(167,139,250,0.22), transparent 65%);
-      animation: drift-2 32s ease-in-out infinite alternate;
-    }
-    .blob-3 {
-      width: 540px; height: 540px; top: 55%; left: 30%;
-      background: radial-gradient(circle, rgba(96,165,250,0.13), transparent 65%);
-      animation: drift-3 38s ease-in-out infinite alternate;
-    }
-    @keyframes drift-1 { to { transform: translate(140px, 90px) scale(1.15); } }
-    @keyframes drift-2 { to { transform: translate(-120px, 130px) scale(0.9); } }
-    @keyframes drift-3 { to { transform: translate(90px, -110px) scale(1.1); } }
-
-    /* ── Typography ── */
-    h1, h2, h3 { font-family: var(--font-display); color: var(--ink); line-height: 1.12; font-weight: 600; }
-    h1 { font-size: clamp(2.6rem, 5.5vw, 4.2rem); letter-spacing: -0.03em; }
-    h2 { font-size: clamp(1.7rem, 3vw, 2.4rem); letter-spacing: -0.02em; }
-    h3 { font-size: 1.15rem; letter-spacing: -0.01em; }
-    p { max-width: 620px; }
-    a { color: var(--ink); text-decoration: none; }
-    .mono {
-      font-family: var(--font-mono); font-size: 0.72rem;
-      text-transform: uppercase; letter-spacing: 0.16em;
-      color: var(--ink-faint);
-    }
-    .grad-text {
-      background: linear-gradient(100deg, var(--cyan), var(--blue) 55%, var(--violet));
-      -webkit-background-clip: text; background-clip: text; color: transparent;
-    }
-
-    .container { max-width: 1120px; margin: 0 auto; padding: 0 2rem; }
-    section { padding: 6rem 0; }
-    .section-head { margin-bottom: 3rem; }
-    .section-head .mono { display: block; margin-bottom: 0.9rem; }
-
-    /* ── Liquid glass primitives ── */
-    .glass {
-      position: relative;
-      background: linear-gradient(160deg, rgba(255,255,255,0.07), rgba(255,255,255,0.02) 45%, rgba(255,255,255,0.045));
-      border: 1px solid var(--edge);
-      border-radius: 20px;
-      backdrop-filter: blur(18px) saturate(1.5);
-      -webkit-backdrop-filter: blur(18px) saturate(1.5);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.12),
-        inset 0 -1px 0 rgba(255,255,255,0.03),
-        0 18px 46px -18px rgba(0,0,0,0.6);
-      overflow: hidden;
-      transition: border-color 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease;
-    }
-    /* cursor sheen */
-    .glass::before {
-      content: ''; position: absolute; inset: 0; border-radius: inherit;
-      background: radial-gradient(420px circle at var(--mx, 50%) var(--my, -20%),
-        rgba(255,255,255,0.08), transparent 55%);
-      opacity: 0; transition: opacity 0.4s ease; pointer-events: none;
-    }
-    .glass:hover::before { opacity: 1; }
-    .glass:hover {
-      border-color: var(--edge-bright);
-      transform: translateY(-3px);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.16),
-        0 26px 60px -20px rgba(0,0,0,0.7);
-    }
-    .glass > * { position: relative; }
-
-    /* ── Nav (floating glass pill) ── */
-    nav {
-      position: fixed; top: 14px; left: 0; right: 0; z-index: 100;
-      pointer-events: none;
-    }
-    .nav-pill {
-      pointer-events: auto;
-      max-width: 1120px; margin: 0 auto;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0.55rem 0.65rem 0.55rem 1.25rem;
-      background: rgba(10,12,18,0.55);
-      border: 1px solid var(--edge);
-      border-radius: 100px;
-      backdrop-filter: blur(22px) saturate(1.6);
-      -webkit-backdrop-filter: blur(22px) saturate(1.6);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 12px 32px -12px rgba(0,0,0,0.6);
-    }
-    @media (max-width: 1180px) { .nav-pill { margin: 0 1rem; } }
-    .nav-logo {
-      font-family: var(--font-display); font-weight: 700; font-size: 1.05rem;
-      letter-spacing: -0.02em; display: flex; align-items: center; gap: 0.6rem;
-    }
-    .nav-logo-icon {
-      width: 26px; height: 26px; border: 2px solid var(--ink-faint);
-      border-radius: 7px; display: flex; align-items: center; justify-content: center;
-    }
-    .nav-logo-icon::after {
-      content: ''; width: 8px; height: 8px; border-radius: 2px;
-      background: linear-gradient(135deg, var(--cyan), var(--violet));
-    }
-    .nav-links { display: flex; gap: 1.6rem; align-items: center; }
-    .nav-links a { font-size: 0.85rem; color: var(--ink-dim); transition: color 0.2s; }
-    .nav-links a:hover { color: var(--ink); }
-    .nav-cta {
-      color: #05060a !important; font-weight: 600; font-size: 0.85rem;
-      padding: 0.5rem 1.2rem; border-radius: 100px;
-      background: linear-gradient(120deg, #d7fff5, #ffffff 50%, #e6dcff);
-      box-shadow: 0 0 18px -4px rgba(94,234,212,0.35);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 0 26px -4px rgba(94,234,212,0.5); }
-    .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem 0.75rem; }
-    .mobile-menu-btn span { display: block; width: 20px; height: 2px; background: var(--ink-dim); margin: 4px 0; transition: all 0.3s; }
-
-    /* ── Hero ── */
-    .hero { padding: 10.5rem 0 6rem; position: relative; }
-    .hero-layout {
-      display: grid; grid-template-columns: 1.15fr 0.85fr;
-      gap: 4rem; align-items: center;
-    }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 0.55rem;
-      padding: 0.35rem 1rem; border-radius: 100px;
-      border: 1px solid var(--edge);
-      background: rgba(255,255,255,0.03);
-      font-size: 0.8rem; color: var(--ink-dim);
-      margin-bottom: 1.8rem;
-      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-    }
-    .live-dot {
-      width: 7px; height: 7px; border-radius: 50%;
-      background: var(--cyan);
-      box-shadow: 0 0 0 0 rgba(94,234,212,0.5);
-      animation: ping 2.4s ease-out infinite;
-    }
-    @keyframes ping {
-      0% { box-shadow: 0 0 0 0 rgba(94,234,212,0.45); }
-      70% { box-shadow: 0 0 0 9px rgba(94,234,212,0); }
-      100% { box-shadow: 0 0 0 0 rgba(94,234,212,0); }
-    }
-    .hero h1 { margin-bottom: 1.4rem; }
-    .hero-sub { font-size: 1.1rem; color: var(--ink-dim); max-width: 480px; margin-bottom: 2.4rem; }
-    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.8rem 1.7rem; border-radius: 100px;
-      color: #05060a; font-weight: 600; font-size: 0.95rem;
-      background: linear-gradient(120deg, #d7fff5, #ffffff 50%, #e6dcff);
-      box-shadow: 0 0 24px -6px rgba(94,234,212,0.4);
-      transition: transform 0.2s, box-shadow 0.2s; border: none; cursor: pointer;
-    }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 34px -6px rgba(167,139,250,0.55); }
-    .btn-secondary {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.8rem 1.7rem; border-radius: 100px;
-      background: rgba(255,255,255,0.04); color: var(--ink-dim);
-      border: 1px solid var(--edge);
-      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-      font-weight: 500; font-size: 0.95rem;
-      transition: all 0.2s; cursor: pointer;
-    }
-    .btn-secondary:hover { border-color: var(--edge-bright); color: var(--ink); }
-
-    /* ── Live ops console ── */
-    .console { padding: 0; border-radius: 22px; }
-    .console-bar {
-      display: flex; align-items: center; gap: 0.75rem;
-      padding: 0.85rem 1.25rem;
-      border-bottom: 1px solid var(--edge);
-      background: rgba(255,255,255,0.025);
-    }
-    .console-bar .dots { display: flex; gap: 6px; }
-    .console-bar .dots i { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.12); }
-    .console-title { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); display: flex; align-items: center; gap: 0.5rem; margin-left: auto; }
-    .console-body {
-      padding: 1.1rem 1.25rem 1.25rem;
-      font-family: var(--font-mono); font-size: 0.78rem; line-height: 1.5;
-      height: 305px; display: flex; flex-direction: column; justify-content: flex-end;
-      gap: 0.55rem; overflow: hidden;
-    }
-    .evt {
-      display: flex; gap: 0.7rem; align-items: baseline;
-      opacity: 0; transform: translateY(8px);
-      animation: evt-in 0.5s ease forwards;
-    }
-    @keyframes evt-in { to { opacity: 1; transform: translateY(0); } }
-    .evt .t { color: var(--ink-faint); flex-shrink: 0; }
-    .evt .msg { color: var(--ink-dim); }
-    .evt .tag {
-      flex-shrink: 0; font-size: 0.62rem; padding: 0.1rem 0.5rem;
-      border-radius: 4px; border: 1px solid var(--edge);
-      background: rgba(255,255,255,0.04);
-    }
-    .tag.c { color: var(--cyan); border-color: rgba(94,234,212,0.3); }
-    .tag.v { color: var(--violet); border-color: rgba(167,139,250,0.3); }
-    .tag.b { color: var(--blue); border-color: rgba(96,165,250,0.3); }
-    .console-foot {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 0.8rem 1.25rem;
-      border-top: 1px solid var(--edge);
-      font-family: var(--font-mono); font-size: 0.68rem; color: var(--ink-faint);
-    }
-    .console-foot b { color: var(--cyan); font-weight: 500; }
-
-    /* ── Stats strip ── */
-    .stats { padding: 0 0 5rem; }
-    .stats-row {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;
-    }
-    .stat { padding: 1.6rem 1.8rem; border-radius: 18px; }
-    .stat-num {
-      font-family: var(--font-display); font-size: 2rem; font-weight: 700;
-      color: var(--ink); letter-spacing: -0.02em;
-    }
-    .stat-label { font-size: 0.85rem; color: var(--ink-faint); margin-top: 0.15rem; }
-
-    /* ── Cards grids ── */
-    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
-    .card { padding: 1.9rem; }
-    .card .mono { display: block; margin-bottom: 0.9rem; }
-    .card h3 { margin-bottom: 0.6rem; }
-    .card p { font-size: 0.9rem; color: var(--ink-dim); }
-
-    /* ── How it works ── */
-    .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
-    .how-card { padding: 1.7rem 1.5rem; }
-    .how-num {
-      font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500;
-      display: inline-flex; align-items: center; justify-content: center;
-      width: 32px; height: 32px; border-radius: 10px;
-      border: 1px solid var(--edge);
-      background: rgba(255,255,255,0.04);
-      color: var(--cyan);
-      margin-bottom: 1.1rem;
-    }
-    .how-card h3 { font-size: 1.02rem; margin-bottom: 0.5rem; }
-    .how-card p { font-size: 0.86rem; color: var(--ink-dim); }
-
-    /* ── Pricing ── */
-    .pricing-grid {
-      display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem;
-      max-width: 840px; margin: 0 auto;
-    }
-    .price-card { padding: 2.3rem 2rem; display: flex; flex-direction: column; }
-    .price-card.featured {
-      border-color: rgba(94,234,212,0.28);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.14),
-        0 0 44px -14px rgba(94,234,212,0.28),
-        0 18px 46px -18px rgba(0,0,0,0.6);
-    }
-    .price-amount {
-      font-family: var(--font-display); font-size: 2.3rem; font-weight: 700;
-      color: var(--ink); margin: 0.4rem 0 0.2rem;
-    }
-    .price-amount span { font-size: 1rem; font-weight: 400; color: var(--ink-faint); font-family: var(--font-sans); }
-    .price-setup { font-size: 0.84rem; color: var(--ink-faint); margin-bottom: 1.4rem; }
-    .price-desc { font-size: 0.9rem; color: var(--ink-dim); margin-bottom: 1.4rem; flex: 1; }
-    .price-features { list-style: none; margin-bottom: 2rem; }
-    .price-features li {
-      padding: 0.38rem 0; font-size: 0.87rem; color: var(--ink-dim);
-      display: flex; align-items: flex-start; gap: 0.7rem;
-    }
-    .price-features li::before { content: '→'; color: var(--cyan); opacity: 0.7; flex-shrink: 0; }
-    .price-btn {
-      display: block; text-align: center; padding: 0.75rem; border-radius: 100px;
-      font-size: 0.9rem; font-weight: 500;
-      border: 1px solid var(--edge-bright); color: var(--ink);
-      transition: all 0.2s; cursor: pointer; background: transparent;
-    }
-    .price-btn:hover { border-color: var(--ink); }
-    .price-card.featured .price-btn {
-      background: linear-gradient(120deg, #d7fff5, #ffffff 50%, #e6dcff);
-      color: #05060a; border-color: transparent; font-weight: 600;
-    }
-    .price-card.featured .price-btn:hover { box-shadow: 0 0 24px -6px rgba(94,234,212,0.5); }
-
-    /* ── About ── */
-    .about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3.5rem; align-items: start; }
-    .about-text h2 { margin-bottom: 1.4rem; }
-    .about-text p { margin-bottom: 1.1rem; font-size: 0.95rem; }
-    .about-chips { display: flex; flex-direction: column; gap: 1rem; }
-    .about-chip { padding: 1.4rem 1.6rem; border-radius: 16px; }
-    .about-chip .mono { display: block; margin-bottom: 0.4rem; }
-    .about-chip p { font-size: 0.88rem; color: var(--ink-dim); }
-
-    /* ── CTA ── */
-    .cta-panel {
-      text-align: center; padding: 4.5rem 2rem; border-radius: 28px;
-    }
-    .cta-panel h2 { margin-bottom: 1rem; }
-    .cta-panel p { margin: 0 auto 2.3rem; font-size: 1.02rem; }
-    .cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-
-    /* ── Footer ── */
-    footer { padding: 3rem 0 2.5rem; border-top: 1px solid rgba(255,255,255,0.05); }
-    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
-    .footer-left { font-size: 0.82rem; color: var(--ink-faint); }
-    .footer-links { display: flex; gap: 1.4rem; }
-    .footer-links a { font-size: 0.82rem; color: var(--ink-faint); transition: color 0.2s; }
-    .footer-links a:hover { color: var(--ink); }
-
-    /* ── Reveal ── */
-    .fade-in { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
-
-    /* ── Responsive ── */
-    @media (max-width: 900px) {
-      .hero-layout { grid-template-columns: 1fr; gap: 2.5rem; }
-      .how-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 768px) {
-      section { padding: 4rem 0; }
-      .hero { padding: 8.5rem 0 4rem; }
-      .nav-links { display: none; }
-      .mobile-menu-btn { display: block; }
-      .nav-links.open {
-        display: flex; flex-direction: column; align-items: flex-start;
-        position: absolute; top: 62px; left: 1rem; right: 1rem;
-        background: rgba(10,12,18,0.92);
-        backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px);
-        padding: 1.4rem 1.6rem; gap: 1.1rem;
-        border: 1px solid var(--edge); border-radius: 20px;
-      }
-      .grid-3, .stats-row, .how-grid, .pricing-grid { grid-template-columns: 1fr; }
-      .pricing-grid { max-width: 480px; }
-      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .console-body { height: 250px; }
-    }
-
-    /* ── Reduced motion ── */
-    @media (prefers-reduced-motion: reduce) {
-      .blob, .live-dot { animation: none !important; }
-      .fade-in { opacity: 1; transform: none; transition: none; }
-      .evt { animation: none; opacity: 1; transform: none; }
-      html { scroll-behavior: auto; }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Workflow blueprints for small businesses — Kavik Works</title>
+<meta name="description" content="A tailored plan for one intake or follow-up workflow. $149 one time. Start with a free workflow check; no call or subscription required.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://kavikworks.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Workflow blueprints for small businesses">
+<meta property="og:description" content="A tailored plan for one intake or follow-up workflow. $149 one time. Start with a free workflow check; no call or subscription required.">
+<meta property="og:url" content="https://kavikworks.com/">
+<meta name="theme-color" content="#132e28">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/site.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Kavik Works", "legalName": "Robot Arms LLC", "url": "https://kavikworks.com/", "email": "josh@kavikworks.com", "description": "Workflow planning for small service businesses and property teams.", "address": {"@type": "PostalAddress", "addressLocality": "Denver", "addressRegion": "CO", "addressCountry": "US"}}</script>
 </head>
 <body>
-
-  <div class="aurora" aria-hidden="true">
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
-  </div>
-
-  <!-- Nav -->
-  <nav>
-    <div class="nav-pill">
-      <a href="#" class="nav-logo">
-        <div class="nav-logo-icon"></div>
-        Kavik Works
-      </a>
-      <div class="nav-links" id="navLinks">
-        <a href="#problem">The Problem</a>
-        <a href="#how">How It Works</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#about">About</a>
-        <a href="/intake" class="nav-cta">Workflow assessment</a>
-      </div>
-      <button class="mobile-menu-btn" id="menuBtn" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </nav>
-
-  <!-- Hero -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero-layout">
-        <div>
-          <div class="hero-badge fade-in">
-            <span class="live-dot"></span>
-            Illustrative workflow demo
-          </div>
-          <h1 class="fade-in">Your business runs on workflows. <span class="grad-text">We automate them.</span></h1>
-          <p class="hero-sub fade-in">
-            One high-impact workflow, wired into the tools your business already runs. We define the baseline, build and test the boundary, launch it, and show what the first 30 days reveal.
-          </p>
-          <div class="hero-actions fade-in">
-            <a href="/lead-response-automation/#demo" class="btn-primary">
-              View the workflow demo
-              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-            <a href="/intake" class="btn-secondary">Workflow assessment</a>
-          </div>
-        </div>
-        <div class="glass console fade-in" aria-label="Illustrative workflow demo preview">
-          <div class="console-bar">
-            <div class="dots"><i></i><i></i><i></i></div>
-            <div class="console-title"><span class="live-dot"></span> illustrative demo</div>
-          </div>
-          <div class="console-body" id="consoleBody"></div>
-          <div class="console-foot">
-            <span>example event sequence <b>preview</b></span>
-            <span>control <b>human review</b></span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Stats strip -->
-  <div class="stats">
-    <div class="container">
-      <div class="stats-row">
-        <div class="glass stat fade-in">
-          <div class="stat-num grad-text">1 workflow</div>
-          <div class="stat-label">Start with one high-impact process</div>
-        </div>
-        <div class="glass stat fade-in">
-          <div class="stat-num grad-text">30 days</div>
-          <div class="stat-label">Measurement begins after the workflow is live</div>
-        </div>
-        <div class="glass stat fade-in">
-          <div class="stat-num grad-text">1 report</div>
-          <div class="stat-label">A value report closes the measurement window</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Problem -->
-  <section id="problem">
-    <div class="container">
-      <div class="section-head fade-in">
-        <p class="mono">The problem</p>
-        <h2>Most businesses use AI to chat.<br>Almost none use it to <em>work</em>.</h2>
-      </div>
-      <div class="grid-3">
-        <div class="glass card fade-in">
-          <p class="mono">01</p>
-          <h3>Inquiries go unanswered</h3>
-          <p>Leads hit a shared inbox and sit for hours. By the time someone responds, the prospect has moved on.</p>
-        </div>
-        <div class="glass card fade-in">
-          <p class="mono">02</p>
-          <h3>Manual work burns time</h3>
-          <p>Data entry, email sorting, lead routing, follow-ups — hours of work that should happen automatically.</p>
-        </div>
-        <div class="glass card fade-in">
-          <p class="mono">03</p>
-          <h3>AI stays in the chat tab</h3>
-          <p>ChatGPT answers one-off questions, but it isn't connected to your inbox, your CRM, or your actual processes.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- How it works -->
-  <section id="how">
-    <div class="container">
-      <div class="section-head fade-in">
-        <p class="mono">How it works</p>
-        <h2>One workflow at a time,<br>measured with evidence.</h2>
-      </div>
-      <div class="how-grid">
-        <div class="glass how-card fade-in">
-          <span class="how-num">01</span>
-          <h3>Define the baseline</h3>
-          <p>Choose one high-impact workflow and agree on the current path and success measures.</p>
-        </div>
-        <div class="glass how-card fade-in">
-          <span class="how-num">02</span>
-          <h3>Pay the fee upfront</h3>
-          <p>The full implementation fee is paid upfront before the scoped build begins.</p>
-        </div>
-        <div class="glass how-card fade-in">
-          <span class="how-num">03</span>
-          <h3>Build, test, deploy</h3>
-          <p>Configure the workflow, test representative cases, and launch with human review where it matters.</p>
-        </div>
-        <div class="glass how-card fade-in">
-          <span class="how-num">04</span>
-          <h3>Start the 30-day window</h3>
-          <p>Measurement begins after the workflow is live, not at payment.</p>
-        </div>
-        <div class="glass how-card fade-in">
-          <span class="how-num">05</span>
-          <h3>Receive a value report</h3>
-          <p>Review the agreed measures, observed behavior, and exceptions at the end of the window.</p>
-        </div>
-        <div class="glass how-card fade-in">
-          <span class="how-num">06</span>
-          <h3>Operate the live workflow</h3>
-          <p>$797/month managed operation begins at go-live and remains in place while the workflow is live. It covers the agreed AI/API connection, monitoring, maintenance, reporting, and support; additional workflows are separately scoped.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Commercial workflows -->
-  <section id="workflows">
-    <div class="container">
-      <div class="section-head fade-in">
-        <p class="mono">Start with a workflow</p>
-        <h2>Start with one high-impact workflow.</h2>
-        <p style="margin-top: 0.9rem;">Lead response is a concrete first offer for small and midsize businesses. Inbox triage is one example of the broader workflow work we can scope.</p>
-      </div>
-      <div class="grid-3">
-        <div class="glass card fade-in">
-          <p class="mono">Commercial workflow</p>
-          <h3>Lead Response Automation</h3>
-          <p>Capture, classify, acknowledge, route, log, and measure inbound leads with human escalation where it matters.</p>
-          <a href="/lead-response-automation/#demo" class="btn-secondary" style="display:inline-flex; margin-top:1rem;">View the workflow demo <span aria-hidden="true">→</span></a>
-        </div>
-        <div class="glass card fade-in">
-          <p class="mono">Commercial workflow</p>
-          <h3>AI Email Triage</h3>
-          <p>Inbox triage is one example: turn repetitive shared-inbox decisions into controlled classification and routing without unrestricted autonomous replies.</p>
-          <a href="/ai-email-triage/" class="btn-secondary" style="display:inline-flex; margin-top:1rem;">Explore email triage <span aria-hidden="true">→</span></a>
-        </div>
-        <div class="glass card fade-in">
-          <p class="mono">Buyer guides</p>
-          <h3>Scope the next workflow later</h3>
-          <p>Additional workflows are separately scoped after the first workflow and its value report are understood.</p>
-          <div style="display:flex; flex-wrap:wrap; gap:0.8rem 1rem; margin-top:1rem;"><a href="/guides/lead-response-cost.html">Cost of slow response →</a><a href="/guides/lead-response-automation-vs-crm.html">Automation vs. CRM →</a></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Who this is for -->
-  <section>
-    <div class="container">
-      <div class="section-head fade-in">
-        <p class="mono">Who this is for</p>
-        <h2>If this sounds like your day,<br>we should talk.</h2>
-      </div>
-      <div class="grid-3">
-        <div class="glass card fade-in">
-          <p class="mono">Home services</p>
-          <h3>Drowning in leads</h3>
-          <p>Roofing, HVAC, plumbing. Inquiries arrive across your website and lead sources, and leads can fall through the cracks during busy season.</p>
-        </div>
-        <div class="glass card fade-in">
-          <p class="mono">Professional services</p>
-          <h3>Routing inquiries manually</h3>
-          <p>Law, accounting, insurance. Every new client email needs to be read, qualified, and routed — and urgent matters get buried.</p>
-        </div>
-        <div class="glass card fade-in">
-          <p class="mono">Property management</p>
-          <h3>Triaging maintenance requests</h3>
-          <p>Requests arrive around the clock. Someone reads each one, judges urgency, and assigns a vendor while other work waits.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Pricing -->
-  <section id="pricing">
-    <div class="container">
-      <div class="section-head fade-in">
-        <p class="mono">Pricing</p>
-        <h2>One implementation, managed operation while live.</h2>
-        <p style="margin-top: 0.9rem;">The $1,497 implementation fee is paid upfront before work begins. The $797/month managed operation starts at go-live and remains in place while the workflow is live. The first 30 live days are the Proof of Value measurement window; its value report informs optimization, expansion, or retirement.</p>
-      </div>
-      <div class="pricing-grid">
-        <div class="glass price-card featured fade-in">
-          <p class="mono">Lead Response Automation</p>
-          <div class="price-amount">$1,497 <span>one-time implementation</span></div>
-          <p class="price-setup">Paid upfront; includes build, test, deployment, and the 30-Day Proof of Value.</p>
-          <p class="price-desc">Lead Response Automation starts with one defined workflow and a value report after the post-launch measurement window.</p>
-          <ul class="price-features">
-            <li>AI email triage, classification &amp; response</li>
-            <li>Lead capture &amp; automatic routing</li>
-            <li>Baseline and success-measure design</li>
-            <li>30-day value report</li>
-            <li>$797/month managed operation while the workflow is live</li>
-          </ul>
-          <a href="/intake" class="price-btn">Workflow assessment</a>
-        </div>
-        <div class="glass price-card fade-in">
-          <p class="mono">Additional workflows</p>
-          <div class="price-amount" style="font-size:1.5rem;">Separately scoped</div>
-          <p class="price-setup">Discussed after the first workflow is understood</p>
-          <p class="price-desc">New workflows, channels, and integrations get their own scope, baseline, implementation, and measurement plan.</p>
-          <ul class="price-features">
-            <li>CRM &amp; pipeline integration</li>
-            <li>Invoice &amp; AR automation</li>
-            <li>Multi-channel (SMS, Slack, portal)</li>
-            <li>Custom analytics dashboard</li>
-            <li>Separate implementation and success measures</li>
-          </ul>
-          <a href="mailto:contact@kavikworks.com" class="price-btn">Talk to us</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- About -->
-  <section id="about">
-    <div class="container">
-      <div class="about-grid">
-        <div class="about-text fade-in">
-          <p class="mono" style="margin-bottom:0.9rem;">About</p>
-          <h2>Built for businesses<br>that do real work.</h2>
-          <p>Most businesses don't need an AI strategy. They need AI wired into the processes they already run — reliably, measurably, without the hype.</p>
-          <p>We're a small, focused operation building repeatable automation with cloud AI, structured outputs, and deterministic code. No black boxes. The workflow remains inspectable and is managed while live; any exceptional transition is scoped separately. Everything auditable and designed to run without babysitting.</p>
-          <p>Based in Denver, Colorado. Available remotely.</p>
-        </div>
-        <div class="about-chips fade-in">
-          <div class="glass about-chip">
-            <p class="mono">Architecture</p>
-            <p>Cloud AI for the reasoning, structured JSON for the outputs, deterministic code for the logic. Git-versioned configs per client.</p>
-          </div>
-          <div class="glass about-chip">
-            <p class="mono">Philosophy</p>
-            <p>Start narrow. Measure the first 30 days clearly. Expand only when the evidence supports it — success metrics defined before a line of code.</p>
-          </div>
-          <div class="glass about-chip">
-            <p class="mono">What we don't do</p>
-            <p>No chatbots, strategy workshops, or open-ended consulting. The workflow runs inside documented boundaries, keeps human review where it matters, and is monitored within the agreed managed operation while live.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section id="contact">
-    <div class="container">
-      <div class="glass cta-panel fade-in">
-        <p class="mono" style="margin-bottom:0.9rem;">Get started</p>
-        <h2>Ready to examine<br>one workflow?</h2>
-        <p>Request a workflow assessment and share the process that is getting stuck. We will help define a baseline, success measures, and a bounded first step before implementation.</p>
-        <div class="cta-actions">
-          <a href="/intake" class="btn-primary">
-            Workflow assessment
-            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-          <a href="mailto:contact@kavikworks.com" class="btn-secondary">contact@kavikworks.com</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <div class="footer-inner">
-        <div class="footer-left">&copy; 2026 Robot Arms LLC, dba Kavik Works. Denver, CO.</div>
-        <div class="footer-links">
-          <a href="#problem">The Problem</a>
-          <a href="#pricing">Pricing</a>
-          <a href="/build-concepts/">Build Concepts</a>
-          <a href="#about">About</a>
-          <a href="mailto:contact@kavikworks.com">Contact</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    // Mobile menu toggle
-    const menuBtn = document.getElementById('menuBtn');
-    const navLinks = document.getElementById('navLinks');
-    menuBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
-    navLinks.querySelectorAll('a').forEach(link =>
-      link.addEventListener('click', () => navLinks.classList.remove('open')));
-
-    // Scroll fade-in
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-    // Cursor sheen on glass cards
-    const fine = window.matchMedia('(pointer: fine)').matches;
-    if (fine) {
-      document.querySelectorAll('.glass').forEach(card => {
-        card.addEventListener('pointermove', e => {
-          const r = card.getBoundingClientRect();
-          card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
-          card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
-        });
-      });
-    }
-
-    // Illustrative demo preview — fictional event stream
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const consoleBody = document.getElementById('consoleBody');
-    const EVENTS = [
-      { msg: 'example inquiry received — quote request', tag: 'trigger', cls: 'b' },
-      { msg: 'classified: estimate request · rule checked', tag: 'classify', cls: 'c' },
-      { msg: 'fields captured: contact + job details', tag: 'extract', cls: 'c' },
-      { msg: 'routed → sales queue · owner recorded', tag: 'route', cls: 'b' },
-      { msg: 'acknowledgement draft prepared · review available', tag: 'draft', cls: 'v' },
-      { msg: 'event logged: inquiry_routed', tag: 'measure', cls: 'v' },
-      { msg: 'measure captured: time-to-route', tag: 'report', cls: 'c' },
-      { msg: 'exception path ready · human review', tag: 'control', cls: 'b' },
-      { msg: 'value report field updated · illustrative', tag: 'report', cls: 'c' },
-      { msg: 'example maintenance request received', tag: 'trigger', cls: 'b' },
-      { msg: 'classified: maintenance · urgency stated', tag: 'classify', cls: 'c' },
-      { msg: 'routed → defined queue · event logged', tag: 'route', cls: 'v' },
-    ];
-    const MAX_ROWS = 9;
-    let idx = 0;
-
-    function stamp() {
-      const d = new Date();
-      return String(d.getHours()).padStart(2,'0') + ':' +
-             String(d.getMinutes()).padStart(2,'0') + ':' +
-             String(d.getSeconds()).padStart(2,'0');
-    }
-    function pushEvent() {
-      const e = EVENTS[idx % EVENTS.length];
-      idx++;
-      const row = document.createElement('div');
-      row.className = 'evt';
-      row.innerHTML = '<span class="t">' + stamp() + '</span>' +
-                      '<span class="msg">' + e.msg + '</span>' +
-                      '<span class="tag ' + e.cls + '">' + e.tag + '</span>';
-      consoleBody.appendChild(row);
-      while (consoleBody.children.length > MAX_ROWS) consoleBody.removeChild(consoleBody.firstChild);
-    }
-    // Seed a few rows immediately so the card never looks empty
-    for (let i = 0; i < 5; i++) pushEvent();
-    if (!reduceMotion) {
-      (function loop() {
-        setTimeout(() => { pushEvent(); loop(); }, 1400 + Math.random() * 2200);
-      })();
-    }
-  </script>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+<nav class="wrap" aria-label="Main navigation">
+<a class="brand" href="/">
+<span class="brand-mark" aria-hidden="true">K</span>Kavik Works</a>
+<div class="nav-links">
+<a href="/sample-workflow/">See a sample</a>
+<a href="/#blueprint">The blueprint</a>
+<a class="button small" href="/intake">Check your workflow <span aria-hidden="true">↗</span>
+</a>
+</div>
+</nav>
+</header>
+<main id="main">
+<div class="wrap">
+<section class="hero">
+<div>
+<p class="eyebrow">One workflow. A clearer working day.</p>
+<h1>A clear plan for the work hiding in your inbox.</h1>
+<p class="lede">Turn incoming requests into a simple process: capture the details, assign the right person, and make the next step clear.</p>
+<p class="muted">Start with a free workflow check. Get a tailored blueprint for $149 if you want a plan for your team.</p>
+<div class="button-row">
+<a class="button" href="/intake">Check my workflow <span aria-hidden="true">↗</span>
+</a>
+<a class="button secondary" href="/sample-workflow/">Read a sample blueprint</a>
+</div>
+<p class="fine">No call required · No subscription · No account access</p>
+</div>
+<aside class="plan-card" aria-label="Example workflow">
+<div class="card-top">
+<p class="eyebrow">The shape of a simpler workflow</p>
+<span class="tag">EXAMPLE</span>
+</div>
+<div class="flow-step">
+<span class="step-number">1</span>
+<div>
+<strong>A quote request arrives</strong>
+<p>A homeowner asks about replacing a water heater.</p>
+</div>
+</div>
+<div class="flow-step">
+<span class="step-number">2</span>
+<div>
+<strong>The useful details stay together</strong>
+<p>Contact, location, request, and any missing information.</p>
+</div>
+</div>
+<div class="flow-step">
+<span class="step-number">3</span>
+<div>
+<strong>Someone owns the next step</strong>
+<p>Your office reviews the request and confirms a follow-up.</p>
+</div>
+</div>
+<div class="flow-step">
+<span class="step-number">4</span>
+<div>
+<strong>You can see what happened</strong>
+<p>One record: assigned, waiting, or complete.</p>
+</div>
+</div>
+<p class="card-foot">A planning example, not a live system or a customer result.</p>
+</aside>
+</section>
+<div class="strip">
+<span>Built around the tools you already use</span>
+<span>Fixed scope and a one-time price</span>
+<span>Useful steps your team can follow</span>
+</div>
+<section class="section">
+<div class="section-head">
+<p class="eyebrow">Start small</p>
+<h2>Find the one handoff worth improving.</h2>
+<p class="muted">You may need a clearer rule or a shared checklist before you need new software. We help you work that out.</p>
+</div>
+<div class="grid-3">
+<article class="tile">
+<span class="num">01 / SERVICE BUSINESSES</span>
+<h3>Quote requests with a next step</h3>
+<p>Keep the job details, missing information, and follow-up owner together.</p>
+<p>
+<a href="/lead-response-automation/">Explore lead follow-up →</a>
+</p>
+</article>
+<article class="tile">
+<span class="num">02 / PROPERTY TEAMS</span>
+<h3>Leasing inquiries with an owner</h3>
+<p>Separate availability questions from administrative requests and make handoffs visible.</p>
+<p>
+<a href="/build-concepts/property-management-inquiries.html">Explore leasing intake →</a>
+</p>
+</article>
+<article class="tile">
+<span class="num">03 / SHARED INBOXES</span>
+<h3>Less forwarding, clearer ownership</h3>
+<p>Define a small set of categories, routing rules, and replies your team can reuse.</p>
+<p>
+<a href="/ai-email-triage/">Explore inbox triage →</a>
+</p>
+</article>
+</div>
+</section>
+<section class="section" id="blueprint">
+<div class="offer">
+<div>
+<p class="eyebrow">The Workflow Blueprint</p>
+<h2>A practical plan.<br>A manageable first step.</h2>
+<p>A written blueprint for one intake or follow-up workflow, tailored to the process you describe.</p>
+<ul>
+<li>A simple map from incoming request to completed handoff</li>
+<li>The details to capture and rules for assigning work</li>
+<li>Three editable response or follow-up templates</li>
+<li>Setup steps using your existing tools where practical</li>
+<li>A test checklist and a small scorecard to measure usefulness</li>
+</ul>
+<p class="fine">Prepared with AI assistance and checked against your brief. One clarification revision is included within seven days of delivery.</p>
+</div>
+<div class="offer-side">
+<p class="eyebrow">One workflow</p>
+<p class="price">$149 <span class="price-note">USD</span>
+</p>
+<p class="price-note">One-time price. Any applicable tax is confirmed before payment.</p>
+<p>Describe your process by email. We confirm fit, scope, and delivery timing before you pay.</p>
+<a class="button" href="/intake">Start with a free check <span aria-hidden="true">↗</span>
+</a>
+<p class="fine" style="margin-top:18px">A written plan; software installation and ongoing monitoring are separate services. No payment is collected on this website.</p>
+</div>
+</div>
+</section>
+<section class="section">
+<div class="section-head">
+<p class="eyebrow">How it works</p>
+<h2>From a messy handoff to a usable plan.</h2>
+</div>
+<div class="grid-3">
+<article class="tile">
+<span class="num">01</span>
+<h3>Describe the process</h3>
+<p>Choose your workflow, tell us which tools you use, and describe the handoff you want to improve. Your free starter plan appears right away.</p>
+</article>
+<article class="tile">
+<span class="num">02</span>
+<h3>Confirm a focused brief</h3>
+<p>Email your request if you want a tailored blueprint. We check whether a simple plan is useful and confirm the details in writing.</p>
+</article>
+<article class="tile">
+<span class="num">03</span>
+<h3>Put the plan to work</h3>
+<p>Use the blueprint yourself or hand it to your existing team. Test a small set of examples before connecting anything to live work.</p>
+</article>
+</div>
+</section>
+<section class="section faq">
+<p class="eyebrow">Before you start</p>
+<h2>A few useful answers.</h2>
+<details>
+<summary>Will this run an automation for me?</summary>
+<p>The $149 blueprint is a written plan. It includes routing rules, templates, setup steps, and a test checklist. It does not include installed software, live inbox access, or ongoing monitoring. If implementation looks worthwhile, we can assess a separate fixed scope.</p>
+</details>
+<details>
+<summary>Do I need a call or a new subscription?</summary>
+<p>No call is required for a blueprint. We work by email and start with your existing tools. If a tool would cost extra, that cost is identified in the plan for you to decide.</p>
+</details>
+<details>
+<summary>Who is this most useful for?</summary>
+<p>Small service businesses and property teams with a repeatable quote, leasing, or administrative intake process. A workflow involving medical decisions, legal advice, money movement, or emergency dispatch is outside this offer.</p>
+</details>
+<details>
+<summary>What if the answer is a simpler manual process?</summary>
+<p>That belongs in the plan. A shared inbox rule, a clearer template, or an assigned owner can be more useful than an AI integration. The aim is a process your team can maintain.</p>
+</details>
+<details>
+<summary>Can you promise more sales or time saved?</summary>
+<p>No. We define a baseline and a small test so you can measure the result in your own business. The examples on this site illustrate workflows; they are not customer case studies.</p>
+</details>
+<details>
+<summary>What happens after I request a blueprint?</summary>
+<p>We confirm fit and delivery timing by email before requesting payment. One clarification revision is included within seven days of delivery. The <a href="/refunds">refund policy</a> explains your options if the delivered work materially misses the agreed brief.</p>
+</details>
+</section>
+<section class="section">
+<div class="banner">
+<div>
+<h2>Start with the next request that lands in your inbox.</h2>
+<p>Three questions. A free starter plan. No meeting to book.</p>
+</div>
+<a class="button light" href="/intake">Check my workflow <span aria-hidden="true">↗</span>
+</a>
+</div>
+</section>
+</div>
+</main>
+<footer class="site-footer">
+<div class="wrap footer-grid">
+<div>
+<a class="brand" href="/">Kavik Works</a>
+<p>Practical workflow plans. Denver, Colorado.</p>
+<p class="fine">© 2026 Robot Arms LLC, dba Kavik Works.</p>
+</div>
+<div>
+<a href="mailto:josh@kavikworks.com">josh@kavikworks.com</a>
+<div class="footer-links">
+<a href="/build-concepts/">Workflow examples</a>
+<a href="/privacy">Privacy</a>
+<a href="/terms">Terms</a>
+<a href="/refunds">Refunds</a>
+</div>
+</div>
+</div>
+</footer>
 </body>
 </html>
