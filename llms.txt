@@ -11,7 +11,9 @@
 ## Useful pages
 - [Home](https://kavikworks.com/): current scope and price.
 - [Free workflow check](https://kavikworks.com/intake): local starter template and optional email request.
-- [Complete free sample](https://kavikworks.com/sample-workflow/): fields, routing rules, templates, and tests.
+- [Complete free sample](https://kavikworks.com/sample-workflow/): the written report example, with fields, routing rules, templates, setup steps, and tests.
+- [Sample PDF](https://kavikworks.com/sample-workflow/workflow-blueprint-sample.pdf): downloadable illustrative report, not a customer case study.
+- [Editable sample](https://kavikworks.com/sample-workflow/workflow-blueprint-sample.md): the same example in Markdown.
 - [Lead follow-up planning](https://kavikworks.com/lead-response-automation/)
 - [Shared inbox planning](https://kavikworks.com/ai-email-triage/)
 - [Workflow examples](https://kavikworks.com/build-concepts/): examples, not case studies.
@@ -19,5 +21,5 @@
 - [Automation, CRM, or shared inbox](https://kavikworks.com/guides/lead-response-automation-vs-crm.html)
 
 ## Contact
-- Email: josh@kavikworks.com
+- Email: josh@kavikworks.com. Request a $149 blueprint with your workflow, existing tools, and the handoff to improve; no free check or meeting is required.
 - Business: Robot Arms LLC, dba Kavik Works, Denver, Colorado, United States.
