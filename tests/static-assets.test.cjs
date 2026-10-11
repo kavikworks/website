@@ -47,12 +47,14 @@ function withAssetPolicy(fn) {
   }
 }
 
-test('static-only configuration preserves the existing Worker and routing defaults', () => {
+test('static-only configuration preserves production routing and disables version URLs', () => {
   const config = JSON.parse(fs.readFileSync(path.join(root, 'wrangler.jsonc'), 'utf8'));
   assert.deepEqual(config, {
     $schema: 'node_modules/wrangler/config-schema.json',
     name: 'website',
     compatibility_date: '2026-10-06',
+    workers_dev: true,
+    preview_urls: false,
     observability: { enabled: true },
     assets: { directory: '.' },
   });
