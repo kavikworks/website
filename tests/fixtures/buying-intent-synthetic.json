@@ -1,0 +1,1317 @@
+{
+  "notice": "TEST_ONLY: wholly invented annotations and reserved .example URLs. These contracts do not represent discovered leads or source permissions. Merge overrides recursively onto base_document.records[0].",
+  "base_document": {
+    "schema_version": "1.0",
+    "as_of": "2026-10-11",
+    "run_id": "TEST_ONLY-offline-contracts",
+    "access_mode": "MANUAL",
+    "records": [
+      {
+        "synthetic_fixture": true,
+        "source": {
+          "url": "https://fixture-contractor.example/request",
+          "record_id": "TEST_ONLY-post-1",
+          "type": "COMPANY_STATEMENT",
+          "permission": {
+            "state": "ALLOWED",
+            "purpose": "BUYING_INTENT_RESEARCH",
+            "basis_url": "https://permissions.example/test-only",
+            "checked_at": "2026-10-11",
+            "reviewer": "TEST_ONLY reviewer",
+            "restrictions": []
+          },
+          "manual_access_state": "ALLOWED",
+          "automated_access_state": "UNKNOWN",
+          "access_method": "SYNTHETIC",
+          "license_reference": null,
+          "access_constraints": [],
+          "constraints_state": "UNKNOWN"
+        },
+        "dates": {
+          "observed_at": "2026-10-01",
+          "retrieved_at": "2026-10-11",
+          "source_updated_at": null,
+          "snapshot_at": "2026-10-05",
+          "direct_verified_at": "2026-10-11",
+          "expires_at": null
+        },
+        "identity": {
+          "business_name": "TEST_ONLY Fixture Contractor",
+          "domain": "fixture-contractor.example",
+          "state": "VERIFIED",
+          "confidence": "HIGH",
+          "evidence_url": "https://fixture-contractor.example/identity",
+          "author_role": "OWNER",
+          "author_state": "VERIFIED",
+          "author_evidence_url": "https://fixture-contractor.example/owner"
+        },
+        "fit": {
+          "sector": "HVAC",
+          "sector_evidence_url": "https://fixture-contractor.example/services",
+          "sector_exclusion_reason": null,
+          "location_claim": "TEST_ONLY invented eligible location; no real address",
+          "geography": "ELIGIBLE",
+          "geographic_basis_url": "https://geography.example/test-only",
+          "scope": "IN_SCOPE"
+        },
+        "evidence": {
+          "text": "TEST_ONLY: As the owner, I am asking for help automating our estimate follow-up.",
+          "kind": "OBSERVED",
+          "category": "BUYER_REQUEST",
+          "workflow": "ESTIMATE_FOLLOW_UP",
+          "explicit_help_request": true,
+          "concrete_problem": false,
+          "attribution_state": "VERIFIED",
+          "original_state": "VERIFIED",
+          "verification_state": "VERIFIED",
+          "verification_url": "https://fixture-contractor.example/request",
+          "uncertainty_reasons": []
+        },
+        "service_hypothesis": "TEST_ONLY hypothesis: review the written follow-up workflow; no purchase inferred.",
+        "suppression": {
+          "state": "CLEAR",
+          "checked_at": "2026-10-11",
+          "evidence_reference": "TEST_ONLY private-check placeholder; no real record"
+        },
+        "lineage": {
+          "original_source_url": null,
+          "original_source_record_id": null,
+          "is_repost": false
+        },
+        "access_error": {
+          "code": "NONE",
+          "attempts": 0,
+          "retry_state": "NOT_ATTEMPTED",
+          "retry_after_seconds": null
+        },
+        "measurement": {
+          "query_id": null,
+          "source_hit_count": null,
+          "source_hit_coverage": "UNKNOWN",
+          "review_minutes_actual": null,
+          "review_time_coverage": "UNKNOWN",
+          "cost_observed": null,
+          "cost_coverage": "UNKNOWN",
+          "currency": null
+        }
+      }
+    ]
+  },
+  "cases": [
+    {
+      "name": "01_owner_request",
+      "record_overrides": {},
+      "additional_record_overrides": [],
+      "access_mode": "MANUAL",
+      "expected_records": [
+        {
+          "signal_class": "EXPLICIT_BUYER_REQUEST",
+          "evidence_strength_0_to_3": 3,
+          "gate": "PASS",
+          "reviewer_disposition": "RESEARCH_QUALIFIED",
+          "reasons": [
+            "VERIFIED_OWNER_MANAGER_REQUEST"
+          ],
+          "freshness_state": "CURRENT"
+        }
+      ],
+      "expected_summary": {}
+    },
+    {
+      "name": "02_manager_request",
+      "record_overrides": {
+        "identity": {
+          "author_role": "MANAGER"
+        },
+        "fit": {
+          "sector": "PLUMBING"
+        },
+        "evidence": {
+          "text": "TEST_ONLY: As manager, I request help with scheduling.",
+          "workflow": "SCHEDULING"
+        }
+      },
+      "additional_record_overrides": [],
+      "access_mode": "MANUAL",
+      "expected_records": [
+        {
+          "signal_class": "EXPLICIT_BUYER_REQUEST",
+          "evidence_strength_0_to_3": 3,
+          "gate": "PASS",
+          "reviewer_disposition": "RESEARCH_QUALIFIED",
+          "reasons": [
+            "VERIFIED_OWNER_MANAGER_REQUEST"
+          ],
+          "freshness_state": "CURRENT"
+        }
+      ],
+      "expected_summary": {}
+    },
+    {
+      "name": "03_callback_pain",
+      "record_overrides": {
+        "evidence": {
+          "text": "TEST_ONLY: Our business is losing callbacks because we cannot track them.",
+          "category": "OPERATIONAL_PAIN",
+          "workflow": "CALLBACK",
+          "explicit_help_request": false,
+          "concrete_problem": true
+        }
+      },
+      "additional_record_overrides": [],
+      "access_mode": "MANUAL",
+      "expected_records": [
+        {
+          "signal_class": "DEMONSTRATED_OPERATIONAL_PAIN",
+          "evidence_strength_0_to_3": 2,
+          "gate": "PASS",
+          "reviewer_disposition": "RESEARCH_QUALIFIED",
+          "reasons": [
+            "ATTRIBUTABLE_OPERATIONAL_PAIN_NO_PURCHASE_INFERRED"
+          ],
+          "freshness_state": "CURRENT"
+        }
+      ],
+      "expected_summary": {}
+    },
+    {
+      "name": "04_dispatch_pain",
+      "record_overrides": {
+        "identity": {
+          "author_role": "MANAGER"
+        },
+        "fit": {
+          "sector": "ELECTRICAL"
+        },
+        "evidence": {
+          "text": "TEST_ONLY: Our scheduled non-emergency dispatch spreadsheet causes missed assignments.",
+          "category": "OPERATIONAL_PAIN",
+          "workflow": "DISPATCH",
+          "explicit_help_request": false,
+          "concrete_problem": true
+        }
+      },
+      "additional_record_overrides": [],
+      "access_mode": "MANUAL",
+      "expected_records": [
+        {
+          "signal_class": "DEMONSTRATED_OPERATIONAL_PAIN",
+          "evidence_strength_0_to_3": 2,
+          "gate": "PASS",
+          "reviewer_disposition": "RESEARCH_QUALIFIED",
+          "reasons": [
+            "ATTRIBUTABLE_OPERATIONAL_PAIN_NO_PURCHASE_INFERRED"
+          ],
+          "freshness_state": "CURRENT"
+        }
+      ],
+      "expected_summary": {}
+    },
+    {
+      "name": "05_customer_callback",
+      "record_overrides": {
+        "source": {
+          "type": "REVIEW"
+        },
+        "identity": {
+          "author_role": "CUSTOMER"
+        },
+        "fit": {
+          "sector": "ROOFING"
+        },
+        "evidence": {
+          "text": "TEST_ONLY: The named customer reports no callback.",
+          "category": "THIRD_PARTY_COMPLAINT",
+          "workflow": "CALLBACK",
+          "explicit_help_request": false,
+          "concrete_problem": true
+        }
+      },
+      "additional_record_overrides": [],
+      "access_mode": "MANUAL",
+      "expected_records": [
+        {
+          "signal_class": "INDIRECT_EVIDENCE",
+          "evidence_strength_0_to_3": 1,
+          "gate": "HOLD",
+          "reviewer_disposition": "RESEARCH_NEEDED",
+          "reasons": [
+            "THIRD_PARTY_HYPOTHESIS_ONLY",
+            "INDEPENDENT_RESEARCH_REQUIRED"
+          ],
+          "freshness_state": "CURRENT"
+        }
+      ],
+      "expected_summary": {}
+    },
+    {
+      "name": "06_third_party_booking",
+      "record_overrides": {
+        "source": {
+          "type": "REVIEW"
+        },
+        "identity": {
+          "author_role": "CUSTOMER"
+        },
+        "fit": {
+          "sector": "RESTORATION"
+        },
+        "evidence": {
+          "text": "TEST_ONLY: An attributable third party reports booking confusion.",
+          "category": "THIRD_PARTY_COMPLAINT",
+          "workflow": "SCHEDULING",
+          "explicit_help_request": false,
+          "concrete_problem": true
+        }
+      },
+      "additional_record_overrides": [],
+      "access_mode": "MANUAL",
+      "expected_records": [
+        {
+          "signal_class": "INDIRECT_EVIDENCE",
+          "evidence_strength_0_to_3": 1,
+          "gate": "HOLD",
+          "reviewer_disposition": "RESEARCH_NEEDED",
+          "reasons": [
+            "THIRD_PARTY_HYPOTHESIS_ONLY",
+            "INDEPENDENT_RESEARCH_REQUIRED"
+          ],
+          "freshness_state": "CURRENT"
+        }
+      ],
+      "expected_summary": {}
+    },
+    {
+      "name": "07_dispatcher_vacancy",
+      "record_overrides": {
+        "source": {
+          "type": "JOB_LISTING"
+        },
+        "evidence": {
+          "text": "TEST_ONLY: Hiring a dispatcher to schedule service; no problem stated.",
+          "category": "STAFFING",
+          "explicit_help_request": false
+        }
+      },
+      "additional_record_overrides": [],
+      "access_mode": "MANUAL",
+      "expected_records": [
+        {
+          "signal_class": "INSUFFICIENT_SIGNAL",
+          "evidence_strength_0_to_3": 0,
+          "gate": "HOLD",
+          "reviewer_disposition": "RESEARCH_NEEDED",
+          "reasons": [
+            "NO_OPERATIONAL_SIGNAL",
+            "INDEPENDENT_RESEARCH_REQUIRED"
+          ],
+          "freshness_state": "CURRENT"
+        }
+      ],
+      "expected_summary": {}
+    },
+    {
+      "name": "08_csr_hiring",
+      "record_overrides": {
+        "source": {
+          "type": "JOB_LISTING"
+        },
+        "evidence": {
+          "text": "TEST_ONLY: Hiring customer service representatives; ordinary role duties.",
+          "category": "STAFFING",
+          "explicit_help_request": false
+        }
+      },
+      "additional_record_overrides": [],
+      "access_mode": "MANUAL",
+      "expected_records": [
+        {
+          "signal_class": "INSUFFICIENT_SIGNAL",
+          "evidence_strength_0_to_3": 0,
+          "gate": "HOLD",
+          "reviewer_disposition": "RESEARCH_NEEDED",
+          "reasons": [
+            "NO_OPERATIONAL_SIGNAL",
+            "INDEPENDENT_RESEARCH_REQUIRED"
+          ],
+          "freshness_state": "CURRENT"
+        }
+      ],
+      "expected_summary": {}
+    },
+    {
+      "name": "09_booking_widget",
+      "record_overrides": {
+        "source": {
+          "type": "INTAKE_FEATURE"
+        },
+        "fit": {
+          "sector": "LANDSCAPING_EXTERIOR"
+        },
+        "evidence": {
+          "text": "TEST_ONLY: Page has a booking widget.",
+          "category": "INTAKE_FEATURE",
+          "explicit_help_request": false
+        }
+      },
+      "additional_record_overrides": [],
+      "access_mode": "MANUAL",
+      "expected_records": [
+        {
+          "signal_class": "INSUFFICIENT_SIGNAL",
+          "evidence_strength_0_to_3": 0,
+          "gate": "HOLD",
+          "reviewer_disposition": "RESEARCH_NEEDED",
+          "reasons": [
+            "NO_OPERATIONAL_SIGNAL",
+            "INDEPENDENT_RESEARCH_REQUIRED"
+          ],
+          "freshness_state": "CURRENT"
+        }
+      ],
+      "expected_summary": {}
+    },
+    {
+      "name": "10_vendor_promotion",
+      "record_overrides": {
+        "source": {
+          "type": "VENDOR"
+        },
+        "evidence": {
+          "text": "TEST_ONLY: Vendor promotes automation software.",
+          "category": "VENDOR_PROMOTION"
+        }
+      },
+      "additional_record_overrides": [],
+      "access_mode": "MANUAL",
+      "expected_records": [
+        {
+          "signal_class": "INSUFFICIENT_SIGNAL",
+          "evidence_strength_0_to_3": 0,
+          "gate": "BLOCK",
+          "reviewer_disposition": "EXCLUDED",
+          "reasons": [
+            "VENDOR_PROMOTION"
+          ],
+          "freshness_state": "CURRENT"
+        }
+      ],
+      "expected_summary": {}
+    },
+    {
+      "name": "11_anonymous_request",
+      "record_overrides": {
+        "identity": {
+          "state": "UNKNOWN",
+          "confidence": "UNKNOWN",
+          "author_role": "ANONYMOUS",
+          "author_state": "UNKNOWN",
+          "domain": null,
+          "business_name": null,
+          "evidence_url": null,
+          "author_evidence_url": null
+        }
+      },
+      "additional_record_overrides": [],
+      "access_mode": "MANUAL",
+      "expected_records": [
+        {
+          "signal_class": "INSUFFICIENT_SIGNAL",
+          "evidence_strength_0_to_3": 0,
+          "gate": "HOLD",
+          "reviewer_disposition": "RESEARCH_NEEDED",
+          "reasons": [
+            "BUSINESS_IDENTITY_UNRESOLVED",
+            "INDEPENDENT_RESEARCH_REQUIRED"
+          ],
+          "freshness_state": "CURRENT"
+        }
+      ],
+      "expected_summary": {}
+    },
+    {
+      "name": "12_conflicting_snippet",
+      "record_overrides": {
+        "evidence": {
+          "verification_state": "CONFLICT"
+        }
+      },
+      "additional_record_overrides": [],
+      "access_mode": "MANUAL",
+      "expected_records": [
+        {
+          "signal_class": "INSUFFICIENT_SIGNAL",
+          "evidence_strength_0_to_3": 0,
+          "gate": "HOLD",
+          "reviewer_disposition": "RESEARCH_NEEDED",
+          "reasons": [
+            "SOURCE_CONFLICT",
+            "INDEPENDENT_RESEARCH_REQUIRED"
+          ],
+          "freshness_state": "CONFLICT"
+        }
+      ],
+      "expected_summary": {}
+    },
+    {
+      "name": "13_expired_aggregator",
+      "record_overrides": {
+        "source": {
+          "type": "AGGREGATOR"
+        },
+        "dates": {
+          "expires_at": "2026-10-02"
+        },
+        "evidence": {
+          "text": "TEST_ONLY: Aggregator retains an expired dispatch role.",
+          "category": "STAFFING"
+        }
+      },
+      "additional_record_overrides": [],
+      "access_mode": "MANUAL",
+      "expected_records": [
+        {
+          "signal_class": "INSUFFICIENT_SIGNAL",
+          "evidence_strength_0_to_3": 0,
+          "gate": "BLOCK",
+          "reviewer_disposition": "EXCLUDED",
+          "reasons": [
+            "SOURCE_EXPIRED"
+          ],
+          "freshness_state": "EXPIRED"
+        }
+      ],
+      "expected_summary": {}
+    },
+    {
+      "name": "14_undated_pain",
+      "record_overrides": {
+        "evidence": {
+          "text": "TEST_ONLY: Our business is losing callbacks because we cannot track them.",
+          "category": "OPERATIONAL_PAIN",
+          "workflow": "CALLBACK",
+          "explicit_help_request": false,
+          "concrete_problem": true
+        },
+        "dates": {
+          "observed_at": null
+        }
+      },
+      "additional_record_overrides": [],
+      "access_mode": "MANUAL",
+      "expected_records": [
+        {
+          "signal_class": "DEMONSTRATED_OPERATIONAL_PAIN",
+          "evidence_strength_0_to_3": 2,
+          "gate": "HOLD",
+          "reviewer_disposition": "RESEARCH_NEEDED",
+          "reasons": [
+            "ATTRIBUTABLE_OPERATIONAL_PAIN_NO_PURCHASE_INFERRED",
+            "FRESHNESS_UNKNOWN"
+          ],
+          "freshness_state": "UNKNOWN"
+        }
+      ],
+      "expected_summary": {}
+    },
+    {
+      "name": "15_outside_territory",
+      "record_overrides": {
+        "fit": {
+          "geography": "OUTSIDE"
+        }
+      },
+      "additional_record_overrides": [],
+      "access_mode": "MANUAL",
+      "expected_records": [
+        {
+          "signal_class": "EXPLICIT_BUYER_REQUEST",
+          "evidence_strength_0_to_3": 3,
+          "gate": "BLOCK",
+          "reviewer_disposition": "EXCLUDED",
+          "reasons": [
+            "GEOGRAPHY_OUTSIDE"
+          ],
+          "freshness_state": "CURRENT"
+        }
+      ],
+      "expected_summary": {}
+    },
+    {
+      "name": "16_excluded_sector",
+      "record_overrides": {
+        "fit": {
+          "sector": "OTHER",
+          "sector_exclusion_reason": "TEST_ONLY: unrelated sector"
+        }
+      },
+      "additional_record_overrides": [],
+      "access_mode": "MANUAL",
+      "expected_records": [
+        {
+          "signal_class": "EXPLICIT_BUYER_REQUEST",
+          "evidence_strength_0_to_3": 3,
+          "gate": "BLOCK",
+          "reviewer_disposition": "EXCLUDED",
+          "reasons": [
+            "SECTOR_EXCLUDED"
+          ],
+          "freshness_state": "CURRENT"
+        }
+      ],
+      "expected_summary": {}
+    },
+    {
+      "name": "17_regulated_scope",
+      "record_overrides": {
+        "fit": {
+          "scope": "REGULATED"
+        }
+      },
+      "additional_record_overrides": [],
+      "access_mode": "MANUAL",
+      "expected_records": [
+        {
+          "signal_class": "EXPLICIT_BUYER_REQUEST",
+          "evidence_strength_0_to_3": 3,
+          "gate": "BLOCK",
+          "reviewer_disposition": "EXCLUDED",
+          "reasons": [
+            "SERVICE_SCOPE_EXCLUDED"
+          ],
+          "freshness_state": "CURRENT"
+        }
+      ],
+      "expected_summary": {}
+    },
+    {
+      "name": "17b_emergency_scope",
+      "record_overrides": {
+        "fit": {
+          "scope": "EMERGENCY"
+        }
+      },
+      "additional_record_overrides": [],
+      "access_mode": "MANUAL",
+      "expected_records": [
+        {
+          "signal_class": "EXPLICIT_BUYER_REQUEST",
+          "evidence_strength_0_to_3": 3,
+          "gate": "BLOCK",
+          "reviewer_disposition": "EXCLUDED",
+          "reasons": [
+            "SERVICE_SCOPE_EXCLUDED"
+          ],
+          "freshness_state": "CURRENT"
+        }
+      ],
+      "expected_summary": {}
+    },
+    {
+      "name": "18_denied_source_audit",
+      "record_overrides": {
+        "source": {
+          "permission": {
+            "state": "DENIED"
+          }
+        },
+        "evidence": {
+          "text": "TEST_ONLY_RESTRICTED_CONTENT_MUST_NOT_LEAK"
+        },
+        "service_hypothesis": "TEST_ONLY_RESTRICTED_INFERENCE_MUST_NOT_LEAK"
+      },
+      "additional_record_overrides": [],
+      "access_mode": "MANUAL",
+      "expected_records": [
+        {
+          "signal_class": "INSUFFICIENT_SIGNAL",
+          "evidence_strength_0_to_3": 0,
+          "gate": "BLOCK",
+          "reviewer_disposition": "AUDIT_ONLY",
+          "reasons": [
+            "SOURCE_PERMISSION_DENIED"
+          ],
+          "freshness_state": "UNKNOWN"
+        }
+      ],
+      "expected_summary": {}
+    },
+    {
+      "name": "19_automated_access_unknown",
+      "record_overrides": {},
+      "additional_record_overrides": [],
+      "access_mode": "AUTOMATED",
+      "expected_records": [
+        {
+          "signal_class": "EXPLICIT_BUYER_REQUEST",
+          "evidence_strength_0_to_3": 3,
+          "gate": "HOLD",
+          "reviewer_disposition": "MANUAL_REVIEW_ONLY",
+          "reasons": [
+            "ACCESS_UNKNOWN",
+            "AUTOMATED_LICENSE_UNVERIFIED"
+          ],
+          "freshness_state": "CURRENT"
+        }
+      ],
+      "expected_summary": {}
+    },
+    {
+      "name": "20_suppressed",
+      "record_overrides": {
+        "suppression": {
+          "state": "SUPPRESSED"
+        }
+      },
+      "additional_record_overrides": [],
+      "access_mode": "MANUAL",
+      "expected_records": [
+        {
+          "signal_class": "EXPLICIT_BUYER_REQUEST",
+          "evidence_strength_0_to_3": 3,
+          "gate": "BLOCK",
+          "reviewer_disposition": "EXCLUDED",
+          "reasons": [
+            "SUPPRESSED"
+          ],
+          "freshness_state": "CURRENT"
+        }
+      ],
+      "expected_summary": {}
+    },
+    {
+      "name": "21_suppression_unknown",
+      "record_overrides": {
+        "suppression": {
+          "state": "UNKNOWN"
+        }
+      },
+      "additional_record_overrides": [],
+      "access_mode": "MANUAL",
+      "expected_records": [
+        {
+          "signal_class": "EXPLICIT_BUYER_REQUEST",
+          "evidence_strength_0_to_3": 3,
+          "gate": "HOLD",
+          "reviewer_disposition": "RESEARCH_NEEDED",
+          "reasons": [
+            "SUPPRESSION_UNKNOWN"
+          ],
+          "freshness_state": "CURRENT"
+        }
+      ],
+      "expected_summary": {}
+    },
+    {
+      "name": "22_canonical_and_repost_dedupe",
+      "record_overrides": {},
+      "additional_record_overrides": [
+        {
+          "identity": {
+            "domain": "WWW.FIXTURE-CONTRACTOR.EXAMPLE."
+          },
+          "source": {
+            "url": "https://WWW.FIXTURE-CONTRACTOR.EXAMPLE/request?utm_source=test#copy"
+          }
+        },
+        {
+          "source": {
+            "url": "https://repost.example/test-only",
+            "record_id": "TEST_ONLY-repost-9"
+          },
+          "lineage": {
+            "original_source_url": "https://fixture-contractor.example/request",
+            "original_source_record_id": "TEST_ONLY-post-1",
+            "is_repost": true
+          }
+        }
+      ],
+      "access_mode": "MANUAL",
+      "expected_records": [
+        {
+          "signal_class": "EXPLICIT_BUYER_REQUEST",
+          "evidence_strength_0_to_3": 3,
+          "gate": "PASS",
+          "reviewer_disposition": "RESEARCH_QUALIFIED",
+          "reasons": [
+            "VERIFIED_OWNER_MANAGER_REQUEST"
+          ],
+          "freshness_state": "CURRENT"
+        },
+        {
+          "signal_class": "EXPLICIT_BUYER_REQUEST",
+          "evidence_strength_0_to_3": 3,
+          "gate": "BLOCK",
+          "reviewer_disposition": "DUPLICATE",
+          "reasons": [
+            "DUPLICATE_SIGNAL"
+          ],
+          "freshness_state": "CURRENT"
+        },
+        {
+          "signal_class": "EXPLICIT_BUYER_REQUEST",
+          "evidence_strength_0_to_3": 3,
+          "gate": "BLOCK",
+          "reviewer_disposition": "DUPLICATE",
+          "reasons": [
+            "DUPLICATE_SIGNAL"
+          ],
+          "freshness_state": "CURRENT"
+        }
+      ],
+      "expected_summary": {
+        "unique_signals": 1,
+        "duplicate_rows": 2,
+        "qualified_research_businesses": 1
+      }
+    },
+    {
+      "name": "23_newer_lineage_idempotency",
+      "record_overrides": {},
+      "additional_record_overrides": [
+        {
+          "dates": {
+            "observed_at": "2026-10-10"
+          },
+          "evidence": {
+            "text": "TEST_ONLY: Owner now requests scheduling help.",
+            "workflow": "SCHEDULING"
+          }
+        }
+      ],
+      "access_mode": "MANUAL",
+      "expected_records": [
+        {
+          "signal_class": "EXPLICIT_BUYER_REQUEST",
+          "evidence_strength_0_to_3": 3,
+          "gate": "HOLD",
+          "reviewer_disposition": "RESEARCH_NEEDED",
+          "reasons": [
+            "SUPERSEDED_RECHECK_REQUIRED"
+          ],
+          "freshness_state": "CURRENT"
+        },
+        {
+          "signal_class": "EXPLICIT_BUYER_REQUEST",
+          "evidence_strength_0_to_3": 3,
+          "gate": "PASS",
+          "reviewer_disposition": "RESEARCH_QUALIFIED",
+          "reasons": [
+            "VERIFIED_OWNER_MANAGER_REQUEST"
+          ],
+          "freshness_state": "CURRENT"
+        }
+      ],
+      "expected_summary": {
+        "unique_signals": 2,
+        "qualified_research_signals": 1,
+        "qualified_research_businesses": 1
+      }
+    },
+    {
+      "name": "24_429",
+      "record_overrides": {
+        "access_error": {
+          "code": "429",
+          "attempts": 2,
+          "retry_state": "DEFERRED",
+          "retry_after_seconds": 60
+        }
+      },
+      "additional_record_overrides": [],
+      "access_mode": "MANUAL",
+      "expected_records": [
+        {
+          "signal_class": "INSUFFICIENT_SIGNAL",
+          "evidence_strength_0_to_3": 0,
+          "gate": "BLOCK",
+          "reviewer_disposition": "ACCESS_ERROR",
+          "reasons": [
+            "ACCESS_ERROR_429"
+          ],
+          "freshness_state": "UNKNOWN"
+        }
+      ],
+      "expected_summary": {}
+    },
+    {
+      "name": "24b_timeout",
+      "record_overrides": {
+        "access_error": {
+          "code": "TIMEOUT",
+          "attempts": 2,
+          "retry_state": "EXHAUSTED",
+          "retry_after_seconds": null
+        }
+      },
+      "additional_record_overrides": [],
+      "access_mode": "MANUAL",
+      "expected_records": [
+        {
+          "signal_class": "INSUFFICIENT_SIGNAL",
+          "evidence_strength_0_to_3": 0,
+          "gate": "BLOCK",
+          "reviewer_disposition": "ACCESS_ERROR",
+          "reasons": [
+            "ACCESS_ERROR_TIMEOUT"
+          ],
+          "freshness_state": "UNKNOWN"
+        }
+      ],
+      "expected_summary": {}
+    },
+    {
+      "name": "24c_robots_rejection",
+      "record_overrides": {
+        "access_error": {
+          "code": "ROBOTS_REJECTED",
+          "attempts": 2,
+          "retry_state": "DO_NOT_RETRY",
+          "retry_after_seconds": null
+        }
+      },
+      "additional_record_overrides": [],
+      "access_mode": "MANUAL",
+      "expected_records": [
+        {
+          "signal_class": "INSUFFICIENT_SIGNAL",
+          "evidence_strength_0_to_3": 0,
+          "gate": "BLOCK",
+          "reviewer_disposition": "ACCESS_ERROR",
+          "reasons": [
+            "ACCESS_ERROR_ROBOTS_REJECTED"
+          ],
+          "freshness_state": "UNKNOWN"
+        }
+      ],
+      "expected_summary": {}
+    },
+    {
+      "name": "recency_30",
+      "record_overrides": {
+        "dates": {
+          "observed_at": "2026-09-11"
+        }
+      },
+      "additional_record_overrides": [],
+      "access_mode": "MANUAL",
+      "expected_records": [
+        {
+          "signal_class": "EXPLICIT_BUYER_REQUEST",
+          "evidence_strength_0_to_3": 3,
+          "gate": "PASS",
+          "reviewer_disposition": "RESEARCH_QUALIFIED",
+          "reasons": [
+            "VERIFIED_OWNER_MANAGER_REQUEST"
+          ],
+          "freshness_state": "CURRENT"
+        }
+      ],
+      "expected_summary": {}
+    },
+    {
+      "name": "recency_31",
+      "record_overrides": {
+        "dates": {
+          "observed_at": "2026-09-10"
+        }
+      },
+      "additional_record_overrides": [],
+      "access_mode": "MANUAL",
+      "expected_records": [
+        {
+          "signal_class": "EXPLICIT_BUYER_REQUEST",
+          "evidence_strength_0_to_3": 3,
+          "gate": "HOLD",
+          "reviewer_disposition": "RESEARCH_NEEDED",
+          "reasons": [
+            "FRESHNESS_RECHECK_REQUIRED"
+          ],
+          "freshness_state": "RECHECK_REQUIRED"
+        }
+      ],
+      "expected_summary": {}
+    },
+    {
+      "name": "recency_90",
+      "record_overrides": {
+        "dates": {
+          "observed_at": "2026-07-13"
+        }
+      },
+      "additional_record_overrides": [],
+      "access_mode": "MANUAL",
+      "expected_records": [
+        {
+          "signal_class": "EXPLICIT_BUYER_REQUEST",
+          "evidence_strength_0_to_3": 3,
+          "gate": "HOLD",
+          "reviewer_disposition": "RESEARCH_NEEDED",
+          "reasons": [
+            "FRESHNESS_RECHECK_REQUIRED"
+          ],
+          "freshness_state": "RECHECK_REQUIRED"
+        }
+      ],
+      "expected_summary": {}
+    },
+    {
+      "name": "recency_91",
+      "record_overrides": {
+        "dates": {
+          "observed_at": "2026-07-12"
+        }
+      },
+      "additional_record_overrides": [],
+      "access_mode": "MANUAL",
+      "expected_records": [
+        {
+          "signal_class": "INSUFFICIENT_SIGNAL",
+          "evidence_strength_0_to_3": 0,
+          "gate": "BLOCK",
+          "reviewer_disposition": "EXCLUDED",
+          "reasons": [
+            "SOURCE_STALE"
+          ],
+          "freshness_state": "STALE"
+        }
+      ],
+      "expected_summary": {}
+    },
+    {
+      "name": "required_unknown_geography",
+      "record_overrides": {
+        "fit": {
+          "geography": "UNKNOWN"
+        }
+      },
+      "additional_record_overrides": [],
+      "access_mode": "MANUAL",
+      "expected_records": [
+        {
+          "signal_class": "EXPLICIT_BUYER_REQUEST",
+          "evidence_strength_0_to_3": 3,
+          "gate": "HOLD",
+          "reviewer_disposition": "RESEARCH_NEEDED",
+          "reasons": [
+            "GEOGRAPHY_UNKNOWN"
+          ],
+          "freshness_state": "CURRENT"
+        }
+      ],
+      "expected_summary": {}
+    },
+    {
+      "name": "required_unknown_sector",
+      "record_overrides": {
+        "fit": {
+          "sector": "UNKNOWN"
+        }
+      },
+      "additional_record_overrides": [],
+      "access_mode": "MANUAL",
+      "expected_records": [
+        {
+          "signal_class": "EXPLICIT_BUYER_REQUEST",
+          "evidence_strength_0_to_3": 3,
+          "gate": "HOLD",
+          "reviewer_disposition": "RESEARCH_NEEDED",
+          "reasons": [
+            "SECTOR_UNKNOWN"
+          ],
+          "freshness_state": "CURRENT"
+        }
+      ],
+      "expected_summary": {}
+    },
+    {
+      "name": "required_unknown_scope",
+      "record_overrides": {
+        "fit": {
+          "scope": "UNKNOWN"
+        }
+      },
+      "additional_record_overrides": [],
+      "access_mode": "MANUAL",
+      "expected_records": [
+        {
+          "signal_class": "EXPLICIT_BUYER_REQUEST",
+          "evidence_strength_0_to_3": 3,
+          "gate": "HOLD",
+          "reviewer_disposition": "RESEARCH_NEEDED",
+          "reasons": [
+            "SERVICE_SCOPE_UNKNOWN"
+          ],
+          "freshness_state": "CURRENT"
+        }
+      ],
+      "expected_summary": {}
+    },
+    {
+      "name": "required_unknown_suppression",
+      "record_overrides": {
+        "suppression": {
+          "state": "NOT_CHECKED"
+        }
+      },
+      "additional_record_overrides": [],
+      "access_mode": "MANUAL",
+      "expected_records": [
+        {
+          "signal_class": "EXPLICIT_BUYER_REQUEST",
+          "evidence_strength_0_to_3": 3,
+          "gate": "HOLD",
+          "reviewer_disposition": "RESEARCH_NEEDED",
+          "reasons": [
+            "SUPPRESSION_NOT_CHECKED"
+          ],
+          "freshness_state": "CURRENT"
+        }
+      ],
+      "expected_summary": {}
+    },
+    {
+      "name": "required_unknown_provenance",
+      "record_overrides": {
+        "dates": {
+          "direct_verified_at": null
+        }
+      },
+      "additional_record_overrides": [],
+      "access_mode": "MANUAL",
+      "expected_records": [
+        {
+          "signal_class": "EXPLICIT_BUYER_REQUEST",
+          "evidence_strength_0_to_3": 3,
+          "gate": "HOLD",
+          "reviewer_disposition": "RESEARCH_NEEDED",
+          "reasons": [
+            "PROVENANCE_INCOMPLETE"
+          ],
+          "freshness_state": "CURRENT"
+        }
+      ],
+      "expected_summary": {}
+    },
+    {
+      "name": "required_unknown_old_suppression",
+      "record_overrides": {
+        "suppression": {
+          "checked_at": "2026-10-10"
+        }
+      },
+      "additional_record_overrides": [],
+      "access_mode": "MANUAL",
+      "expected_records": [
+        {
+          "signal_class": "EXPLICIT_BUYER_REQUEST",
+          "evidence_strength_0_to_3": 3,
+          "gate": "HOLD",
+          "reviewer_disposition": "RESEARCH_NEEDED",
+          "reasons": [
+            "SUPPRESSION_RECHECK_REQUIRED"
+          ],
+          "freshness_state": "CURRENT"
+        }
+      ],
+      "expected_summary": {}
+    },
+    {
+      "name": "required_unknown_uncertainty",
+      "record_overrides": {
+        "evidence": {
+          "uncertainty_reasons": [
+            "TEST_ONLY unresolved detail"
+          ]
+        }
+      },
+      "additional_record_overrides": [],
+      "access_mode": "MANUAL",
+      "expected_records": [
+        {
+          "signal_class": "EXPLICIT_BUYER_REQUEST",
+          "evidence_strength_0_to_3": 3,
+          "gate": "HOLD",
+          "reviewer_disposition": "RESEARCH_NEEDED",
+          "reasons": [
+            "UNRESOLVED_UNCERTAINTY"
+          ],
+          "freshness_state": "CURRENT"
+        }
+      ],
+      "expected_summary": {}
+    },
+    {
+      "name": "required_unknown_purpose",
+      "record_overrides": {
+        "source": {
+          "permission": {
+            "purpose": "UNKNOWN"
+          }
+        }
+      },
+      "additional_record_overrides": [],
+      "access_mode": "MANUAL",
+      "expected_records": [
+        {
+          "signal_class": "EXPLICIT_BUYER_REQUEST",
+          "evidence_strength_0_to_3": 3,
+          "gate": "HOLD",
+          "reviewer_disposition": "RESEARCH_NEEDED",
+          "reasons": [
+            "PERMISSION_PURPOSE_UNRESOLVED"
+          ],
+          "freshness_state": "CURRENT"
+        }
+      ],
+      "expected_summary": {}
+    },
+    {
+      "name": "inference_cannot_be_evidence",
+      "record_overrides": {
+        "evidence": {
+          "kind": "INFERRED"
+        }
+      },
+      "additional_record_overrides": [],
+      "access_mode": "MANUAL",
+      "expected_records": [
+        {
+          "signal_class": "INSUFFICIENT_SIGNAL",
+          "evidence_strength_0_to_3": 0,
+          "gate": "HOLD",
+          "reviewer_disposition": "RESEARCH_NEEDED",
+          "reasons": [
+            "OBSERVED_EVIDENCE_REQUIRED",
+            "INDEPENDENT_RESEARCH_REQUIRED"
+          ],
+          "freshness_state": "CURRENT"
+        }
+      ],
+      "expected_summary": {}
+    },
+    {
+      "name": "original_unverified",
+      "record_overrides": {
+        "evidence": {
+          "original_state": "UNKNOWN"
+        }
+      },
+      "additional_record_overrides": [],
+      "access_mode": "MANUAL",
+      "expected_records": [
+        {
+          "signal_class": "INSUFFICIENT_SIGNAL",
+          "evidence_strength_0_to_3": 0,
+          "gate": "HOLD",
+          "reviewer_disposition": "RESEARCH_NEEDED",
+          "reasons": [
+            "ORIGINAL_EVIDENCE_UNVERIFIED",
+            "INDEPENDENT_RESEARCH_REQUIRED"
+          ],
+          "freshness_state": "CURRENT"
+        }
+      ],
+      "expected_summary": {}
+    },
+    {
+      "name": "permission_unknown_audit",
+      "record_overrides": {
+        "source": {
+          "permission": {
+            "state": "UNKNOWN"
+          }
+        }
+      },
+      "additional_record_overrides": [],
+      "access_mode": "MANUAL",
+      "expected_records": [
+        {
+          "signal_class": "INSUFFICIENT_SIGNAL",
+          "evidence_strength_0_to_3": 0,
+          "gate": "HOLD",
+          "reviewer_disposition": "AUDIT_ONLY",
+          "reasons": [
+            "SOURCE_PERMISSION_UNKNOWN"
+          ],
+          "freshness_state": "UNKNOWN"
+        }
+      ],
+      "expected_summary": {}
+    },
+    {
+      "name": "future_observation",
+      "record_overrides": {
+        "dates": {
+          "observed_at": "2026-10-12"
+        }
+      },
+      "additional_record_overrides": [],
+      "access_mode": "MANUAL",
+      "expected_records": [
+        {
+          "signal_class": "EXPLICIT_BUYER_REQUEST",
+          "evidence_strength_0_to_3": 3,
+          "gate": "HOLD",
+          "reviewer_disposition": "RESEARCH_NEEDED",
+          "reasons": [
+            "FUTURE_PROVENANCE_DATE",
+            "FRESHNESS_UNKNOWN"
+          ],
+          "freshness_state": "UNKNOWN"
+        }
+      ],
+      "expected_summary": {}
+    },
+    {
+      "name": "source_constraints_unreviewed",
+      "record_overrides": {
+        "source": {
+          "access_constraints": [
+            "TEST_ONLY: unresolved license constraint"
+          ]
+        }
+      },
+      "additional_record_overrides": [],
+      "access_mode": "MANUAL",
+      "expected_records": [
+        {
+          "signal_class": "EXPLICIT_BUYER_REQUEST",
+          "evidence_strength_0_to_3": 3,
+          "gate": "HOLD",
+          "reviewer_disposition": "RESEARCH_NEEDED",
+          "reasons": [
+            "SOURCE_CONSTRAINTS_UNRESOLVED"
+          ],
+          "freshness_state": "CURRENT"
+        }
+      ],
+      "expected_summary": {}
+    },
+    {
+      "name": "purpose_denied_audit",
+      "record_overrides": {
+        "source": {
+          "permission": {
+            "purpose": "OTHER"
+          }
+        }
+      },
+      "additional_record_overrides": [],
+      "access_mode": "MANUAL",
+      "expected_records": [
+        {
+          "signal_class": "INSUFFICIENT_SIGNAL",
+          "evidence_strength_0_to_3": 0,
+          "gate": "BLOCK",
+          "reviewer_disposition": "AUDIT_ONLY",
+          "reasons": [
+            "SOURCE_PURPOSE_DENIED"
+          ],
+          "freshness_state": "UNKNOWN"
+        }
+      ],
+      "expected_summary": {}
+    }
+  ]
+}
