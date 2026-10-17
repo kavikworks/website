@@ -1,0 +1,1175 @@
+{
+  "notice": "TEST_ONLY invented annotations and reserved example domains; no prospects or real permission grants. Fixture counts are not buying-intent yield.",
+  "base_document": {
+    "schema_version": "manual-review-1.0",
+    "as_of": "2026-10-17",
+    "run_id": "TEST_ONLY-manual-review-contracts",
+    "input_origin": "SYNTHETIC",
+    "review_limit": 100,
+    "proposed_geography": null,
+    "geography_policy": {
+      "scope": "US_NATIONWIDE",
+      "approval_state": "APPROVED",
+      "approval_reference": "TEST_ONLY synthetic owner approval; no live policy"
+    },
+    "records": [
+      {
+        "record": {
+          "synthetic_fixture": true,
+          "source": {
+            "url": "https://fixture-contractor.example/request",
+            "record_id": "TEST_ONLY-post-1",
+            "type": "COMPANY_STATEMENT",
+            "permission": {
+              "state": "ALLOWED",
+              "purpose": "BUYING_INTENT_RESEARCH",
+              "basis_url": "https://permissions.example/test-only",
+              "checked_at": "2026-10-17",
+              "reviewer": "TEST_ONLY reviewer",
+              "restrictions": []
+            },
+            "manual_access_state": "ALLOWED",
+            "automated_access_state": "UNKNOWN",
+            "access_method": "SYNTHETIC",
+            "license_reference": null,
+            "access_constraints": [],
+            "constraints_state": "UNKNOWN"
+          },
+          "dates": {
+            "observed_at": "2026-10-01",
+            "retrieved_at": "2026-10-17",
+            "source_updated_at": null,
+            "snapshot_at": "2026-10-05",
+            "direct_verified_at": "2026-10-17",
+            "expires_at": null
+          },
+          "identity": {
+            "business_name": "TEST_ONLY Fixture Contractor",
+            "domain": "fixture-contractor.example",
+            "state": "VERIFIED",
+            "confidence": "HIGH",
+            "evidence_url": "https://fixture-contractor.example/identity",
+            "author_role": "OWNER",
+            "author_state": "VERIFIED",
+            "author_evidence_url": "https://fixture-contractor.example/owner"
+          },
+          "fit": {
+            "sector": "HVAC",
+            "sector_evidence_url": "https://fixture-contractor.example/services",
+            "sector_exclusion_reason": null,
+            "location_claim": "TEST_ONLY invented eligible location; no real address",
+            "geography": "ELIGIBLE",
+            "geographic_basis_url": "https://geography.example/test-only",
+            "scope": "IN_SCOPE"
+          },
+          "evidence": {
+            "text": "TEST_ONLY: As the owner, I am asking for help automating our estimate follow-up.",
+            "kind": "OBSERVED",
+            "category": "BUYER_REQUEST",
+            "workflow": "ESTIMATE_FOLLOW_UP",
+            "explicit_help_request": true,
+            "concrete_problem": false,
+            "attribution_state": "VERIFIED",
+            "original_state": "VERIFIED",
+            "verification_state": "VERIFIED",
+            "verification_url": "https://fixture-contractor.example/request",
+            "uncertainty_reasons": []
+          },
+          "service_hypothesis": "TEST_ONLY hypothesis: review the written follow-up workflow; no purchase inferred.",
+          "suppression": {
+            "state": "CLEAR",
+            "checked_at": "2026-10-17",
+            "evidence_reference": "TEST_ONLY private-check placeholder; no real record"
+          },
+          "lineage": {
+            "original_source_url": null,
+            "original_source_record_id": null,
+            "is_repost": false
+          },
+          "access_error": {
+            "code": "NONE",
+            "attempts": 0,
+            "retry_state": "NOT_ATTEMPTED",
+            "retry_after_seconds": null
+          },
+          "measurement": {
+            "query_id": null,
+            "source_hit_count": null,
+            "source_hit_coverage": "UNKNOWN",
+            "review_minutes_actual": null,
+            "review_time_coverage": "UNKNOWN",
+            "cost_observed": null,
+            "cost_coverage": "UNKNOWN",
+            "currency": null
+          }
+        },
+        "review": {
+          "source_status": "ACTIVE",
+          "geography_scope": "CURRENT_POLICY",
+          "country_code": "US",
+          "country_basis_url": "https://geography.example/test-only-us",
+          "exclusion_state": "CLEAR",
+          "exclusion_reference": "TEST_ONLY exclusion check placeholder",
+          "recruiting": {
+            "relevance": "UNKNOWN",
+            "role_title": null,
+            "observed_responsibilities": [],
+            "basis_url": null
+          }
+        }
+      }
+    ]
+  },
+  "entry_templates": {
+    "OWNER": {},
+    "RECRUITING": {
+      "record": {
+        "source": {
+          "url": "https://fixture-contractor.example/jobs/csr",
+          "record_id": "TEST_ONLY-job-1",
+          "type": "JOB_LISTING",
+          "permission": {
+            "purpose": "TRIGGER_RESEARCH"
+          }
+        },
+        "identity": {
+          "author_role": "BUSINESS_REPRESENTATIVE"
+        },
+        "evidence": {
+          "category": "STAFFING",
+          "text": "TEST_ONLY: Hiring a CSR coordinator to route service requests and schedule field crews.",
+          "workflow": "SCHEDULING",
+          "explicit_help_request": false,
+          "concrete_problem": false,
+          "verification_url": "https://fixture-contractor.example/jobs/csr"
+        }
+      },
+      "review": {
+        "recruiting": {
+          "relevance": "RELEVANT",
+          "role_title": "TEST_ONLY CSR coordinator",
+          "observed_responsibilities": [
+            "TEST_ONLY route incoming service requests",
+            "TEST_ONLY schedule field crews"
+          ],
+          "basis_url": "https://fixture-contractor.example/jobs/csr"
+        }
+      }
+    },
+    "FIT": {
+      "record": {
+        "source": {
+          "url": "https://fixture-contractor.example/business",
+          "record_id": "TEST_ONLY-business-page",
+          "permission": {
+            "purpose": "FIT_RESEARCH"
+          }
+        },
+        "evidence": {
+          "category": "OTHER",
+          "text": "TEST_ONLY: A fictional contractor publishes its services and business location.",
+          "workflow": "INBOX_HANDLING",
+          "explicit_help_request": false,
+          "concrete_problem": false,
+          "verification_url": "https://fixture-contractor.example/business"
+        }
+      }
+    },
+    "INTAKE": {
+      "record": {
+        "source": {
+          "url": "https://fixture-contractor.example/business",
+          "record_id": "TEST_ONLY-business-page",
+          "permission": {
+            "purpose": "FIT_RESEARCH"
+          },
+          "type": "INTAKE_FEATURE"
+        },
+        "evidence": {
+          "category": "INTAKE_FEATURE",
+          "text": "TEST_ONLY: A fictional contractor has a quote request widget.",
+          "workflow": "INBOX_HANDLING",
+          "explicit_help_request": false,
+          "concrete_problem": false,
+          "verification_url": "https://fixture-contractor.example/business"
+        }
+      }
+    },
+    "PAIN": {
+      "record": {
+        "evidence": {
+          "category": "OPERATIONAL_PAIN",
+          "explicit_help_request": false,
+          "concrete_problem": true,
+          "text": "TEST_ONLY: Our office has missed scheduled callbacks."
+        }
+      }
+    },
+    "INDIRECT": {
+      "record": {
+        "identity": {
+          "author_role": "CUSTOMER"
+        },
+        "evidence": {
+          "category": "THIRD_PARTY_COMPLAINT",
+          "explicit_help_request": false,
+          "concrete_problem": true,
+          "text": "TEST_ONLY: A fictional customer describes a missed callback."
+        }
+      }
+    }
+  },
+  "cases": [
+    {
+      "name": "owner_explicit_request",
+      "template": "OWNER",
+      "entry_overrides": {},
+      "document_overrides": {},
+      "expected": {
+        "disposition": "REVIEW_CANDIDATE",
+        "lane": "EXPLICIT_BUYING_INTENT",
+        "audit_only": false,
+        "signal_class": "EXPLICIT_BUYER_REQUEST",
+        "evidence_strength_0_to_3": 3,
+        "reasons": [
+          "VERIFIED_OWNER_MANAGER_REQUEST"
+        ]
+      }
+    },
+    {
+      "name": "relevant_recruiting",
+      "template": "RECRUITING",
+      "entry_overrides": {},
+      "document_overrides": {},
+      "expected": {
+        "disposition": "REVIEW_CANDIDATE",
+        "lane": "TRIGGER_PLUS_FIT",
+        "audit_only": false,
+        "signal_class": "INSUFFICIENT_SIGNAL",
+        "evidence_strength_0_to_3": 0,
+        "reasons": [
+          "RECRUITING_IS_NOT_BUYING_INTENT",
+          "NO_OPERATIONAL_SIGNAL"
+        ]
+      }
+    },
+    {
+      "name": "irrelevant_recruiting",
+      "template": "RECRUITING",
+      "entry_overrides": {
+        "review": {
+          "recruiting": {
+            "relevance": "IRRELEVANT"
+          }
+        }
+      },
+      "document_overrides": {},
+      "expected": {
+        "disposition": "EXCLUDED",
+        "lane": "TRIGGER_PLUS_FIT",
+        "audit_only": false,
+        "signal_class": "INSUFFICIENT_SIGNAL",
+        "evidence_strength_0_to_3": 0,
+        "reasons": [
+          "RECRUITING_IRRELEVANT"
+        ]
+      }
+    },
+    {
+      "name": "recruiting_relevance_unknown",
+      "template": "RECRUITING",
+      "entry_overrides": {
+        "review": {
+          "recruiting": {
+            "relevance": "UNKNOWN"
+          }
+        }
+      },
+      "document_overrides": {},
+      "expected": {
+        "disposition": "NEEDS_REVIEW",
+        "lane": "TRIGGER_PLUS_FIT",
+        "audit_only": false,
+        "signal_class": "INSUFFICIENT_SIGNAL",
+        "evidence_strength_0_to_3": 0,
+        "reasons": [
+          "RECRUITING_RELEVANCE_UNKNOWN"
+        ]
+      }
+    },
+    {
+      "name": "recruiting_basis_unknown",
+      "template": "RECRUITING",
+      "entry_overrides": {
+        "review": {
+          "recruiting": {
+            "basis_url": null
+          }
+        }
+      },
+      "document_overrides": {},
+      "expected": {
+        "disposition": "NEEDS_REVIEW",
+        "lane": "TRIGGER_PLUS_FIT",
+        "audit_only": false,
+        "signal_class": "INSUFFICIENT_SIGNAL",
+        "evidence_strength_0_to_3": 0,
+        "reasons": [
+          "RECRUITING_BASIS_INCOMPLETE"
+        ]
+      }
+    },
+    {
+      "name": "buying_permission_cannot_authorize_trigger",
+      "template": "RECRUITING",
+      "entry_overrides": {
+        "record": {
+          "source": {
+            "permission": {
+              "purpose": "BUYING_INTENT_RESEARCH"
+            }
+          }
+        }
+      },
+      "document_overrides": {},
+      "expected": {
+        "disposition": "EXCLUDED",
+        "lane": null,
+        "audit_only": true,
+        "signal_class": "INSUFFICIENT_SIGNAL",
+        "evidence_strength_0_to_3": 0,
+        "reasons": [
+          "RESEARCH_PURPOSE_NOT_PERMITTED"
+        ]
+      }
+    },
+    {
+      "name": "fit_only",
+      "template": "FIT",
+      "entry_overrides": {},
+      "document_overrides": {},
+      "expected": {
+        "disposition": "REVIEW_CANDIDATE",
+        "lane": "FIT_ONLY",
+        "audit_only": false,
+        "signal_class": "INSUFFICIENT_SIGNAL",
+        "evidence_strength_0_to_3": 0,
+        "reasons": [
+          "NO_EXPLICIT_BUYING_INTENT"
+        ]
+      }
+    },
+    {
+      "name": "booking_widget_zero_strength",
+      "template": "INTAKE",
+      "entry_overrides": {},
+      "document_overrides": {},
+      "expected": {
+        "disposition": "REVIEW_CANDIDATE",
+        "lane": "FIT_ONLY",
+        "audit_only": false,
+        "signal_class": "INSUFFICIENT_SIGNAL",
+        "evidence_strength_0_to_3": 0,
+        "reasons": [
+          "NO_OPERATIONAL_SIGNAL"
+        ]
+      }
+    },
+    {
+      "name": "pain_is_not_buying_intent",
+      "template": "PAIN",
+      "entry_overrides": {},
+      "document_overrides": {},
+      "expected": {
+        "disposition": "REVIEW_CANDIDATE",
+        "lane": "FIT_ONLY",
+        "audit_only": false,
+        "signal_class": "DEMONSTRATED_OPERATIONAL_PAIN",
+        "evidence_strength_0_to_3": 2,
+        "reasons": [
+          "NO_EXPLICIT_BUYING_INTENT"
+        ]
+      }
+    },
+    {
+      "name": "third_party_requires_independent_review",
+      "template": "INDIRECT",
+      "entry_overrides": {},
+      "document_overrides": {},
+      "expected": {
+        "disposition": "NEEDS_REVIEW",
+        "lane": "FIT_ONLY",
+        "audit_only": false,
+        "signal_class": "INDIRECT_EVIDENCE",
+        "evidence_strength_0_to_3": 1,
+        "reasons": [
+          "INDEPENDENT_RESEARCH_REQUIRED"
+        ]
+      }
+    },
+    {
+      "name": "anonymous_request",
+      "template": "OWNER",
+      "entry_overrides": {
+        "record": {
+          "identity": {
+            "author_role": "ANONYMOUS"
+          }
+        }
+      },
+      "document_overrides": {},
+      "expected": {
+        "disposition": "NEEDS_REVIEW",
+        "lane": null,
+        "audit_only": false,
+        "signal_class": "INSUFFICIENT_SIGNAL",
+        "evidence_strength_0_to_3": 0,
+        "reasons": [
+          "VERIFIED_OWNER_MANAGER_REQUEST_REQUIRED"
+        ]
+      }
+    },
+    {
+      "name": "identity_ambiguous",
+      "template": "OWNER",
+      "entry_overrides": {
+        "record": {
+          "identity": {
+            "confidence": "LOW"
+          }
+        }
+      },
+      "document_overrides": {},
+      "expected": {
+        "disposition": "NEEDS_REVIEW",
+        "lane": null,
+        "audit_only": false,
+        "signal_class": "INSUFFICIENT_SIGNAL",
+        "evidence_strength_0_to_3": 0,
+        "reasons": [
+          "BUSINESS_IDENTITY_UNVERIFIED"
+        ]
+      }
+    },
+    {
+      "name": "undated_statement",
+      "template": "OWNER",
+      "entry_overrides": {
+        "record": {
+          "dates": {
+            "observed_at": null
+          }
+        }
+      },
+      "document_overrides": {},
+      "expected": {
+        "disposition": "NEEDS_REVIEW",
+        "lane": "EXPLICIT_BUYING_INTENT",
+        "audit_only": false,
+        "signal_class": "EXPLICIT_BUYER_REQUEST",
+        "evidence_strength_0_to_3": 3,
+        "reasons": [
+          "FRESHNESS_UNKNOWN"
+        ]
+      }
+    },
+    {
+      "name": "retrieval_date_unknown",
+      "template": "OWNER",
+      "entry_overrides": {
+        "record": {
+          "dates": {
+            "retrieved_at": null
+          }
+        }
+      },
+      "document_overrides": {},
+      "expected": {
+        "disposition": "NEEDS_REVIEW",
+        "lane": "EXPLICIT_BUYING_INTENT",
+        "audit_only": false,
+        "signal_class": "EXPLICIT_BUYER_REQUEST",
+        "evidence_strength_0_to_3": 3,
+        "reasons": [
+          "PROVENANCE_INCOMPLETE"
+        ]
+      }
+    },
+    {
+      "name": "geography_unknown",
+      "template": "OWNER",
+      "entry_overrides": {
+        "record": {
+          "fit": {
+            "geography": "UNKNOWN"
+          }
+        }
+      },
+      "document_overrides": {},
+      "expected": {
+        "disposition": "NEEDS_REVIEW",
+        "lane": "EXPLICIT_BUYING_INTENT",
+        "audit_only": false,
+        "signal_class": "EXPLICIT_BUYER_REQUEST",
+        "evidence_strength_0_to_3": 3,
+        "reasons": [
+          "GEOGRAPHY_UNKNOWN"
+        ]
+      }
+    },
+    {
+      "name": "country_unknown",
+      "template": "OWNER",
+      "entry_overrides": {
+        "review": {
+          "country_code": "UNKNOWN"
+        }
+      },
+      "document_overrides": {},
+      "expected": {
+        "disposition": "NEEDS_REVIEW",
+        "lane": "EXPLICIT_BUYING_INTENT",
+        "audit_only": false,
+        "signal_class": "EXPLICIT_BUYER_REQUEST",
+        "evidence_strength_0_to_3": 3,
+        "reasons": [
+          "COUNTRY_UNKNOWN"
+        ]
+      }
+    },
+    {
+      "name": "country_basis_missing",
+      "template": "OWNER",
+      "entry_overrides": {
+        "review": {
+          "country_basis_url": null
+        }
+      },
+      "document_overrides": {},
+      "expected": {
+        "disposition": "NEEDS_REVIEW",
+        "lane": "EXPLICIT_BUYING_INTENT",
+        "audit_only": false,
+        "signal_class": "EXPLICIT_BUYER_REQUEST",
+        "evidence_strength_0_to_3": 3,
+        "reasons": [
+          "COUNTRY_BASIS_MISSING"
+        ]
+      }
+    },
+    {
+      "name": "outside_us",
+      "template": "OWNER",
+      "entry_overrides": {
+        "review": {
+          "country_code": "OTHER"
+        }
+      },
+      "document_overrides": {},
+      "expected": {
+        "disposition": "EXCLUDED",
+        "lane": "EXPLICIT_BUYING_INTENT",
+        "audit_only": false,
+        "signal_class": "EXPLICIT_BUYER_REQUEST",
+        "evidence_strength_0_to_3": 3,
+        "reasons": [
+          "COUNTRY_OUTSIDE_US"
+        ]
+      }
+    },
+    {
+      "name": "proposed_row_geography",
+      "template": "OWNER",
+      "entry_overrides": {
+        "review": {
+          "geography_scope": "PROPOSED_ONLY"
+        }
+      },
+      "document_overrides": {},
+      "expected": {
+        "disposition": "NEEDS_REVIEW",
+        "lane": "EXPLICIT_BUYING_INTENT",
+        "audit_only": false,
+        "signal_class": "EXPLICIT_BUYER_REQUEST",
+        "evidence_strength_0_to_3": 3,
+        "reasons": [
+          "PROPOSED_GEOGRAPHY_NOT_APPROVED"
+        ]
+      }
+    },
+    {
+      "name": "proposed_policy_is_not_approval",
+      "template": "OWNER",
+      "entry_overrides": {},
+      "document_overrides": {
+        "geography_policy": {
+          "approval_state": "PROPOSED",
+          "approval_reference": null
+        },
+        "proposed_geography": "TEST_ONLY US nationwide proposal"
+      },
+      "expected": {
+        "disposition": "NEEDS_REVIEW",
+        "lane": "EXPLICIT_BUYING_INTENT",
+        "audit_only": false,
+        "signal_class": "EXPLICIT_BUYER_REQUEST",
+        "evidence_strength_0_to_3": 3,
+        "reasons": [
+          "GEOGRAPHY_POLICY_NOT_APPROVED"
+        ]
+      }
+    },
+    {
+      "name": "approval_reference_missing",
+      "template": "OWNER",
+      "entry_overrides": {},
+      "document_overrides": {
+        "geography_policy": {
+          "approval_reference": null
+        }
+      },
+      "expected": {
+        "disposition": "NEEDS_REVIEW",
+        "lane": "EXPLICIT_BUYING_INTENT",
+        "audit_only": false,
+        "signal_class": "EXPLICIT_BUYER_REQUEST",
+        "evidence_strength_0_to_3": 3,
+        "reasons": [
+          "GEOGRAPHY_APPROVAL_REFERENCE_MISSING"
+        ]
+      }
+    },
+    {
+      "name": "unknown_policy_scope",
+      "template": "OWNER",
+      "entry_overrides": {},
+      "document_overrides": {
+        "geography_policy": {
+          "scope": "UNKNOWN"
+        }
+      },
+      "expected": {
+        "disposition": "NEEDS_REVIEW",
+        "lane": "EXPLICIT_BUYING_INTENT",
+        "audit_only": false,
+        "signal_class": "EXPLICIT_BUYER_REQUEST",
+        "evidence_strength_0_to_3": 3,
+        "reasons": [
+          "GEOGRAPHY_POLICY_UNKNOWN"
+        ]
+      }
+    },
+    {
+      "name": "permission_unknown",
+      "template": "OWNER",
+      "entry_overrides": {
+        "record": {
+          "source": {
+            "permission": {
+              "state": "UNKNOWN"
+            }
+          },
+          "evidence": {
+            "text": "TEST_ONLY_RESTRICTED_CONTENT"
+          },
+          "service_hypothesis": "TEST_ONLY_RESTRICTED_INFERENCE"
+        }
+      },
+      "document_overrides": {},
+      "expected": {
+        "disposition": "NEEDS_REVIEW",
+        "lane": null,
+        "audit_only": true,
+        "signal_class": "INSUFFICIENT_SIGNAL",
+        "evidence_strength_0_to_3": 0,
+        "reasons": [
+          "SOURCE_PERMISSION_UNKNOWN"
+        ]
+      }
+    },
+    {
+      "name": "permission_denied",
+      "template": "OWNER",
+      "entry_overrides": {
+        "record": {
+          "source": {
+            "permission": {
+              "state": "DENIED"
+            }
+          },
+          "evidence": {
+            "text": "TEST_ONLY_RESTRICTED_CONTENT"
+          },
+          "service_hypothesis": "TEST_ONLY_RESTRICTED_INFERENCE"
+        }
+      },
+      "document_overrides": {},
+      "expected": {
+        "disposition": "EXCLUDED",
+        "lane": null,
+        "audit_only": true,
+        "signal_class": "INSUFFICIENT_SIGNAL",
+        "evidence_strength_0_to_3": 0,
+        "reasons": [
+          "SOURCE_PERMISSION_DENIED"
+        ]
+      }
+    },
+    {
+      "name": "permission_purpose_unknown",
+      "template": "OWNER",
+      "entry_overrides": {
+        "record": {
+          "source": {
+            "permission": {
+              "purpose": "UNKNOWN"
+            }
+          }
+        }
+      },
+      "document_overrides": {},
+      "expected": {
+        "disposition": "NEEDS_REVIEW",
+        "lane": null,
+        "audit_only": true,
+        "signal_class": "INSUFFICIENT_SIGNAL",
+        "evidence_strength_0_to_3": 0,
+        "reasons": [
+          "RESEARCH_PURPOSE_UNKNOWN"
+        ]
+      }
+    },
+    {
+      "name": "permission_basis_missing",
+      "template": "OWNER",
+      "entry_overrides": {
+        "record": {
+          "source": {
+            "permission": {
+              "basis_url": null
+            }
+          }
+        }
+      },
+      "document_overrides": {},
+      "expected": {
+        "disposition": "NEEDS_REVIEW",
+        "lane": "EXPLICIT_BUYING_INTENT",
+        "audit_only": false,
+        "signal_class": "EXPLICIT_BUYER_REQUEST",
+        "evidence_strength_0_to_3": 3,
+        "reasons": [
+          "SOURCE_POLICY_RECONCILIATION_REQUIRED"
+        ]
+      }
+    },
+    {
+      "name": "manual_access_unknown",
+      "template": "OWNER",
+      "entry_overrides": {
+        "record": {
+          "source": {
+            "manual_access_state": "UNKNOWN",
+            "automated_access_state": "ALLOWED"
+          }
+        }
+      },
+      "document_overrides": {},
+      "expected": {
+        "disposition": "NEEDS_REVIEW",
+        "lane": "EXPLICIT_BUYING_INTENT",
+        "audit_only": false,
+        "signal_class": "EXPLICIT_BUYER_REQUEST",
+        "evidence_strength_0_to_3": 3,
+        "reasons": [
+          "ACCESS_UNKNOWN"
+        ]
+      }
+    },
+    {
+      "name": "stale_signal",
+      "template": "OWNER",
+      "entry_overrides": {
+        "record": {
+          "dates": {
+            "observed_at": "2026-01-01"
+          }
+        }
+      },
+      "document_overrides": {},
+      "expected": {
+        "disposition": "EXCLUDED",
+        "lane": null,
+        "audit_only": false,
+        "signal_class": "INSUFFICIENT_SIGNAL",
+        "evidence_strength_0_to_3": 0,
+        "reasons": [
+          "SOURCE_STALE"
+        ]
+      }
+    },
+    {
+      "name": "expired_signal",
+      "template": "OWNER",
+      "entry_overrides": {
+        "record": {
+          "dates": {
+            "expires_at": "2026-10-16"
+          }
+        }
+      },
+      "document_overrides": {},
+      "expected": {
+        "disposition": "EXCLUDED",
+        "lane": null,
+        "audit_only": false,
+        "signal_class": "INSUFFICIENT_SIGNAL",
+        "evidence_strength_0_to_3": 0,
+        "reasons": [
+          "SOURCE_EXPIRED"
+        ]
+      }
+    },
+    {
+      "name": "deleted_signal",
+      "template": "OWNER",
+      "entry_overrides": {
+        "review": {
+          "source_status": "DELETED"
+        }
+      },
+      "document_overrides": {},
+      "expected": {
+        "disposition": "EXCLUDED",
+        "lane": "EXPLICIT_BUYING_INTENT",
+        "audit_only": false,
+        "signal_class": "EXPLICIT_BUYER_REQUEST",
+        "evidence_strength_0_to_3": 3,
+        "reasons": [
+          "SOURCE_DELETED"
+        ]
+      }
+    },
+    {
+      "name": "source_status_unknown",
+      "template": "OWNER",
+      "entry_overrides": {
+        "review": {
+          "source_status": "UNKNOWN"
+        }
+      },
+      "document_overrides": {},
+      "expected": {
+        "disposition": "NEEDS_REVIEW",
+        "lane": "EXPLICIT_BUYING_INTENT",
+        "audit_only": false,
+        "signal_class": "EXPLICIT_BUYER_REQUEST",
+        "evidence_strength_0_to_3": 3,
+        "reasons": [
+          "SOURCE_STATUS_UNKNOWN"
+        ]
+      }
+    },
+    {
+      "name": "vendor_promotion",
+      "template": "OWNER",
+      "entry_overrides": {
+        "record": {
+          "source": {
+            "type": "VENDOR",
+            "permission": {
+              "purpose": "FIT_RESEARCH"
+            }
+          },
+          "evidence": {
+            "category": "VENDOR_PROMOTION",
+            "explicit_help_request": false
+          }
+        }
+      },
+      "document_overrides": {},
+      "expected": {
+        "disposition": "EXCLUDED",
+        "lane": "FIT_ONLY",
+        "audit_only": false,
+        "signal_class": "INSUFFICIENT_SIGNAL",
+        "evidence_strength_0_to_3": 0,
+        "reasons": [
+          "VENDOR_PROMOTION"
+        ]
+      }
+    },
+    {
+      "name": "suppression_unknown",
+      "template": "OWNER",
+      "entry_overrides": {
+        "record": {
+          "suppression": {
+            "state": "UNKNOWN"
+          }
+        }
+      },
+      "document_overrides": {},
+      "expected": {
+        "disposition": "NEEDS_REVIEW",
+        "lane": "EXPLICIT_BUYING_INTENT",
+        "audit_only": false,
+        "signal_class": "EXPLICIT_BUYER_REQUEST",
+        "evidence_strength_0_to_3": 3,
+        "reasons": [
+          "SUPPRESSION_UNKNOWN"
+        ]
+      }
+    },
+    {
+      "name": "suppressed",
+      "template": "OWNER",
+      "entry_overrides": {
+        "record": {
+          "suppression": {
+            "state": "SUPPRESSED"
+          }
+        }
+      },
+      "document_overrides": {},
+      "expected": {
+        "disposition": "EXCLUDED",
+        "lane": "EXPLICIT_BUYING_INTENT",
+        "audit_only": false,
+        "signal_class": "EXPLICIT_BUYER_REQUEST",
+        "evidence_strength_0_to_3": 3,
+        "reasons": [
+          "SUPPRESSED"
+        ]
+      }
+    },
+    {
+      "name": "suppression_snapshot_old",
+      "template": "OWNER",
+      "entry_overrides": {
+        "record": {
+          "suppression": {
+            "checked_at": "2026-10-16"
+          }
+        }
+      },
+      "document_overrides": {},
+      "expected": {
+        "disposition": "NEEDS_REVIEW",
+        "lane": "EXPLICIT_BUYING_INTENT",
+        "audit_only": false,
+        "signal_class": "EXPLICIT_BUYER_REQUEST",
+        "evidence_strength_0_to_3": 3,
+        "reasons": [
+          "SUPPRESSION_RECHECK_REQUIRED"
+        ]
+      }
+    },
+    {
+      "name": "manual_excluded",
+      "template": "OWNER",
+      "entry_overrides": {
+        "review": {
+          "exclusion_state": "EXCLUDED"
+        }
+      },
+      "document_overrides": {},
+      "expected": {
+        "disposition": "EXCLUDED",
+        "lane": "EXPLICIT_BUYING_INTENT",
+        "audit_only": false,
+        "signal_class": "EXPLICIT_BUYER_REQUEST",
+        "evidence_strength_0_to_3": 3,
+        "reasons": [
+          "MANUAL_EXCLUSION"
+        ]
+      }
+    },
+    {
+      "name": "manual_exclusion_unknown",
+      "template": "OWNER",
+      "entry_overrides": {
+        "review": {
+          "exclusion_state": "UNKNOWN"
+        }
+      },
+      "document_overrides": {},
+      "expected": {
+        "disposition": "NEEDS_REVIEW",
+        "lane": "EXPLICIT_BUYING_INTENT",
+        "audit_only": false,
+        "signal_class": "EXPLICIT_BUYER_REQUEST",
+        "evidence_strength_0_to_3": 3,
+        "reasons": [
+          "EXCLUSION_STATE_UNKNOWN"
+        ]
+      }
+    },
+    {
+      "name": "fit_purpose_must_be_explicit",
+      "template": "FIT",
+      "entry_overrides": {
+        "record": {
+          "source": {
+            "permission": {
+              "purpose": "BUYING_INTENT_RESEARCH"
+            }
+          }
+        }
+      },
+      "document_overrides": {},
+      "expected": {
+        "disposition": "EXCLUDED",
+        "lane": null,
+        "audit_only": true,
+        "signal_class": "INSUFFICIENT_SIGNAL",
+        "evidence_strength_0_to_3": 0,
+        "reasons": [
+          "RESEARCH_PURPOSE_NOT_PERMITTED"
+        ]
+      }
+    },
+    {
+      "name": "inference_cannot_be_fact",
+      "template": "OWNER",
+      "entry_overrides": {
+        "record": {
+          "evidence": {
+            "kind": "INFERRED"
+          }
+        }
+      },
+      "document_overrides": {},
+      "expected": {
+        "disposition": "NEEDS_REVIEW",
+        "lane": null,
+        "audit_only": false,
+        "signal_class": "INSUFFICIENT_SIGNAL",
+        "evidence_strength_0_to_3": 0,
+        "reasons": [
+          "OBSERVED_EVIDENCE_REQUIRED"
+        ]
+      }
+    },
+    {
+      "name": "conflicting_claim",
+      "template": "OWNER",
+      "entry_overrides": {
+        "record": {
+          "evidence": {
+            "verification_state": "CONFLICT"
+          }
+        }
+      },
+      "document_overrides": {},
+      "expected": {
+        "disposition": "NEEDS_REVIEW",
+        "lane": null,
+        "audit_only": false,
+        "signal_class": "INSUFFICIENT_SIGNAL",
+        "evidence_strength_0_to_3": 0,
+        "reasons": [
+          "SOURCE_CONFLICT"
+        ]
+      }
+    },
+    {
+      "name": "recency_31_days",
+      "template": "OWNER",
+      "entry_overrides": {
+        "record": {
+          "dates": {
+            "observed_at": "2026-09-16"
+          }
+        }
+      },
+      "document_overrides": {},
+      "expected": {
+        "disposition": "NEEDS_REVIEW",
+        "lane": "EXPLICIT_BUYING_INTENT",
+        "audit_only": false,
+        "signal_class": "EXPLICIT_BUYER_REQUEST",
+        "evidence_strength_0_to_3": 3,
+        "reasons": [
+          "FRESHNESS_RECHECK_REQUIRED"
+        ]
+      }
+    },
+    {
+      "name": "recency_30_days",
+      "template": "OWNER",
+      "entry_overrides": {
+        "record": {
+          "dates": {
+            "observed_at": "2026-09-17"
+          }
+        }
+      },
+      "document_overrides": {},
+      "expected": {
+        "disposition": "REVIEW_CANDIDATE",
+        "lane": "EXPLICIT_BUYING_INTENT",
+        "audit_only": false,
+        "signal_class": "EXPLICIT_BUYER_REQUEST",
+        "evidence_strength_0_to_3": 3,
+        "reasons": [
+          "VERIFIED_OWNER_MANAGER_REQUEST"
+        ]
+      }
+    },
+    {
+      "name": "restriction_unresolved",
+      "template": "OWNER",
+      "entry_overrides": {
+        "record": {
+          "source": {
+            "permission": {
+              "restrictions": [
+                "TEST_ONLY no reuse without separate review"
+              ]
+            },
+            "constraints_state": "UNKNOWN"
+          }
+        }
+      },
+      "document_overrides": {},
+      "expected": {
+        "disposition": "NEEDS_REVIEW",
+        "lane": "EXPLICIT_BUYING_INTENT",
+        "audit_only": false,
+        "signal_class": "EXPLICIT_BUYER_REQUEST",
+        "evidence_strength_0_to_3": 3,
+        "reasons": [
+          "SOURCE_CONSTRAINTS_UNRESOLVED"
+        ]
+      }
+    },
+    {
+      "name": "simulated_timeout",
+      "template": "OWNER",
+      "entry_overrides": {
+        "record": {
+          "access_error": {
+            "code": "TIMEOUT",
+            "attempts": 1,
+            "retry_state": "DEFERRED"
+          },
+          "evidence": {
+            "text": "TEST_ONLY_RESTRICTED_CONTENT"
+          }
+        }
+      },
+      "document_overrides": {},
+      "expected": {
+        "disposition": "EXCLUDED",
+        "lane": null,
+        "audit_only": true,
+        "signal_class": "INSUFFICIENT_SIGNAL",
+        "evidence_strength_0_to_3": 0,
+        "reasons": [
+          "ACCESS_ERROR_TIMEOUT"
+        ]
+      }
+    }
+  ]
+}
