@@ -2,6 +2,40 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const { makeBrief, readCampaign, tagLink } = require('../workflow-check.js');
 
+for (const page of ['lead-response-automation', 'ai-email-triage']) {
+  test(`${page} lets ready buyers request the existing audit without a free-check gate`, () => {
+    const fs = require('node:fs');
+    const path = require('node:path');
+    const html = fs.readFileSync(path.join(__dirname, '..', page, 'index.html'), 'utf8');
+    const offer = html.match(/<div class="note">([\s\S]*?)<\/article>/)[1];
+    const href = offer.match(/<a class="button" href="([^"]+)">Request the \$149 blueprint/)[1]
+      .replaceAll('&amp;', '&');
+    const email = new URL(href);
+    assert.equal(email.protocol, 'mailto:');
+    assert.equal(email.pathname, 'josh@kavikworks.com');
+    assert.deepEqual([...email.searchParams.keys()], ['subject', 'body']);
+    assert.equal(email.searchParams.get('subject'), 'Workflow Blueprint request');
+    assert.match(email.searchParams.get('body'), /\$149 written Workflow Blueprint for one workflow/);
+    assert.match(email.searchParams.get('body'), /confirm fit, scope, availability, delivery timing and payment details before payment/);
+    for (const field of ['Business / website:', 'Workflow to review:', 'Current tools:', 'Handoff to improve:']) {
+      assert.ok(email.searchParams.get('body').includes(field));
+    }
+    assert.match(offer, /one-time written automation audit/);
+    assert.match(offer, /three editable templates/);
+    assert.match(offer, /One clarification revision is included within seven days of delivery/);
+    assert.match(offer, /No call or account access is required/);
+    assert.match(offer, /Installation and ongoing monitoring are not included/);
+    assert.match(offer, /href="\/sample-workflow\/">See the sample report/);
+    assert.match(offer, /Prefer a starter plan first\? <a href="\/intake">Try the free workflow check/);
+    assert.match(offer, /Opening an email draft does not send your request/);
+    const tagged = new URL(tagLink(href, `https://kavikworks.com/${page}/`, readCampaign(campaignQuery)));
+    assert.equal(tagged.pathname, email.pathname);
+    assert.match(tagged.searchParams.get('body'), /utm_content: post-01/);
+    assert.equal(tagLink(href, `https://kavikworks.com/${page}/`, null), href);
+    assert.match(html, /src="\/workflow-check.js" defer/);
+  });
+}
+
 test('all supported workflows produce a usable request to the verified business inbox', () => {
   for (const kind of ['quotes', 'leasing', 'inbox']) {
     const plan = makeBrief(kind, 'Gmail & Sheets', 'Give each request an owner.');

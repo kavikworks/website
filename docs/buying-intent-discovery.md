@@ -115,9 +115,10 @@ measure distance or consult suppression records itself.
 
 Supported sectors: `HVAC`, `PLUMBING`, `ELECTRICAL`, `ROOFING`, `RESTORATION`,
 `LANDSCAPING_EXTERIOR`. Other sectors are excluded; unknown sectors are held.
-The initial territory is northeast Denver and nearby service-business territory
-at approximately five miles. `ELIGIBLE` requires a reviewer-recorded location
-and geographic basis; a general claim to serve Denver cannot establish it.
+`ELIGIBLE` requires a reviewer-recorded location, geographic basis and applicable
+owner-approved territory. The evaluator does not compute distance or establish
+geofencing. A general service-area claim alone cannot establish eligibility.
+The manual wrapper below supports an explicitly referenced US nationwide policy.
 Supported workflows: `ESTIMATE_FOLLOW_UP`, `SCHEDULING`, `DISPATCH`,
 `LEAD_RESPONSE`, `INBOX_HANDLING`, `CALLBACK`. Regulated advice, emergency
 response implementation and other excluded service scope block qualification.
@@ -225,3 +226,133 @@ window starts here. The next step is private review of this implementation and
 an authorized offline manual-ingestion sample; a network collector requires its
 own cleared source-access path. Repository checks also verify the existing
 static-site contract without modifying the site.
+
+## Offline manual-evidence review adapter
+
+`scripts/buying_intent_review.py` adds the separate `manual-review-1.0` wrapper
+for owner-curated or otherwise authorized factual inputs. It does not fetch
+anything. Keep real inputs/outputs outside this public checkout, in existing
+private records. `OWNER_CURATED` and `AUTHORIZED_MANUAL` describe input origin;
+neither grants source permission. All public examples and fixtures are wholly
+synthetic. No real prospect sample or successful campaign is asserted here.
+
+```sh
+python3 scripts/buying_intent_review.py /private/path/manual-evidence.json
+python3 scripts/buying_intent_review.py < /private/path/manual-evidence.json
+python3 -m unittest discover -s tests -p 'test_buying_intent*.py' -v
+```
+
+The wrapper requires `schema_version: "manual-review-1.0"`, frozen `as_of`,
+`run_id`, `input_origin` (`OWNER_CURATED`, `AUTHORIZED_MANUAL`, `SYNTHETIC`), and
+`records`. Each entry contains a `record` using the original closed schema plus
+an optional `review` object. This wrapper is deliberately incompatible with the
+legacy top-level input; `classify()` and the legacy validator remain unchanged.
+The complete runnable synthetic example is `base_document` in
+`tests/fixtures/buying-intent-review-synthetic.json`. Its `entry_templates` and
+case overrides are test scaffolding, not importer input.
+
+| Review lane | Meaning | Explicit permission purpose |
+| --- | --- | --- |
+| `EXPLICIT_BUYING_INTENT` | Legacy verified owner/manager request, with every remaining gate satisfied | `BUYING_INTENT_RESEARCH` |
+| `TRIGGER_PLUS_FIT` | Attributable recruiting duties relevant to a supported workflow, plus verified fit; no pain or purchase is inferred | `TRIGGER_RESEARCH` |
+| `FIT_ONLY` | Factual business fit or intake feature, without a verified purchase request | `FIT_RESEARCH` for fit/static features |
+
+The adapter extends only its own record schema's `source.permission.purpose` enum
+with `TRIGGER_RESEARCH` and `FIT_RESEARCH`. A buying-intent permission cannot
+authorize trigger or fit-only research. Wrong/denied purposes are audit-only and
+excluded; unknown permission/purpose is audit-only and needs review. A matching
+explicit purpose is translated internally to the legacy engine's single purpose
+token solely to reuse its permission, provenance, suppression, conflict, expiry,
+repost, duplicate and newer-claim gates. Output restores the actual permission
+and purpose. This translation never asserts buying-intent permission for a
+trigger. Missing basis, check time, reviewer, allowed manual access or unresolved
+limits still hold review. Automated access permission cannot authorize manual
+access. No access is attempted by either mode.
+
+`STAFFING` and `INTAKE_FEATURE` retain legacy strength 0 and are never qualified
+buying-intent research. `JOB_LISTING` sources require category `STAFFING`;
+`INTAKE_FEATURE` sources require category `INTAKE_FEATURE`. Contradictory source
+type/category input is a schema error, preventing an incorrectly annotated job
+or widget from becoming a purchase request. Recruiting additionally requires
+`review.recruiting.relevance: RELEVANT`, an observed `role_title`, a nonempty
+`observed_responsibilities` list and a `basis_url`. Irrelevant recruiting is
+excluded; unknown relevance/basis needs review. Relevance is a reviewer inference
+recorded separately from the observed duties, not an external classification.
+
+The adapter also retains concrete pain (strength 2) and third-party complaint
+(strength 1) diagnostics under `FIT_ONLY`, with `BUYING_INTENT_RESEARCH`
+permission; neither becomes explicit intent. Third-party claims still need
+independent review. Undated or unresolved requests cannot silently become a
+candidate. Only the legacy `NO_OPERATIONAL_SIGNAL` and
+`INDEPENDENT_RESEARCH_REQUIRED` holds can be waived for annotated staffing,
+ordinary fit and intake-feature review. All other gate reasons are preserved.
+Waiving those two holds authorizes only a review candidate with strength 0.
+
+### Geography, exclusions and Desk ownership
+
+The optional `geography_policy` object contains `scope` (`US_NATIONWIDE`,
+`REVIEWER_DEFINED`, `UNKNOWN`), `approval_state` (`APPROVED`, `PROPOSED`,
+`UNKNOWN`) and a private `approval_reference`. A referenced, owner-approved US
+nationwide policy is supported; there is no hard-coded Denver distance test.
+`fit.geography: ELIGIBLE` remains a caller assertion under that referenced policy,
+not computed geofencing. Each row also needs `review.geography_scope:
+CURRENT_POLICY`, `review.country_code: US` and `review.country_basis_url`.
+`OTHER` country is excluded; unknown country or geographic basis needs review.
+
+Proposed/unknown policy, a missing approval reference, or row scope
+`PROPOSED_ONLY`/`UNKNOWN` holds review. Optional `proposed_geography` is a short
+context label; it cannot override `OUTSIDE`/`UNKNOWN` fit or approve a policy.
+The output explicitly states that neither geography configuration nor proposals
+write live controls. The caller must record a real owner decision privately;
+the program cannot authenticate that assertion.
+
+Each row needs `review.source_status: ACTIVE` (`DELETED` excludes; `UNKNOWN`
+holds) and `review.exclusion_state: CLEAR` with an `exclusion_reference`.
+Explicit exclusions block; unknown checks hold. Deleted/uncertain source status
+or failed access at the same canonical URL also gates other rows, including when
+the negative status accompanies an audit-only access error. Same-source identity
+conflicts hold all candidates. Conflicting duplicate wrapper annotations cannot
+be discarded based on input order; manual business exclusions and contradictory
+geography cannot be hidden by choosing a more attractive source.
+
+Disposition is exactly `REVIEW_CANDIDATE`, `NEEDS_REVIEW` or `EXCLUDED`.
+`REVIEW_CANDIDATE` means private review only. Every document/row has
+`send_ready: false`, and every row requires Business Desk's current suppression,
+approval, cadence and exclusive mail-control checks. A supplied same-day
+suppression snapshot is not a lock or permission to send later. This code does
+not set or change sender limits, capacity, approvals, schedules or spending.
+
+### IDs, deterministic ordering and technical bounds
+
+Business IDs hash canonical domains; source IDs hash canonical URLs plus source
+record IDs. Review IDs reuse the validator's stable signal/audit identity plus
+the required research purpose. Retrieval alone cannot manufacture a new claim.
+URL normalization, duplicate signals, original/repost and newer lineage behavior
+come from the validator. Source rows retain evidence dates, actual permission
+mode/limits and exclusion reasons; hypotheses/relevance assessments are in the
+separate `inference` object. Unknown measurement values and coverage are retained;
+aggregate economics/time remain null and explicitly not aggregated.
+
+At most one candidate per business enters the ordered review list: explicit
+request, recruiting trigger, then fit-only, with stable IDs as tie breakers.
+Other qualified source rows remain visible as excluded duplicate businesses.
+An identical rerun produces identical output without external state. For
+cross-run reconciliation, retain prior records privately and evaluate them
+together; this is not a new database or CRM.
+
+The document limit is 100 input rows and 1 MiB. Optional `review_limit` selects
+1–100 candidates (default 100); overflow remains visible as `NEEDS_REVIEW` with
+`REVIEW_LIMIT_REACHED`. These are per-document technical bounds, not daily mail
+caps or campaign authority. Invalid/oversized input, unknown keys, malformed
+dates, duplicate JSON keys and nonfinite numbers fail with exit 2 and redacted
+JSON errors. The CLI reads a local file or stdin and writes JSON only to stdout.
+It never writes a queue, opens a URL, calls a classifier or sends a message.
+
+The 44 synthetic fixture contracts and additional regressions exercise all three
+lanes, explicit permission purposes, relevant/irrelevant hiring, widgets, unknown
+identity/dates/geography/permission/suppression, stale/expired/deleted sources,
+promotion, business/source duplicates, conflicting wrapper annotations,
+restricted inputs, source-error reconciliation, nationwide approval versus
+proposals, lineage, technical bounds, no networking and repeatability. Fixture
+counts are processed annotations, not real positive demand. Private evidence
+review and any live acquisition integration remain separate work.
