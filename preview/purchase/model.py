@@ -13,6 +13,7 @@ import re
 import secrets
 import sqlite3
 from zoneinfo import ZoneInfo
+from .payment_contracts import DEFAULT_BINDING, snapshot_matches
 
 PRICE = {"currency": "USD", "subtotal_cents": 14900, "tax_cents": 0,
          "total_cents": 14900}
@@ -102,6 +103,7 @@ class FakeProvider:
         # An immutable order key makes retried creation return the same session.
         session_id = "fake_cs_" + order["id"] + "_" + str(order["attempt"])
         snapshot = {"id": session_id, "mode": self.mode, "livemode": False,
+                    "account": DEFAULT_BINDING.account, "environment": DEFAULT_BINDING.environment,
                     "order_id": order["id"], "amount_total": 14900,
                     "currency": "usd", "quantity": 1, "product": "WORKFLOW_BLUEPRINT",
                     "tax_cents": 0, "status": "open", "payment_status": "unpaid",
@@ -117,10 +119,19 @@ class FakeProvider:
         row = db.execute("SELECT snapshot FROM provider_sessions WHERE id=?", (session_id,)).fetchone()
         if not row:
             raise PreviewError("PAYMENT_NOT_FOUND", "Payment evidence needs review.")
-        result = json.loads(row[0])
-        if result["status"] == "open" and parse(result["expires_at"]) <= now:
-            result["status"] = "expired"
-            self.save(db, result)
+        try:
+            result = json.loads(row[0])
+            if not isinstance(result, dict):
+                raise ValueError()
+            if result.get("status") == "open":
+                expires = parse(result["expires_at"])
+                if expires.utcoffset() is None:
+                    raise ValueError()
+                if expires <= now:
+                    result["status"] = "expired"
+                    self.save(db, result)
+        except (ValueError, KeyError, TypeError):
+            raise PreviewError("PAYMENT_EVIDENCE_INCOMPLETE", "Payment evidence is incomplete; retain the reservation.") from None
         return result
 
     def save(self, db, snapshot):
@@ -185,6 +196,8 @@ class Store:
             """)
             if not db.execute("SELECT 1 FROM settings WHERE key='capacity'").fetchone():
                 self.seed_demo(db)
+            from .maintenance import initialize_maintenance
+            initialize_maintenance(db, self.clock())
         self.path.chmod(0o600)
 
     @contextmanager
@@ -226,8 +239,26 @@ class Store:
                 if row:
                     return raw_token, row[0]
             token, csrf = secrets.token_urlsafe(32), secrets.token_urlsafe(24)
-            db.execute("INSERT INTO sessions VALUES(?,?)", (digest(token), csrf))
+            db.execute("INSERT INTO sessions(token_hash,csrf,created_at) VALUES(?,?,?)", (digest(token), csrf, stamp(self.clock())))
             return token, csrf
+
+    def rotate_recovery(self, token, replacement):
+        from .maintenance import rotate_recovery
+        return rotate_recovery(self, token, replacement)
+
+    def apply_retention(self, policy):
+        from .maintenance import apply_retention
+        return apply_retention(self, policy)
+
+    def retention_hold(self, order_id, enabled):
+        if type(enabled) is not bool:
+            raise PreviewError("INVALID_HOLD", "Choose an explicit local hold state.", 400)
+        with self.tx() as db:
+            self._order(db, order_id)
+            if enabled:
+                db.execute("INSERT OR IGNORE INTO retention_holds VALUES(?)", (order_id,))
+            else:
+                db.execute("DELETE FROM retention_holds WHERE order_id=?", (order_id,))
 
     def recover(self, token):
         if not isinstance(token, str) or not re.fullmatch(r"[A-Za-z0-9_-]{43}", token):
@@ -325,6 +356,8 @@ class Store:
         now = self.clock()
         self.reconcile_all()
         with self.tx() as db:
+            if db.execute("SELECT 1 FROM retired_keys WHERE kind='submission' AND key_hash=?", (digest(key),)).fetchone():
+                raise PreviewError("SUBMISSION_RETIRED", "That old submission cannot be replayed.")
             prior = db.execute("SELECT * FROM submissions WHERE key=?", (key,)).fetchone()
             if prior:
                 order = self._order(db, prior["order_id"])
@@ -353,6 +386,7 @@ class Store:
                 db.execute("INSERT INTO orders(id,session_hash,submission_key,payload_hash,brief,scope,reasons,state,created_at,expires_at,delivery_date,reservation) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)",
                            (order_id, digest(token), key, payload_hash, json.dumps(brief), scope, json.dumps(reasons), state, stamp(now), expires, due, "HELD" if plan else None))
             db.execute("INSERT INTO submissions VALUES(?,?,?)", (key, order_id, payload_hash))
+            db.execute("UPDATE orders SET touched_at=? WHERE id=?", (stamp(now), order_id))
             db.executemany("INSERT INTO allocations(order_id,day,kind,minutes) VALUES(?,?,?,?)", [(order_id, *row) for row in allocations])
             return self._public(db, self._order(db, order_id))
 
@@ -405,6 +439,7 @@ class Store:
                 order = self._order(db, order["id"])
             session_id = self.provider.create(db, order, self.clock())
             db.execute("UPDATE orders SET provider_id=?,state='CHECKOUT_OPEN' WHERE id=?", (session_id, order["id"]))
+            db.execute("UPDATE orders SET touched_at=? WHERE id=?", (stamp(self.clock()), order["id"]))
             return self._public(db, self._order(db, order["id"]))
 
     def retry(self, token):
@@ -425,6 +460,7 @@ class Store:
             db.executemany("INSERT INTO allocations(order_id,day,kind,minutes) VALUES(?,?,?,?)", [(order["id"], *row) for row in allocations])
             db.execute("UPDATE orders SET state='RESERVED',reservation='HELD',expires_at=?,delivery_date=?,provider_id=NULL,payment_status='unpaid',reasons='[]' WHERE id=?",
                        (stamp(self.clock() + timedelta(minutes=30)), due, order["id"]))
+            db.execute("UPDATE orders SET touched_at=? WHERE id=?", (stamp(self.clock()), order["id"]))
             return self._public(db, self._order(db, order["id"]))
 
     def _release(self, db, order_id):
@@ -439,25 +475,31 @@ class Store:
             if order["reservation"] == "HELD" and parse(order["expires_at"]) <= now:
                 self._release(db, order["id"])
                 db.execute("UPDATE orders SET state='EXPIRED' WHERE id=?", (order["id"],))
+                db.execute("UPDATE orders SET touched_at=? WHERE id=?", (stamp(now), order["id"]))
             return
         session_id = source_session_id or order["provider_id"]
         snapshot = self.provider.retrieve(db, session_id, now)
+        if not snapshot_matches(snapshot, order["id"], session_id):
+            db.execute("UPDATE orders SET state='PAYMENT_REVIEW',reasons=? WHERE id=?", (json.dumps(["AUTHORITATIVE_PAYMENT_MISMATCH"]), order["id"]))
+            return  # Keep reservations on unknown or foreign-account evidence.
         if source_session_id and source_session_id != order["provider_id"]:
             if snapshot["payment_status"] == "paid":
                 db.execute("UPDATE orders SET state='PAYMENT_REVIEW',reasons=? WHERE id=?", (json.dumps(["OLDER_ATTEMPT_PAYMENT_REQUIRES_RECONCILIATION"]), order["id"]))
             return  # Older failed/expired events cannot regress a new attempt.
-        valid = (snapshot["mode"] == "LOCAL_FAKE_ONLY" and snapshot["livemode"] is False
-                 and snapshot["id"] == order["provider_id"] and snapshot["order_id"] == order["id"]
-                 and snapshot["amount_total"] == 14900 and snapshot["currency"] == "usd"
-                 and snapshot["quantity"] == 1 and snapshot["tax_cents"] == 0
-                 and snapshot["product"] == "WORKFLOW_BLUEPRINT")
-        if not valid:
-            db.execute("UPDATE orders SET state='PAYMENT_REVIEW',reasons=? WHERE id=?", (json.dumps(["AUTHORITATIVE_PAYMENT_MISMATCH"]), order["id"]))
-            return  # Never release uncertain payable capacity or assert payment.
         status = snapshot["payment_status"]
         if status == "paid":
-            if snapshot["status"] != "complete" or not snapshot["payment_id"] or not snapshot["paid_at"] or parse(snapshot["paid_at"]) > now:
+            try:
+                complete = (snapshot["status"] == "complete" and isinstance(snapshot.get("payment_id"), str)
+                            and re.fullmatch(r"fake_pi_[A-Za-z0-9_]{1,100}", snapshot["payment_id"])
+                            and isinstance(snapshot.get("paid_at"), str)
+                            and parse(snapshot["paid_at"]).utcoffset() is not None and parse(snapshot["paid_at"]) <= now)
+            except (ValueError, TypeError):
+                complete = False
+            if not complete:
                 raise PreviewError("PAYMENT_EVIDENCE_INCOMPLETE", "Final payment evidence needs review.")
+            if db.execute("SELECT 1 FROM retired_keys WHERE kind='payment' AND key_hash=?", (digest(snapshot["payment_id"]),)).fetchone():
+                db.execute("UPDATE orders SET state='PAYMENT_REVIEW',reasons=? WHERE id=?", (json.dumps(["IMMUTABLE_PAYMENT_ID_CONFLICT"]), order["id"]))
+                return
             existing = db.execute("SELECT * FROM cases WHERE order_id=? OR payment_id=?", (order["id"], snapshot["payment_id"])).fetchall()
             if any(row["order_id"] != order["id"] or row["payment_id"] != snapshot["payment_id"] for row in existing):
                 db.execute("UPDATE orders SET state='PAYMENT_REVIEW',reasons=? WHERE id=?", (json.dumps(["IMMUTABLE_PAYMENT_ID_CONFLICT"]), order["id"]))
@@ -475,10 +517,10 @@ class Store:
             db.execute("UPDATE orders SET state='PAYMENT_PENDING',payment_status='processing' WHERE id=?", (order["id"],))
         elif status == "failed":
             self._release(db, order["id"])
-            db.execute("UPDATE orders SET state='PAYMENT_FAILED',payment_status='failed' WHERE id=?", (order["id"],))
+            db.execute("UPDATE orders SET touched_at=CASE WHEN state!='PAYMENT_FAILED' THEN ? ELSE touched_at END,state='PAYMENT_FAILED',payment_status='failed' WHERE id=?", (stamp(now), order["id"]))
         elif snapshot["status"] == "expired":
             self._release(db, order["id"])
-            db.execute("UPDATE orders SET state='EXPIRED' WHERE id=?", (order["id"],))
+            db.execute("UPDATE orders SET touched_at=CASE WHEN state!='EXPIRED' THEN ? ELSE touched_at END,state='EXPIRED' WHERE id=?", (stamp(now), order["id"]))
 
     def event(self, event_id, session_id):
         """Events are wake-ups only. Authoritative provider state is re-read.
@@ -487,6 +529,8 @@ class Store:
         this fake implementation is invoked locally, never from public events.
         """
         with self.tx() as db:
+            if db.execute("SELECT 1 FROM retired_keys WHERE (kind='provider_session' AND key_hash=?) OR (kind='event' AND key_hash=?)", (digest(session_id), digest(event_id))).fetchone():
+                raise PreviewError("EVENT_RETIRED", "That retired event association cannot be replayed.")
             previous = db.execute("SELECT * FROM events WHERE id=?", (event_id,)).fetchone()
             if previous and previous["session_id"] != session_id:
                 raise PreviewError("EVENT_ID_CONFLICT", "Event association needs review.")
@@ -561,6 +605,7 @@ class Store:
                     delivered = stamp(self.clock()) if action == "deliver" else case["delivered_at"]
                     deadline = stamp(self.clock() + timedelta(days=7)) if action == "deliver" else case["revision_deadline"]
                     db.execute("UPDATE cases SET state=?,published_report=report,delivered_at=?,revision_deadline=? WHERE id=?", (state, delivered, deadline, case["id"]))
+                    db.execute("UPDATE cases SET last_delivered_at=? WHERE id=?", (stamp(self.clock()), case["id"]))
                     assert db.execute("SELECT report FROM cases WHERE id=?", (case["id"],)).fetchone()[0] == case["report"]
                 else:
                     raise PreviewError("INVALID_ACTION", "Choose an available simulated operator action.", 400)

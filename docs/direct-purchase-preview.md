@@ -155,11 +155,102 @@ including delayed payment success. Event signatures must be verified before
 dispatch and both completed and asynchronous terminal outcomes reconciled; no
 webhook endpoint is exposed by this fake implementation. See also
 [limited inventory and Checkout](https://docs.stripe.com/payments/checkout/managing-limited-inventory).
-A production adapter needs a durable outbox/idempotency and reconciliation for
-ambiguous session creation, expiry and delivery; the local provider and SQLite
-share a transaction and cannot demonstrate cross-system atomicity or real
-provider outage behavior. The existing live link is deliberately absent and
-unchanged.
+A production adapter still needs provider-specific outbox/idempotency and
+reconciliation. The UI's fake provider and SQLite share a transaction. The
+separate offline fault harness below exercises two local database boundaries;
+neither demonstrates real provider outage behavior or distributed atomicity.
+The existing live link is deliberately absent and unchanged.
+
+### Offline event-boundary fixture
+
+`preview/purchase/fixture_events.py` tests the raw-byte signature/timestamp and
+event-dispatch boundary without adding an HTTP route. It accepts only explicit
+fixture markers, nonlive envelopes, `TEST_ONLY_` keys and local `fake_cs_` session
+IDs and the configured synthetic account/environment. Tests cover body/header tampering, stale/future timestamps, rotating v1
+signatures, duplicate keys, oversized bodies, event replays/order and payment
+labels that contradict authoritative provider state. No real key is generated,
+stored or accepted, and no provider is contacted. The server does not import or
+expose this fixture handler.
+
+This closes those local boundary contracts, not real webhook readiness. A future
+authorized integration must use the official provider SDK with the selected
+event format/version, actual account/environment binding, real endpoint secret,
+HTTPS delivery, durable event/outbox processing and sandbox end-to-end tests.
+The fixture verifier is intentionally unsuitable for live traffic.
+
+### Durable offline outbox and ambiguous outcomes
+
+`preview/purchase/durable_outbox.py` is an explicitly invoked fault harness,
+separate from the HTTP/UI flow. It accepts only its exact local `FakeEndpoint`,
+`TEST_ONLY_` operation/binding markers, fake resource IDs and fictional reports.
+There is no worker process, scheduler, provider adapter or network operation.
+Application intent and fake endpoint effects commit to **separate SQLite
+databases outside Git**, both mode 0600.
+
+The durable states are `PENDING`, `IN_FLIGHT`, `UNKNOWN`, `CONFIRMED` and
+`REVIEW_REQUIRED`. Stable operation keys and immutable payload hashes survive
+restarts. A worker claims a 60-second lease, commits it before the endpoint call,
+and reconciles endpoint readback before execution. Only this fake endpoint's
+authoritative absence permits execution; an unavailable lookup is not absence.
+A lost response after a committed effect recovers the same receipt without a
+second checkout/artifact. Concurrent or stale workers cannot overwrite another
+claim's result. Retry delay doubles from 60 seconds to at most 30 minutes, with
+five attempts; exhaustion requires explicit readback-only reconciliation rather
+than automatic re-execution. The caller must separately decide any correction.
+
+Unknown creation, expiry or delivery cannot claim released capacity or delivery.
+Expiry of a paid/processing fake session retains capacity. Delivery requires
+matching artifact-hash readback. Receipts must match configured account and
+environment, operation, payload and resource. Optional explicit retirement
+removes confirmed payload content after a caller-selected positive window while
+retaining the key/hash/result for dedupe; unresolved payloads and historically
+confirmed deliveries/expiries with unavailable current readback are preserved.
+
+These are mocked contracts. Real APIs may have finite idempotency windows,
+eventual consistency, missing lookup-by-key or ambiguous nonpayable states. The
+harness's receipt/absence guarantees cannot be assumed for Stripe or Drive.
+Its flags are evidence for tests, not actual admission control or a private
+customer delivery system. The UI has not been switched onto this harness.
+
+### Configured payment identity, recovery and retention
+
+`payment_contracts.py` matches authoritative fake snapshots against the fixed
+synthetic account/environment and the stored order/session, product, integer
+amount/quantity/tax and currency. The model separately requires complete final
+paid evidence and checks immutable payment uniqueness, including retired payment
+hashes. A signed event and a snapshot agreeing with each other cannot override
+the configured identity. Old fake snapshots without the new binding fields are
+held for review; migration does not invent provider evidence. Use a fresh
+fictional database for this revision rather than repurposing historical samples.
+
+`maintenance.py` adds backward-compatible fields/tables to the existing local
+model. `Store.rotate_recovery(old_token, proposed_new_token)` atomically revokes
+the old session, changes CSRF and transfers order ownership. The caller retains
+the proposed replacement before the request, so loss of its response is
+recoverable; an identical retry proves both exact tokens. Only hashes are stored
+in its rotation ledger. Rotation is a local Python method, with no new HTTP
+route or customer UI. It does not supply production identity verification,
+lost-key recovery or email/SMS delivery.
+
+`Store.apply_retention(RetentionPolicy(...))` performs explicit local logical
+deletion. All three windows (`unpaid_days`, `delivered_days`,
+`empty_session_days`) default to `None` / disabled. Positive integer windows are
+test configuration, **not approved public retention terms**. Holds override
+deletion. Open/processing/unknown payments, unresolved incidents, undelivered
+paid cases and pending revisions remain. Closed unpaid attempts require current
+authoritative readback of every attempt. Paid deletion waits until the later of
+the revision deadline and latest delivery, plus the selected window. Edits and
+new payment attempts restart unpaid inactivity. Legacy activity of unknown age
+gets a fresh conservative clock. Empty-session cleanup never removes an owned
+order's session.
+
+Cleanup removes brief/report/request content and linked local records, retaining
+only hashed submission/event/session/payment replay tombstones. It never
+deletes an unrelated order. `Store.retention_hold(order_id, True)` preserves a
+local case until explicitly released. This is SQLite logical deletion, not
+secure erasure: filesystem remnants, journals, backups, accounting retention,
+disputes, processor deletion and legal holds require the eventual production
+design and approved terms. No cleanup timer or new job is installed.
 
 ## Privacy and isolation controls
 
@@ -195,3 +286,10 @@ revision states/window and HTTP access/privacy controls. Browser QA should cover
 desktop and mobile layouts, labels/focus/errors, blocked states, fake checkout,
 private report/revision and same-origin-only requests. Keep screenshots/traces
 and any local operator/recovery data outside the public checkout.
+
+The extended suite includes 18 synthetic event-boundary/payment-binding tests,
+22 separate-database outbox/fault/retry tests and 14 migration/recovery/retention
+tests, alongside the original 41 model/loopback HTTP tests (95 total). They
+exercise only local fake adapters and fictional records. Passing them does not
+establish Stripe integration, a working sandbox, production readiness or approved
+customer policies.
