@@ -36,18 +36,23 @@ Draft customer copy, for approval rather than use as live terms:
 > one clarification revision requested within seven days of delivery.
 
 > Draft cancellation and exception treatment: cancel before first delivery for a
-> full refund. If we cannot deliver the agreed scope by the agreed date, choose a
-> newly agreed date or a full refund. If an unsupported request is identified after
-> payment, offer a full refund. If delivered work materially misses
-> the agreed brief and is reported within seven days, let the customer choose correction or
-> refund under the final approved policy. These are proposed business terms, not
-> approved promises or an implemented refund process.
+> full refund, even if work has started. If inability to fulfil is identified
+> before delivery, offer a full refund. If we cannot meet the agreed date, choose
+> a newly agreed date or a full refund. After delivery, refunds require a
+> substantial, documented reason and case-by-case review at our discretion.
+> Buyer preference or hoped-for business results alone do not qualify. Report a
+> material problem within seven days. We correct confirmed material nonconformity
+> at no charge, separately from the included clarification; if it cannot be
+> corrected within a reasonable time, provide an appropriate remedy, which may
+> include a partial or full refund. Discretion does not remove already-owed
+> refunds, agreed-service obligations or mandatory legal rights. These remain
+> draft terms, not published policy or an implemented refund process.
 
 | Launch decision | Current preview | Evidence/decision required before live checkout |
 | --- | --- | --- |
 | Product and price | Workflow Blueprint, one workflow, $149 USD, quantity one | Approve consistent product naming across site, checkout, receipt, terms and refund policy; retain scope and one-time price |
 | Tax | Fake zero tax; displayed as provisional | Determine applicable jurisdictions/registrations and inclusive/exclusive treatment; verify tax code, registrations and actual checkout calculation; do not infer that zero means exempt |
-| Cancellation/refunds | Proposed wording above; no refund API | Approve before-first-delivery cancellation, unsupported-after-payment, non-delivery/late delivery and material scope-mismatch handling, deadlines and original-method refunds |
+| Cancellation/refunds | Proposed wording above; no refund API | Review before-first-delivery cancellation/inability, agreed-date protection, substantial documented discretionary post-delivery review, no-charge material-defect correction and appropriate/mandatory remedies, deadlines and original-method refunds |
 | Turnaround | Exact sample date computed from fictional capacity | Import a complete, current obligation inventory and actual effort estimates/QA slots; prove a feasible date with contingency, including payable invitations and revisions; no blanket five-day promise |
 | Privacy | Only fictional local records, no external processor | Approve named payment/hosting/storage/AI/delivery processors, purpose/minimization, retention and deletion windows, legally required payment retention, access/recovery and incident handling; update actual notice before collecting real briefs |
 | Provider environment | Only fake provider; no available authorized sandbox was exposed | An existing authorized isolated sandbox, or separate approval for required access; then real webhook signature verification and authoritative retrieval tests. Never test this against a live payment link |

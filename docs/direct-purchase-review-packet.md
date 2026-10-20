@@ -16,7 +16,7 @@ not a legal compliance guarantee.
 | Decision | Recommended choice | Still requires an explicit decision |
 | --- | --- | --- |
 | Offer | One administrative quote-request, leasing-inquiry or shared-inbox workflow; $149 once, quantity one; existing deliverables/exclusions | Approve consistent name and the order-specific scope/terms shown before payment |
-| Refunds | Full refund before first delivery; full refund if agreed scope cannot be fulfilled; customer chooses correction or refund for a material mismatch reported within seven days | Approve the complete wording below, including response and processing targets; no deduction of merchant fees |
+| Refunds | Full refund on cancellation before first delivery or inability to fulfil identified before delivery; agreed-date protection. After delivery: substantial documented reason, discretionary case-by-case review, and correction/remedies for confirmed material nonconformity | Review the revised complete wording below, including reasonable correction, required remedies and response/processing targets. No deduction of merchant fees from an approved full refund; no blanket post-delivery satisfaction or outcome guarantee |
 | Delivery | Exact feasible date, proposed deadline 5 p.m. America/Denver, displayed before checkout and retained in the order | Approve the deadline convention; verify real capacity and existing obligations. Five business days is conditional, not an unconditional promise |
 | Tax | Show $149 base, applicable tax and final total before payment | Determine jurisdictions/registrations, tax code and calculation method. Do not infer exemption from the fake zero-tax preview or enable a paid tax product by default |
 | Retention | Unpaid content: 30 days after last activity and confirmed closure; paid content: 90 days after the later of revision-window closure and final delivery; empty sessions: seven days; restricted backups: up to 30 further days | Approve these periods, processor retention and deletion/restore behavior. They are recommendations, not statutory requirements or active settings |
@@ -80,20 +80,39 @@ time we later review it, determines whether it preceded delivery.
 
 ### If we cannot fulfil the agreed scope or date
 
-If the request cannot be fulfilled within the agreed scope, we will offer a
-full refund rather than require an additional purchase. If we cannot meet the
-agreed delivery date, you may choose a new date that you accept or a full refund.
-We will not silently extend the date. A late or uncertain payment does not
-automatically create a promise against availability that has already expired.
+If, before first delivery, we find that the request cannot be fulfilled within
+the agreed scope, we will offer a full refund rather than require an additional
+purchase. If we cannot meet the agreed delivery date, you may choose a new date
+that you accept or a full refund. We will not silently extend the date. A late
+or uncertain payment does not automatically create a promise against
+availability that has already expired.
 
-### If delivered work materially misses the agreed brief
+### Refund requests after first delivery
 
-Contact us within seven days of first delivery and identify what materially
-differs from the agreed brief. You may request correction or a full refund.
-You do not have to use the clarification revision or accept a correction before
-requesting a refund. We may ask for enough information to identify the order and
-problem. A timely unresolved complaint remains open after the seven-day window;
-the deadline is for reporting it, not for completing our response.
+Post-delivery refunds require a substantial, documented reason and are reviewed
+case by case at our discretion, subject to the remedies and mandatory rights
+below. Contact us within seven days of first delivery with your order reference,
+the specific problem and supporting details, such as an agreed deliverable that
+is missing or a material departure from the agreed brief. Do not include
+sensitive customer records or credentials.
+
+A change of mind, buyer preference, a request outside the agreed scope or the
+absence of hoped-for business results does not, by itself, qualify for a refund.
+This is a written plan; we do not guarantee revenue, savings or other business
+outcomes. We consider the agreed brief, delivered work, supporting information
+and available correction, and explain our decision.
+
+If we confirm a material failure to provide the agreed deliverables, we will
+correct it at no extra charge within a reasonable timeframe confirmed with you.
+This correction is separate from, and does not use up, your included
+clarification revision. If the failure cannot be corrected within a reasonable
+time, we will provide an appropriate remedy, which may include a partial or full
+refund. Any remedy required by law remains available.
+
+Our discretion does not remove a refund already owed under the cancellation or
+missed-date terms above, our obligation to provide the agreed service, or your
+mandatory legal rights. A timely unresolved complaint remains open after seven
+days; the deadline is for raising it, not completing our response.
 
 ### Request handling and refunds
 
@@ -217,7 +236,7 @@ pages retain these material provisions.
 
 | Current evidence | Required reconciliation before launch |
 | --- | --- |
-| `refunds.html`: Blueprint material-failure window is seven days; Website Audit has a separate 48-hour category; delivered/accepted work is generally non-refundable; chargebacks without prior contact may terminate service | Give this Blueprint an explicit category: before-first-delivery cancellation, inability/late delivery, customer-selected correction/refund, no fee deduction. Do not borrow the Audit category or let the general exclusion override it. Reconcile the chargeback clause with the draft's preserved dispute rights; prior contact must not be a waiver condition |
+| `refunds.html`: Blueprint material-failure window is seven days; Website Audit has a separate 48-hour category; delivered/accepted work is generally non-refundable; chargebacks without prior contact may terminate service | Give this Blueprint an explicit category: before-first-delivery cancellation/inability, agreed-date protection, substantial documented post-delivery requests reviewed case by case at our discretion, and no-charge correction plus appropriate remedies for confirmed material nonconformity. No blanket preference/outcome refunds; no fee deduction from an approved full refund. Do not borrow the Audit category or let a general exclusion/discretion clause erase agreed or mandatory remedies. Reconcile the chargeback clause with preserved dispute rights; prior contact must not be a waiver condition |
 | `terms.html`: no website payment; payment method confirmed in writing; only a signed SOW expressly overrides general terms; credential duties and 30-day termination language | Expressly recognize the accepted Blueprint order agreement and its product-specific precedence in the general terms before launch. Review online acceptance instead of assuming it satisfies the current signed-SOW clause. No credentials, implementation or 30-day cancellation restriction for this product; preserve other services' terms unless reviewed |
 | `privacy.html`: email-only free check; broad analytics/cookie wording; generic processors and retention; no website payment | Keep the legacy free check's facts separate. Add the order-service notice and verify actual logs, cookies, payment collection, processors and retention. Do not claim all existing marketing pages have no analytics merely from this design |
 | Preview: fake zero tax, simulated dates/payments/reviewer roles; no refund/cancellation API; bearer recovery; retention disabled; outbox is a separate harness | Refund copy, cancellation timestamps, late-date remedy, production identity, provider SDK and actual deletion still require implementation/testing. Mock flags are not launch evidence |
