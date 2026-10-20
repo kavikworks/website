@@ -22,6 +22,12 @@ also has a Workflow Blueprints / AI-Generated Content seven-day category; the
 direct-purchase naming and exact terms must be reconciled before launch. No public
 policy has been edited by this work.
 
+The [terms and hosting review packet](direct-purchase-review-packet.md) contains
+the complete proposed refund/privacy copy, current official pricing, minimal
+Cloudflare design, port/testing scope and decisions required before setup.
+It is a draft for review; its terms, retention windows and processors are not
+approved or published merely because the packet exists.
+
 Draft customer copy, for approval rather than use as live terms:
 
 > Buy your $149 Workflow Blueprint. Describe one administrative workflow; review
@@ -29,11 +35,11 @@ Draft customer copy, for approval rather than use as live terms:
 > No account, sales call or account access is required. The written plan includes
 > one clarification revision requested within seven days of delivery.
 
-> Draft cancellation and exception treatment: cancel before work begins for a
+> Draft cancellation and exception treatment: cancel before first delivery for a
 > full refund. If we cannot deliver the agreed scope by the agreed date, choose a
 > newly agreed date or a full refund. If an unsupported request is identified after
-> payment and before work, offer a full refund. If delivered work materially misses
-> the agreed brief and is reported within seven days, resolve it by correction or
+> payment, offer a full refund. If delivered work materially misses
+> the agreed brief and is reported within seven days, let the customer choose correction or
 > refund under the final approved policy. These are proposed business terms, not
 > approved promises or an implemented refund process.
 
@@ -41,7 +47,7 @@ Draft customer copy, for approval rather than use as live terms:
 | --- | --- | --- |
 | Product and price | Workflow Blueprint, one workflow, $149 USD, quantity one | Approve consistent product naming across site, checkout, receipt, terms and refund policy; retain scope and one-time price |
 | Tax | Fake zero tax; displayed as provisional | Determine applicable jurisdictions/registrations and inclusive/exclusive treatment; verify tax code, registrations and actual checkout calculation; do not infer that zero means exempt |
-| Cancellation/refunds | Proposed wording above; no refund API | Approve cancellation, work-start definition, unsupported-after-payment, non-delivery/late delivery and material scope-mismatch handling, deadlines and original-method refunds |
+| Cancellation/refunds | Proposed wording above; no refund API | Approve before-first-delivery cancellation, unsupported-after-payment, non-delivery/late delivery and material scope-mismatch handling, deadlines and original-method refunds |
 | Turnaround | Exact sample date computed from fictional capacity | Import a complete, current obligation inventory and actual effort estimates/QA slots; prove a feasible date with contingency, including payable invitations and revisions; no blanket five-day promise |
 | Privacy | Only fictional local records, no external processor | Approve named payment/hosting/storage/AI/delivery processors, purpose/minimization, retention and deletion windows, legally required payment retention, access/recovery and incident handling; update actual notice before collecting real briefs |
 | Provider environment | Only fake provider; no available authorized sandbox was exposed | An existing authorized isolated sandbox, or separate approval for required access; then real webhook signature verification and authoritative retrieval tests. Never test this against a live payment link |
