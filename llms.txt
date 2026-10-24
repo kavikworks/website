@@ -2,11 +2,14 @@
 > Kavik Works (Robot Arms LLC) is a Denver business offering written workflow blueprints for small service businesses and property teams.
 
 ## Current offer
-- Workflow Blueprint: $149 USD one time for one intake or follow-up workflow. Any applicable tax, scope, payment method, and delivery timing are confirmed before payment.
+- Workflow Blueprint: $149 USD one time for one intake or follow-up workflow.
+- Email josh@kavikworks.com first to confirm fit, scope, and delivery timing before payment. Email first if you need sales tax confirmed before you pay. This website does not calculate sales tax.
+- If you already know the workflow, pay $149 at the Stripe-hosted checkout (https://buy.stripe.com/dRm14oc0c9g0fiXgn4bZe00) and email the details afterward. If the project does not fit, you can request a refund: https://kavikworks.com/refunds
+- Stripe collects card numbers on its checkout page. Do not email payment details. This website does not collect card numbers.
 - Includes a workflow map, capture fields, routing rules, three editable templates, setup steps, a test checklist, and one clarification revision within seven days of delivery.
-- AI-assisted preparation, checked against the customer brief. No call or account access required. No payment is collected on the website.
+- Prepared with AI assistance and checked against the customer brief. No call, account, or inbox access.
 - This is a written plan. Installation, live inbox operation, and ongoing monitoring are not included. No customer results, conversion lift, or time savings are claimed.
-- Current focus: quote requests, leasing inquiries, and shared administrative inboxes. Medical decisions, legal advice, financial decisions, tenant screening, and emergency dispatch are outside the offer.
+- Current focus: quote requests, leasing inquiries, and shared administrative inboxes. Medical, legal, financial, and tenant-screening decisions, and emergency dispatch, are outside the offer.
 
 ## Useful pages
 - [Home](https://kavikworks.com/): current scope and price.
@@ -19,7 +22,10 @@
 - [Workflow examples](https://kavikworks.com/build-concepts/): examples, not case studies.
 - [Lead-response cost worksheet](https://kavikworks.com/guides/lead-response-cost.html)
 - [Automation, CRM, or shared inbox](https://kavikworks.com/guides/lead-response-automation-vs-crm.html)
+- [Workflow Blueprint refunds](https://kavikworks.com/refunds)
+- [Workflow Blueprint privacy](https://kavikworks.com/privacy)
+- [Workflow Blueprint terms](https://kavikworks.com/terms)
 
 ## Contact
-- Email: josh@kavikworks.com. Request a $149 blueprint with your workflow, existing tools, and the handoff to improve; no free check or meeting is required.
+- Email: josh@kavikworks.com. Request a $149 Workflow Blueprint with your workflow, existing tools, and the handoff to improve; no free check or meeting is required. Or pay at the Stripe link above and email the details afterward.
 - Business: Robot Arms LLC, dba Kavik Works, Denver, Colorado, United States.

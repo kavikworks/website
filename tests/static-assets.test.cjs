@@ -7,7 +7,7 @@ const { execFileSync, spawnSync } = require('node:child_process');
 
 const root = path.resolve(__dirname, '..');
 const publicPaths = [
-  'index.html', 'intake.html', 'privacy.html', 'terms.html', 'refunds.html',
+  'index.html', 'intake.html', '404.html', 'privacy.html', 'terms.html', 'refunds.html',
   'favicon.svg', 'site.css', 'commercial-pages.css', 'workflow-check.js',
   'robots.txt', 'llms.txt', 'sitemap.xml',
   'ai-email-triage/index.html', 'lead-response-automation/index.html',
@@ -60,8 +60,8 @@ test('static-only configuration preserves production routing and disables versio
   });
 });
 
-test('all 30 existing public assets are included, including both sample downloads', () => {
-  assert.equal(publicPaths.length, 30);
+test('all 31 existing public assets are included, including both sample downloads and the not-found page', () => {
+  assert.equal(publicPaths.length, 31);
   withAssetPolicy((excluded) => {
     for (const candidate of publicPaths) {
       assert.ok(fs.statSync(path.join(root, candidate)).isFile(), candidate);
@@ -78,6 +78,21 @@ test('every other tracked repository file is excluded', () => {
       assert.equal(excluded(candidate), true, candidate);
     }
   });
+});
+
+test('the not-found page links home, the workflow check, the sample, and support', () => {
+  const html = fs.readFileSync(path.join(root, '404.html'), 'utf8');
+  assert.match(html, /href="\/"/);
+  assert.match(html, /href="\/intake"/);
+  assert.match(html, /href="\/sample-workflow\/"/);
+  assert.match(html, /Support: <a href="mailto:josh@kavikworks.com">josh@kavikworks.com<\/a>/);
+});
+
+test('every public HTML page lists support email in the footer', () => {
+  for (const candidate of publicPaths.filter((file) => file.endsWith('.html'))) {
+    const html = fs.readFileSync(path.join(root, candidate), 'utf8');
+    assert.match(html, /Support: <a href="mailto:josh@kavikworks.com">josh@kavikworks.com<\/a>/, candidate);
+  }
 });
 
 test('new files, private files, and dotfiles fail closed even under public directories', () => {
