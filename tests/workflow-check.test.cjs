@@ -16,11 +16,11 @@ for (const page of ['lead-response-automation', 'ai-email-triage']) {
     assert.deepEqual([...email.searchParams.keys()], ['subject', 'body']);
     assert.equal(email.searchParams.get('subject'), 'Workflow Blueprint request');
     assert.match(email.searchParams.get('body'), /\$149 written Workflow Blueprint for one workflow/);
-    assert.match(email.searchParams.get('body'), /confirm fit, scope, availability, delivery timing and payment details before payment/);
+    assert.match(email.searchParams.get('body'), /confirm fit, scope, availability, and delivery timing before I pay/);
     for (const field of ['Business / website:', 'Workflow to review:', 'Current tools:', 'Handoff to improve:']) {
       assert.ok(email.searchParams.get('body').includes(field));
     }
-    assert.match(offer, /one-time written automation audit/);
+    assert.match(offer, /one-time Workflow Blueprint/);
     assert.match(offer, /three editable templates/);
     assert.match(offer, /One clarification revision is included within seven days of delivery/);
     assert.match(offer, /No call or account access is required/);
