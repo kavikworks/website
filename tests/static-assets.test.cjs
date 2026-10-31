@@ -11,6 +11,14 @@ const publicPaths = [
   'favicon.svg', 'site.css', 'commercial-pages.css', 'workflow-check.js',
   'robots.txt', 'llms.txt', 'sitemap.xml',
   'ai-email-triage/index.html', 'lead-response-automation/index.html',
+  'guides/index.html',
+  'guides/stop-missing-calls-hvac-plumbing.html',
+  'guides/job-intake-scheduling-without-new-software.html',
+  'guides/estimate-follow-up-small-contractors.html',
+  'guides/maintenance-requests-small-property-portfolio.html',
+  'guides/recurring-cleaning-client-schedule.html',
+  'guides/reduce-no-shows-home-service.html',
+  'guides/after-hours-calls-electrical-handyman.html',
   'guides/lead-response-cost.html', 'guides/lead-response-automation-vs-crm.html',
   'build-concepts/index.html', 'build-concepts/cpa-client-intake-triage.html',
   'build-concepts/financial-advisor-inquiry-routing.html',
@@ -56,12 +64,12 @@ test('static-only configuration preserves production routing and disables versio
     workers_dev: true,
     preview_urls: false,
     observability: { enabled: true },
-    assets: { directory: '.' },
+    assets: { directory: '.', not_found_handling: '404-page' },
   });
 });
 
-test('all 31 existing public assets are included, including both sample downloads and the not-found page', () => {
-  assert.equal(publicPaths.length, 31);
+test('all 39 existing public assets are included, including both sample downloads and the not-found page', () => {
+  assert.equal(publicPaths.length, 39);
   withAssetPolicy((excluded) => {
     for (const candidate of publicPaths) {
       assert.ok(fs.statSync(path.join(root, candidate)).isFile(), candidate);

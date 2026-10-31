@@ -20,6 +20,14 @@
 - [Lead follow-up planning](https://kavikworks.com/lead-response-automation/)
 - [Shared inbox planning](https://kavikworks.com/ai-email-triage/)
 - [Workflow examples](https://kavikworks.com/build-concepts/): examples, not case studies.
+- [Guides](https://kavikworks.com/guides/): free how-to notes for small home-service shops and small property managers. Not customer results.
+- [Missed calls for a small HVAC or plumbing shop](https://kavikworks.com/guides/stop-missing-calls-hvac-plumbing)
+- [Job intake and scheduling without new software](https://kavikworks.com/guides/job-intake-scheduling-without-new-software)
+- [Estimate follow-up for a small crew](https://kavikworks.com/guides/estimate-follow-up-small-contractors)
+- [Maintenance requests for a small property portfolio](https://kavikworks.com/guides/maintenance-requests-small-property-portfolio)
+- [Recurring cleaning-client scheduling](https://kavikworks.com/guides/recurring-cleaning-client-schedule)
+- [Fewer no-shows for home-service appointments](https://kavikworks.com/guides/reduce-no-shows-home-service)
+- [After-hours calls for a small electrical or handyman business](https://kavikworks.com/guides/after-hours-calls-electrical-handyman)
 - [Lead-response cost worksheet](https://kavikworks.com/guides/lead-response-cost.html)
 - [Automation, CRM, or shared inbox](https://kavikworks.com/guides/lead-response-automation-vs-crm.html)
 - [Workflow Blueprint refunds](https://kavikworks.com/refunds)
